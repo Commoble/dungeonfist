@@ -19,24 +19,14 @@ public class DungeonPortalParticle extends SpriteTexturedParticle
 	{
 
 		super(world, x, y, z, 0.0D, 0.0D, 0.0D);
-		// this.motionX *= 0.10000000149011612D;
-		// this.motionY *= 0.10000000149011612D;
-		// this.motionZ *= 0.10000000149011612D;
-		// this.motionX += xVel * 0.4D;
-		// this.motionY += yVel * 0.4D;
-		// this.motionZ += zVel * 0.4D;
-		//float f = (float) (Math.random() * 0.1 + 0.9);
 		this.particleRed = red;
 		this.particleGreen = green;
 		this.particleBlue = blue;
 		this.motionX = xVel;
 		this.motionY = yVel;
 		this.motionZ = zVel;
-		// this.particleScale *= 0.1F; //0.75F;
 
 		this.maxAge = (int) (20.0D / (Math.random() * 0.8D + 0.6D));
-		// this.particleMaxAge = (int)((float)this.particleMaxAge * scale);
-		// this.setParticleTextureIndex(65);
 		this.onUpdate();
 	}
 
@@ -66,29 +56,7 @@ public class DungeonPortalParticle extends SpriteTexturedParticle
 			this.setExpired();
 		}
 
-		// this.setParticleTextureIndex(this.baseSpellTextureIndex + (7 - this.age * 8 /
-		// this.maxAge));
-
 		this.move(this.motionX, this.motionY, this.motionZ);
-
-		/**
-		 * this.particleRed *= 0.98F; this.particleGreen *= 0.98F; this.particleBlue *=
-		 * 0.98F;
-		 **/
-
-		// this.particleScale *= 0.98F;
-
-		// this.particleGreen = (float)(this.particleGreen * 0.975F);
-		// this.particleBlue = (float)(this.particleBlue * 0.95F);
-		// this.motionX *= 0.9D;
-		// if (this.motionY > 0D) this.motionY *= 0.7D;
-		// this.motionZ *= 0.9D;
-		// this.motionY -= 0.06D;
-
-		/*
-		 * if (this.onGround) { this.motionX *= 0.699999988079071D; this.motionZ *=
-		 * 0.699999988079071D; }
-		 */
 	}
 
 	@OnlyIn(Dist.CLIENT)

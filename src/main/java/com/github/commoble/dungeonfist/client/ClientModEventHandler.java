@@ -1,7 +1,6 @@
 package com.github.commoble.dungeonfist.client;
 
 import com.github.commoble.dungeonfist.DungeonFist;
-import com.github.commoble.dungeonfist.RegistryHelper;
 
 import net.minecraft.particles.ParticleType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -17,7 +16,7 @@ public class ClientModEventHandler
 	@SubscribeEvent
 	public static void onParticleTypeRegistryEvent(RegistryEvent.Register<ParticleType<?>> event)
 	{
-		ParticleTypeRegistrar.registerParticleTypes(new RegistryHelper<ParticleType<?>>(event.getRegistry()));
+		ParticleTypeRegistrar.registerParticleTypes();
 	}
 	
 	@SubscribeEvent

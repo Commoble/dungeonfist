@@ -7,6 +7,9 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleType;
 
+// particle data instances are used to pass data from the things that we spawn
+// particles from to the particle factories
+// in this case we use this to pass color information from the portal tile entities to the particles
 public class DungeonPortalParticleData implements IParticleData
 {
 	public static final IParticleData.IDeserializer<DungeonPortalParticleData> DESERIALIZER = new IParticleData.IDeserializer<DungeonPortalParticleData>()
