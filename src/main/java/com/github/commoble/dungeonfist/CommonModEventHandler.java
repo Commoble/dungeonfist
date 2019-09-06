@@ -1,14 +1,20 @@
 package com.github.commoble.dungeonfist;
 
+import com.github.commoble.dungeonfist.registry.BiomeRegistrar;
 import com.github.commoble.dungeonfist.registry.BlockRegistrar;
+import com.github.commoble.dungeonfist.registry.ChunkGeneratorTypeRegistrar;
 import com.github.commoble.dungeonfist.registry.FeatureRegistrar;
 import com.github.commoble.dungeonfist.registry.ItemRegistrar;
+import com.github.commoble.dungeonfist.registry.ModDimensionRegistrar;
 import com.github.commoble.dungeonfist.registry.TileEntityTypeRegistrar;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -21,29 +27,47 @@ public class CommonModEventHandler
 	@SubscribeEvent
 	public static void onBlockRegistryEvent(RegistryEvent.Register<Block> event)
 	{
-		BlockRegistrar.registerBlocks(getRegistryHelper(event));
+		BlockRegistrar.registerBlocks(getRegistrar(event));
 	}
-	
+
 	@SubscribeEvent
 	public static void onItemRegistryEvent(RegistryEvent.Register<Item> event)
 	{
-		ItemRegistrar.registerItems(getRegistryHelper(event));
+		ItemRegistrar.registerItems(getRegistrar(event));
 	}
 
 	@SubscribeEvent
 	public static void onTileEntityTypeRegistryEvent(RegistryEvent.Register<TileEntityType<?>> event)
 	{
-		TileEntityTypeRegistrar.registerTileEntities(getRegistryHelper(event));
+		TileEntityTypeRegistrar.registerTileEntities(getRegistrar(event));
+	}
+
+	@SubscribeEvent
+	public static void onBiomeRegistryEvent(RegistryEvent.Register<Biome> event)
+	{
+		BiomeRegistrar.registerBiomes(getRegistrar(event));
 	}
 
 	@SubscribeEvent
 	public static void onFeatureRegistryEvent(RegistryEvent.Register<Feature<?>> event)
 	{
-		FeatureRegistrar.registerFeatures(getRegistryHelper(event));
+		FeatureRegistrar.registerFeatures(getRegistrar(event));
 	}
 
-	public static <T extends IForgeRegistryEntry<T>> RegistryHelper<T> getRegistryHelper(RegistryEvent.Register<T> event)
+	@SubscribeEvent
+	public static void onDimensionRegistryEvent(RegistryEvent.Register<ModDimension> event)
 	{
-		return new RegistryHelper<T>(event.getRegistry());
+		ModDimensionRegistrar.registerModDimensions(getRegistrar(event));
+	}
+
+	@SubscribeEvent
+	public static void onChunkGeneratorRegistryEvent(RegistryEvent.Register<ChunkGeneratorType<?, ?>> event)
+	{
+		ChunkGeneratorTypeRegistrar.registerChunkGeneratorTypes(getRegistrar(event));
+	}
+
+	public static <T extends IForgeRegistryEntry<T>> Registrator<T> getRegistrar(RegistryEvent.Register<T> event)
+	{
+		return new Registrator<T>(event.getRegistry());
 	}
 }

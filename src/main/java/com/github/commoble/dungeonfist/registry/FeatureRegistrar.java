@@ -1,6 +1,6 @@
 package com.github.commoble.dungeonfist.registry;
 
-import com.github.commoble.dungeonfist.RegistryHelper;
+import com.github.commoble.dungeonfist.Registrator;
 import com.github.commoble.dungeonfist.world.DungeonPortalFeature;
 import com.github.commoble.dungeonfist.world.DungeonPortalPlacement;
 
@@ -16,7 +16,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class FeatureRegistrar
 {
-	public static void registerFeatures(RegistryHelper<Feature<?>> reg)
+	public static void registerFeatures(Registrator<Feature<?>> reg)
 	{
 		ConfiguredFeature<?> feature = Biome.createDecoratedFeature(
 				new DungeonPortalFeature(NoFeatureConfig::deserialize),

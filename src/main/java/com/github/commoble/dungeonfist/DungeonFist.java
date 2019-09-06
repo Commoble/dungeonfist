@@ -13,6 +13,7 @@ public class DungeonFist
 	public static Optional<ClientProxy> clientProxy = Optional.ofNullable(DistExecutor.callWhenOn(Dist.CLIENT, () -> ClientProxy::new));
 	
 	// object names
+	public static final String DUNGEON = "dungeon";
 	public static final String DUNGEON_PORTAL = "dungeon_portal";
 	public static final String DUNGEON_PORTAL_GLOWY_AIR = "dungeon_portal_glowy_air";
 }

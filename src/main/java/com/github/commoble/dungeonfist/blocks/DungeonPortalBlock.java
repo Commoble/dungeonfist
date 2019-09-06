@@ -1,7 +1,10 @@
 package com.github.commoble.dungeonfist.blocks;
 
 import com.github.commoble.dungeonfist.registry.BlockRegistrar;
+import com.github.commoble.dungeonfist.registry.DimensionTypeRegistrar;
 import com.github.commoble.dungeonfist.registry.TileEntityTypeRegistrar;
+import com.github.commoble.dungeonfist.util.AreaGrid;
+import com.github.commoble.dungeonfist.world.DungeonTeleporter;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -19,6 +22,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 
 /**
  * The primary portal blocks in the centers of portals
@@ -119,33 +123,19 @@ public class DungeonPortalBlock extends Block
 		} else
 		{
 			ServerPlayerEntity mpPlayer = (ServerPlayerEntity) player;
-			// if (!player.isRiding() && !player.isBeingRidden())
-			// {
-			// // copied section from EntityPlayerMP.changeDimension
-			// int targetID; // id of dimension the player is teleporting to
-			// if (world.provider.getDimensionType().getId() == 0)
-			// {
-			// targetID = DungeonfistMod.proxy.test_dim_id;
-			// }
-			// else
-			// {
-			// targetID = 0;
-			// }
-			// ServerWorld serv = mpPlayer.mcServer.getWorld(targetID); // will initialize
-			// world if it's not loaded
-			// mpPlayer.getServer().getPlayerList().transferPlayerToDimension(mpPlayer,
-			// targetID, new TeleporterDungeon(serv, pos));
-			//
-			//
-			// mpPlayer.connection.sendPacket(new SPacketEffect(1032, BlockPos.ORIGIN, 0,
-			// false));
-			// mpPlayer.addExperience(0); // set lastExperience to -1
-			// mpPlayer.setPlayerHealthUpdated(); // set lastHealth to -1
-			// //mpPlayer.lastFoodLevel = -1; // no equivalent public function
-			// return true;
-			// }
-			return false;
+			if (player.getRidingEntity() == null && !player.isBeingRidden())
+			{
+				if (world.dimension.getType().getId() == 0)
+				{
+					DungeonTeleporter.teleportPlayer(mpPlayer, DimensionTypeRegistrar.getDungeonDimensionType(), pos);
+				} else
+				{
+					DungeonTeleporter.teleportPlayer(mpPlayer, DimensionType.OVERWORLD, pos);
+				}
+				return true;
+			}
 		}
+		return false;
 	}
 
 	/**
@@ -161,6 +151,18 @@ public class DungeonPortalBlock extends Block
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
 	{
+		return VoxelShapes.fullCube();
+	}
+
+	@Override
+	public VoxelShape getRenderShape(BlockState state, IBlockReader worldIn, BlockPos pos)
+	{
 		return VoxelShapes.empty();
+	}
+
+	@Override
+	public VoxelShape getRaytraceShape(BlockState state, IBlockReader worldIn, BlockPos pos)
+	{
+		return VoxelShapes.fullCube();
 	}
 }

@@ -1,7 +1,7 @@
 package com.github.commoble.dungeonfist.registry;
 
 import com.github.commoble.dungeonfist.DungeonFist;
-import com.github.commoble.dungeonfist.RegistryHelper;
+import com.github.commoble.dungeonfist.Registrator;
 import com.github.commoble.dungeonfist.blocks.DungeonPortalBlock;
 import com.github.commoble.dungeonfist.blocks.DungeonPortalGlowyAirBlock;
 
@@ -23,9 +23,9 @@ public class BlockRegistrar
 	
 	
 	// register all the blocks, called by RegistryEventHandler
-	public static void registerBlocks(RegistryHelper<Block> reg)
+	public static void registerBlocks(Registrator<Block> reg)
 	{
 		reg.register(DungeonFist.DUNGEON_PORTAL, new DungeonPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()));
-		reg.register(DungeonFist.DUNGEON_PORTAL_GLOWY_AIR, new DungeonPortalGlowyAirBlock(Block.Properties.create(Material.PORTAL)));
+		reg.register(DungeonFist.DUNGEON_PORTAL_GLOWY_AIR, new DungeonPortalGlowyAirBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()));
 	}
 }
