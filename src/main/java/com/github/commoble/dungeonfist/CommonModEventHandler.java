@@ -27,46 +27,46 @@ public class CommonModEventHandler
 	@SubscribeEvent
 	public static void onBlockRegistryEvent(RegistryEvent.Register<Block> event)
 	{
-		BlockRegistrar.registerBlocks(getRegistrar(event));
+		BlockRegistrar.registerBlocks(getRegistrator(event));
 	}
 
 	@SubscribeEvent
 	public static void onItemRegistryEvent(RegistryEvent.Register<Item> event)
 	{
-		ItemRegistrar.registerItems(getRegistrar(event));
+		ItemRegistrar.registerItems(getRegistrator(event));
 	}
 
 	@SubscribeEvent
 	public static void onTileEntityTypeRegistryEvent(RegistryEvent.Register<TileEntityType<?>> event)
 	{
-		TileEntityTypeRegistrar.registerTileEntities(getRegistrar(event));
+		TileEntityTypeRegistrar.registerTileEntities(getRegistrator(event));
 	}
 
 	@SubscribeEvent
 	public static void onBiomeRegistryEvent(RegistryEvent.Register<Biome> event)
 	{
-		BiomeRegistrar.registerBiomes(getRegistrar(event));
+		BiomeRegistrar.registerBiomes(getRegistrator(event));
 	}
 
 	@SubscribeEvent
 	public static void onFeatureRegistryEvent(RegistryEvent.Register<Feature<?>> event)
 	{
-		FeatureRegistrar.registerFeatures(getRegistrar(event));
+		FeatureRegistrar.registerFeatures(getRegistrator(event));
 	}
 
 	@SubscribeEvent
 	public static void onDimensionRegistryEvent(RegistryEvent.Register<ModDimension> event)
 	{
-		ModDimensionRegistrar.registerModDimensions(getRegistrar(event));
+		ModDimensionRegistrar.registerModDimensions(getRegistrator(event));
 	}
 
 	@SubscribeEvent
 	public static void onChunkGeneratorRegistryEvent(RegistryEvent.Register<ChunkGeneratorType<?, ?>> event)
 	{
-		ChunkGeneratorTypeRegistrar.registerChunkGeneratorTypes(getRegistrar(event));
+		ChunkGeneratorTypeRegistrar.registerChunkGeneratorTypes(getRegistrator(event));
 	}
 
-	public static <T extends IForgeRegistryEntry<T>> Registrator<T> getRegistrar(RegistryEvent.Register<T> event)
+	public static <T extends IForgeRegistryEntry<T>> Registrator<T> getRegistrator(RegistryEvent.Register<T> event)
 	{
 		return new Registrator<T>(event.getRegistry());
 	}

@@ -1,9 +1,11 @@
 package com.github.commoble.dungeonfist.util;
 
 import java.util.Random;
+import java.util.function.IntFunction;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
-import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.BlockPos;
 
 public class RegionSideExits
 {
@@ -36,11 +38,21 @@ public class RegionSideExits
 		this.offset = rand.nextInt(max - min) + min;
 	}
 	
-	public IntStream getPortionsOfExitInChunk(ChunkPos pos)
+	public IntStream getExitOffsets()
 	{
-		ChunkPos localizedChunkPos = this.roomKey.getLocalizedChunkPos(pos);
-		int totalOffset = this.offset + (this.isOnEastSide ? (localizedChunkPos.z << 4) : (localizedChunkPos.x << 4));
-		return IntStream.range(0, this.exitSize).map(i -> i + totalOffset).filter(i -> i >= 0 && i < 15);
+//		System.out.println("Actual chunkpos is " + pos);
+//		System.out.println("Room coords is " + this.roomKey.superChunkCoords);
+//		System.out.println("Localized chunkpos is " + localizedChunkPos);
+//		System.out.println("Hallway offset is " + this.offset);
+//		System.out.println("Total offset is" + totalOffset);
+		return IntStream.range(0, this.exitSize).map(i -> i + this.offset);
+	}
+	
+	public Stream<BlockPos> getExitBlockPositions()
+	{
+		int y = this.roomKey.yLayer;
+		IntFunction<BlockPos> posMapper = this.isOnEastSide ? z -> new BlockPos(15,y,z) : x -> new BlockPos(x,y,15);
+		return this.getExitOffsets().mapToObj(posMapper);
 	}
 	
 }

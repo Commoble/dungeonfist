@@ -3,6 +3,7 @@ package com.github.commoble.dungeonfist.dimension;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
+import java.util.function.IntConsumer;
 import java.util.stream.Stream;
 
 import com.github.commoble.dungeonfist.util.AreaGrid;
@@ -259,10 +260,10 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 		int globalZStart = chunkpos.getZStart();
 		MutableBlockPos mutapos = new MutableBlockPos(0,0,0);
 		//BlockState state = Blocks.STONE_BRICKS.getDefaultState();
-		for (int i=0; i<5; i++)
+		for (int yLayer=0; yLayer<5; yLayer++)
 		{
 //			ChunkPos dominantChunkPos = this.getRoom(chunkpos,y);
-			int y = i*50 + baseFloor;
+			int y = yLayer*50 + baseFloor;
 
 			Random areaRand = new Random((areaZ*31 + y)*31+areaX);
 			AreaGrid grid = AreaGrid.grids.get(areaRand.nextInt(AreaGrid.GRIDCOUNT));
@@ -307,7 +308,21 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 				}
 			});
 			
-			RegionSideExits exits = RoomCaches.EXITLOADER.getUnchecked(roomKey);
+//			RegionSideExits exits = RoomCaches.EXITLOADER.getUnchecked(roomKey);
+//			IntConsumer mutaposSetter;
+//			BlockState exitState = Blocks.BEDROCK.getDefaultState();
+//			if (exits.isOnEastSide)
+//			{
+//				mutaposSetter = z -> mutapos.setPos(15,y,z);
+//			}
+//			else
+//			{
+//				mutaposSetter = x -> mutapos.setPos(x,y,15);
+//			}
+//			exits.getPortionsOfExitInChunk(chunkpos).forEach(i -> {
+//				mutaposSetter.accept(i);
+//				chunk.setBlockState(mutapos, exitState, false);
+//			});
 			
 		}
 		long time2 = Util.nanoTime();

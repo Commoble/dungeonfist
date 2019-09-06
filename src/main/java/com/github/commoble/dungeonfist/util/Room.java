@@ -1,11 +1,14 @@
 package com.github.commoble.dungeonfist.util;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 
 public class Room
@@ -29,8 +32,9 @@ public class Room
 	// generating the rest of the room to avoid infinite loops
 	// solution: create a separate cacheloader for hallway sets using roomkeys
 	// each hallway set needs to know a region of superchunks and hallways (1 or 0?) protruding from each superchunk
-	// we don't need to care if the hallway exits line up with the rooms or not, we can deal with everything
+	// we don't need to care if the hallway exits line up with the actual rooms or not, we can deal with everything
 	// within our own superchunks
+	public final List<BlockPos> hallwayFloorPositions = new ArrayList<>();
 	
 	/**
 	 */
@@ -61,6 +65,9 @@ public class Room
 		this.ROOM_END = new Vec2i(ROOM_START.X + ROOM_SIZE.X - 1, ROOM_START.Y + ROOM_SIZE.Y -1);
 		this.WALL_MAX = new Vec2i(ROOM_END.X + 1, ROOM_END.Y + 1);
 		this.ROOM_HALLWAY_END = new Vec2i(WALL_MAX.X + ROOM_HALLWAY_WIDTH, WALL_MAX.Y + ROOM_HALLWAY_WIDTH);
+		
+		RegionSideExits exits = RoomCaches.EXITLOADER.getUnchecked(key);
+		exits.getExitBlockPositions().forEach(null);
 	}
 	
 	

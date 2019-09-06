@@ -23,7 +23,9 @@ public class RoomKey
 	 */
 	public ChunkPos getLocalizedChunkPos(ChunkPos pos)
 	{
-		return this.superChunkCoords.subtractThisFrom(pos);
+		int superChunkXinChunkCoords = this.superChunkCoords.X << 1;
+		int superChunkZinChunkCoords = this.superChunkCoords.Y << 1;
+		return new ChunkPos(pos.x - superChunkXinChunkCoords, pos.z - superChunkZinChunkCoords);
 	}
 	
 	public int hashCode()
