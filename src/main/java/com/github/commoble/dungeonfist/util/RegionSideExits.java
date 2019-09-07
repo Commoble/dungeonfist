@@ -12,6 +12,7 @@ public class RegionSideExits
 	public final int offset;	// difference between 0,0 origin of region and first/minimal position of exit
 	public final boolean isOnEastSide;	// if false, is on south side
 	public final int exitSize;
+	public final Rect asRectInGlobalSpace;
 	public final RoomKey roomKey;
 	
 	public RegionSideExits(RoomKey key)
@@ -36,6 +37,28 @@ public class RegionSideExits
 		int max = (regionLengthInSuperChunks << 5) - this.exitSize;
 		
 		this.offset = rand.nextInt(max - min) + min;
+		
+		int absoluteDominantChunkX = (key.superChunkCoords.X << 5); // in absolute world coordinates
+		int absoluteDominantChunkZ = (key.superChunkCoords.Y << 5);
+		int absoluteExitStartX;
+		int absoluteExitStartZ;
+		int exitSizeX;
+		int exitSizeZ;
+		if (this.isOnEastSide)
+		{
+			absoluteExitStartX = absoluteDominantChunkX + (key.regionSize.X << 5) - 1;
+			absoluteExitStartZ = absoluteDominantChunkZ + offset;
+			exitSizeX = 1;
+			exitSizeZ = exitSize;
+		}
+		else
+		{
+			absoluteExitStartX = absoluteDominantChunkX + offset;
+			absoluteExitStartZ = absoluteDominantChunkZ + (key.regionSize.Y << 5) - 1;
+			exitSizeX = exitSize;
+			exitSizeZ = 1;
+		}
+		this.asRectInGlobalSpace = new Rect(new Vec2i(absoluteExitStartX, absoluteExitStartZ), new Vec2i(exitSizeX, exitSizeZ));
 	}
 	
 	public IntStream getExitOffsets()
@@ -46,13 +69,6 @@ public class RegionSideExits
 //		System.out.println("Hallway offset is " + this.offset);
 //		System.out.println("Total offset is" + totalOffset);
 		return IntStream.range(0, this.exitSize).map(i -> i + this.offset);
-	}
-	
-	public Stream<BlockPos> getExitBlockPositions()
-	{
-		int y = this.roomKey.yLayer;
-		IntFunction<BlockPos> posMapper = this.isOnEastSide ? z -> new BlockPos(15,y,z) : x -> new BlockPos(x,y,15);
-		return this.getExitOffsets().mapToObj(posMapper);
 	}
 	
 }

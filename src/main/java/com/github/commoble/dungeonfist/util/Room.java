@@ -8,7 +8,6 @@ import java.util.Set;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 
 public class Room
@@ -34,7 +33,7 @@ public class Room
 	// each hallway set needs to know a region of superchunks and hallways (1 or 0?) protruding from each superchunk
 	// we don't need to care if the hallway exits line up with the actual rooms or not, we can deal with everything
 	// within our own superchunks
-	public final List<BlockPos> hallwayFloorPositions = new ArrayList<>();
+	public final List<Rect> EXIT_RECTS = new ArrayList<Rect>();
 	
 	/**
 	 */
@@ -42,7 +41,7 @@ public class Room
 	{
 		
 		this.SUPERCHUNK_COORD = key.superChunkCoords;
-		this.AREA_YLEVEL = key.yLayer;
+		this.AREA_YLEVEL = key.y;
 		this.REGION_SIZE = new Vec2i(key.regionSize.X << 5, key.regionSize.Y << 5);
 		Random rand = new Random(key.hashCode());
 		ROOM_HALLWAY_WIDTH = rand.nextInt(4)+1;	// 1,2,3,4
@@ -65,10 +64,23 @@ public class Room
 		this.ROOM_END = new Vec2i(ROOM_START.X + ROOM_SIZE.X - 1, ROOM_START.Y + ROOM_SIZE.Y -1);
 		this.WALL_MAX = new Vec2i(ROOM_END.X + 1, ROOM_END.Y + 1);
 		this.ROOM_HALLWAY_END = new Vec2i(WALL_MAX.X + ROOM_HALLWAY_WIDTH, WALL_MAX.Y + ROOM_HALLWAY_WIDTH);
-		
-		RegionSideExits exits = RoomCaches.EXITLOADER.getUnchecked(key);
-		exits.getExitBlockPositions().forEach(null);
+
+		//////// find all exit rects
+		// get all superchunks orthagonally adjacent to here northward and westward
+		// convert to a Set of RoomKeys
+		// each key -> RegionSideExits
+		// each RSE -> get rect, adjust into this room
+		// add this room's rect too
+		Set<RoomKey> adjacentKeys = new HashSet<RoomKey>();
+		IntStream.range(0, this.REGION_SIZE.X).forEach(x -> adjacentKeys.add(new RoomKey(x + this.SUPERCHUNK_COORD.X, this.SUPERCHUNK_COORD.Y, key.y, key.worldSeed)));
+		IntStream.range(0, this.REGION_SIZE.Y).forEach(z -> adjacentKeys.add(new RoomKey(this.SUPERCHUNK_COORD.X, z + this.SUPERCHUNK_COORD.Y, key.y, key.worldSeed)));
+		adjacentKeys.stream().map(adjacentKey -> RoomCaches.EXITLOADER.getUnchecked(adjacentKey))
+		.map(exit -> exit.asRectInGlobalSpace.move(exit.isOnEastSide ? new Vec2i(1,0) : new Vec2i(0,1)))
+		.forEach(exit -> this.EXIT_RECTS.add(exit));
+		this.EXIT_RECTS.add(RoomCaches.EXITLOADER.getUnchecked(key).asRectInGlobalSpace);
 	}
+	
+	
 	
 	
 	// returns a stream of coords with x,z in range[0,15]
@@ -121,5 +133,14 @@ public class Room
 		int floorSizeY = this.ROOM_HALLWAY_WIDTH*2 + 2 + this.ROOM_SIZE.Y;
 		Rect floorRect = new Rect(new Vec2i(relativeFloorStartX, relativeFloorStartZ), new Vec2i(floorSizeX, floorSizeY));
 		return floorRect.intersection(Rect.CHUNK_RECT);
+	}
+	
+	// get the room's exit rects that exist within this chunk, with positions relative to the chunk
+	public Stream<Rect> getExitRectsWithinChunk(ChunkPos pos)
+	{
+		// subtract this chunk's global position from rect's global position to get rect's relative position
+		Vec2i offset = new Vec2i(-(pos.x << 4), -(pos.z << 4));
+		return this.EXIT_RECTS.stream().map(rect -> rect.move(offset).intersection(Rect.CHUNK_RECT))
+				.filter(rect -> rect != null);
 	}
 }

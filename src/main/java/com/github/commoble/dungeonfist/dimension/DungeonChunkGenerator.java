@@ -249,12 +249,6 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 	{
 		long time1 = Util.nanoTime();
 		ChunkPos chunkpos = chunk.getPos();
-		int chunkX = chunkpos.x;
-		int chunkZ = chunkpos.z;
-		int superChunkX = chunkX >> 1;
-		int superChunkZ = chunkZ >> 1;
-		int areaX = MathBuddy.rescaleCoordinate(superChunkX,3);
-		int areaZ = MathBuddy.rescaleCoordinate(superChunkZ,3);
 		int baseFloor = 10;
 		int globalXStart = chunkpos.getXStart();
 		int globalZStart = chunkpos.getZStart();
@@ -264,16 +258,9 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 		{
 //			ChunkPos dominantChunkPos = this.getRoom(chunkpos,y);
 			int y = yLayer*50 + baseFloor;
-
-			Random areaRand = new Random((areaZ*31 + y)*31+areaX);
-			AreaGrid grid = AreaGrid.grids.get(areaRand.nextInt(AreaGrid.GRIDCOUNT));
-			int gridX = MathBuddy.absoluteMod(superChunkX, 3);
-			int gridZ = MathBuddy.absoluteMod(superChunkZ, 3);
-			Vec2i gridOffsetHere = grid.offsets[gridX][gridZ];
-			Vec2i dominantSuperChunkCoords = new Vec2i(areaX*3 + gridOffsetHere.X, areaZ*3 + gridOffsetHere.Y);
-			Random superRand = new Random(dominantSuperChunkCoords.hashCode()*y);
-			BlockState state = BLOCKS[superRand.nextInt(BLOCKS.length)].getDefaultState();
-			RoomKey roomKey = new RoomKey(dominantSuperChunkCoords, grid.sizes[gridX][gridZ], y, worldIn.getSeed());
+//			Random superRand = new Random(dominantSuperChunkCoords.hashCode()*y);
+			BlockState state = Blocks.STONE_BRICKS.getDefaultState(); //BLOCKS[superRand.nextInt(BLOCKS.length)].getDefaultState();
+			RoomKey roomKey = new RoomKey(chunk, y, worldIn.getSeed());
 			Room room = RoomCaches.ROOMLOADER.getUnchecked(roomKey);
 			
 			double noiseXYZ = getXYZNoise(this.roomNoise, globalXStart,y,globalZStart);
@@ -307,6 +294,16 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 					chunk.setBlockState(mutapos, state, false);
 				}
 			});
+			
+			BlockState exitState = Blocks.BEDROCK.getDefaultState();
+			room.getExitRectsWithinChunk(chunkpos).forEach(exitRect ->
+			{
+				exitRect.coords().forEach(vec -> {
+					mutapos.setPos(vec.X, y, vec.Y);
+					chunk.setBlockState(mutapos, exitState, false);
+				});
+			});
+			
 			
 //			RegionSideExits exits = RoomCaches.EXITLOADER.getUnchecked(roomKey);
 //			IntConsumer mutaposSetter;

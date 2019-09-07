@@ -97,4 +97,10 @@ public class Rect
 			return false;
 		}
 	}
+
+	@Override
+	public String toString()
+	{
+		return "Start={"+this.START+"}, Size={"+this.SIZE+"}";
+	}
 }
