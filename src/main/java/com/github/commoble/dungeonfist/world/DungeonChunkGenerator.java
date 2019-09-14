@@ -1,16 +1,12 @@
-package com.github.commoble.dungeonfist.dimension;
+package com.github.commoble.dungeonfist.world;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Random;
-import java.util.function.IntConsumer;
 import java.util.stream.Stream;
 
-import com.github.commoble.dungeonfist.util.AreaGrid;
+import com.github.commoble.dungeonfist.dimension.DungeonGenSettings;
 import com.github.commoble.dungeonfist.util.Averager;
-import com.github.commoble.dungeonfist.util.MathBuddy;
 import com.github.commoble.dungeonfist.util.Rect;
-import com.github.commoble.dungeonfist.util.RegionSideExits;
 import com.github.commoble.dungeonfist.util.Room;
 import com.github.commoble.dungeonfist.util.RoomCaches;
 import com.github.commoble.dungeonfist.util.RoomKey;
@@ -265,14 +261,12 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 			
 			double noiseXYZ = getXYZNoise(this.roomNoise, globalXStart,y,globalZStart);
 			Rect floorInThisChunk = room.getFloorRectWithinChunk(chunkpos);
-			if (floorInThisChunk != null)
+
+			List<Vec2i> coords = floorInThisChunk.coords();
+			for (Vec2i coord : coords)
 			{
-				List<Vec2i> coords = floorInThisChunk.coords();
-				for (Vec2i coord : coords)
-				{
-					mutapos.setPos(coord.X, y, coord.Y);
-					chunk.setBlockState(mutapos, state, false);
-				}
+				mutapos.setPos(coord.X, y, coord.Y);
+				chunk.setBlockState(mutapos, state, false);
 			}
 			//if (noiseXYZ > 0)
 //			{
@@ -301,6 +295,13 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 				exitRect.coords().forEach(vec -> {
 					mutapos.setPos(vec.X, y, vec.Y);
 					chunk.setBlockState(mutapos, exitState, false);
+				});
+			});
+			room.getExitHallwayRectsWithinChunk(chunkpos).forEach(exitRect ->
+			{
+				exitRect.coords().forEach(vec -> {
+					mutapos.setPos(vec.X, y, vec.Y);
+					chunk.setBlockState(mutapos,  exitState, false);
 				});
 			});
 			

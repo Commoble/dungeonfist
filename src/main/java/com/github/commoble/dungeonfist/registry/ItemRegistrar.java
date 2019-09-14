@@ -6,6 +6,8 @@ import com.github.commoble.dungeonfist.Registrator;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class ItemRegistrar
 {

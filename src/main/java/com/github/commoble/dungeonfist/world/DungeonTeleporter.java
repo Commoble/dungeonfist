@@ -14,7 +14,7 @@ public class DungeonTeleporter
 	{
 		ServerWorld nextWorld = player.getServer().getWorld(destinationType);
 		BlockPos destinationPos = getDestination(entryPortalPos, destinationType);
-		nextWorld.getChunk(destinationPos);
+		nextWorld.getChunk(destinationPos);	// can't remember why this is here, I think it's to make sure the chunk is loaded
 		BlockPos existingPortalPos = getExistingPortal(destinationPos, nextWorld);
 		if (existingPortalPos == null)
 		{

@@ -2,8 +2,8 @@ package com.github.commoble.dungeonfist.registry;
 
 import com.github.commoble.dungeonfist.DungeonFist;
 import com.github.commoble.dungeonfist.Registrator;
-import com.github.commoble.dungeonfist.dimension.DungeonChunkGenerator;
 import com.github.commoble.dungeonfist.dimension.DungeonGenSettings;
+import com.github.commoble.dungeonfist.world.DungeonChunkGenerator;
 
 import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraftforge.registries.ObjectHolder;

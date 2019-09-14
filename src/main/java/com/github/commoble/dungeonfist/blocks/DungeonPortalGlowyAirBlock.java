@@ -2,11 +2,11 @@ package com.github.commoble.dungeonfist.blocks;
 
 import java.util.Random;
 
-import com.github.commoble.dungeonfist.dimension.DungeonChunkGenerator;
 import com.github.commoble.dungeonfist.registry.BlockRegistrar;
 import com.github.commoble.dungeonfist.util.AreaGrid;
 import com.github.commoble.dungeonfist.util.MathBuddy;
 import com.github.commoble.dungeonfist.util.Vec2i;
+import com.github.commoble.dungeonfist.world.DungeonChunkGenerator;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
