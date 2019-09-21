@@ -1,4 +1,4 @@
-package com.github.commoble.dungeonfist.world;
+package com.github.commoble.dungeonfist.world.placement;
 
 import java.util.Random;
 import java.util.function.Function;

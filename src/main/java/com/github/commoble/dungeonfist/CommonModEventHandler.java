@@ -21,6 +21,10 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
+/**
+ * In this class we keep all of the MOD events that fire during init for both sides,
+ * particularly registry events
+ */
 @EventBusSubscriber(modid = DungeonFist.MODID, bus = Bus.MOD)
 public class CommonModEventHandler
 {

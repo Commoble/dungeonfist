@@ -1,11 +1,7 @@
 package com.github.commoble.dungeonfist.util;
 
 import java.util.Random;
-import java.util.function.IntFunction;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
-import net.minecraft.util.math.BlockPos;
 
 public class RegionSideExits
 {
@@ -47,15 +43,15 @@ public class RegionSideExits
 		if (this.isOnEastSide)
 		{
 			absoluteExitStartX = absoluteDominantChunkX + (key.regionSize.X << 5) - 1;
-			absoluteExitStartZ = absoluteDominantChunkZ + offset;
+			absoluteExitStartZ = absoluteDominantChunkZ + this.offset;
 			exitSizeX = 1;
-			exitSizeZ = exitSize;
+			exitSizeZ = this.exitSize;
 		}
 		else
 		{
-			absoluteExitStartX = absoluteDominantChunkX + offset;
+			absoluteExitStartX = absoluteDominantChunkX + this.offset;
 			absoluteExitStartZ = absoluteDominantChunkZ + (key.regionSize.Y << 5) - 1;
-			exitSizeX = exitSize;
+			exitSizeX = this.exitSize;
 			exitSizeZ = 1;
 		}
 		this.asRectInGlobalSpace = new Rect(new Vec2i(absoluteExitStartX, absoluteExitStartZ), new Vec2i(exitSizeX, exitSizeZ));

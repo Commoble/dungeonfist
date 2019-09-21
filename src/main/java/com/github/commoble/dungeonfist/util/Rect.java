@@ -1,7 +1,6 @@
 package com.github.commoble.dungeonfist.util;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -131,12 +130,62 @@ public class Rect
 		return new Rect(new Vec2i(xStart, yStart), new Vec2i(xSize, ySize));
 	}
 	
-	public static Stream<Rect> getRectCollectionAsRectsWithinChunk(Collection<Rect> rects, ChunkPos pos)
+	/**
+	 * -Returns a stream of Rects consisting of 1-width rects that represent the perimeter of this object
+	 * -If this Rect is already of size 1 on either axis it just returns this Rect
+	 * -If this Rect is of size 2 on either dimension it returns 2 rects
+	 * -Otherwise it returns 4 rects, consisting of the entire top perimeter of the rect and the entire bottom perimeter,
+	 * 	and the portions of the side perimeters that don't include the first two rects
+	 */
+	public Stream<Rect> asPerimeterRects()
 	{
-		// subtract this chunk's global position from rect's global position to get rect's relative position
-		Vec2i offset = new Vec2i(-(pos.x << 4), -(pos.z << 4));
-		return rects.stream().map(rect -> rect.move(offset).intersection(Rect.CHUNK_RECT))
-				.filter(rect -> !rect.equals(Rect.EMPTY_RECT));
+		if (this.SIZE.X <= 1 || this.SIZE.Y <= 1)
+			return Stream.of(this);
+		if (this.SIZE.X == 2)
+		{
+			Vec2i newSize = new Vec2i(1, this.SIZE.Y);
+			Vec2i start1 = this.START;
+			Vec2i start2 = new Vec2i(this.START.X+1, this.START.Y);
+			Rect side1 = new Rect(start1, newSize);
+			Rect side2 = new Rect(start2, newSize);
+			return Stream.of(side1, side2);
+		}
+		if (this.SIZE.Y == 2)
+		{
+			Vec2i newSize = new Vec2i(this.SIZE.X, 1);
+			Vec2i start1 = this.START;
+			Vec2i start2 = new Vec2i(this.START.X, this.START.Y+1);
+			Rect side1 = new Rect(start1, newSize);
+			Rect side2 = new Rect(start2, newSize);
+			return Stream.of(side1, side2);
+		}
+		int width = this.SIZE.X;
+		int height = this.SIZE.Y - 2;
+		Vec2i horizontalSize = new Vec2i(width, 1);
+		Vec2i verticalSize = new Vec2i(1, height);
+		Rect top = new Rect(this.START, horizontalSize);
+		Rect bottom = new Rect(new Vec2i(this.START.X, this.START.Y + height + 1), horizontalSize);
+		Rect left = new Rect(new Vec2i(this.START.X, this.START.Y + 1), verticalSize);
+		Rect right = new Rect(new Vec2i(this.START.X + width - 1, this.START.Y + 1), verticalSize);
+		return Stream.of(top, bottom, left, right);
+	}
+	
+	public static Stream<Rect> getRectCollectionAsRectsWithinChunk(Stream<Rect> rects, ChunkPos pos, boolean local)
+	{
+		if (local)
+		{
+			// subtract this chunk's global position from rect's global position to get rect's relative position
+			Vec2i offset = new Vec2i(-(pos.x << 4), -(pos.z << 4));
+			return rects.map(rect -> rect.move(offset).intersection(Rect.CHUNK_RECT))
+					.filter(rect -> !rect.equals(Rect.EMPTY_RECT));
+		}
+		else
+		{
+			// add this chunk's global position to the (pos 0,0; size 16,16) base rect to get a rect representing the chunk
+			Rect chunkRect = Rect.CHUNK_RECT.move(new Vec2i(pos.x << 4, pos.z << 4));
+			return rects.map(rect -> rect.intersection(chunkRect))
+					.filter(rect -> !rect.equals(Rect.EMPTY_RECT));
+		}
 	}
 	
 	@Override

@@ -2,6 +2,7 @@ package com.github.commoble.dungeonfist.util;
 
 import java.util.Random;
 
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.chunk.IChunk;
 
@@ -60,6 +61,11 @@ public class RoomKey
 		this.worldSeed = worldSeed;
 	}
 	
+	public RoomKey(BlockPos pos, int yLayer, long worldSeed)
+	{
+		this(pos.getX() >> 5, pos.getZ() >> 5, yLayer, worldSeed);
+	}
+	
 	/**
 	 * returns a ChunkPos indicating the relative position of a chunkpos to this room's upper-left chunk
 	 * e.g. the upper-left chunk is 0,0, the next chunk to the right is 1,0, etc
@@ -71,11 +77,13 @@ public class RoomKey
 		return new ChunkPos(pos.x - superChunkXinChunkCoords, pos.z - superChunkZinChunkCoords);
 	}
 	
+	@Override
 	public int hashCode()
 	{
-		return superChunkCoords.hashCode() * y + (int)(worldSeed >> 32) + (int)(worldSeed % Integer.MAX_VALUE);
+		return this.superChunkCoords.hashCode()+31469 * this.y+31469 + (int)(this.worldSeed >> 32) + (int)(this.worldSeed % Integer.MAX_VALUE);
 	}
 	
+	@Override
 	public boolean equals(Object other)
 	{
 		if (other instanceof RoomKey)

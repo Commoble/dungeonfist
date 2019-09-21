@@ -11,7 +11,7 @@ import net.minecraft.block.material.Material;
 import net.minecraftforge.registries.ObjectHolder;
 
 /**
- * Class for registering blocks and storing their references
+ * Class for registering blocks and holding their references
  */
 @ObjectHolder(DungeonFist.MODID)
 public class BlockRegistrar

@@ -1,8 +1,8 @@
 package com.github.commoble.dungeonfist.registry;
 
 import com.github.commoble.dungeonfist.Registrator;
-import com.github.commoble.dungeonfist.world.DungeonPortalFeature;
-import com.github.commoble.dungeonfist.world.DungeonPortalPlacement;
+import com.github.commoble.dungeonfist.world.feature.DungeonPortalFeature;
+import com.github.commoble.dungeonfist.world.placement.DungeonPortalPlacement;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;

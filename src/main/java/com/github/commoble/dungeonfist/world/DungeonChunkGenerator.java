@@ -42,33 +42,6 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 	private final INoiseGenerator surfaceDepthNoise;
 	private final OctavesNoiseGenerator roomNoise;
 	private final Averager avgGenTime = new Averager();
-	public static final Block[] BLOCKS =
-			{
-					Blocks.DIRT,
-					Blocks.STONE,
-					Blocks.STONE_BRICKS,
-					Blocks.BLACK_WOOL,
-					Blocks.ACACIA_LOG,
-					Blocks.OAK_PLANKS,
-					Blocks.DARK_OAK_PLANKS,
-					Blocks.RED_WOOL,
-					Blocks.ORANGE_WOOL,
-					Blocks.GREEN_WOOL,
-					Blocks.BLUE_WOOL,
-					Blocks.LIGHT_BLUE_WOOL,
-					Blocks.GLASS,
-					Blocks.GREEN_STAINED_GLASS,
-					Blocks.CLAY,
-					Blocks.SANDSTONE,
-					Blocks.TERRACOTTA,
-					Blocks.PUMPKIN,
-					Blocks.COAL_BLOCK,
-					Blocks.DIAMOND_BLOCK,
-					Blocks.GOLD_BLOCK,
-					Blocks.SPONGE,
-					Blocks.NETHERRACK,
-					Blocks.SPRUCE_LOG
-			};
 
 	public DungeonChunkGenerator(World world, BiomeProvider biomeProvider, DungeonGenSettings genSettings)
 	{
@@ -122,11 +95,11 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 
 		for (int i = 0; i < this.noiseSizeY(); ++i)
 		{
-			adouble[i] = Math.cos((double) i * Math.PI * 6.0D / (double) this.noiseSizeY()) * 2.0D;
-			double d0 = (double) i;
+			adouble[i] = Math.cos(i * Math.PI * 6.0D / this.noiseSizeY()) * 2.0D;
+			double d0 = i;
 			if (i > this.noiseSizeY() / 2)
 			{
-				d0 = (double) (this.noiseSizeY() - 1 - i);
+				d0 = this.noiseSizeY() - 1 - i;
 			}
 
 			if (d0 < 4.0D)
@@ -256,7 +229,7 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 			int y = yLayer*50 + baseFloor;
 //			Random superRand = new Random(dominantSuperChunkCoords.hashCode()*y);
 			BlockState state = Blocks.STONE_BRICKS.getDefaultState(); //BLOCKS[superRand.nextInt(BLOCKS.length)].getDefaultState();
-			RoomKey roomKey = new RoomKey(chunk, y, worldIn.getSeed());
+			RoomKey roomKey = new RoomKey(chunk, yLayer, worldIn.getSeed());
 			Room room = RoomCaches.ROOMLOADER.getUnchecked(roomKey);
 			
 			double noiseXYZ = getXYZNoise(this.roomNoise, globalXStart,y,globalZStart);
@@ -324,7 +297,7 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 			
 		}
 		long time2 = Util.nanoTime();
-		System.out.println(avgGenTime.add(time2 - time1));
+		System.out.println(this.avgGenTime.add(time2 - time1));
 	}
 
 	@Override
