@@ -2,6 +2,7 @@ package com.github.commoble.dungeonfist.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -32,11 +33,13 @@ public class Rect
 	
 	public final Vec2i START;
 	public final Vec2i SIZE;
+	public final int AREA;
 	
 	public Rect(Vec2i start, Vec2i size)
 	{
 		this.START = start;
 		this.SIZE = size;
+		this.AREA = size.X * size.Y;
 	}
 	
 	public Rect move(Vec2i start)
@@ -212,6 +215,52 @@ public class Rect
 		{
 			return false;
 		}
+	}
+	
+	/**
+	 * Recursively divides a rect into randomly arranged rects that take up the same area
+	 * Each iteration divides the rect into 1, 2, or 4 rects
+	 * The bigger a given Rect is, the less likely it is to return itself without subdividing
+	 */
+	public Stream<Rect> asRandomSubdivisions(Random rand)
+	{
+		int xSizeA = rand.nextInt(this.SIZE.X)+1;	// min 1, max existing size
+		int xSizeB = this.SIZE.X - xSizeA;	// may be 0
+		int ySizeA = rand.nextInt(this.SIZE.Y)+1;	// min 1, max existing size
+		int ySizeB = this.SIZE.Y - ySizeA;	// may be 0
+		
+		Vec2i startA = this.START;
+		Vec2i sizeA = new Vec2i(xSizeA, ySizeA);
+		Rect rectA = new Rect(startA, sizeA);
+		if (xSizeB <= 0 && ySizeB <= 0)
+		{
+			return Stream.of(this);	// don't quadfurcate further if only returning single rect
+		}
+		
+		Rect rectB = null;	// top-right,		+X 0Y
+		Rect rectC = null;	// bottom-left,		0X +Y
+		Rect rectD = null;	// bottom-right,	+X +Y
+		int xStartB = startA.X + xSizeA;
+		int yStartB = startA.Y + ySizeA;
+		if(xSizeB > 0)
+		{
+			Vec2i startB = new Vec2i(xStartB, startA.Y);
+			Vec2i sizeB = new Vec2i(xSizeB, ySizeA);
+			rectB = new Rect(startB, sizeB);
+		}
+		if (ySizeB > 0)
+		{
+			Vec2i startC = new Vec2i(startA.X, yStartB);
+			Vec2i sizeC = new Vec2i(xSizeA, ySizeB);
+			rectC = new Rect(startC, sizeC);
+		}
+		if (xSizeB > 0 && ySizeB > 0)
+		{
+			Vec2i startD = new Vec2i(xStartB, yStartB);
+			Vec2i sizeD = new Vec2i(xSizeB, ySizeB);
+			rectD = new Rect(startD, sizeD);
+		}
+		return Stream.of(rectA, rectB, rectC, rectD).filter(rect -> rect != null).map(rect -> rect.asRandomSubdivisions(rand)).flatMap(i->i);
 	}
 
 	@Override

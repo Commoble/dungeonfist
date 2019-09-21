@@ -1,5 +1,6 @@
 package com.github.commoble.dungeonfist.world;
 
+import com.github.commoble.dungeonfist.world.feature.DungeonRoomSubdivisionFeature;
 import com.github.commoble.dungeonfist.world.feature.TorchesFeature;
 import com.github.commoble.dungeonfist.world.placement.RoomPerimeterPlacement;
 import com.github.commoble.dungeonfist.world.placement.RoomPerimeterPlacementConfig;
@@ -8,6 +9,8 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.placement.IPlacementConfig;
+import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 
 public class DungeonBiome extends Biome
@@ -24,6 +27,12 @@ public class DungeonBiome extends Biome
 						IFeatureConfig.NO_FEATURE_CONFIG,
 						new RoomPerimeterPlacement(RoomPerimeterPlacementConfig::deserialize),
 						new RoomPerimeterPlacementConfig(1,4)));
+		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
+				Biome.createDecoratedFeature(
+						new DungeonRoomSubdivisionFeature(NoFeatureConfig::deserialize),
+						IFeatureConfig.NO_FEATURE_CONFIG,
+						Placement.NOPE,
+						IPlacementConfig.NO_PLACEMENT_CONFIG));
 		// add mob spawns
 	}
 

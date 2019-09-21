@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -50,6 +51,7 @@ public class Room
 	// within our own superchunks
 	public final List<Rect> EXIT_RECTS = new ArrayList<Rect>();
 	public final List<Rect> EXIT_HALLWAY_RECTS = new ArrayList<Rect>();
+	public final List<Rect> SUBDIVIDED_INTERIOR;
 	public final Rect ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE;
 	public final Rect ROOM_INTERIOR_RECT_IN_GLOBAL_SPACE;
 	/**
@@ -129,6 +131,7 @@ public class Room
 		}
 		
 		this.ROOM_INTERIOR_RECT_IN_GLOBAL_SPACE = new Rect(this.ROOM_START, this.ROOM_SIZE).move(this.OFFSET_OF_REGION_START);
+		this.SUBDIVIDED_INTERIOR = this.ROOM_INTERIOR_RECT_IN_GLOBAL_SPACE.asRandomSubdivisions(rand).collect(Collectors.toCollection(ArrayList<Rect>::new));
 	}
 	
 	private Pair<Rect,Rect> getExtensionFromExitToFloor(Rect exit)

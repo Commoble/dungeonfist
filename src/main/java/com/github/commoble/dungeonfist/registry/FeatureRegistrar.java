@@ -18,12 +18,12 @@ public class FeatureRegistrar
 {
 	public static void registerFeatures(Registrator<Feature<?>> reg)
 	{
-		ConfiguredFeature<?> feature = Biome.createDecoratedFeature(
+		ConfiguredFeature<?> portalFeature = Biome.createDecoratedFeature(
 				new DungeonPortalFeature(NoFeatureConfig::deserialize),
 				IFeatureConfig.NO_FEATURE_CONFIG,
 				new DungeonPortalPlacement(NoPlacementConfig::deserialize),
 				IPlacementConfig.NO_PLACEMENT_CONFIG);
 		
-		ForgeRegistries.BIOMES.forEach(biome -> biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, feature));
+		ForgeRegistries.BIOMES.forEach(biome -> biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, portalFeature));
 	}
 }

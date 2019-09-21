@@ -1,7 +1,9 @@
 package com.github.commoble.dungeonfist.world;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.github.commoble.dungeonfist.dimension.DungeonGenSettings;
@@ -17,8 +19,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.Util;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.village.PointOfInterestType;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.provider.BiomeProvider;
@@ -42,13 +46,18 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 	private final INoiseGenerator surfaceDepthNoise;
 	private final OctavesNoiseGenerator roomNoise;
 	private final Averager avgGenTime = new Averager();
+	
+	public static Optional<ArrayList<BlockState>> debugBlocks;
+	public static int debugBlockCount;
 
 	public DungeonChunkGenerator(World world, BiomeProvider biomeProvider, DungeonGenSettings genSettings)
 	{
 		super(world, biomeProvider, horizontalNoiseGranularity, verticalNoiseGranularity, height, genSettings, false);
 		this.surfaceDepthNoise = new OctavesNoiseGenerator(this.randomSeed, 4);
 		this.roomNoise = new OctavesNoiseGenerator(this.randomSeed, 4);	// produces values in range of about -15 to 15, usually < half that
-		Collection<Block> blocks = ForgeRegistries.BLOCKS.getValues();
+		ArrayList<BlockState> blocks = ForgeRegistries.BLOCKS.getValues().stream().map(Block::getDefaultState).filter(block -> block.isOpaqueCube(world, BlockPos.ZERO) && !block.hasTileEntity() && !block.ticksRandomly() && !block.canProvidePower() && !PointOfInterestType.forState(block).isPresent()).collect(Collectors.toCollection(ArrayList<BlockState>::new));
+		debugBlocks = Optional.of(blocks);
+		debugBlockCount = blocks.size();
 	}
 	
 	public static double getXYZNoise(OctavesNoiseGenerator gen, double x, double y, double z)
