@@ -69,6 +69,13 @@ public class Rect
 		return coords;
 	}
 	
+	public Vec2i randomCoord(Random rand)
+	{
+		List<Vec2i> coords = this.coords();
+		int size = coords.size();
+		return coords.get(rand.nextInt(size));
+	}
+	
 	// returns true if this Rect can fit into another rect
 	// i.e. both dimensions of this rect are no larger than the corresponding direction of the other rect
 	public boolean fitsIn(Rect rect)

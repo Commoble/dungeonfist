@@ -31,7 +31,7 @@ public class DungatureTable
 			for (int i=minSize-1; i < 16; i++)
 			{
 				this.totals[i] += weight;	// add weight to totals for all sizes of this size or greater 
-				this.maps.get(i).put(weight, item);
+				this.maps.get(i).put(this.totals[i], item);
 			}
 		}
 		
