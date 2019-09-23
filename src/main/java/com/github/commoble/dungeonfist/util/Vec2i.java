@@ -15,6 +15,11 @@ public class Vec2i
 		this.Y = y;
 	}
 	
+	public int minDimension()
+	{
+		return Math.min(this.X, this.Y);
+	}
+	
 	public Vec2i add(Vec2i otherVec)
 	{
 		return new Vec2i(this.X + otherVec.X, this.Y + otherVec.Y);
@@ -33,7 +38,7 @@ public class Vec2i
 	@Override
 	public int hashCode()
 	{
-		return (X+Y)*173+X;
+		return (this.X+this.Y)*173+this.X;
 	}
 	
 	@Override
@@ -53,6 +58,6 @@ public class Vec2i
 	@Override
 	public String toString()
 	{
-		return "["+X+","+Y+"]";
+		return "["+this.X+","+this.Y+"]";
 	}
 }

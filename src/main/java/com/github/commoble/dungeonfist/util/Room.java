@@ -54,6 +54,7 @@ public class Room
 	public final List<Rect> SUBDIVIDED_INTERIOR;
 	public final Rect ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE;
 	public final Rect ROOM_INTERIOR_RECT_IN_GLOBAL_SPACE;
+	//public final EnumeratedDistribution WEIGHTED_DUNGEON_ELEMENTS;
 	/**
 	 */
 	public Room(RoomKey key)
@@ -132,6 +133,13 @@ public class Room
 		
 		this.ROOM_INTERIOR_RECT_IN_GLOBAL_SPACE = new Rect(this.ROOM_START, this.ROOM_SIZE).move(this.OFFSET_OF_REGION_START);
 		this.SUBDIVIDED_INTERIOR = this.ROOM_INTERIOR_RECT_IN_GLOBAL_SPACE.asRandomSubdivisions(rand).collect(Collectors.toCollection(ArrayList<Rect>::new));
+		// let the placer divide rects further along chunk lines so we don't have to deal with multiblock elements being generated across chunks
+		// alternatively, have the Room decide what Element to place in each rect ahead of time and have the placer
+	}
+	
+	public int getLocalHeight()
+	{
+		return 6;
 	}
 	
 	private Pair<Rect,Rect> getExtensionFromExitToFloor(Rect exit)

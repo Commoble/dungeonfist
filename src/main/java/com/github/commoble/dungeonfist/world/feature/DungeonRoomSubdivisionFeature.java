@@ -4,9 +4,12 @@ import java.util.Random;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
+import com.github.commoble.dungeonfist.util.Rect;
+import com.github.commoble.dungeonfist.util.Room;
 import com.github.commoble.dungeonfist.util.RoomCaches;
 import com.github.commoble.dungeonfist.util.RoomKey;
 import com.github.commoble.dungeonfist.world.DungeonChunkGenerator;
+import com.github.commoble.dungeonfist.world.dungature.StandardDungatures;
 import com.mojang.datafixers.Dynamic;
 
 import net.minecraft.block.BlockState;
@@ -36,11 +39,14 @@ public class DungeonRoomSubdivisionFeature extends Feature<NoFeatureConfig>
 			long seed = world.getSeed();
 			ChunkPos chunkPos = new ChunkPos(pos.getX() >> 4, pos.getZ() >> 4);
 			IntStream.range(0,5).forEach(yLayer -> {
-				RoomCaches.ROOMLOADER.getUnchecked(new RoomKey(pos, yLayer, seed)).SUBDIVIDED_INTERIOR
+				Room room = RoomCaches.ROOMLOADER.getUnchecked(new RoomKey(pos, yLayer, seed));
+				Rect.getRectCollectionAsRectsWithinChunk(room.SUBDIVIDED_INTERIOR.stream(), chunkPos, false)
+				.filter(rect -> rand.nextDouble() < 0.05F)
 				.forEach(rect -> {
 					BlockState state = blocks.get(rand.nextInt(DungeonChunkGenerator.debugBlockCount));
 					rect.coords().forEach(coord ->
-						world.setBlockState(new BlockPos(coord.X, yLayer*50 + 10, coord.Y), state, 2));
+						world.setBlockState(new BlockPos(coord.X, room.WORLD_YLEVEL, coord.Y), state, 2));
+					StandardDungatures.table.next(rect.minSize(), rand).place(rect, room, world, rand);
 				});
 			});
 				

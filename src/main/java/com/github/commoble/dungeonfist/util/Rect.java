@@ -42,6 +42,11 @@ public class Rect
 		this.AREA = size.X * size.Y;
 	}
 	
+	public int minSize()
+	{
+		return this.SIZE.minDimension();
+	}
+	
 	public Rect move(Vec2i start)
 	{
 		return new Rect(this.START.add(start), this.SIZE);
@@ -62,6 +67,13 @@ public class Rect
 		);
 		
 		return coords;
+	}
+	
+	// returns true if this Rect can fit into another rect
+	// i.e. both dimensions of this rect are no larger than the corresponding direction of the other rect
+	public boolean fitsIn(Rect rect)
+	{
+		return this.SIZE.X <= rect.SIZE.X && this.SIZE.Y <= rect.SIZE.Y;
 	}
 	
 	@Nonnull
