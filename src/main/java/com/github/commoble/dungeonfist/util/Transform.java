@@ -1,6 +1,8 @@
 package com.github.commoble.dungeonfist.util;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.Vec3i;
 
 public class Transform
@@ -55,5 +57,13 @@ public class Transform
 	public Mirror zAxisMirror()
 	{
 		return this.mirror / 2 == 0 ? Mirror.NONE : Mirror.LEFT_RIGHT;
+	}
+	
+	public BlockState applyToBlockState(BlockState state)
+	{
+		state = state.rotate(Rotation.values()[this.rotation]);
+		state = state.mirror(this.xAxisMirror());
+		state = state.mirror(this.zAxisMirror());
+		return state;
 	}
 }

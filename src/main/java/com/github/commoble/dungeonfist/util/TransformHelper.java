@@ -4,12 +4,12 @@ import java.util.Random;
 
 public class TransformHelper
 {
-	public static Vec2i withStandardTransforms(Vec2i input, int size, Transform transform)
+	public static TransformedCoord withStandardTransforms(Vec2i input, int size, Transform transform)
 	{
-		input = withRotation(input, size, transform.rotation);
-		input = withMirror(input, size, transform.mirror);
-		input = input.add(transform.translation);
-		return input;
+		Vec2i output = withRotation(input, size, transform.rotation);
+		output = withMirror(output, size, transform.mirror);
+		output = output.add(transform.translation);
+		return new TransformedCoord(input, output);
 	}
 	
 	/**

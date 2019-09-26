@@ -19,6 +19,8 @@ import com.github.commoble.dungeonfist.world.dungature.Dungature;
 import com.github.commoble.dungeonfist.world.dungature.DungatureTable;
 import com.github.commoble.dungeonfist.world.dungature.StandardDungatures;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.math.ChunkPos;
@@ -143,6 +145,11 @@ public class Room
 		// let the placer divide rects further along chunk lines so we don't have to deal with multiblock elements being generated across chunks
 		// alternatively, have the Room decide what Element to place in each rect ahead of time and have the placer
 		this.DUNGATURE_MAP = this.generateDungatureMap(this.getDungatureTable(), rand);
+	}
+	
+	public Block getDefaultBlock()
+	{
+		return Blocks.STONE_BRICKS;
 	}
 	
 	public DungatureTable getDungatureTable()

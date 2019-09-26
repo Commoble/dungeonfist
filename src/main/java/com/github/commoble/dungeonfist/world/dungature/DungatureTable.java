@@ -3,6 +3,7 @@ package com.github.commoble.dungeonfist.world.dungature;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.TreeMap;
+import java.util.function.IntUnaryOperator;
 import java.util.stream.IntStream;
 
 import com.github.commoble.dungeonfist.util.Rect;
@@ -26,22 +27,22 @@ public class DungatureTable
 	 * If weight <= 0, then the item is not added.
 	 * minSizes < 1 are treated as 1
 	 */
-	public DungatureTable add(int weight, int minSize, TriFunction<Rect, Room, Random, Dungature> item)
+	
+	public DungatureTable add(IntUnaryOperator size2weightFunction, TriFunction<Rect, Room, Random, Dungature> item)
 	{
-		if (minSize < 1)
-			minSize = 1;
-		if (weight > 0 && minSize > 0)
+		for (int index=0; index < 16; index++)
 		{
-			for (int i=minSize-1; i < 16; i++)
+			int size = index + 1;
+			int weight = size2weightFunction.applyAsInt(size);
+			if (weight > 0)
 			{
-				this.totals[i] += weight;	// add weight to totals for all sizes of this size or greater 
-				this.maps.get(i).put(this.totals[i], item);
+				this.totals[index] += weight;	// add weight to totals for all sizes of this size or greater 
+				this.maps.get(index).put(this.totals[index], item);
 			}
 		}
 		
 		return this;
 	}
-	
 	/**
 	 * Returns a random item from the collection, selected proportionally to the given weights
 	 * (will return null if and only if the collection is empty)
