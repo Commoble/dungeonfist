@@ -26,18 +26,21 @@ public class ChestDungature extends Dungature
 	}
 
 	@Override
-	public void place(Rect rect, Room room, IWorld world, Random rand)
+	public void place(Rect rect, Rect chunkRect, Room room, IWorld world, Random rand)
 	{
-		BlockState state = Blocks.CHEST.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING, Direction.byHorizontalIndex(rand.nextInt(4)));
+		BlockState state = Blocks.CHEST.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING, Direction.byHorizontalIndex(this.transform.rotation));
 		int baseY = room.WORLD_YLEVEL+1;
 		// assume rect is in chunk for now
-		Vec2i coord = rect.randomCoord(rand);
-		BlockPos pos = new BlockPos(coord.X, baseY, coord.Y);
-		world.setBlockState(pos, state, 2);
-		TileEntity te = world.getTileEntity(pos);
-		if (te instanceof ChestTileEntity)
+		Vec2i coord = this.transform.translation;
+		if (chunkRect.contains(coord))
 		{
-			 ((ChestTileEntity)te).setLootTable(this.lootTable, rand.nextLong());
+			BlockPos pos = new BlockPos(coord.X, baseY, coord.Y);
+			world.setBlockState(pos, state, 2);
+			TileEntity te = world.getTileEntity(pos);
+			if (te instanceof ChestTileEntity)
+			{
+				 ((ChestTileEntity)te).setLootTable(this.lootTable, rand.nextLong());
+			}
 		}
 	}
 

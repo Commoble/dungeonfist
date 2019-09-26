@@ -1,8 +1,10 @@
 package com.github.commoble.dungeonfist.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,6 +14,10 @@ import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 
 import org.apache.commons.lang3.tuple.Pair;
+
+import com.github.commoble.dungeonfist.world.dungature.Dungature;
+import com.github.commoble.dungeonfist.world.dungature.DungatureTable;
+import com.github.commoble.dungeonfist.world.dungature.StandardDungatures;
 
 import net.minecraft.util.Direction;
 import net.minecraft.util.Direction.Axis;
@@ -55,6 +61,7 @@ public class Room
 	public final Rect ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE;
 	public final Rect ROOM_INTERIOR_RECT_IN_GLOBAL_SPACE;
 	//public final EnumeratedDistribution WEIGHTED_DUNGEON_ELEMENTS;
+	public final Map<Rect, Dungature> DUNGATURE_MAP;
 	/**
 	 */
 	public Room(RoomKey key)
@@ -135,6 +142,19 @@ public class Room
 		this.SUBDIVIDED_INTERIOR = this.ROOM_INTERIOR_RECT_IN_GLOBAL_SPACE.asRandomSubdivisions(rand).collect(Collectors.toCollection(ArrayList<Rect>::new));
 		// let the placer divide rects further along chunk lines so we don't have to deal with multiblock elements being generated across chunks
 		// alternatively, have the Room decide what Element to place in each rect ahead of time and have the placer
+		this.DUNGATURE_MAP = this.generateDungatureMap(this.getDungatureTable(), rand);
+	}
+	
+	public DungatureTable getDungatureTable()
+	{
+		return StandardDungatures.table;
+	}
+	
+	public Map<Rect, Dungature> generateDungatureMap(DungatureTable weightedTable, Random rand)
+	{
+		Map<Rect, Dungature> map = new HashMap<>();
+		this.SUBDIVIDED_INTERIOR.forEach(rect -> map.put(rect, weightedTable.next(rect.minSize(), rand).apply(rect, this, rand)));
+		return map;
 	}
 	
 	public int getLocalHeight()

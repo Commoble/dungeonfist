@@ -15,15 +15,16 @@ public class ColumnDungature extends Dungature
 {
 
 	@Override
-	public void place(Rect rect, Room room, IWorld world, Random random)
+	public void place(Rect rect, Rect chunkRect, Room room, IWorld world, Random random)
 	{
 		BlockState state = Blocks.STONE_BRICKS.getDefaultState();
 		int baseY = room.WORLD_YLEVEL;
 		// assume rect is in chunk for now
-		rect.coords().stream().forEach(vec ->
-			IntStream.range(1, room.getLocalHeight()).forEach(yOff ->
-					world.setBlockState(new BlockPos(vec.X, baseY+yOff, vec.Y), state, 2))
-			);
+		rect.coords().stream().filter(coord -> chunkRect.contains(coord))
+			.forEach(vec ->
+				IntStream.range(1, room.getLocalHeight()).forEach(yOff ->
+						world.setBlockState(new BlockPos(vec.X, baseY+yOff, vec.Y), state, 2))
+				);
 	}
 
 }

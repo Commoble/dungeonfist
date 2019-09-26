@@ -17,6 +17,8 @@ public class Rect
 	public static final ArrayList<Rect> BUILDING_BLOCKS = new ArrayList<Rect>();
 	public static final Rect CHUNK_RECT = new Rect(Vec2i.ZERO, Vec2i.CHUNK_SIZE);
 	public static final Rect EMPTY_RECT = new Rect(Vec2i.ZERO, Vec2i.ZERO);
+	// array of all square rects of START 0,0 and SIZE i,i where i is from 0 to 16 inclusive
+	public static final Rect[] SQUARE_RECTS = IntStream.rangeClosed(0, 16).mapToObj(i -> new Rect(Vec2i.ZERO, new Vec2i(i,i))).toArray(size -> new Rect[size]);
 	public static final int[] START_VALS = {0,1,2};
 	public static final int[] SIZE_VALS = {1,2,3};
 	static
@@ -45,6 +47,11 @@ public class Rect
 	public int minSize()
 	{
 		return this.SIZE.minDimension();
+	}
+	
+	public boolean isEmpty()
+	{
+		return this.SIZE.X <= 0 || this.SIZE.Y <= 0;
 	}
 	
 	public Rect move(Vec2i start)

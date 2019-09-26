@@ -5,16 +5,20 @@ import java.util.Random;
 import java.util.TreeMap;
 import java.util.stream.IntStream;
 
+import com.github.commoble.dungeonfist.util.Rect;
+import com.github.commoble.dungeonfist.util.Room;
+import com.github.commoble.dungeonfist.util.TriFunction;
+
 // thanks to Peter Lawrey from the stackoverflow whence this was found
 // https://stackoverflow.com/questions/6409652/random-weighted-selection-in-java/30362366
 public class DungatureTable
 {
-	private final ArrayList<TreeMap<Integer, Dungature>> maps = new ArrayList<TreeMap<Integer, Dungature>>();
+	private final ArrayList<TreeMap<Integer, TriFunction<Rect, Room, Random, Dungature>>> maps = new ArrayList<TreeMap<Integer, TriFunction<Rect, Room, Random, Dungature>>>();
 	private int[] totals = new int[16];	// i <==> size-1; i in range [0,15], size in range [1,16]
 	
 	public DungatureTable()
 	{
-		IntStream.range(0,16).forEach(i -> this.maps.add(new TreeMap<Integer, Dungature>()));
+		IntStream.range(0,16).forEach(i -> this.maps.add(new TreeMap<Integer, TriFunction<Rect, Room, Random, Dungature>>()));
 	}
 	
 	/**
@@ -22,7 +26,7 @@ public class DungatureTable
 	 * If weight <= 0, then the item is not added.
 	 * minSizes < 1 are treated as 1
 	 */
-	public DungatureTable add(int weight, int minSize, Dungature item)
+	public DungatureTable add(int weight, int minSize, TriFunction<Rect, Room, Random, Dungature> item)
 	{
 		if (minSize < 1)
 			minSize = 1;
@@ -42,9 +46,16 @@ public class DungatureTable
 	 * Returns a random item from the collection, selected proportionally to the given weights
 	 * (will return null if and only if the collection is empty)
 	 */
-	public Dungature next(int minSize, Random rand)
+	public TriFunction<Rect, Room, Random, Dungature> next(int minSize, Random rand)
 	{
 		int i = minSize-1;
+		if (i > 15)
+			i = 15;
+		
+		int maxRoll = this.totals[i];
+		if (maxRoll <= 0)
+			return EmptyDungature.SUPPLIER;
+		
 		int roll = rand.nextInt(this.totals[i]);
 		return this.maps.get(i).higherEntry(roll).getValue();
 	}
