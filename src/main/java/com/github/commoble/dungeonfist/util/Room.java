@@ -30,25 +30,26 @@ public class Room
 	public final Vec2i SUPERCHUNK_COORD;	// dominant superchunk (minimal x and z coord) of the room
 	public final int AREA_YLEVEL;	// 0, 1, 2, 3, 4
 	public final int WORLD_YLEVEL;	// in global blockspace
-	public final Vec2i REGION_SIZE;	// the width and length of the set of superchunks that enclose this room (in global blockpos scale)
-	public final Vec2i ROOM_SIZE;
+	public final Vec2i REGION_SIZE_IN_BLOCKS;	// the width and length of the set of superchunks that enclose this room (in global blockpos scale)
+	public final Vec2i INTERIOR_SIZE;
 	// bounds of the superchunk region that contains this room
 	public final int GLOBAL_WESTMOST_BLOCK;
 	public final int GLOBAL_EASTMOST_BLOCK;
 	public final int GLOBAL_NORTHMOST_BLOCK;
 	public final int GLOBAL_SOUTHMOST_BLOCK;
-	public final Vec2i OFFSET_OF_REGION_START;	// beginning of the room's outer hallway ring in global blockspace
+	public final Vec2i GLOBAL_REGION_START;	// beginning of the room's outer hallway ring in global blockspace
 	public final Vec2i OFFSET_OF_ROOM_START;
-	public final Rect REGION_RECT_IN_GLOBAL_BLOCKSPACE;
+	public final Rect GLOBAL_REGION_RECT_IN_BLOCKSPACE;
 	// these dimensions and positions are in blockpos scale, and local to the dominant (minimal x/z) chunk of the room
-	public final Vec2i OFFSET_FROM_REGION_START;
+	public final Vec2i LOCAL_ROOM_AND_HALLWAY_START;
 	public final int ROOM_HALLWAY_WIDTH;
-	public final Vec2i ROOM_HALLWAY_START;
-	public final Vec2i ROOM_HALLWAY_END;
-	public final Vec2i ROOM_START;
-	public final Vec2i ROOM_END;
-	public final Vec2i WALL_MIN;
-	public final Vec2i WALL_MAX;
+	public final int WALL_THICKNESS;
+	public final Vec2i LOCAL_ROOM_AND_HALLWAY_END;
+	public final Vec2i LOCAL_INTERIOR_START;
+	public final Vec2i LOCAL_INTERIOR_END;
+	public final Vec2i LOCAL_WALL_START;
+	public final Vec2i LOCAL_WALL_END;
+	public final Vec2i TOTAL_ROOM_SIZE;
 	// inter-room hallways are defined on +x (east) and +z (south) sides
 	// north and west hallways are determined by checking the superchunks to the west and north
 	// this means that we need to generate inter-room hallways in a manner that can be done without
@@ -61,6 +62,7 @@ public class Room
 	public final List<Rect> EXIT_HALLWAY_RECTS = new ArrayList<Rect>();
 	public final List<Rect> SUBDIVIDED_INTERIOR;
 	public final Rect ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE;
+	public final Rect ROOM_WALL_RECT_IN_GLOBAL_SPACE;
 	public final Rect ROOM_INTERIOR_RECT_IN_GLOBAL_SPACE;
 	//public final EnumeratedDistribution WEIGHTED_DUNGEON_ELEMENTS;
 	public final Map<Rect, Dungature> DUNGATURE_MAP;
@@ -68,38 +70,51 @@ public class Room
 	 */
 	public Room(RoomKey key)
 	{
-		
+		// some definitions w.r.t. areas and measurements:
+		// the area consists of a 3x3 grid of superchunks, divided into regions of superchunks
+		// the region consists of one or more superchunks, defined from the northwest (least X, least Z) superchunk
+		// each region contains one Room
+		// each superchunk is a grid of 2x2 chunks
+		// the Room consists of a room area and one or more exit hallways leading to other regions
+			// the exit hallways are not defined within this Room object
+		// the room area consists of:
+			// a surrounding hallway (or "outer floor") of variable thickness,
+			// an exterior wall of variable thickness possibly containing doorways,
+			// and an interior area within the walls
 		this.SUPERCHUNK_COORD = key.superChunkCoords;
 		this.AREA_YLEVEL = key.y;
 		this.WORLD_YLEVEL = this.AREA_YLEVEL*50 + 10;	// change later? needs to be the same as in DungeonChunkGenerator
-		this.REGION_SIZE = new Vec2i(key.regionSize.X << 5, key.regionSize.Y << 5);
+		this.REGION_SIZE_IN_BLOCKS = new Vec2i(key.regionSize.X << 5, key.regionSize.Y << 5);
 		this.GLOBAL_WESTMOST_BLOCK = (this.SUPERCHUNK_COORD.X << 5);
-		this.GLOBAL_EASTMOST_BLOCK = this.GLOBAL_WESTMOST_BLOCK + this.REGION_SIZE.X - 1;
+		this.GLOBAL_EASTMOST_BLOCK = this.GLOBAL_WESTMOST_BLOCK + this.REGION_SIZE_IN_BLOCKS.X - 1;
 		this.GLOBAL_NORTHMOST_BLOCK = this.SUPERCHUNK_COORD.Y << 5;
-		this.GLOBAL_SOUTHMOST_BLOCK = this.GLOBAL_NORTHMOST_BLOCK + this.REGION_SIZE.Y - 1;
+		this.GLOBAL_SOUTHMOST_BLOCK = this.GLOBAL_NORTHMOST_BLOCK + this.REGION_SIZE_IN_BLOCKS.Y - 1;
 		Random rand = new Random(key.hashCode());
 		this.ROOM_HALLWAY_WIDTH = rand.nextInt(4)+1;	// 1,2,3,4
+		this.WALL_THICKNESS = rand.nextInt(4)+1;
 		
 		// maximum possible width/length of the room, within the walls
-		int maxXsize = (this.REGION_SIZE.X) - (this.ROOM_HALLWAY_WIDTH << 1) - 2;
-		int maxZsize = (this.REGION_SIZE.Y) - (this.ROOM_HALLWAY_WIDTH << 1) - 2;
-		int minSize = 4;
-		int roomXsize = rand.nextInt(maxXsize-minSize) + minSize;
-		int roomZsize = rand.nextInt(maxZsize-minSize) + minSize;
-		int maxXoffset = this.REGION_SIZE.X - (roomXsize + 2 + this.ROOM_HALLWAY_WIDTH);
-		int maxZoffset = this.REGION_SIZE.Y - (roomZsize + 2 + this.ROOM_HALLWAY_WIDTH);
+		int maxInteriorXSize = (this.REGION_SIZE_IN_BLOCKS.X) - (this.ROOM_HALLWAY_WIDTH << 1) - (this.WALL_THICKNESS << 1);
+		int maxInteriorZSize = (this.REGION_SIZE_IN_BLOCKS.Y) - (this.ROOM_HALLWAY_WIDTH << 1) - (this.WALL_THICKNESS << 1);
+		int minInteriorSize = 4; // smallest diameter allowed for interior space
+		int interiorXsize = rand.nextInt(maxInteriorXSize-minInteriorSize) + minInteriorSize;
+		int interiorZsize = rand.nextInt(maxInteriorZSize-minInteriorSize) + minInteriorSize;
+		int maxXoffset = this.REGION_SIZE_IN_BLOCKS.X - (interiorXsize + this.WALL_THICKNESS*2 + this.ROOM_HALLWAY_WIDTH*2);
+		int maxZoffset = this.REGION_SIZE_IN_BLOCKS.Y - (interiorZsize + this.WALL_THICKNESS*2 + this.ROOM_HALLWAY_WIDTH*2);
 		int roomXoffset = rand.nextInt(maxXoffset);
 		int roomZoffset = rand.nextInt(maxZoffset);
-		this.ROOM_SIZE = new Vec2i(roomXsize, roomZsize);
-		this.OFFSET_FROM_REGION_START = new Vec2i(roomXoffset, roomZoffset);
-		this.ROOM_HALLWAY_START = this.OFFSET_FROM_REGION_START;
-		this.WALL_MIN = new Vec2i(this.ROOM_HALLWAY_WIDTH + this.OFFSET_FROM_REGION_START.X, this.ROOM_HALLWAY_WIDTH + this.OFFSET_FROM_REGION_START.Y);
-		this.ROOM_START = new Vec2i(this.WALL_MIN.X + 1, this.WALL_MIN.Y + 1);
-		this.ROOM_END = new Vec2i(this.ROOM_START.X + this.ROOM_SIZE.X - 1, this.ROOM_START.Y + this.ROOM_SIZE.Y -1);
-		this.WALL_MAX = new Vec2i(this.ROOM_END.X + 1, this.ROOM_END.Y + 1);
-		this.ROOM_HALLWAY_END = new Vec2i(this.WALL_MAX.X + this.ROOM_HALLWAY_WIDTH, this.WALL_MAX.Y + this.ROOM_HALLWAY_WIDTH);
-		this.OFFSET_OF_REGION_START = new Vec2i(this.SUPERCHUNK_COORD.X << 5, this.SUPERCHUNK_COORD.Y << 5);
-		this.REGION_RECT_IN_GLOBAL_BLOCKSPACE = new Rect(this.OFFSET_OF_REGION_START, this.REGION_SIZE);
+		this.INTERIOR_SIZE = new Vec2i(interiorXsize, interiorZsize);
+		this.LOCAL_ROOM_AND_HALLWAY_START = new Vec2i(roomXoffset, roomZoffset);
+		this.LOCAL_WALL_START = new Vec2i(this.ROOM_HALLWAY_WIDTH + this.LOCAL_ROOM_AND_HALLWAY_START.X, this.ROOM_HALLWAY_WIDTH + this.LOCAL_ROOM_AND_HALLWAY_START.Y);
+		this.LOCAL_INTERIOR_START = new Vec2i(this.LOCAL_WALL_START.X + this.WALL_THICKNESS, this.LOCAL_WALL_START.Y + this.WALL_THICKNESS);
+		this.LOCAL_INTERIOR_END = new Vec2i(this.LOCAL_INTERIOR_START.X + this.INTERIOR_SIZE.X - 1, this.LOCAL_INTERIOR_START.Y + this.INTERIOR_SIZE.Y -1);
+		this.LOCAL_WALL_END = new Vec2i(this.LOCAL_INTERIOR_END.X + this.WALL_THICKNESS, this.LOCAL_INTERIOR_END.Y + this.WALL_THICKNESS);
+		this.LOCAL_ROOM_AND_HALLWAY_END = new Vec2i(this.LOCAL_WALL_END.X + this.ROOM_HALLWAY_WIDTH, this.LOCAL_WALL_END.Y + this.ROOM_HALLWAY_WIDTH);
+		int roomSizeX = this.ROOM_HALLWAY_WIDTH*2 + this.WALL_THICKNESS*2 + interiorXsize;
+		int roomSizeZ = this.ROOM_HALLWAY_WIDTH*2 + this.WALL_THICKNESS*2 + interiorZsize;
+		this.TOTAL_ROOM_SIZE = new Vec2i(roomSizeX, roomSizeZ);
+		this.GLOBAL_REGION_START = new Vec2i(this.SUPERCHUNK_COORD.X << 5, this.SUPERCHUNK_COORD.Y << 5);
+		this.GLOBAL_REGION_RECT_IN_BLOCKSPACE = new Rect(this.GLOBAL_REGION_START, this.REGION_SIZE_IN_BLOCKS);
 		//////// find all exit rects
 		// get all superchunks orthagonally adjacent to here northward and westward
 		// convert to a Set of RoomKeys
@@ -112,13 +127,13 @@ public class Room
 		// now we have all the rooms, so get the exits relevant to this room
 		adjacentKeys.stream().map(adjacentKey -> RoomCaches.EXITLOADER.getUnchecked(adjacentKey))
 		.map(exit -> exit.asRectInGlobalSpace.move(exit.isOnEastSide ? new Vec2i(1,0) : new Vec2i(0,1)))	// get the exit rects as rects on the other side of the region boundary
-		.filter(rect -> !rect.intersection(this.REGION_RECT_IN_GLOBAL_BLOCKSPACE).equals(Rect.EMPTY_RECT))	// only keep the ones inside this region
+		.filter(rect -> !rect.intersection(this.GLOBAL_REGION_RECT_IN_BLOCKSPACE).equals(Rect.EMPTY_RECT))	// only keep the ones inside this region
 		.forEach(exit -> this.EXIT_RECTS.add(exit));	// remember the relevant exits
 		this.EXIT_RECTS.add(RoomCaches.EXITLOADER.getUnchecked(key).asRectInGlobalSpace);	// also use this room's own east/south exit
-		this.OFFSET_OF_ROOM_START = this.OFFSET_FROM_REGION_START.add(this.OFFSET_OF_REGION_START);
+		this.OFFSET_OF_ROOM_START = this.LOCAL_ROOM_AND_HALLWAY_START.add(this.GLOBAL_REGION_START);
 		this.ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE = new Rect(
 				this.OFFSET_OF_ROOM_START,
-				new Vec2i(this.ROOM_HALLWAY_END.X - this.ROOM_HALLWAY_START.X, this.ROOM_HALLWAY_END.Y - this.ROOM_HALLWAY_START.Y));
+				new Vec2i(this.LOCAL_ROOM_AND_HALLWAY_END.X - this.LOCAL_ROOM_AND_HALLWAY_START.X, this.LOCAL_ROOM_AND_HALLWAY_END.Y - this.LOCAL_ROOM_AND_HALLWAY_START.Y));
 		
 		// create hallways between room and exits
 		for (Rect exit : this.EXIT_RECTS)
@@ -140,7 +155,9 @@ public class Room
 			}
 		}
 		
-		this.ROOM_INTERIOR_RECT_IN_GLOBAL_SPACE = new Rect(this.ROOM_START, this.ROOM_SIZE).move(this.OFFSET_OF_REGION_START);
+		this.ROOM_INTERIOR_RECT_IN_GLOBAL_SPACE = new Rect(this.LOCAL_INTERIOR_START, this.INTERIOR_SIZE).move(this.GLOBAL_REGION_START);
+		Vec2i wallSize = new Vec2i(this.INTERIOR_SIZE.X + this.WALL_THICKNESS*2, this.INTERIOR_SIZE.Y + this.WALL_THICKNESS*2);
+		this.ROOM_WALL_RECT_IN_GLOBAL_SPACE = new Rect(this.LOCAL_WALL_START, wallSize).move(this.GLOBAL_REGION_START);
 		this.SUBDIVIDED_INTERIOR = this.ROOM_INTERIOR_RECT_IN_GLOBAL_SPACE.asRandomSubdivisions(rand).collect(Collectors.toCollection(ArrayList<Rect>::new));
 		// let the placer divide rects further along chunk lines so we don't have to deal with multiblock elements being generated across chunks
 		// alternatively, have the Room decide what Element to place in each rect ahead of time and have the placer
@@ -255,53 +272,62 @@ public class Room
 	// returns a stream of coords with x,z in range[0,15]
 	public Stream<Vec2i> getWallPositionsWithinChunk(ChunkPos pos)
 	{
+		// get all Vec2i coordinates that
+		// exist within the greater wall rect and
+		// do not exist within the interior floor rect and
+		// exist within the given chunk's rect
 		// determine the coords of the walls relative to the given chunk
-		int relativeDominantChunkX = ((this.SUPERCHUNK_COORD.X << 1) - pos.x) << 4; // in world coordinates relative to the given chunk
-		int relativeDominantChunkZ = ((this.SUPERCHUNK_COORD.Y << 1) - pos.z) << 4;
-		int relativeWallStartX = relativeDominantChunkX + this.WALL_MIN.X;
-		int relativeWallStartZ = relativeDominantChunkZ + this.WALL_MIN.Y;
-		int relativeWallEndX = relativeDominantChunkX + this.WALL_MAX.X;
-		int relativeWallEndZ = relativeDominantChunkZ + this.WALL_MAX.Y;
-		Set<Vec2i> wallCoords = new HashSet<>();
-
-		int xStart = relativeWallStartX < 0 ? 0 : relativeWallStartX;
-		int xEnd = relativeWallEndX > 15 ? 15 : relativeWallEndX;
-		int zStart = relativeWallStartZ < 0 ? 0 : relativeWallStartZ;
-		int zEnd = relativeWallEndZ > 15 ? 15 : relativeWallEndZ;
 		
-		//minX segment of wall
-		if (relativeWallStartX >= 0 && relativeWallStartX < 16 && !(relativeWallEndZ < 0 || relativeWallStartZ > 15))
-		{	// portion of wall is within the chunk's x-domain
-			IntStream.range(zStart, zEnd+1).forEach(z -> wallCoords.add(new Vec2i(relativeWallStartX, z)));
-		}
-		// maxX segment of wall
-		if (relativeWallEndX >= 0 && relativeWallEndX < 16 && !(relativeWallEndZ < 0 || relativeWallStartZ > 15))
-		{
-			IntStream.range(zStart, zEnd+1).forEach(z -> wallCoords.add(new Vec2i(relativeWallEndX, z)));
-		}
-		// minZ segment of wall
-		if (relativeWallStartZ >= 0 && relativeWallStartZ < 16 && !(relativeWallEndX < 0 || relativeWallStartX > 15))
-		{
-			IntStream.range(xStart, xEnd+1).forEach(x -> wallCoords.add(new Vec2i(x, relativeWallStartZ)));
-		}
-		if (relativeWallEndZ >= 0 && relativeWallEndZ < 16 && !(relativeWallEndX < 0 || relativeWallStartX > 15))
-		{
-			IntStream.range(xStart, xEnd+1).forEach(x -> wallCoords.add(new Vec2i(x, relativeWallEndZ)));
-		}
+		// get the wall rect and subtract the floor rect
+		return Rect.getRectCollectionAsRectsWithinChunk(this.ROOM_WALL_RECT_IN_GLOBAL_SPACE.excise(this.ROOM_INTERIOR_RECT_IN_GLOBAL_SPACE), pos, true)
+		.map(rect -> rect.coords().stream()).flatMap(i->i);
 		
-		return wallCoords.stream();
+		
+		
+//		int relativeDominantChunkX = ((this.SUPERCHUNK_COORD.X << 1) - pos.x) << 4; // in world coordinates relative to the given chunk
+//		int relativeDominantChunkZ = ((this.SUPERCHUNK_COORD.Y << 1) - pos.z) << 4;
+//		int relativeWallStartX = relativeDominantChunkX + this.LOCAL_WALL_START.X;
+//		int relativeWallStartZ = relativeDominantChunkZ + this.LOCAL_WALL_START.Y;
+//		int relativeWallEndX = relativeDominantChunkX + this.LOCAL_WALL_END.X;
+//		int relativeWallEndZ = relativeDominantChunkZ + this.LOCAL_WALL_END.Y;
+//		Set<Vec2i> wallCoords = new HashSet<>();
+//
+//		int xStart = relativeWallStartX < 0 ? 0 : relativeWallStartX;
+//		int xEnd = relativeWallEndX > 15 ? 15 : relativeWallEndX;
+//		int zStart = relativeWallStartZ < 0 ? 0 : relativeWallStartZ;
+//		int zEnd = relativeWallEndZ > 15 ? 15 : relativeWallEndZ;
+//		
+//		//minX segment of wall
+//		if (relativeWallStartX >= 0 && relativeWallStartX < 16 && !(relativeWallEndZ < 0 || relativeWallStartZ > 15))
+//		{	// portion of wall is within the chunk's x-domain
+//			IntStream.range(zStart, zEnd+1).forEach(z -> wallCoords.add(new Vec2i(relativeWallStartX, z)));
+//		}
+//		// maxX segment of wall
+//		if (relativeWallEndX >= 0 && relativeWallEndX < 16 && !(relativeWallEndZ < 0 || relativeWallStartZ > 15))
+//		{
+//			IntStream.range(zStart, zEnd+1).forEach(z -> wallCoords.add(new Vec2i(relativeWallEndX, z)));
+//		}
+//		// minZ segment of wall
+//		if (relativeWallStartZ >= 0 && relativeWallStartZ < 16 && !(relativeWallEndX < 0 || relativeWallStartX > 15))
+//		{
+//			IntStream.range(xStart, xEnd+1).forEach(x -> wallCoords.add(new Vec2i(x, relativeWallStartZ)));
+//		}
+//		if (relativeWallEndZ >= 0 && relativeWallEndZ < 16 && !(relativeWallEndX < 0 || relativeWallStartX > 15))
+//		{
+//			IntStream.range(xStart, xEnd+1).forEach(x -> wallCoords.add(new Vec2i(x, relativeWallEndZ)));
+//		}
+//		
+//		return wallCoords.stream();
 	}
 	
 	@Nonnull
-	public Rect getFloorRectWithinChunk(ChunkPos pos)
+	public Rect getOuterFloorRectWithinChunk(ChunkPos pos)
 	{
-		int relativeDominantChunkX = ((this.SUPERCHUNK_COORD.X << 1) - pos.x) << 4; // in world coordinates relative to the given chunk
+		int relativeDominantChunkX = ((this.SUPERCHUNK_COORD.X << 1) - pos.x) << 4; // in block coordinates relative to the given chunk
 		int relativeDominantChunkZ = ((this.SUPERCHUNK_COORD.Y << 1) - pos.z) << 4;
-		int relativeFloorStartX = relativeDominantChunkX + this.ROOM_HALLWAY_START.X;
-		int relativeFloorStartZ = relativeDominantChunkZ + this.ROOM_HALLWAY_START.Y;
-		int floorSizeX = this.ROOM_HALLWAY_WIDTH*2 + 2 + this.ROOM_SIZE.X;
-		int floorSizeY = this.ROOM_HALLWAY_WIDTH*2 + 2 + this.ROOM_SIZE.Y;
-		Rect floorRect = new Rect(new Vec2i(relativeFloorStartX, relativeFloorStartZ), new Vec2i(floorSizeX, floorSizeY));
+		int relativeFloorStartX = relativeDominantChunkX + this.LOCAL_ROOM_AND_HALLWAY_START.X;
+		int relativeFloorStartZ = relativeDominantChunkZ + this.LOCAL_ROOM_AND_HALLWAY_START.Y;
+		Rect floorRect = new Rect(new Vec2i(relativeFloorStartX, relativeFloorStartZ), this.TOTAL_ROOM_SIZE);
 		return floorRect.intersection(Rect.CHUNK_RECT);
 	}
 	

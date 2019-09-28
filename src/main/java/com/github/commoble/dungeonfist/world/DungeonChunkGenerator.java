@@ -242,7 +242,7 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 			Room room = RoomCaches.ROOMLOADER.getUnchecked(roomKey);
 			
 			double noiseXYZ = getXYZNoise(this.roomNoise, globalXStart,y,globalZStart);
-			Rect floorInThisChunk = room.getFloorRectWithinChunk(chunkpos);
+			Rect floorInThisChunk = room.getOuterFloorRectWithinChunk(chunkpos);
 
 			List<Vec2i> coords = floorInThisChunk.coords();
 			for (Vec2i coord : coords)

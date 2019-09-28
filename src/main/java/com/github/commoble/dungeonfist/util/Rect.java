@@ -217,6 +217,55 @@ public class Rect
 		}
 	}
 	
+	/**
+	 * Returns a stream of rects that, when added together, would form the space defined by
+	 * this rect, with the given rect subtracted from it
+	 */
+	public Stream<Rect> excise(Rect removedRect)
+	{
+		// 9-slice the original rect into regions based on the removedRect
+		int startX0 = this.START.X;
+		int startX1 = removedRect.START.X;
+		int startX2 = removedRect.START.X + removedRect.SIZE.X;
+		
+		int startY0 = this.START.Y;
+		int startY1 = removedRect.START.Y;
+		int startY2 = removedRect.START.Y + removedRect.SIZE.Y;
+		
+		int sizeX0 = startX1-startX0;
+		int sizeX1 = startX2-startX1;
+		int sizeX2 = this.SIZE.X - sizeX0 - sizeX1;
+		
+		int sizeY0 = startY1-startY0;
+		int sizeY1 = startY2-startY1;
+		int sizeY2 = this.SIZE.Y - sizeY0 - sizeY1;
+		
+		int[] xStarts = {startX0, startX1, startX2};
+		int[] yStarts = {startY0, startY1, startY2};
+		int[] xSizes = {sizeX0, sizeX1, sizeX2};
+		int[] ySizes = {sizeY0, sizeY1, sizeY2};
+		
+		ArrayList<Rect> output = new ArrayList<Rect>();
+		
+		IntStream.range(0, 3).forEach(x ->{
+			IntStream.range(0, 3).forEach(y ->{
+				if (x != 1 || y != 1)	// ignore the middle rect
+				{
+					output.add(new Rect(new Vec2i(xStarts[x], yStarts[y]), new Vec2i(xSizes[x], ySizes[y])));
+				}
+			});
+		});
+		
+		// filter out the rects that shouldn't exist
+		return output.stream().filter(rect ->
+			!rect.isEmpty()
+			&& rect.START.X >= this.START.X
+			&& rect.START.Y >= this.START.Y
+			&& rect.START.X + rect.SIZE.X <= this.START.X + this.SIZE.X
+			&& rect.START.Y + rect.SIZE.Y <= this.START.Y + this.SIZE.Y
+		);
+	}
+	
 	@Override
 	public int hashCode()
 	{
