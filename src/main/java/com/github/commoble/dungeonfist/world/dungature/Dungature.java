@@ -34,14 +34,20 @@ public abstract class Dungature
 		return this;
 	}
 	
-	public Dungature withRandomTransform(int squareSize, Rect targetRect, Room room, Random rand)
+	public Dungature withRandomTransform(int squareSize, DungatureContext context)
 	{
 		Rect baseRect = Rect.SQUARE_RECTS[squareSize];
-		int rotation = rand.nextInt(4);
-		int mirror = rand.nextInt(4);
-		Vec2i translation = TransformHelper.getRandomTranslation(baseRect, targetRect, rand);
+		int rotation = context.rand.nextInt(4);
+		int mirror = context.rand.nextInt(4);
+		Vec2i translation = TransformHelper.getRandomTranslation(baseRect, context.rect, context.rand);
 		int yTranslation = 0;
 		return this.withTransform(new Transform(rotation, mirror, translation, yTranslation, Vec3i.NULL_VECTOR));
+	}
+	
+	
+	public Dungature withRotation(int rotation)
+	{
+		return this.withTransform(this.transform.withRotation(rotation));
 	}
 	
 	/**

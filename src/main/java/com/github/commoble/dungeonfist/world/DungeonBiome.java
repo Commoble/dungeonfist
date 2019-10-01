@@ -1,5 +1,6 @@
 package com.github.commoble.dungeonfist.world;
 
+import com.github.commoble.dungeonfist.world.feature.DungeonRoomDoorwayFeature;
 import com.github.commoble.dungeonfist.world.feature.DungeonRoomSubdivisionFeature;
 
 import net.minecraft.world.biome.Biome;
@@ -27,6 +28,12 @@ public class DungeonBiome extends Biome
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
 				Biome.createDecoratedFeature(
 						new DungeonRoomSubdivisionFeature(NoFeatureConfig::deserialize),
+						IFeatureConfig.NO_FEATURE_CONFIG,
+						Placement.NOPE,
+						IPlacementConfig.NO_PLACEMENT_CONFIG));
+		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
+				Biome.createDecoratedFeature(
+						new DungeonRoomDoorwayFeature(NoFeatureConfig::deserialize),
 						IFeatureConfig.NO_FEATURE_CONFIG,
 						Placement.NOPE,
 						IPlacementConfig.NO_PLACEMENT_CONFIG));

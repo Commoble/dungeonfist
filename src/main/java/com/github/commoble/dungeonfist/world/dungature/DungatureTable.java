@@ -3,23 +3,25 @@ package com.github.commoble.dungeonfist.world.dungature;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.TreeMap;
+import java.util.function.Function;
 import java.util.function.IntUnaryOperator;
 import java.util.stream.IntStream;
-
-import com.github.commoble.dungeonfist.util.Rect;
-import com.github.commoble.dungeonfist.util.Room;
-import com.github.commoble.dungeonfist.util.TriFunction;
 
 // thanks to Peter Lawrey from the stackoverflow whence this was found
 // https://stackoverflow.com/questions/6409652/random-weighted-selection-in-java/30362366
 public class DungatureTable
 {
-	private final ArrayList<TreeMap<Integer, TriFunction<Rect, Room, Random, Dungature>>> maps = new ArrayList<TreeMap<Integer, TriFunction<Rect, Room, Random, Dungature>>>();
-	private int[] totals = new int[16];	// i <==> size-1; i in range [0,15], size in range [1,16]
+	private final ArrayList<TreeMap<Integer, Function<DungatureContext, Dungature>>> maps = new ArrayList<TreeMap<Integer, Function<DungatureContext, Dungature>>>();
+	private final int size;	// number of tables in this table
+		// so the first table would hold all dungatures that can generate with size 1 or greater,
+		// the fifth table would hold all dungatures that must be of at least size 5, etc
+	private int[] totals;
 	
-	public DungatureTable()
+	public DungatureTable(int size)
 	{
-		IntStream.range(0,16).forEach(i -> this.maps.add(new TreeMap<Integer, TriFunction<Rect, Room, Random, Dungature>>()));
+		this.size = size;
+		this.totals = new int[size]; // i <==> size-1; i in range [0,15], size in range [1,16]
+		IntStream.range(0,16).forEach(i -> this.maps.add(new TreeMap<Integer, Function<DungatureContext, Dungature>>()));
 	}
 	
 	/**
@@ -28,16 +30,16 @@ public class DungatureTable
 	 * minSizes < 1 are treated as 1
 	 */
 	
-	public DungatureTable add(IntUnaryOperator size2weightFunction, TriFunction<Rect, Room, Random, Dungature> item)
+	public DungatureTable add(IntUnaryOperator size2weightFunction, Function<DungatureContext, Dungature> generator)
 	{
-		for (int index=0; index < 16; index++)
+		for (int index=0; index < this.size; index++)
 		{
 			int size = index + 1;
 			int weight = size2weightFunction.applyAsInt(size);
 			if (weight > 0)
 			{
 				this.totals[index] += weight;	// add weight to totals for all sizes of this size or greater 
-				this.maps.get(index).put(this.totals[index], item);
+				this.maps.get(index).put(this.totals[index], generator);
 			}
 		}
 		
@@ -47,11 +49,11 @@ public class DungatureTable
 	 * Returns a random item from the collection, selected proportionally to the given weights
 	 * (will return null if and only if the collection is empty)
 	 */
-	public TriFunction<Rect, Room, Random, Dungature> next(int minSize, Random rand)
+	public Function<DungatureContext, Dungature> next(int minSize, Random rand)
 	{
 		int i = minSize-1;
-		if (i > 15)
-			i = 15;
+		if (i > this.size-1)
+			i = this.size-1;
 		
 		int maxRoll = this.totals[i];
 		if (maxRoll <= 0)

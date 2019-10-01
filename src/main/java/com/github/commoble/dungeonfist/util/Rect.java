@@ -292,16 +292,21 @@ public class Rect
 		}
 	}
 	
+	public Stream<Rect> asRandomSubdivisions(Random rand)
+	{
+		return this.asRandomSubdivisions(rand, true, true);
+	}
+	
 	/**
 	 * Recursively divides a rect into randomly arranged rects that take up the same area
 	 * Each iteration divides the rect into 1, 2, or 4 rects
 	 * The bigger a given Rect is, the less likely it is to return itself without subdividing
 	 */
-	public Stream<Rect> asRandomSubdivisions(Random rand)
+	public Stream<Rect> asRandomSubdivisions(Random rand, boolean cutAcrossWestToEast, boolean cutAcrossNorthToSouth)
 	{
-		int xSizeA = rand.nextInt(this.SIZE.X)+1;	// min 1, max existing size
+		int xSizeA = cutAcrossNorthToSouth ? rand.nextInt(this.SIZE.X)+1 : this.SIZE.X;	// min 1, max existing size
 		int xSizeB = this.SIZE.X - xSizeA;	// may be 0
-		int ySizeA = rand.nextInt(this.SIZE.Y)+1;	// min 1, max existing size
+		int ySizeA = cutAcrossWestToEast ? rand.nextInt(this.SIZE.Y)+1 : this.SIZE.Y;	// min 1, max existing size
 		int ySizeB = this.SIZE.Y - ySizeA;	// may be 0
 		
 		Vec2i startA = this.START;
@@ -335,7 +340,10 @@ public class Rect
 			Vec2i sizeD = new Vec2i(xSizeB, ySizeB);
 			rectD = new Rect(startD, sizeD);
 		}
-		return Stream.of(rectA, rectB, rectC, rectD).filter(rect -> rect != null).map(rect -> rect.asRandomSubdivisions(rand)).flatMap(i->i);
+		return Stream.of(rectA, rectB, rectC, rectD)
+				.filter(rect -> rect != null)
+				.map(rect -> rect.asRandomSubdivisions(rand, cutAcrossWestToEast, cutAcrossNorthToSouth))
+				.flatMap(i->i);
 	}
 
 	@Override
