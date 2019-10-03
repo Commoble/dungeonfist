@@ -39,18 +39,18 @@ public class DoorwayDungature extends Dungature
 	@Override
 	public void place(Rect rect, Rect chunkRect, Room room, IWorld world, Random rand)
 	{
-		int minX, sizeX, minY, sizeY;
+		int minX, sizeX, minZ, sizeZ;
 		Vec2i doorPosition;
 		int corridorOffset;
-		if (this.transform.rotation % 2 == 0)// doorway is along west-east axis
+		if (this.transform.rotation % 2 != 0)// doorway is along west-east axis
 		{
 			corridorOffset = (this.positionHasher % rect.SIZE.Y);
 			
 			minX = rect.START.X;
 			sizeX = rect.SIZE.X;
 			
-			minY = rect.START.X + corridorOffset;
-			sizeY = 1;
+			minZ = rect.START.Y + corridorOffset;
+			sizeZ = 1;
 		}
 		else	// doorway corridor is along north-south axis
 		{
@@ -59,15 +59,16 @@ public class DoorwayDungature extends Dungature
 			minX = rect.START.X + corridorOffset;
 			sizeX = 1;
 			
-			minY = rect.START.Y;
-			sizeY = rect.SIZE.Y;
+			minZ = rect.START.Y;
+			sizeZ = rect.SIZE.Y;
 		}
-		// if door is on interior and corridor is south or east, use minX,minY of rect
+		// if door is on interior and corridor is south or east, use minX,minY of rect	// rotation = 0 or 3
 		// if door is on exterior and corridor is west or north, use minX,minY of rect
 		// otherwise use maxX, maxY of rect
-		doorPosition = this.doorFacesInterior ^ (this.transform.rotation > 1) ? new Vec2i(minX, minY) : new Vec2i(minX + sizeX - 1, minY + sizeY - 1);
+		boolean isWestOrNorth = this.transform.rotation == 1 || this.transform.rotation == 2;
+		doorPosition = this.doorFacesInterior ^ isWestOrNorth ? new Vec2i(minX, minZ) : new Vec2i(minX + sizeX - 1, minZ + sizeZ - 1);
 		
-		Rect doorCorridor = new Rect(new Vec2i(minX, minY), new Vec2i(sizeX, sizeY));
+		Rect doorCorridor = new Rect(new Vec2i(minX, minZ), new Vec2i(sizeX, sizeZ));
 		int baseY = room.WORLD_YLEVEL;
 		BlockState air = Blocks.AIR.getDefaultState();
 		rect.coords().stream().filter(coord -> chunkRect.contains(coord) && doorCorridor.contains(coord))
@@ -78,7 +79,7 @@ public class DoorwayDungature extends Dungature
 			BlockState lowerState = this.doorBlock.getDefaultState()
 					.with(DoorBlock.HALF, DoubleBlockHalf.LOWER)
 					.with(DoorBlock.HINGE, rand.nextBoolean() ? DoorHingeSide.LEFT : DoorHingeSide.RIGHT)
-					.with(DoorBlock.FACING, Direction.byHorizontalIndex(MathBuddy.absoluteMod(this.transform.rotation - 1 + (this.doorFacesInterior ? 0 : 2), 4)));
+					.with(DoorBlock.FACING, Direction.byHorizontalIndex(MathBuddy.absoluteMod(this.transform.rotation + (this.doorFacesInterior ? 0 : 2), 4)));
 			BlockState upperState = lowerState.with(DoorBlock.HALF, DoubleBlockHalf.UPPER);
 			world.setBlockState(new BlockPos(coord.X, baseY + 1, coord.Y), lowerState, 2);
 			world.setBlockState(new BlockPos(coord.X, baseY + 2, coord.Y), upperState, 2);

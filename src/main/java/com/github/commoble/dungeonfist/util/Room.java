@@ -258,11 +258,12 @@ public class Room
 		Rect westRect = new Rect(westStart, westEastSize);
 		Rect eastRect = new Rect(eastStart, westEastSize);
 		
-		// we'd be wanting to generate the doorway dungatures as if the interior was to the west and the exterior was to the east
-		eastRect.asRandomSubdivisions(rand, true, false).forEach(rect -> this.mapDoorwayRect(map, table, rect, rand, 0));
-		southRect.asRandomSubdivisions(rand, false, true).forEach(rect -> this.mapDoorwayRect(map, table, rect, rand, 1));
-		westRect.asRandomSubdivisions(rand, true, false).forEach(rect -> this.mapDoorwayRect(map, table, rect, rand, 2));
-		northRect.asRandomSubdivisions(rand, false, true).forEach(rect -> this.mapDoorwayRect(map, table, rect, rand, 3));
+		// by forge convention, south=0, west=1, north=2, east=3
+		// we'd be wanting to generate the doorway dungatures as if the interior was to the north and the exterior was to the south
+		southRect.asRandomSubdivisions(rand, false, true).forEach(rect -> this.mapDoorwayRect(map, table, rect, rand, 0));
+		westRect.asRandomSubdivisions(rand, true, false).forEach(rect -> this.mapDoorwayRect(map, table, rect, rand, 1));
+		northRect.asRandomSubdivisions(rand, false, true).forEach(rect -> this.mapDoorwayRect(map, table, rect, rand, 2));
+		eastRect.asRandomSubdivisions(rand, true, false).forEach(rect -> this.mapDoorwayRect(map, table, rect, rand, 3));
 
 		Direction.Plane.HORIZONTAL.forEach(dir -> {
 			

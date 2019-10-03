@@ -24,7 +24,7 @@ public abstract class Dungature
 	 * @param chunkRect	The rect representing the chunk that this dungature or a portion thereof is being placed in
 	 * @param room	The room that this dungature is being placed in
 	 * @param world The world that this dungature is being placed in
-	 * @param rand Should NOT be used for generating the general shape of the dungature; should only be used within a single column (chest loot tables is fine)
+	 * @param rand Random from the feature placer, not from the Room. Should only be used within a single chunk.
 	 */
 	public abstract void place(Rect rect, Rect chunkRect, Room room, IWorld world, Random rand);
 	
