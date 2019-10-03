@@ -28,7 +28,7 @@ public class TinyEmptyCorridor extends Dungature
 	{
 		int minX, sizeX, minY, sizeY;
 		int corridorOffset;
-		if (this.transform.rotation % 2 == 0)// doorway is along west-east axis
+		if (this.transform.rotation % 2 != 0)// doorway is along west-east axis
 		{
 			corridorOffset = (this.positionHasher % rect.SIZE.Y);
 			
@@ -52,7 +52,7 @@ public class TinyEmptyCorridor extends Dungature
 		Rect doorCorridor = new Rect(new Vec2i(minX, minY), new Vec2i(sizeX, sizeY));
 		int baseY = room.WORLD_YLEVEL;
 		BlockState air = Blocks.AIR.getDefaultState();
-		rect.coords().stream().filter(coord -> chunkRect.contains(coord) && doorCorridor.contains(coord))
+		rect.intersection(chunkRect).coords().stream().filter(coord -> doorCorridor.contains(coord))
 				.forEach(coord -> IntStream.range(1, 3)
 						.forEach(yOff -> world.setBlockState(new BlockPos(coord.X, baseY + yOff, coord.Y), air, 2)));
 	}
