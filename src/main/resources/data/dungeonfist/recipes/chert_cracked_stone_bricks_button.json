@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dungeonfist:chert_cracked_stone_bricks"
+    }
+  ],
+  "result": {
+    "item": "dungeonfist:chert_cracked_stone_bricks_button"
+  }
+}

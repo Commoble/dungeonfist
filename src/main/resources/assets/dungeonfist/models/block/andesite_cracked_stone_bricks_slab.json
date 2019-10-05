@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "dungeonfist:block/andesite_cracked_stone_bricks",
+        "top": "dungeonfist:block/andesite_cracked_stone_bricks",
+        "side": "dungeonfist:block/andesite_cracked_stone_bricks"
+    }
+}

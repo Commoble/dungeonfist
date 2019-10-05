@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "dungeonfist:block/dolomite_cobblestone",
+        "top": "dungeonfist:block/dolomite_cobblestone",
+        "side": "dungeonfist:block/dolomite_cobblestone"
+    }
+}

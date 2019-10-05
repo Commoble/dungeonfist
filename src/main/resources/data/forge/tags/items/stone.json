@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "dungeonfist:diorite_stone",
+    "dungeonfist:gabbro_stone",
+    "dungeonfist:granite_stone",
+    "dungeonfist:andesite_stone",
+    "dungeonfist:basalt_stone",
+    "dungeonfist:rhyolite_stone",
+    "dungeonfist:gneiss_stone",
+    "dungeonfist:marble_stone",
+    "dungeonfist:phyllite_stone",
+    "dungeonfist:schist_stone",
+    "dungeonfist:slate_stone",
+    "dungeonfist:chert_stone",
+    "dungeonfist:dolomite_stone",
+    "dungeonfist:halite_stone",
+    "dungeonfist:limestone_stone",
+    "dungeonfist:shale_stone"
+  ]
+}

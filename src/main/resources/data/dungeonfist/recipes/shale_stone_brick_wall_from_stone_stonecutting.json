@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:shale_stone"
+  },
+  "result": "dungeonfist:shale_stone_brick_wall",
+  "count": 1
+}

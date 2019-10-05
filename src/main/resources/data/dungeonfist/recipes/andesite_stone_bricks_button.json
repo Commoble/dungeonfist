@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dungeonfist:andesite_stone_bricks"
+    }
+  ],
+  "result": {
+    "item": "dungeonfist:andesite_stone_bricks_button"
+  }
+}

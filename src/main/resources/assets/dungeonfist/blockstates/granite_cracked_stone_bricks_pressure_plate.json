@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=false": { "model": "dungeonfist:block/granite_cracked_stone_bricks_pressure_plate" },
+        "powered=true": { "model": "dungeonfist:block/granite_cracked_stone_bricks_pressure_plate_down" }
+    }
+}

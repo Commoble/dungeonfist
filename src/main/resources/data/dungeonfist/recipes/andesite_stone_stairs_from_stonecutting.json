@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:andesite_stone"
+  },
+  "result": "dungeonfist:andesite_stone_stairs",
+  "count": 1
+}

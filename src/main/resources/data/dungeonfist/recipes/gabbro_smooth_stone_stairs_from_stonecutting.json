@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:gabbro_smooth_stone"
+  },
+  "result": "dungeonfist:gabbro_smooth_stone_stairs",
+  "count": 1
+}

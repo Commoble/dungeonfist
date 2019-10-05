@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "dungeonfist:block/gneiss_smooth_stone",
+        "side": "dungeonfist:block/gneiss_smooth_stone_slab_side"
+    }
+}

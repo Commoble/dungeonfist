@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:slate_cobblestone"
+  },
+  "result": "dungeonfist:slate_cobblestone_stairs",
+  "count": 1
+}

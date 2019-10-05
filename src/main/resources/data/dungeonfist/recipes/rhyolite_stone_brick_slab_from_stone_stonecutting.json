@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:rhyolite_stone"
+  },
+  "result": "dungeonfist:rhyolite_stone_brick_slab",
+  "count": 2
+}

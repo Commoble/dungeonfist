@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "dungeonfist:block/rhyolite_stone",
+        "top": "dungeonfist:block/rhyolite_stone",
+        "side": "dungeonfist:block/rhyolite_stone"
+    }
+}

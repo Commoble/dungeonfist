@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "dungeonfist:block/gabbro_cobblestone",
+        "top": "dungeonfist:block/gabbro_cobblestone",
+        "side": "dungeonfist:block/gabbro_cobblestone"
+    }
+}

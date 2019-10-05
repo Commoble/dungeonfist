@@ -1,0 +1,6 @@
+{
+    "parent": "block/button_pressed",
+    "textures": {
+        "texture": "dungeonfist:block/granite_mossy_stone_bricks"
+    }
+}

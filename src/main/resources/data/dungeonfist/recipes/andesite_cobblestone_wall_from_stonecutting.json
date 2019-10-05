@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:andesite_cobblestone"
+  },
+  "result": "dungeonfist:andesite_cobblestone_wall",
+  "count": 1
+}

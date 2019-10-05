@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dungeonfist:rhyolite_smooth_stone"
+    }
+  ],
+  "result": {
+    "item": "dungeonfist:rhyolite_smooth_stone_button"
+  }
+}

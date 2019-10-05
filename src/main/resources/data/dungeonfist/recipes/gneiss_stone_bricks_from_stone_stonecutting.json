@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:gneiss_stone"
+  },
+  "result": "dungeonfist:gneiss_stone_bricks",
+  "count": 1
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "dungeonfist:block/gneiss_stone",
+        "top": "dungeonfist:block/gneiss_stone",
+        "side": "dungeonfist:block/gneiss_stone"
+    }
+}

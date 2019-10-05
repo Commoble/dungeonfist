@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "dungeonfist:block/slate_smooth_stone",
+        "top": "dungeonfist:block/slate_smooth_stone",
+        "side": "dungeonfist:block/slate_smooth_stone"
+    }
+}

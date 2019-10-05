@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "dungeonfist:block/shale_stone_bricks",
+        "top": "dungeonfist:block/shale_stone_bricks",
+        "side": "dungeonfist:block/shale_stone_bricks"
+    }
+}

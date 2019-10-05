@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "dungeonfist:block/diorite_cracked_stone_bricks",
+        "top": "dungeonfist:block/diorite_cracked_stone_bricks",
+        "side": "dungeonfist:block/diorite_cracked_stone_bricks"
+    }
+}

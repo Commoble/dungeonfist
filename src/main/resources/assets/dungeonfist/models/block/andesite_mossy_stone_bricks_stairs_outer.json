@@ -1,0 +1,8 @@
+{
+    "parent": "block/outer_stairs",
+    "textures": {
+        "bottom": "dungeonfist:block/andesite_mossy_stone_bricks",
+        "top": "dungeonfist:block/andesite_mossy_stone_bricks",
+        "side": "dungeonfist:block/andesite_mossy_stone_bricks"
+    }
+}

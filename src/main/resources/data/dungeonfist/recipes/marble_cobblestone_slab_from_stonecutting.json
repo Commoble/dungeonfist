@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:marble_cobblestone"
+  },
+  "result": "dungeonfist:marble_cobblestone_slab",
+  "count": 2
+}

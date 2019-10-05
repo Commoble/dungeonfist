@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "dungeonfist:chert_cobblestone"
+  },
+  "result": "dungeonfist:chert_stone",
+  "experience": 0.1,
+  "cookingtime": 200
+}

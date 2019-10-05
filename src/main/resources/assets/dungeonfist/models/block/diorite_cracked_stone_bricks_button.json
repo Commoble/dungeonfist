@@ -1,0 +1,6 @@
+{
+    "parent": "block/button",
+    "textures": {
+        "texture": "dungeonfist:block/diorite_cracked_stone_bricks"
+    }
+}

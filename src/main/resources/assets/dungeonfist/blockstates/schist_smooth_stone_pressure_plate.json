@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=false": { "model": "dungeonfist:block/schist_smooth_stone_pressure_plate" },
+        "powered=true": { "model": "dungeonfist:block/schist_smooth_stone_pressure_plate_down" }
+    }
+}

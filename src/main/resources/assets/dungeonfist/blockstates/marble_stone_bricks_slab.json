@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "dungeonfist:block/marble_stone_bricks_slab" },
+        "type=top": { "model": "dungeonfist:block/marble_stone_bricks_slab_top" },
+        "type=double": { "model": "dungeonfist:block/marble_stone_bricks" }
+    }
+}

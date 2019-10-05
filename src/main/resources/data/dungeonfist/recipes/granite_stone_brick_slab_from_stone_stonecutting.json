@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:granite_stone"
+  },
+  "result": "dungeonfist:granite_stone_brick_slab",
+  "count": 2
+}

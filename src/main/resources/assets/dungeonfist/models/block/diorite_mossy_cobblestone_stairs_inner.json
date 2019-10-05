@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "dungeonfist:block/diorite_mossy_cobblestone",
+        "top": "dungeonfist:block/diorite_mossy_cobblestone",
+        "side": "dungeonfist:block/diorite_mossy_cobblestone"
+    }
+}

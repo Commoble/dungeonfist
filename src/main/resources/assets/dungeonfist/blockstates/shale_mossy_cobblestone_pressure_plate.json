@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=false": { "model": "dungeonfist:block/shale_mossy_cobblestone_pressure_plate" },
+        "powered=true": { "model": "dungeonfist:block/shale_mossy_cobblestone_pressure_plate_down" }
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "dungeonfist:block/basalt_smooth_stone_slab" },
+        "type=top": { "model": "dungeonfist:block/basalt_smooth_stone_slab_top" },
+        "type=double": { "model": "dungeonfist:block/basalt_smooth_stone_slab_double" }
+    }
+}

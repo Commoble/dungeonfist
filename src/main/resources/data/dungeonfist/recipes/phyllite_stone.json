@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "dungeonfist:phyllite_cobblestone"
+  },
+  "result": "dungeonfist:phyllite_stone",
+  "experience": 0.1,
+  "cookingtime": 200
+}

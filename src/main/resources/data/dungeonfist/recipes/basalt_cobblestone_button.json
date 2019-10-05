@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dungeonfist:basalt_cobblestone"
+    }
+  ],
+  "result": {
+    "item": "dungeonfist:basalt_cobblestone_button"
+  }
+}

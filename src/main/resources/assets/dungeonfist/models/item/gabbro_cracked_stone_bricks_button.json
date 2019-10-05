@@ -1,0 +1,6 @@
+{
+    "parent": "block/button_inventory",
+    "textures": {
+        "texture": "dungeonfist:block/gabbro_cracked_stone_bricks"
+    }
+}

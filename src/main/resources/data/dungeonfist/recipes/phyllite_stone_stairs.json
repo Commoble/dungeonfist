@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "dungeonfist:phyllite_stone"
+    }
+  },
+  "result": {
+    "item": "dungeonfist:phyllite_stone_stairs",
+    "count": 4
+  }
+}

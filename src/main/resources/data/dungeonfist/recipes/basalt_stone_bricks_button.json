@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dungeonfist:basalt_stone_bricks"
+    }
+  ],
+  "result": {
+    "item": "dungeonfist:basalt_stone_bricks_button"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dungeonfist:phyllite_stone"
+    }
+  ],
+  "result": {
+    "item": "dungeonfist:phyllite_stone_button"
+  }
+}

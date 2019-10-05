@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-import com.github.commoble.dungeonfist.util.BlockSets;
+import com.github.commoble.dungeonfist.util.BlockCollections;
 import com.github.commoble.dungeonfist.util.MathBuddy;
 import com.github.commoble.dungeonfist.util.Rect;
 import com.github.commoble.dungeonfist.util.Room;
@@ -31,7 +31,7 @@ public class DoorwayDungature extends Dungature
 	{
 		Random rand = context.rand;
 		this.positionHasher = Math.abs(rand.nextInt());
-		this.doorBlock = BlockSets.DOORS.get(rand.nextInt(BlockSets.DOORS.size()));
+		this.doorBlock = BlockCollections.DOORS.get(rand.nextInt(BlockCollections.DOORS.size()));
 		
 		this.doorFacesInterior = rand.nextBoolean();
 	}

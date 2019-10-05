@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "dungeonfist:block/schist_cracked_stone_bricks",
+        "top": "dungeonfist:block/schist_cracked_stone_bricks",
+        "side": "dungeonfist:block/schist_cracked_stone_bricks"
+    }
+}

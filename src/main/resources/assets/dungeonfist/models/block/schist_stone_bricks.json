@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "dungeonfist:block/schist_stone_bricks"
+    }
+}

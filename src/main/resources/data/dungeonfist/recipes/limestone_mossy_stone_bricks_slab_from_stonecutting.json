@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:limestone_mossy_stone_bricks"
+  },
+  "result": "dungeonfist:limestone_mossy_stone_bricks_slab",
+  "count": 2
+}

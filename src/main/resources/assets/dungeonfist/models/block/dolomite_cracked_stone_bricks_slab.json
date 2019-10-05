@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "dungeonfist:block/dolomite_cracked_stone_bricks",
+        "top": "dungeonfist:block/dolomite_cracked_stone_bricks",
+        "side": "dungeonfist:block/dolomite_cracked_stone_bricks"
+    }
+}

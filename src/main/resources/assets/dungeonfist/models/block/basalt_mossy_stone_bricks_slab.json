@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "dungeonfist:block/basalt_mossy_stone_bricks",
+        "top": "dungeonfist:block/basalt_mossy_stone_bricks",
+        "side": "dungeonfist:block/basalt_mossy_stone_bricks"
+    }
+}

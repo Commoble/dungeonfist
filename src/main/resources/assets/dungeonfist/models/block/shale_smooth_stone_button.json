@@ -1,0 +1,6 @@
+{
+    "parent": "block/button",
+    "textures": {
+        "texture": "dungeonfist:block/shale_smooth_stone"
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dungeonfist:diorite_stone"
+    }
+  ],
+  "result": {
+    "item": "dungeonfist:diorite_stone_button"
+  }
+}

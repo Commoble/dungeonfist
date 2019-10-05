@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "dungeonfist:shale_stone_bricks"
+    }
+  },
+  "result": {
+    "item": "dungeonfist:shale_stone_bricks_stairs",
+    "count": 4
+  }
+}

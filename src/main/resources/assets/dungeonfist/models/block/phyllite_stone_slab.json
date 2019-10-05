@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "dungeonfist:block/phyllite_stone",
+        "top": "dungeonfist:block/phyllite_stone",
+        "side": "dungeonfist:block/phyllite_stone"
+    }
+}

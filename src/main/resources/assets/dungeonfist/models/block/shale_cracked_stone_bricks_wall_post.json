@@ -1,0 +1,6 @@
+{
+    "parent": "block/template_wall_post",
+    "textures": {
+        "wall": "dungeonfist:block/shale_cracked_stone_bricks"
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:basalt_stone"
+  },
+  "result": "dungeonfist:basalt_stone_bricks",
+  "count": 1
+}

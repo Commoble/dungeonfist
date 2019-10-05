@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:gneiss_smooth_stone"
+  },
+  "result": "dungeonfist:gneiss_smooth_stone_wall",
+  "count": 1
+}

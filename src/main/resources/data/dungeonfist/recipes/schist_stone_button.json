@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dungeonfist:schist_stone"
+    }
+  ],
+  "result": {
+    "item": "dungeonfist:schist_stone_button"
+  }
+}

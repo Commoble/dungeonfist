@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dungeonfist:dolomite_mossy_cobblestone"
+    }
+  ],
+  "result": {
+    "item": "dungeonfist:dolomite_mossy_cobblestone_button"
+  }
+}

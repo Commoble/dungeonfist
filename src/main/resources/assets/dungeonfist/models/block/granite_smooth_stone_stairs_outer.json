@@ -1,0 +1,8 @@
+{
+    "parent": "block/outer_stairs",
+    "textures": {
+        "bottom": "dungeonfist:block/granite_smooth_stone",
+        "top": "dungeonfist:block/granite_smooth_stone",
+        "side": "dungeonfist:block/granite_smooth_stone"
+    }
+}

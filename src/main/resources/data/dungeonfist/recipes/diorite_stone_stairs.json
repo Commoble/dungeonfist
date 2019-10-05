@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "dungeonfist:diorite_stone"
+    }
+  },
+  "result": {
+    "item": "dungeonfist:diorite_stone_stairs",
+    "count": 4
+  }
+}

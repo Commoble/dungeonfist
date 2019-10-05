@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:marble_smooth_stone"
+  },
+  "result": "dungeonfist:marble_smooth_stone_stairs",
+  "count": 1
+}

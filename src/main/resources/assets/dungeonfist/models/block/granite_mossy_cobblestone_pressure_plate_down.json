@@ -1,0 +1,6 @@
+{
+    "parent": "block/pressure_plate_down",
+    "textures": {
+        "texture": "dungeonfist:block/granite_mossy_cobblestone"
+    }
+}

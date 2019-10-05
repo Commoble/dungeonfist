@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "dungeonfist:andesite_stone_bricks_slab"
+    }
+  },
+  "result": {
+    "item": "dungeonfist:andesite_chiseled_stone_bricks"
+  }
+}

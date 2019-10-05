@@ -339,6 +339,11 @@ public class Room
 	{
 		return 6;
 	}
+	
+	public int getCeilingLevel()
+	{
+		return this.WORLD_YLEVEL + this.getLocalHeight();
+	}
 
 	private Pair<Rect, Rect> getExtensionFromExitToFloor(Rect exit)
 	{

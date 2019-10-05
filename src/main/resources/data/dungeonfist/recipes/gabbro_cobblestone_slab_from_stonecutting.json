@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:gabbro_cobblestone"
+  },
+  "result": "dungeonfist:gabbro_cobblestone_slab",
+  "count": 2
+}

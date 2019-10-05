@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dungeonfist:dolomite_cobblestone"
+    }
+  ],
+  "result": {
+    "item": "dungeonfist:dolomite_cobblestone_button"
+  }
+}

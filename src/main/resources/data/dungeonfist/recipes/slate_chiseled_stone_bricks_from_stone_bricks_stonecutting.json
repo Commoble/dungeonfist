@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:slate_stone_bricks"
+  },
+  "result": "dungeonfist:slate_chiseled_stone_bricks",
+  "count": 1
+}

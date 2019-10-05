@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:limestone_cracked_stone_bricks"
+  },
+  "result": "dungeonfist:limestone_cracked_stone_bricks_stairs",
+  "count": 1
+}

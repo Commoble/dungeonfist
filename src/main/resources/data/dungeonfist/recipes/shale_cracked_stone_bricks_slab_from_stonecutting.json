@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:shale_cracked_stone_bricks"
+  },
+  "result": "dungeonfist:shale_cracked_stone_bricks_slab",
+  "count": 2
+}

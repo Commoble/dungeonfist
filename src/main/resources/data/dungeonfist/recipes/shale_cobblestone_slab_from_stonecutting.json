@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:shale_cobblestone"
+  },
+  "result": "dungeonfist:shale_cobblestone_slab",
+  "count": 2
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "dungeonfist:schist_mossy_stone_bricks"
+    }
+  },
+  "result": {
+    "item": "dungeonfist:schist_mossy_stone_bricks_pressure_plate"
+  }
+}

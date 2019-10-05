@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dungeonfist:slate_stone_bricks"
+    }
+  ],
+  "result": {
+    "item": "dungeonfist:slate_stone_bricks_button"
+  }
+}

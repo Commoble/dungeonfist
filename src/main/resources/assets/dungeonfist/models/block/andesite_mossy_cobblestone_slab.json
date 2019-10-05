@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "dungeonfist:block/andesite_mossy_cobblestone",
+        "top": "dungeonfist:block/andesite_mossy_cobblestone",
+        "side": "dungeonfist:block/andesite_mossy_cobblestone"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "block/button",
+    "textures": {
+        "texture": "dungeonfist:block/phyllite_stone_bricks"
+    }
+}

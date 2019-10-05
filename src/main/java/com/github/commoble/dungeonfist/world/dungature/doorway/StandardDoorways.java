@@ -1,6 +1,6 @@
 package com.github.commoble.dungeonfist.world.dungature.doorway;
 
-import com.github.commoble.dungeonfist.util.BlockSets;
+import com.github.commoble.dungeonfist.util.BlockCollections;
 import com.github.commoble.dungeonfist.world.dungature.DungatureTable;
 import com.github.commoble.dungeonfist.world.dungature.EmptyDungature;
 import com.github.commoble.dungeonfist.world.dungature.WeightingFunctions;
@@ -23,9 +23,9 @@ public class StandardDoorways
 		table.add(WeightingFunctions.constantWeight(10), context -> new DoorwayDungature(context));
 		table.add(WeightingFunctions.linearScaling(30), context -> new FilledCorridor(context, Blocks.AIR::getDefaultState));
 		table.add(WeightingFunctions.linearScaling(1), context -> new FilledWindow(context, Blocks.GLASS::getDefaultState));
-		table.add(WeightingFunctions.linearScaling(1), context -> new FilledWindow(context, () -> BlockSets.GLASS_CUBES.get(context.rand.nextInt(BlockSets.GLASS_CUBES.size())).getDefaultState()));
+		table.add(WeightingFunctions.linearScaling(1), context -> new FilledWindow(context, () -> BlockCollections.GLASS_CUBES.get(context.rand.nextInt(BlockCollections.GLASS_CUBES.size())).getDefaultState()));
 		table.add(WeightingFunctions.linearScaling(10), context -> new PanedWindow(context, () -> (PaneBlock)Blocks.GLASS_PANE));
 		table.add(WeightingFunctions.linearScaling(60), context -> new PanedWindow(context, () -> (PaneBlock)Blocks.IRON_BARS));
-		table.add(WeightingFunctions.linearScaling(10), context -> new PanedWindow(context, () -> BlockSets.GLASS_PANES.get(context.rand.nextInt(BlockSets.GLASS_PANES.size()))));
+		table.add(WeightingFunctions.linearScaling(10), context -> new PanedWindow(context, () -> BlockCollections.GLASS_PANES.get(context.rand.nextInt(BlockCollections.GLASS_PANES.size()))));
 	}
 }

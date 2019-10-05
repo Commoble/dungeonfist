@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:halite_stone"
+  },
+  "result": "dungeonfist:halite_stone_brick_wall",
+  "count": 1
+}

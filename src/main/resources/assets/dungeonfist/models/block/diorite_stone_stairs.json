@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "dungeonfist:block/diorite_stone",
+        "top": "dungeonfist:block/diorite_stone",
+        "side": "dungeonfist:block/diorite_stone"
+    }
+}

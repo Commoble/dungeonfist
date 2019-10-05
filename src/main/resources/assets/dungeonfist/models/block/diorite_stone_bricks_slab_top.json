@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab_top",
+    "textures": {
+        "bottom": "dungeonfist:block/diorite_stone_bricks",
+        "top": "dungeonfist:block/diorite_stone_bricks",
+        "side": "dungeonfist:block/diorite_stone_bricks"
+    }
+}

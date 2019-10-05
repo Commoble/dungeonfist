@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab_top",
+    "textures": {
+        "bottom": "dungeonfist:block/diorite_mossy_cobblestone",
+        "top": "dungeonfist:block/diorite_mossy_cobblestone",
+        "side": "dungeonfist:block/diorite_mossy_cobblestone"
+    }
+}

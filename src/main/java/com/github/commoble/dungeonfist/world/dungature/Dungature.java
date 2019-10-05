@@ -44,6 +44,13 @@ public abstract class Dungature
 		return this.withTransform(new Transform(rotation, mirror, translation, yTranslation, Vec3i.NULL_VECTOR));
 	}
 	
+	public Dungature withRandomTranslation(int squareSize, DungatureContext context)
+	{
+		Rect baseRect = Rect.SQUARE_RECTS[squareSize];
+		Vec2i translation = TransformHelper.getRandomTranslation(baseRect, context.rect, context.rand);
+		return this.withTransform(this.transform.withTranslation(translation, 0));
+	}
+	
 	
 	public Dungature withRotation(int rotation)
 	{

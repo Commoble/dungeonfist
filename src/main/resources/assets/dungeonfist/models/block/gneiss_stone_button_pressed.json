@@ -1,0 +1,6 @@
+{
+    "parent": "block/button_pressed",
+    "textures": {
+        "texture": "dungeonfist:block/gneiss_stone"
+    }
+}

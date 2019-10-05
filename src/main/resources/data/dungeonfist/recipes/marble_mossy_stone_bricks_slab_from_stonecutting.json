@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:marble_mossy_stone_bricks"
+  },
+  "result": "dungeonfist:marble_mossy_stone_bricks_slab",
+  "count": 2
+}

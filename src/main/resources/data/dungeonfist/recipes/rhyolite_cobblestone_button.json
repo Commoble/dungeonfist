@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dungeonfist:rhyolite_cobblestone"
+    }
+  ],
+  "result": {
+    "item": "dungeonfist:rhyolite_cobblestone_button"
+  }
+}

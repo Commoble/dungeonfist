@@ -1,0 +1,6 @@
+{
+    "parent": "block/wall_inventory",
+    "textures": {
+        "wall": "dungeonfist:block/basalt_mossy_stone_bricks"
+    }
+}

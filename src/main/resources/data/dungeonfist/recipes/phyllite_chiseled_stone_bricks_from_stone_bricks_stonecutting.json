@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:phyllite_stone_bricks"
+  },
+  "result": "dungeonfist:phyllite_chiseled_stone_bricks",
+  "count": 1
+}

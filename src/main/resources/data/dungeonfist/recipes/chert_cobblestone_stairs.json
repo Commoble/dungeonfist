@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "dungeonfist:chert_cobblestone"
+    }
+  },
+  "result": {
+    "item": "dungeonfist:chert_cobblestone_stairs",
+    "count": 4
+  }
+}

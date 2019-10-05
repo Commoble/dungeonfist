@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "dungeonfist:block/limestone_mossy_stone_bricks",
+        "top": "dungeonfist:block/limestone_mossy_stone_bricks",
+        "side": "dungeonfist:block/limestone_mossy_stone_bricks"
+    }
+}

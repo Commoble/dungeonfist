@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:phyllite_cracked_stone_bricks"
+  },
+  "result": "dungeonfist:phyllite_cracked_stone_bricks_wall",
+  "count": 1
+}

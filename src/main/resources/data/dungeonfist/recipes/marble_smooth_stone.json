@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "dungeonfist:marble_stone"
+  },
+  "result": "dungeonfist:marble_smooth_stone",
+  "experience": 0.1,
+  "cookingtime": 200
+}

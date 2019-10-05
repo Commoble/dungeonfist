@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:diorite_stone"
+  },
+  "result": "dungeonfist:diorite_stone_stairs",
+  "count": 1
+}

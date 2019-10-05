@@ -1,0 +1,6 @@
+{
+    "parent": "block/pressure_plate_down",
+    "textures": {
+        "texture": "dungeonfist:block/andesite_smooth_stone"
+    }
+}

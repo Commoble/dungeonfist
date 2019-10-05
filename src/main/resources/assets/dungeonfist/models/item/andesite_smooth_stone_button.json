@@ -1,0 +1,6 @@
+{
+    "parent": "block/button_inventory",
+    "textures": {
+        "texture": "dungeonfist:block/andesite_smooth_stone"
+    }
+}

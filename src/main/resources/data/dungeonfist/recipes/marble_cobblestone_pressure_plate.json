@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "dungeonfist:marble_cobblestone"
+    }
+  },
+  "result": {
+    "item": "dungeonfist:marble_cobblestone_pressure_plate"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dungeonfist:chert_smooth_stone"
+    }
+  ],
+  "result": {
+    "item": "dungeonfist:chert_smooth_stone_button"
+  }
+}

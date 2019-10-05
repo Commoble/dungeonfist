@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dungeonfist:shale_cobblestone"
+    }
+  ],
+  "result": {
+    "item": "dungeonfist:shale_cobblestone_button"
+  }
+}

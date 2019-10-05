@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dungeonfist:schist_stone_bricks"
+  },
+  "result": "dungeonfist:schist_chiseled_stone_bricks",
+  "count": 1
+}
