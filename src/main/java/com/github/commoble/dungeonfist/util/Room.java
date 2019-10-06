@@ -219,7 +219,18 @@ public class Room
 	
 	protected Block generateStandardBlock(Random rand)
 	{
-		return DungeonMaterials.dungeonMaterials.get(rand.nextInt(DungeonMaterials.dungeonMaterials.size()));
+		int materialCount = DungeonMaterials.dungeonMaterials.size();
+		if (rand.nextInt(6) > 0)
+		{
+			int areaX = MathBuddy.rescaleCoordinate(this.SUPERCHUNK_COORD.X + rand.nextInt(3)-1, 3);
+			int areaY = MathBuddy.rescaleCoordinate(this.SUPERCHUNK_COORD.Y + rand.nextInt(3)-1, 3);
+			int hasher = MathBuddy.absoluteMod(((areaX + areaY*2999) ^ (this.AREA_YLEVEL+2)), materialCount);
+			return DungeonMaterials.dungeonMaterials.get(hasher);
+		}
+		else
+		{
+			return DungeonMaterials.dungeonMaterials.get(rand.nextInt(DungeonMaterials.dungeonMaterials.size()));
+		}
 	}
 
 	public DungatureTable getDungatureTable()

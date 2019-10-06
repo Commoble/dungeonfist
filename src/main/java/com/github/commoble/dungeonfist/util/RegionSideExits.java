@@ -3,13 +3,19 @@ package com.github.commoble.dungeonfist.util;
 import java.util.Random;
 import java.util.stream.IntStream;
 
+/**
+ * Holds room data that may need to be accessed by other rooms
+ * (should not refer to other rooms in this class)
+ * The purpose of this is to allow rooms to find data belonging to each other without cascading room generation
+ */
 public class RegionSideExits
 {
 	public final int offset;	// difference between 0,0 origin of region and first/minimal position of exit
 	public final boolean isOnEastSide;	// if false, is on south side
 	public final int exitSize;
 	public final Rect asRectInGlobalSpace;
-	public final RoomKey roomKey;
+	public final int roomFloorLevel;	// y in worldspace - define this in here so rooms can check each other's floorlevels
+	public final int roomHeight;	// only reason this is here is because roomFloorLevel is dependant on it
 	
 	public RegionSideExits(RoomKey key)
 	{
@@ -17,7 +23,6 @@ public class RegionSideExits
 		// exits are defined on the east and south sides (can check adjacent regions to determine north and west exits)
 		// the Room determines how to get to the exits given its own HallwayData and adjacent rooms' HallwayData
 		Random rand = new Random(key.hashCode() + 42069);
-		this.roomKey = key;
 		this.exitSize = rand.nextInt(4) + 1;	// 1,2,3, or 4
 		this.isOnEastSide = rand.nextBoolean();
 		
