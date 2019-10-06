@@ -29,7 +29,7 @@ public class TorchColumnDungature extends Dungature
 			if (pair.originalVec.X == 0)
 			{
 				int height = room.getLocalHeight();
-				BlockState state = room.getDefaultBlock().getDefaultState();
+				BlockState state = room.STANDARD_BLOCK.getDefaultState();
 				IntStream.range(0, height).forEach(yOff -> world.setBlockState(new BlockPos(pair.finalVec.X, yOff + room.WORLD_YLEVEL, pair.finalVec.Y), state, 2));
 			}
 			else

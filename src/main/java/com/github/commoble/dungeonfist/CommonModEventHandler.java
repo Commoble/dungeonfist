@@ -7,6 +7,7 @@ import com.github.commoble.dungeonfist.registry.FeatureRegistrar;
 import com.github.commoble.dungeonfist.registry.ItemRegistrar;
 import com.github.commoble.dungeonfist.registry.ModDimensionRegistrar;
 import com.github.commoble.dungeonfist.registry.TileEntityTypeRegistrar;
+import com.github.commoble.dungeonfist.util.DungeonMaterialImporter;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -19,6 +20,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 /**
@@ -68,6 +70,12 @@ public class CommonModEventHandler
 	public static void onChunkGeneratorRegistryEvent(RegistryEvent.Register<ChunkGeneratorType<?, ?>> event)
 	{
 		ChunkGeneratorTypeRegistrar.registerChunkGeneratorTypes(getRegistrator(event));
+	}
+	
+	@SubscribeEvent
+	public static void onCommonSetup(FMLCommonSetupEvent event)
+	{
+		DungeonMaterialImporter.importDungeonMaterialJson(DungeonFist.class);
 	}
 
 	public static <T extends IForgeRegistryEntry<T>> Registrator<T> getRegistrator(RegistryEvent.Register<T> event)

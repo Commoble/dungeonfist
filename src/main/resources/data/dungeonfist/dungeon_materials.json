@@ -1,0 +1,305 @@
+[
+	{
+		"base": "dungeonfist:diorite_stone_bricks",
+		"damaged": "dungeonfist:diorite_cracked_stone_bricks",
+		"mossy": "dungeonfist:diorite_mossy_stone_bricks",
+		"stairs": "dungeonfist:diorite_stone_bricks_stairs",
+		"wall": "dungeonfist:diorite_stone_bricks_wall",
+		"plate": "dungeonfist:diorite_stone_bricks_pressure_plate",
+		"slab": "dungeonfist:diorite_stone_bricks_slab"
+	},
+	{
+		"base": "dungeonfist:diorite_cobblestone",
+		"damaged": "minecraft:air",
+		"mossy": "dungeonfist:diorite_mossy_cobblestone",
+		"stairs": "dungeonfist:diorite_cobblestone_stairs",
+		"wall": "dungeonfist:diorite_cobblestone_wall",
+		"plate": "dungeonfist:diorite_cobblestone_pressure_plate",
+		"slab": "dungeonfist:diorite_cobblestone_slab"
+	},
+
+	{
+		"base": "dungeonfist:gabbro_stone_bricks",
+		"damaged": "dungeonfist:gabbro_cracked_stone_bricks",
+		"mossy": "dungeonfist:gabbro_mossy_stone_bricks",
+		"stairs": "dungeonfist:gabbro_stone_bricks_stairs",
+		"wall": "dungeonfist:gabbro_stone_bricks_wall",
+		"plate": "dungeonfist:gabbro_stone_bricks_pressure_plate",
+		"slab": "dungeonfist:gabbro_stone_bricks_slab"
+	},
+	{
+		"base": "dungeonfist:gabbro_cobblestone",
+		"damaged": "minecraft:air",
+		"mossy": "dungeonfist:gabbro_mossy_cobblestone",
+		"stairs": "dungeonfist:gabbro_cobblestone_stairs",
+		"wall": "dungeonfist:gabbro_cobblestone_wall",
+		"plate": "dungeonfist:gabbro_cobblestone_pressure_plate",
+		"slab": "dungeonfist:gabbro_cobblestone_slab"
+	},
+
+	{
+		"base": "dungeonfist:granite_stone_bricks",
+		"damaged": "dungeonfist:granite_cracked_stone_bricks",
+		"mossy": "dungeonfist:granite_mossy_stone_bricks",
+		"stairs": "dungeonfist:granite_stone_bricks_stairs",
+		"wall": "dungeonfist:granite_stone_bricks_wall",
+		"plate": "dungeonfist:granite_stone_bricks_pressure_plate",
+		"slab": "dungeonfist:granite_stone_bricks_slab"
+	},
+	{
+		"base": "dungeonfist:granite_cobblestone",
+		"damaged": "minecraft:air",
+		"mossy": "dungeonfist:granite_mossy_cobblestone",
+		"stairs": "dungeonfist:granite_cobblestone_stairs",
+		"wall": "dungeonfist:granite_cobblestone_wall",
+		"plate": "dungeonfist:granite_cobblestone_pressure_plate",
+		"slab": "dungeonfist:granite_cobblestone_slab"
+	},
+
+	{
+		"base": "dungeonfist:andesite_stone_bricks",
+		"damaged": "dungeonfist:andesite_cracked_stone_bricks",
+		"mossy": "dungeonfist:andesite_mossy_stone_bricks",
+		"stairs": "dungeonfist:andesite_stone_bricks_stairs",
+		"wall": "dungeonfist:andesite_stone_bricks_wall",
+		"plate": "dungeonfist:andesite_stone_bricks_pressure_plate",
+		"slab": "dungeonfist:andesite_stone_bricks_slab"
+	},
+	{
+		"base": "dungeonfist:andesite_cobblestone",
+		"damaged": "minecraft:air",
+		"mossy": "dungeonfist:andesite_mossy_cobblestone",
+		"stairs": "dungeonfist:andesite_cobblestone_stairs",
+		"wall": "dungeonfist:andesite_cobblestone_wall",
+		"plate": "dungeonfist:andesite_cobblestone_pressure_plate",
+		"slab": "dungeonfist:andesite_cobblestone_slab"
+	},
+
+	{
+		"base": "dungeonfist:basalt_stone_bricks",
+		"damaged": "dungeonfist:basalt_cracked_stone_bricks",
+		"mossy": "dungeonfist:basalt_mossy_stone_bricks",
+		"stairs": "dungeonfist:basalt_stone_bricks_stairs",
+		"wall": "dungeonfist:basalt_stone_bricks_wall",
+		"plate": "dungeonfist:basalt_stone_bricks_pressure_plate",
+		"slab": "dungeonfist:basalt_stone_bricks_slab"
+	},
+	{
+		"base": "dungeonfist:basalt_cobblestone",
+		"damaged": "minecraft:air",
+		"mossy": "dungeonfist:basalt_mossy_cobblestone",
+		"stairs": "dungeonfist:basalt_cobblestone_stairs",
+		"wall": "dungeonfist:basalt_cobblestone_wall",
+		"plate": "dungeonfist:basalt_cobblestone_pressure_plate",
+		"slab": "dungeonfist:basalt_cobblestone_slab"
+	},
+
+	{
+		"base": "dungeonfist:rhyolite_stone_bricks",
+		"damaged": "dungeonfist:rhyolite_cracked_stone_bricks",
+		"mossy": "dungeonfist:rhyolite_mossy_stone_bricks",
+		"stairs": "dungeonfist:rhyolite_stone_bricks_stairs",
+		"wall": "dungeonfist:rhyolite_stone_bricks_wall",
+		"plate": "dungeonfist:rhyolite_stone_bricks_pressure_plate",
+		"slab": "dungeonfist:rhyolite_stone_bricks_slab"
+	},
+	{
+		"base": "dungeonfist:rhyolite_cobblestone",
+		"damaged": "minecraft:air",
+		"mossy": "dungeonfist:rhyolite_mossy_cobblestone",
+		"stairs": "dungeonfist:rhyolite_cobblestone_stairs",
+		"wall": "dungeonfist:rhyolite_cobblestone_wall",
+		"plate": "dungeonfist:rhyolite_cobblestone_pressure_plate",
+		"slab": "dungeonfist:rhyolite_cobblestone_slab"
+	},
+
+	{
+		"base": "dungeonfist:gneiss_stone_bricks",
+		"damaged": "dungeonfist:gneiss_cracked_stone_bricks",
+		"mossy": "dungeonfist:gneiss_mossy_stone_bricks",
+		"stairs": "dungeonfist:gneiss_stone_bricks_stairs",
+		"wall": "dungeonfist:gneiss_stone_bricks_wall",
+		"plate": "dungeonfist:gneiss_stone_bricks_pressure_plate",
+		"slab": "dungeonfist:gneiss_stone_bricks_slab"
+	},
+	{
+		"base": "dungeonfist:gneiss_cobblestone",
+		"damaged": "minecraft:air",
+		"mossy": "dungeonfist:gneiss_mossy_cobblestone",
+		"stairs": "dungeonfist:gneiss_cobblestone_stairs",
+		"wall": "dungeonfist:gneiss_cobblestone_wall",
+		"plate": "dungeonfist:gneiss_cobblestone_pressure_plate",
+		"slab": "dungeonfist:gneiss_cobblestone_slab"
+	},
+
+	{
+		"base": "dungeonfist:marble_stone_bricks",
+		"damaged": "dungeonfist:marble_cracked_stone_bricks",
+		"mossy": "dungeonfist:marble_mossy_stone_bricks",
+		"stairs": "dungeonfist:marble_stone_bricks_stairs",
+		"wall": "dungeonfist:marble_stone_bricks_wall",
+		"plate": "dungeonfist:marble_stone_bricks_pressure_plate",
+		"slab": "dungeonfist:marble_stone_bricks_slab"
+	},
+	{
+		"base": "dungeonfist:marble_cobblestone",
+		"damaged": "minecraft:air",
+		"mossy": "dungeonfist:marble_mossy_cobblestone",
+		"stairs": "dungeonfist:marble_cobblestone_stairs",
+		"wall": "dungeonfist:marble_cobblestone_wall",
+		"plate": "dungeonfist:marble_cobblestone_pressure_plate",
+		"slab": "dungeonfist:marble_cobblestone_slab"
+	},
+
+	{
+		"base": "dungeonfist:phyllite_stone_bricks",
+		"damaged": "dungeonfist:phyllite_cracked_stone_bricks",
+		"mossy": "dungeonfist:phyllite_mossy_stone_bricks",
+		"stairs": "dungeonfist:phyllite_stone_bricks_stairs",
+		"wall": "dungeonfist:phyllite_stone_bricks_wall",
+		"plate": "dungeonfist:phyllite_stone_bricks_pressure_plate",
+		"slab": "dungeonfist:phyllite_stone_bricks_slab"
+	},
+	{
+		"base": "dungeonfist:phyllite_cobblestone",
+		"damaged": "minecraft:air",
+		"mossy": "dungeonfist:phyllite_mossy_cobblestone",
+		"stairs": "dungeonfist:phyllite_cobblestone_stairs",
+		"wall": "dungeonfist:phyllite_cobblestone_wall",
+		"plate": "dungeonfist:phyllite_cobblestone_pressure_plate",
+		"slab": "dungeonfist:phyllite_cobblestone_slab"
+	},
+
+	{
+		"base": "dungeonfist:schist_stone_bricks",
+		"damaged": "dungeonfist:schist_cracked_stone_bricks",
+		"mossy": "dungeonfist:schist_mossy_stone_bricks",
+		"stairs": "dungeonfist:schist_stone_bricks_stairs",
+		"wall": "dungeonfist:schist_stone_bricks_wall",
+		"plate": "dungeonfist:schist_stone_bricks_pressure_plate",
+		"slab": "dungeonfist:schist_stone_bricks_slab"
+	},
+	{
+		"base": "dungeonfist:schist_cobblestone",
+		"damaged": "minecraft:air",
+		"mossy": "dungeonfist:schist_mossy_cobblestone",
+		"stairs": "dungeonfist:schist_cobblestone_stairs",
+		"wall": "dungeonfist:schist_cobblestone_wall",
+		"plate": "dungeonfist:schist_cobblestone_pressure_plate",
+		"slab": "dungeonfist:schist_cobblestone_slab"
+	},
+
+	{
+		"base": "dungeonfist:slate_stone_bricks",
+		"damaged": "dungeonfist:slate_cracked_stone_bricks",
+		"mossy": "dungeonfist:slate_mossy_stone_bricks",
+		"stairs": "dungeonfist:slate_stone_bricks_stairs",
+		"wall": "dungeonfist:slate_stone_bricks_wall",
+		"plate": "dungeonfist:slate_stone_bricks_pressure_plate",
+		"slab": "dungeonfist:slate_stone_bricks_slab"
+	},
+	{
+		"base": "dungeonfist:slate_cobblestone",
+		"damaged": "minecraft:air",
+		"mossy": "dungeonfist:slate_mossy_cobblestone",
+		"stairs": "dungeonfist:slate_cobblestone_stairs",
+		"wall": "dungeonfist:slate_cobblestone_wall",
+		"plate": "dungeonfist:slate_cobblestone_pressure_plate",
+		"slab": "dungeonfist:slate_cobblestone_slab"
+	},
+
+	{
+		"base": "dungeonfist:chert_stone_bricks",
+		"damaged": "dungeonfist:chert_cracked_stone_bricks",
+		"mossy": "dungeonfist:chert_mossy_stone_bricks",
+		"stairs": "dungeonfist:chert_stone_bricks_stairs",
+		"wall": "dungeonfist:chert_stone_bricks_wall",
+		"plate": "dungeonfist:chert_stone_bricks_pressure_plate",
+		"slab": "dungeonfist:chert_stone_bricks_slab"
+	},
+	{
+		"base": "dungeonfist:chert_cobblestone",
+		"damaged": "minecraft:air",
+		"mossy": "dungeonfist:chert_mossy_cobblestone",
+		"stairs": "dungeonfist:chert_cobblestone_stairs",
+		"wall": "dungeonfist:chert_cobblestone_wall",
+		"plate": "dungeonfist:chert_cobblestone_pressure_plate",
+		"slab": "dungeonfist:chert_cobblestone_slab"
+	},
+
+	{
+		"base": "dungeonfist:dolomite_stone_bricks",
+		"damaged": "dungeonfist:dolomite_cracked_stone_bricks",
+		"mossy": "dungeonfist:dolomite_mossy_stone_bricks",
+		"stairs": "dungeonfist:dolomite_stone_bricks_stairs",
+		"wall": "dungeonfist:dolomite_stone_bricks_wall",
+		"plate": "dungeonfist:dolomite_stone_bricks_pressure_plate",
+		"slab": "dungeonfist:dolomite_stone_bricks_slab"
+	},
+	{
+		"base": "dungeonfist:dolomite_cobblestone",
+		"damaged": "minecraft:air",
+		"mossy": "dungeonfist:dolomite_mossy_cobblestone",
+		"stairs": "dungeonfist:dolomite_cobblestone_stairs",
+		"wall": "dungeonfist:dolomite_cobblestone_wall",
+		"plate": "dungeonfist:dolomite_cobblestone_pressure_plate",
+		"slab": "dungeonfist:dolomite_cobblestone_slab"
+	},
+
+	{
+		"base": "dungeonfist:halite_stone_bricks",
+		"damaged": "dungeonfist:halite_cracked_stone_bricks",
+		"mossy": "dungeonfist:halite_mossy_stone_bricks",
+		"stairs": "dungeonfist:halite_stone_bricks_stairs",
+		"wall": "dungeonfist:halite_stone_bricks_wall",
+		"plate": "dungeonfist:halite_stone_bricks_pressure_plate",
+		"slab": "dungeonfist:halite_stone_bricks_slab"
+	},
+	{
+		"base": "dungeonfist:halite_cobblestone",
+		"damaged": "minecraft:air",
+		"mossy": "dungeonfist:halite_mossy_cobblestone",
+		"stairs": "dungeonfist:halite_cobblestone_stairs",
+		"wall": "dungeonfist:halite_cobblestone_wall",
+		"plate": "dungeonfist:halite_cobblestone_pressure_plate",
+		"slab": "dungeonfist:halite_cobblestone_slab"
+	},
+
+	{
+		"base": "dungeonfist:limestone_stone_bricks",
+		"damaged": "dungeonfist:limestone_cracked_stone_bricks",
+		"mossy": "dungeonfist:limestone_mossy_stone_bricks",
+		"stairs": "dungeonfist:limestone_stone_bricks_stairs",
+		"wall": "dungeonfist:limestone_stone_bricks_wall",
+		"plate": "dungeonfist:limestone_stone_bricks_pressure_plate",
+		"slab": "dungeonfist:limestone_stone_bricks_slab"
+	},
+	{
+		"base": "dungeonfist:limestone_cobblestone",
+		"damaged": "minecraft:air",
+		"mossy": "dungeonfist:limestone_mossy_cobblestone",
+		"stairs": "dungeonfist:limestone_cobblestone_stairs",
+		"wall": "dungeonfist:limestone_cobblestone_wall",
+		"plate": "dungeonfist:limestone_cobblestone_pressure_plate",
+		"slab": "dungeonfist:limestone_cobblestone_slab"
+	},
+
+	{
+		"base": "dungeonfist:shale_stone_bricks",
+		"damaged": "dungeonfist:shale_cracked_stone_bricks",
+		"mossy": "dungeonfist:shale_mossy_stone_bricks",
+		"stairs": "dungeonfist:shale_stone_bricks_stairs",
+		"wall": "dungeonfist:shale_stone_bricks_wall",
+		"plate": "dungeonfist:shale_stone_bricks_pressure_plate",
+		"slab": "dungeonfist:shale_stone_bricks_slab"
+	},
+	{
+		"base": "dungeonfist:shale_cobblestone",
+		"damaged": "minecraft:air",
+		"mossy": "dungeonfist:shale_mossy_cobblestone",
+		"stairs": "dungeonfist:shale_cobblestone_stairs",
+		"wall": "dungeonfist:shale_cobblestone_wall",
+		"plate": "dungeonfist:shale_cobblestone_pressure_plate",
+		"slab": "dungeonfist:shale_cobblestone_slab"
+	}
+]

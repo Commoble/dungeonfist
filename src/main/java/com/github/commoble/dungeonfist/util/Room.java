@@ -22,7 +22,6 @@ import com.github.commoble.dungeonfist.world.dungature.StandardDungatures;
 import com.github.commoble.dungeonfist.world.dungature.doorway.StandardDoorways;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.math.ChunkPos;
@@ -75,7 +74,7 @@ public class Room
 	// public final EnumeratedDistribution WEIGHTED_DUNGEON_ELEMENTS;
 	public final Map<Rect, Dungature> DUNGATURE_MAP;
 	public final Map<Rect, Dungature> DOORWAY_MAP;
-
+	public final Block STANDARD_BLOCK;
 	/**
 	 */
 	public Room(RoomKey key)
@@ -214,11 +213,13 @@ public class Room
 		// of time and have the placer
 		this.DUNGATURE_MAP = this.generateDungatureMap(this.getDungatureTable(), rand);
 		this.DOORWAY_MAP = this.generateDoorwayMap(this.getDoorwayTable(), rand);
+		this.STANDARD_BLOCK = this.generateStandardBlock(rand);
+		
 	}
-
-	public Block getDefaultBlock()
+	
+	protected Block generateStandardBlock(Random rand)
 	{
-		return Blocks.STONE_BRICKS;
+		return DungeonMaterials.dungeonMaterials.get(rand.nextInt(DungeonMaterials.dungeonMaterials.size()));
 	}
 
 	public DungatureTable getDungatureTable()

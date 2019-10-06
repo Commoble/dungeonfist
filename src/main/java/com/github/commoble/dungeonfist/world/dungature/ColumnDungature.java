@@ -7,7 +7,6 @@ import com.github.commoble.dungeonfist.util.Rect;
 import com.github.commoble.dungeonfist.util.Room;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 
@@ -17,7 +16,7 @@ public class ColumnDungature extends Dungature
 	@Override
 	public void place(Rect rect, Rect chunkRect, Room room, IWorld world, Random random)
 	{
-		BlockState state = Blocks.STONE_BRICKS.getDefaultState();
+		BlockState state = room.STANDARD_BLOCK.getDefaultState();
 		int baseY = room.WORLD_YLEVEL;
 		// assume rect is in chunk for now
 		rect.coords().stream().filter(coord -> chunkRect.contains(coord))

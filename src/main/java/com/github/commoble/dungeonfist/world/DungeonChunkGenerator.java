@@ -237,9 +237,9 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 //			ChunkPos dominantChunkPos = this.getRoom(chunkpos,y);
 			int y = yLayer*50 + baseFloor;
 //			Random superRand = new Random(dominantSuperChunkCoords.hashCode()*y);
-			BlockState state = Blocks.STONE_BRICKS.getDefaultState(); //BLOCKS[superRand.nextInt(BLOCKS.length)].getDefaultState();
 			RoomKey roomKey = new RoomKey(chunk, yLayer, worldIn.getSeed());
 			Room room = RoomCaches.ROOMLOADER.getUnchecked(roomKey);
+			BlockState state = room.STANDARD_BLOCK.getDefaultState(); //BLOCKS[superRand.nextInt(BLOCKS.length)].getDefaultState();
 			int localHeight = room.getLocalHeight();
 			
 			double noiseXYZ = getXYZNoise(this.roomNoise, globalXStart,y,globalZStart);
@@ -272,7 +272,7 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 				}
 			});
 			
-			BlockState exitState = Blocks.BEDROCK.getDefaultState();
+			BlockState exitState = state;
 			room.getExitRectsWithinChunk(chunkpos).forEach(exitRect ->
 			{
 				exitRect.coords().forEach(vec -> {
