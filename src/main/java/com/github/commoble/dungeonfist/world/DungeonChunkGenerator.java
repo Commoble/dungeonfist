@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import com.github.commoble.dungeonfist.dimension.DungeonGenSettings;
 import com.github.commoble.dungeonfist.util.Averager;
+import com.github.commoble.dungeonfist.util.DungeonMaterials;
 import com.github.commoble.dungeonfist.util.Rect;
 import com.github.commoble.dungeonfist.util.Room;
 import com.github.commoble.dungeonfist.util.RoomCaches;
@@ -17,6 +18,8 @@ import com.github.commoble.dungeonfist.util.Vec2i;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.StairsBlock;
+import net.minecraft.util.Direction;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
@@ -272,19 +275,21 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 				}
 			});
 			
-			BlockState exitState = state;
 			room.getExitRectsWithinChunk(chunkpos).forEach(exitRect ->
 			{
-				exitRect.coords().forEach(vec -> {
+				exitRect.rect.coords().forEach(vec -> {
 					mutapos.setPos(vec.X, floorY, vec.Y);
-					chunk.setBlockState(mutapos, exitState, false);
+					chunk.setBlockState(mutapos, state, false);
 				});
 			});
+			BlockState stairState = DungeonMaterials.stairMap.get(room.STANDARD_BLOCK).getDefaultState();
 			room.getExitHallwayRectsWithinChunk(chunkpos).forEach(exitRect ->
 			{
-				exitRect.coords().forEach(vec -> {
+				Direction stairFacing = exitRect.otherRoomFloorY > floorY ? exitRect.dir : exitRect.dir.getOpposite();
+				BlockState rotatedStairState = stairState.with(StairsBlock.FACING, stairFacing);
+				exitRect.rect.coords().forEach(vec -> {
 					mutapos.setPos(vec.X, floorY, vec.Y);
-					chunk.setBlockState(mutapos,  exitState, false);
+					chunk.setBlockState(mutapos,  rotatedStairState, false);
 				});
 			});
 			

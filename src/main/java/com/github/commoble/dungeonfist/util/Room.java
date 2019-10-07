@@ -69,8 +69,8 @@ public class Room
 	// we don't need to care if the hallway exits line up with the actual rooms or
 	// not, we can deal with everything
 	// within our own superchunks
-	public final List<Rect> EXIT_RECTS = new ArrayList<Rect>();
-	public final List<Rect> EXIT_HALLWAY_RECTS = new ArrayList<Rect>();
+	public final List<ExitHallway> EXIT_RECTS = new ArrayList<ExitHallway>();
+	public final List<ExitHallway> EXIT_HALLWAY_RECTS = new ArrayList<ExitHallway>(); // directions point from exit to room
 	public final List<Rect> SUBDIVIDED_INTERIOR;
 	public final Rect ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE;
 	public final Rect ROOM_WALL_RECT_IN_GLOBAL_SPACE;
@@ -156,7 +156,12 @@ public class Room
 				.add(new RoomKey(this.SUPERCHUNK_COORD.X - 1, z + this.SUPERCHUNK_COORD.Y, key.y, key.worldSeed)));
 		// now we have all the rooms, so get the exits relevant to this room
 		adjacentKeys.stream().map(adjacentKey -> RoomCaches.EXITLOADER.getUnchecked(adjacentKey))
-				.map(exit -> exit.exitAsRectInGlobalSpace.move(exit.exitIsOnEastSide ? new Vec2i(1, 0) : new Vec2i(0, 1))) // get
+				.map(exit -> new ExitHallway(
+						exit.exitIsOnEastSide ? Direction.EAST : Direction.SOUTH,
+						exit.exitAsRectInGlobalSpace.move(exit.exitIsOnEastSide ? new Vec2i(1, 0) : new Vec2i(0, 1)),
+						exit.roomFloorLevel
+						
+						)) // get
 																													// the
 																													// exit
 																													// rects
@@ -170,15 +175,18 @@ public class Room
 																													// the
 																													// region
 																													// boundary
-				.filter(rect -> !rect.intersection(this.GLOBAL_REGION_RECT_IN_BLOCKSPACE).equals(Rect.EMPTY_RECT)) // only
+				.filter(hall -> !hall.intersection(this.GLOBAL_REGION_RECT_IN_BLOCKSPACE).rect.equals(Rect.EMPTY_RECT)) // only
 																													// keep
 																													// the
 																													// ones
 																													// inside
 																													// this
 																													// region
-				.forEach(exit -> this.EXIT_RECTS.add(exit)); // remember the relevant exits
-		this.EXIT_RECTS.add(regionData.exitAsRectInGlobalSpace); // also use this room's own
+				.forEach(hall -> this.EXIT_RECTS.add(hall)); // remember the relevant exits
+		this.EXIT_RECTS.add(new ExitHallway(
+				regionData.exitIsOnEastSide ? Direction.WEST : Direction.NORTH,
+				regionData.exitAsRectInGlobalSpace,
+				regionData.roomFloorLevel)); // also use this room's own
 																							// east/south exit
 		this.OFFSET_OF_ROOM_START = this.LOCAL_ROOM_AND_HALLWAY_START.add(this.GLOBAL_REGION_START);
 		this.ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE = new Rect(this.OFFSET_OF_ROOM_START,
@@ -186,20 +194,20 @@ public class Room
 						this.LOCAL_ROOM_AND_HALLWAY_END.Y - this.LOCAL_ROOM_AND_HALLWAY_START.Y));
 
 		// create hallways between room and exits
-		for (Rect exit : this.EXIT_RECTS)
+		for (ExitHallway exit : this.EXIT_RECTS)
 		{
-			Pair<Rect, Rect> extensionResults = this.getExtensionFromExitToFloor(exit);
-			Rect firstExtension = extensionResults.getLeft();
-			Rect secondExtension = extensionResults.getRight();
+			Pair<ExitHallway, ExitHallway> extensionResults = this.getExtensionFromExitToFloor(exit);
+			ExitHallway firstExtension = extensionResults.getLeft();
+			ExitHallway secondExtension = extensionResults.getRight();
 			// will need exactly 0, 1, or 2 additional hallway rects per exit
 			// case 0: exit is already adjacent to hallway -- do nothing with it
 			// case 1: exit is orthagonally adjacent to hallway
-			if (!firstExtension.equals(Rect.EMPTY_RECT))
+			if (!firstExtension.rect.equals(Rect.EMPTY_RECT))
 			{
 				this.EXIT_HALLWAY_RECTS.add(firstExtension);
 			}
 
-			if (!secondExtension.equals(Rect.EMPTY_RECT))
+			if (!secondExtension.rect.equals(Rect.EMPTY_RECT))
 			{
 				this.EXIT_HALLWAY_RECTS.add(secondExtension);
 			}
@@ -282,10 +290,6 @@ public class Room
 		northRect.asRandomSubdivisions(rand, false, true).forEach(rect -> this.mapDoorwayRect(map, table, rect, rand, 2));
 		eastRect.asRandomSubdivisions(rand, true, false).forEach(rect -> this.mapDoorwayRect(map, table, rect, rand, 3));
 
-		Direction.Plane.HORIZONTAL.forEach(dir -> {
-			
-		});
-
 		return map;
 	}
 	
@@ -357,38 +361,42 @@ public class Room
 		return this.WORLD_FLOOR_YLEVEL + this.HEIGHT_SIZE;
 	}
 
-	private Pair<Rect, Rect> getExtensionFromExitToFloor(Rect exit)
+	private Pair<ExitHallway, ExitHallway> getExtensionFromExitToFloor(ExitHallway exit)
 	{
 		Direction first_dir;
 		Direction second_dir;
-		if (exit.START.X == this.GLOBAL_WESTMOST_BLOCK && exit.SIZE.X == 1)
+		Rect rect = exit.rect;
+		if (rect.START.X == this.GLOBAL_WESTMOST_BLOCK && rect.SIZE.X == 1)
 		{
 			first_dir = Direction.EAST;
-			second_dir = (exit.START.Y + exit.SIZE.Y <= this.ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE.START.Y)
+			second_dir = (rect.START.Y + rect.SIZE.Y <= this.ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE.START.Y)
 					? Direction.SOUTH
 					: Direction.NORTH;
-		} else if (exit.START.Y == this.GLOBAL_NORTHMOST_BLOCK && exit.SIZE.Y == 1)
+		} else if (rect.START.Y == this.GLOBAL_NORTHMOST_BLOCK && rect.SIZE.Y == 1)
 		{
 			first_dir = Direction.SOUTH;
-			second_dir = (exit.START.X + exit.SIZE.X <= this.ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE.START.X) ? Direction.EAST
+			second_dir = (rect.START.X + rect.SIZE.X <= this.ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE.START.X) ? Direction.EAST
 					: Direction.WEST;
-		} else if (exit.START.X == this.GLOBAL_EASTMOST_BLOCK && exit.SIZE.X == 1)
+		} else if (rect.START.X == this.GLOBAL_EASTMOST_BLOCK && rect.SIZE.X == 1)
 		{
 			first_dir = Direction.WEST;
-			second_dir = (exit.START.Y + exit.SIZE.Y <= this.ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE.START.Y)
+			second_dir = (rect.START.Y + rect.SIZE.Y <= this.ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE.START.Y)
 					? Direction.SOUTH
 					: Direction.NORTH;
-		} else if (exit.START.Y == this.GLOBAL_SOUTHMOST_BLOCK && exit.SIZE.Y == 1)
+		} else if (rect.START.Y == this.GLOBAL_SOUTHMOST_BLOCK && rect.SIZE.Y == 1)
 		{
 			first_dir = Direction.NORTH;
-			second_dir = (exit.START.X + exit.SIZE.X <= this.ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE.START.X) ? Direction.EAST
+			second_dir = (rect.START.X + rect.SIZE.X <= this.ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE.START.X) ? Direction.EAST
 					: Direction.WEST;
 		} else
-			return Pair.of(Rect.EMPTY_RECT, Rect.EMPTY_RECT);
+		{
+			ExitHallway empty = new ExitHallway(exit.dir, Rect.EMPTY_RECT, exit.otherRoomFloorY);
+			return Pair.of(empty, empty);
+		}
 
-		Rect firstExtension = exit.extension(this.ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE, first_dir);
+		Rect firstExtension = rect.extension(this.ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE, first_dir);
 
-		Rect rectToUseToFindSecondExtension = firstExtension.equals(Rect.EMPTY_RECT) ? exit : firstExtension;
+		Rect rectToUseToFindSecondExtension = firstExtension.equals(Rect.EMPTY_RECT) ? rect : firstExtension;
 
 		// we may want a second extension (but no more than two)
 
@@ -444,7 +452,7 @@ public class Room
 
 		Rect dummy = new Rect(new Vec2i(dummyXstart, dummyYstart), new Vec2i(dummyXsize, dummyYsize));
 		Rect secondExtension = dummy.extension(this.ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE, second_dir);
-		return Pair.of(firstExtension, secondExtension);
+		return Pair.of(new ExitHallway(first_dir, firstExtension, exit.otherRoomFloorY), new ExitHallway(second_dir, secondExtension, exit.otherRoomFloorY));
 	}
 
 	// returns a stream of coords with x,z in range[0,15]
@@ -521,14 +529,23 @@ public class Room
 
 	// get the room's exit rects that exist within this chunk, with positions
 	// relative to the chunk
-	public Stream<Rect> getExitRectsWithinChunk(ChunkPos pos)
+	public Stream<ExitHallway> getExitRectsWithinChunk(ChunkPos pos)
 	{
-		return Rect.getRectCollectionAsRectsWithinChunk(this.EXIT_RECTS.stream(), pos, true);
+		// subtract this chunk's global position from rect's global position to get rect's relative position
+		Vec2i offset = new Vec2i(-(pos.x << 4), -(pos.z << 4));
+		return this.EXIT_RECTS.stream().map(direct -> direct.move(offset).intersection(Rect.CHUNK_RECT))
+				.filter(direct -> !direct.rect.equals(Rect.EMPTY_RECT));
+		
+		//return Rect.getRectCollectionAsRectsWithinChunk(this.EXIT_RECTS.stream(), pos, true);
 	}
 
-	public Stream<Rect> getExitHallwayRectsWithinChunk(ChunkPos pos)
+	public Stream<ExitHallway> getExitHallwayRectsWithinChunk(ChunkPos pos)
 	{
-		return Rect.getRectCollectionAsRectsWithinChunk(this.EXIT_HALLWAY_RECTS.stream(), pos, true);
+		// subtract this chunk's global position from rect's global position to get rect's relative position
+		Vec2i offset = new Vec2i(-(pos.x << 4), -(pos.z << 4));
+		return this.EXIT_HALLWAY_RECTS.stream().map(direct -> direct.move(offset).intersection(Rect.CHUNK_RECT))
+				.filter(direct -> !direct.rect.equals(Rect.EMPTY_RECT));
+		//return Rect.getRectCollectionAsRectsWithinChunk(this.EXIT_HALLWAY_RECTS.stream(), pos, true);
 	}
 
 	public Stream<Rect> getRoomInteriorPerimeterWithinChunk(ChunkPos pos, boolean local)
