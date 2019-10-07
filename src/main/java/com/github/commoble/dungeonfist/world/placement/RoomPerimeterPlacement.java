@@ -34,7 +34,7 @@ public class RoomPerimeterPlacement extends Placement<RoomPerimeterPlacementConf
 					.map(rect -> rect.coords().stream())
 					.flatMap(i -> i)
 					.filter(i -> random.nextFloat() < 0.5F)
-					.map(vec2i -> new BlockPos(vec2i.X, room.WORLD_YLEVEL, vec2i.Y)))
+					.map(vec2i -> new BlockPos(vec2i.X, room.WORLD_FLOOR_YLEVEL, vec2i.Y)))
 			.flatMap(i -> i);
 	}
 }

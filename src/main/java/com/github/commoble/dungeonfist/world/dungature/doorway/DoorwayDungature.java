@@ -69,7 +69,7 @@ public class DoorwayDungature extends Dungature
 		doorPosition = this.doorFacesInterior ^ isWestOrNorth ? new Vec2i(minX, minZ) : new Vec2i(minX + sizeX - 1, minZ + sizeZ - 1);
 		
 		Rect doorCorridor = new Rect(new Vec2i(minX, minZ), new Vec2i(sizeX, sizeZ));
-		int baseY = room.WORLD_YLEVEL;
+		int baseY = room.WORLD_FLOOR_YLEVEL;
 		BlockState air = Blocks.AIR.getDefaultState();
 		rect.coords().stream().filter(coord -> chunkRect.contains(coord) && doorCorridor.contains(coord))
 				.forEach(coord -> IntStream.range(1, 3)

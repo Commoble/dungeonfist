@@ -29,11 +29,11 @@ public class PanedWindow extends Dungature
 		this.positionHasher = Math.abs(context.rand.nextInt());
 
 		int minSize = 1;
-		int maxSize = context.room.getLocalHeight();
+		int maxSize = context.room.HEIGHT_SIZE;
 		this.size = context.rand.nextInt(maxSize - minSize) + minSize;
 
-		int minYStart = context.room.WORLD_YLEVEL + 1; // minimum 1 above floor
-		int maxYStart = context.room.WORLD_YLEVEL + context.room.getLocalHeight() - this.size; // size=1, max = 5 above
+		int minYStart = context.room.WORLD_FLOOR_YLEVEL + 1; // minimum 1 above floor
+		int maxYStart = context.room.WORLD_FLOOR_YLEVEL + context.room.HEIGHT_SIZE - this.size; // size=1, max = 5 above
 																								// floor; size=5, max =
 																								// 1 above floor
 		// since max and min can be the same, add 1 to the nextInt arg since the arg

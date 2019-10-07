@@ -24,11 +24,11 @@ public class FilledWindow extends Dungature
 		this.state = stateGetter.get();
 		
 		int minSize = 1;
-		int maxSize = context.room.getLocalHeight();
+		int maxSize = context.room.HEIGHT_SIZE;
 		this.size = context.rand.nextInt(maxSize - minSize) + minSize;
 		
-		int minYStart = context.room.WORLD_YLEVEL + 1;	// minimum 1 above floor
-		int maxYStart = context.room.WORLD_YLEVEL + context.room.getLocalHeight() - this.size; // size=1, max = 5 above floor; size=5, max = 1 above floor
+		int minYStart = context.room.WORLD_FLOOR_YLEVEL + 1;	// minimum 1 above floor
+		int maxYStart = context.room.WORLD_FLOOR_YLEVEL + context.room.HEIGHT_SIZE - this.size; // size=1, max = 5 above floor; size=5, max = 1 above floor
 		// since max and min can be the same, add 1 to the nextInt arg since the arg must be strictly > 0
 		this.baseY = context.rand.nextInt(maxYStart - minYStart + 1) + minYStart;
 	}

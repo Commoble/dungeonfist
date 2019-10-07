@@ -28,9 +28,13 @@ import net.minecraft.util.math.ChunkPos;
 
 public class Room
 {
+	public static final int FILLER_SIZE = 12;	// minimum guaranteed space under the room's floor and above the room's ceiling (excluding floor, including ceiling)
+	public static final int BEDROCK_CEILING_OFFSET = 45;	// height above the room's baseY to put a layer of bedrock
+	
 	public final Vec2i SUPERCHUNK_COORD; // dominant superchunk (minimal x and z coord) of the room
-	public final int AREA_YLEVEL; // 0, 1, 2, 3, 4
-	public final int WORLD_YLEVEL; // in global blockspace
+	public final int AREA_Y_INDEX; // 0, 1, 2, 3, 4
+	public final int WORLD_FLOOR_YLEVEL; // in global blockspace
+	public final int HEIGHT_SIZE;
 	public final Vec2i REGION_SIZE_IN_BLOCKS; // the width and length of the set of superchunks that enclose this room
 												// (in global blockpos scale)
 	public final Vec2i INTERIOR_SIZE;
@@ -94,9 +98,10 @@ public class Room
 		// an exterior wall of variable thickness possibly containing doorways,
 		// and an interior area within the walls
 		this.SUPERCHUNK_COORD = key.superChunkCoords;
-		this.AREA_YLEVEL = key.y;
-		this.WORLD_YLEVEL = this.AREA_YLEVEL * 50 + 10; // change later? needs to be the same as in
-														// DungeonChunkGenerator
+		this.AREA_Y_INDEX = key.y;
+		InterRegionData regionData = RoomCaches.EXITLOADER.getUnchecked(key);
+		this.WORLD_FLOOR_YLEVEL = regionData.roomFloorLevel;
+		this.HEIGHT_SIZE = regionData.roomHeightSize;
 		this.REGION_SIZE_IN_BLOCKS = new Vec2i(key.regionSize.X << 5, key.regionSize.Y << 5);
 		this.GLOBAL_WESTMOST_BLOCK = (this.SUPERCHUNK_COORD.X << 5);
 		this.GLOBAL_EASTMOST_BLOCK = this.GLOBAL_WESTMOST_BLOCK + this.REGION_SIZE_IN_BLOCKS.X - 1;
@@ -151,7 +156,7 @@ public class Room
 				.add(new RoomKey(this.SUPERCHUNK_COORD.X - 1, z + this.SUPERCHUNK_COORD.Y, key.y, key.worldSeed)));
 		// now we have all the rooms, so get the exits relevant to this room
 		adjacentKeys.stream().map(adjacentKey -> RoomCaches.EXITLOADER.getUnchecked(adjacentKey))
-				.map(exit -> exit.asRectInGlobalSpace.move(exit.isOnEastSide ? new Vec2i(1, 0) : new Vec2i(0, 1))) // get
+				.map(exit -> exit.exitAsRectInGlobalSpace.move(exit.exitIsOnEastSide ? new Vec2i(1, 0) : new Vec2i(0, 1))) // get
 																													// the
 																													// exit
 																													// rects
@@ -173,7 +178,7 @@ public class Room
 																													// this
 																													// region
 				.forEach(exit -> this.EXIT_RECTS.add(exit)); // remember the relevant exits
-		this.EXIT_RECTS.add(RoomCaches.EXITLOADER.getUnchecked(key).asRectInGlobalSpace); // also use this room's own
+		this.EXIT_RECTS.add(regionData.exitAsRectInGlobalSpace); // also use this room's own
 																							// east/south exit
 		this.OFFSET_OF_ROOM_START = this.LOCAL_ROOM_AND_HALLWAY_START.add(this.GLOBAL_REGION_START);
 		this.ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE = new Rect(this.OFFSET_OF_ROOM_START,
@@ -224,7 +229,7 @@ public class Room
 		{
 			int areaX = MathBuddy.rescaleCoordinate(this.SUPERCHUNK_COORD.X + rand.nextInt(3)-1, 3);
 			int areaY = MathBuddy.rescaleCoordinate(this.SUPERCHUNK_COORD.Y + rand.nextInt(3)-1, 3);
-			int hasher = MathBuddy.absoluteMod(((areaX + areaY*2999) ^ (this.AREA_YLEVEL+2)), materialCount);
+			int hasher = MathBuddy.absoluteMod(((areaX + areaY*2999) ^ (this.AREA_Y_INDEX+2)), materialCount);
 			return DungeonMaterials.dungeonMaterials.get(hasher);
 		}
 		else
@@ -346,15 +351,10 @@ public class Room
 				.forEach(rect -> map.put(rect, weightedTable.next(rect.minSize(), rand).apply(new DungatureContext(rect, this, rand))));
 		return map;
 	}
-
-	public int getLocalHeight()
-	{
-		return 6;
-	}
 	
 	public int getCeilingLevel()
 	{
-		return this.WORLD_YLEVEL + this.getLocalHeight();
+		return this.WORLD_FLOOR_YLEVEL + this.HEIGHT_SIZE;
 	}
 
 	private Pair<Rect, Rect> getExtensionFromExitToFloor(Rect exit)

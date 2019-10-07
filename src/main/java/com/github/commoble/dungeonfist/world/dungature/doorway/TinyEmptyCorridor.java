@@ -50,7 +50,7 @@ public class TinyEmptyCorridor extends Dungature
 		}
 		
 		Rect doorCorridor = new Rect(new Vec2i(minX, minY), new Vec2i(sizeX, sizeY));
-		int baseY = room.WORLD_YLEVEL;
+		int baseY = room.WORLD_FLOOR_YLEVEL;
 		BlockState air = Blocks.AIR.getDefaultState();
 		rect.intersection(chunkRect).coords().stream().filter(coord -> doorCorridor.contains(coord))
 				.forEach(coord -> IntStream.range(1, 3)

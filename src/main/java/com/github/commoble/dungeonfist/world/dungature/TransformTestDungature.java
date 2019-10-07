@@ -26,7 +26,7 @@ public class TransformTestDungature extends Dungature
 	{
 		Vec2i originCoord = pair.originalVec;
 		Vec2i finalCoord = pair.finalVec;
-		BlockPos pos = new BlockPos(finalCoord.X, room.WORLD_YLEVEL+1, finalCoord.Y);
+		BlockPos pos = new BlockPos(finalCoord.X, room.WORLD_FLOOR_YLEVEL+1, finalCoord.Y);
 		BlockState state;
 		
 		if (originCoord.Y == 0)

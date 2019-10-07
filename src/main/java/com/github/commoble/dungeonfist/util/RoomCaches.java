@@ -19,14 +19,14 @@ public class RoomCaches
 				}
 			);
 	
-	public static final LoadingCache<RoomKey, RegionSideExits> EXITLOADER = CacheBuilder.newBuilder()
+	public static final LoadingCache<RoomKey, InterRegionData> EXITLOADER = CacheBuilder.newBuilder()
 			.maximumSize(1000)
 			.build(
-				new CacheLoader<RoomKey, RegionSideExits>()
+				new CacheLoader<RoomKey, InterRegionData>()
 				{
-					public RegionSideExits load(RoomKey key)
+					public InterRegionData load(RoomKey key)
 					{
-						return new RegionSideExits(key);
+						return new InterRegionData(key);
 					}
 				}
 			);

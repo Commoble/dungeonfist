@@ -28,15 +28,15 @@ public class TorchColumnDungature extends Dungature
 		{
 			if (pair.originalVec.X == 0)
 			{
-				int height = room.getLocalHeight();
+				int height = room.HEIGHT_SIZE;
 				BlockState state = room.STANDARD_BLOCK.getDefaultState();
-				IntStream.range(0, height).forEach(yOff -> world.setBlockState(new BlockPos(pair.finalVec.X, yOff + room.WORLD_YLEVEL, pair.finalVec.Y), state, 2));
+				IntStream.range(0, height).forEach(yOff -> world.setBlockState(new BlockPos(pair.finalVec.X, yOff + room.WORLD_FLOOR_YLEVEL, pair.finalVec.Y), state, 2));
 			}
 			else
 			{
 				BlockState state = Blocks.REDSTONE_WALL_TORCH.getDefaultState().with(WallTorchBlock.HORIZONTAL_FACING, Direction.EAST);
 				state = this.transform.applyToBlockState(state);
-				world.setBlockState(new BlockPos(pair.finalVec.X, room.WORLD_YLEVEL + room.getLocalHeight()-1 - rand.nextInt(3), pair.finalVec.Y), state, 2);
+				world.setBlockState(new BlockPos(pair.finalVec.X, room.getCeilingLevel()-1 - rand.nextInt(3), pair.finalVec.Y), state, 2);
 			}
 		}
 	}

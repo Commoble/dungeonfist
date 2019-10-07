@@ -23,14 +23,14 @@ public class FilledCorridor extends Dungature
 		this.state = stateGetter.get();
 		
 		int minSize = 2;
-		int maxSize = context.room.getLocalHeight();
+		int maxSize = context.room.HEIGHT_SIZE;
 		this.size = context.rand.nextInt(maxSize - minSize) + minSize;
 	}
 
 	@Override
 	public void place(Rect rect, Rect chunkRect, Room room, IWorld world, Random rand)
 	{
-		int baseY = room.WORLD_YLEVEL+1;
+		int baseY = room.WORLD_FLOOR_YLEVEL+1;
 		
 		rect.intersection(chunkRect).coords().stream()
 			.forEach(vec -> IntStream.range(0, this.size).forEach(yOff -> world.setBlockState(new BlockPos(vec.X, baseY + yOff, vec.Y), this.state, 2)));

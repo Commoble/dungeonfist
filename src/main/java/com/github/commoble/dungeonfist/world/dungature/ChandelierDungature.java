@@ -32,7 +32,7 @@ public class ChandelierDungature extends Dungature
 	{
 		int x0 = pair.originalVec.X;
 		int y0 = pair.originalVec.Y;
-		int ceiling = room.WORLD_YLEVEL + room.getLocalHeight();
+		int ceiling = room.getCeilingLevel();
 		
 		if (x0 == 1)	// middle column
 		{

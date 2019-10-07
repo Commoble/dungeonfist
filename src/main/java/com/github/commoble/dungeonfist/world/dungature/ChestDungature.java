@@ -29,7 +29,7 @@ public class ChestDungature extends Dungature
 	public void place(Rect rect, Rect chunkRect, Room room, IWorld world, Random rand)
 	{
 		BlockState state = Blocks.CHEST.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING, Direction.byHorizontalIndex(this.transform.rotation));
-		int baseY = room.WORLD_YLEVEL+1;
+		int baseY = room.WORLD_FLOOR_YLEVEL+1;
 		// assume rect is in chunk for now
 		Vec2i coord = this.transform.translation;
 		if (chunkRect.contains(coord))

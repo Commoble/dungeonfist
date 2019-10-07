@@ -67,6 +67,15 @@ public class RoomKey
 	}
 	
 	/**
+	 * Returns the base ylevel of this room in world space
+	 */
+	
+	public int getWorldspaceBaseY()
+	{
+		return this.y*50 + 10;
+	}
+	
+	/**
 	 * returns a ChunkPos indicating the relative position of a chunkpos to this room's upper-left chunk
 	 * e.g. the upper-left chunk is 0,0, the next chunk to the right is 1,0, etc
 	 */

@@ -32,6 +32,6 @@ public class RisingBasicColumnDungature extends Dungature
 	public void placeColumn(TransformedCoord pair, Room room, IWorld world, Random rand)
 	{
 		BlockState rotatedState = this.transform.applyToBlockState(this.state);
-		IntStream.range(0, this.size).forEach(i -> world.setBlockState(new BlockPos(pair.finalVec.X, room.WORLD_YLEVEL + i + 1, pair.finalVec.Y), rotatedState, 2));
+		IntStream.range(0, this.size).forEach(i -> world.setBlockState(new BlockPos(pair.finalVec.X, room.WORLD_FLOOR_YLEVEL + i + 1, pair.finalVec.Y), rotatedState, 2));
 	}
 }

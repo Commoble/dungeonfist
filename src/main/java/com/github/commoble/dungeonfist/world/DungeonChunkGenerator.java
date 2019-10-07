@@ -227,7 +227,6 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 	{
 		long time1 = Util.nanoTime();
 		ChunkPos chunkpos = chunk.getPos();
-		int baseFloor = 10;
 		int globalXStart = chunkpos.getXStart();
 		int globalZStart = chunkpos.getZStart();
 		MutableBlockPos mutapos = new MutableBlockPos(0,0,0);
@@ -235,20 +234,21 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 		for (int yLayer=0; yLayer<5; yLayer++)
 		{
 //			ChunkPos dominantChunkPos = this.getRoom(chunkpos,y);
-			int y = yLayer*50 + baseFloor;
 //			Random superRand = new Random(dominantSuperChunkCoords.hashCode()*y);
 			RoomKey roomKey = new RoomKey(chunk, yLayer, worldIn.getSeed());
+			int baseY = roomKey.getWorldspaceBaseY();
 			Room room = RoomCaches.ROOMLOADER.getUnchecked(roomKey);
+			int floorY = room.WORLD_FLOOR_YLEVEL;
 			BlockState state = room.STANDARD_BLOCK.getDefaultState(); //BLOCKS[superRand.nextInt(BLOCKS.length)].getDefaultState();
-			int localHeight = room.getLocalHeight();
+			int localHeight = room.HEIGHT_SIZE;
 			
-			double noiseXYZ = getXYZNoise(this.roomNoise, globalXStart,y,globalZStart);
+			//double noiseXYZ = getXYZNoise(this.roomNoise, globalXStart,baseY,globalZStart);
 			Rect floorInThisChunk = room.getOuterFloorRectWithinChunk(chunkpos);
 
 			List<Vec2i> coords = floorInThisChunk.coords();
 			for (Vec2i coord : coords)
 			{
-				mutapos.setPos(coord.X, y, coord.Y);
+				mutapos.setPos(coord.X, floorY, coord.Y);
 				chunk.setBlockState(mutapos, state, false);
 			}
 			//if (noiseXYZ > 0)
@@ -267,7 +267,7 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 				
 				for (int yOff=1; yOff<localHeight; yOff++)
 				{
-					mutapos.setPos(coord.X, yOff+y, coord.Y);
+					mutapos.setPos(coord.X, yOff+floorY, coord.Y);
 					chunk.setBlockState(mutapos, state, false);
 				}
 			});
@@ -276,14 +276,14 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 			room.getExitRectsWithinChunk(chunkpos).forEach(exitRect ->
 			{
 				exitRect.coords().forEach(vec -> {
-					mutapos.setPos(vec.X, y, vec.Y);
+					mutapos.setPos(vec.X, floorY, vec.Y);
 					chunk.setBlockState(mutapos, exitState, false);
 				});
 			});
 			room.getExitHallwayRectsWithinChunk(chunkpos).forEach(exitRect ->
 			{
 				exitRect.coords().forEach(vec -> {
-					mutapos.setPos(vec.X, y, vec.Y);
+					mutapos.setPos(vec.X, floorY, vec.Y);
 					chunk.setBlockState(mutapos,  exitState, false);
 				});
 			});
