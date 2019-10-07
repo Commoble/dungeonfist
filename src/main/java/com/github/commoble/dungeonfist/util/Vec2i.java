@@ -1,5 +1,6 @@
 package com.github.commoble.dungeonfist.util;
 
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 
 public class Vec2i
@@ -13,6 +14,11 @@ public class Vec2i
 	{
 		this.X = x;
 		this.Y = y;
+	}
+	
+	public BlockPos toBlockPos(int y)
+	{
+		return new BlockPos(this.X, y, this.Y);
 	}
 	
 	public int minDimension()

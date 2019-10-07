@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 
 import net.minecraft.util.Direction;
+import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.math.ChunkPos;
 
 public class Rect
@@ -42,6 +43,16 @@ public class Rect
 		this.START = start;
 		this.SIZE = size;
 		this.AREA = size.X * size.Y;
+	}
+	
+	public static Rect of(int xStart, int yStart, int xSize, int ySize)
+	{
+		return new Rect(new Vec2i(xStart, yStart), new Vec2i(xSize, ySize));
+	}
+	
+	public int getAxisSize(Axis axis)
+	{
+		return axis == Axis.X ? this.SIZE.X : this.SIZE.Y;
 	}
 	
 	public int minSize()
