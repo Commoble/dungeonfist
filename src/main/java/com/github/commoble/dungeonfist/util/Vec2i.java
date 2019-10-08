@@ -31,9 +31,19 @@ public class Vec2i
 		return new Vec2i(this.X + otherVec.X, this.Y + otherVec.Y);
 	}
 	
+	public Vec2i add(int x, int y)
+	{
+		return new Vec2i(this.X + x, this.Y + y);
+	}
+	
 	public Vec2i subtract(Vec2i otherVec)
 	{
 		return new Vec2i(this.X - otherVec.X, this.Y - otherVec.Y);
+	}
+	
+	public Vec2i subtract(int x, int y)
+	{
+		return new Vec2i(this.X - x, this.Y - y);
 	}
 	
 	public ChunkPos subtractThisFrom(ChunkPos otherVec)

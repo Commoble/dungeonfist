@@ -243,7 +243,7 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 			int localHeight = room.HEIGHT_SIZE;
 			
 			//double noiseXYZ = getXYZNoise(this.roomNoise, globalXStart,baseY,globalZStart);
-			Rect floorInThisChunk = room.getOuterFloorRectWithinChunk(chunkpos);
+			Rect floorInThisChunk = room.getOuterFloorRectWithinChunk(roomKey, chunkpos);
 
 			List<Vec2i> coords = floorInThisChunk.coords();
 			for (Vec2i coord : coords)

@@ -32,8 +32,6 @@ public class Room
 	public static final int FILLER_SIZE = 12;	// minimum guaranteed space under the room's floor and above the room's ceiling (excluding floor, including ceiling)
 	public static final int BEDROCK_CEILING_OFFSET = 45;	// height above the room's baseY to put a layer of bedrock
 	
-	public final Vec2i SUPERCHUNK_COORD; // dominant superchunk (minimal x and z coord) of the room
-	public final int AREA_Y_INDEX; // 0, 1, 2, 3, 4
 	public final int WORLD_FLOOR_YLEVEL; // in global blockspace
 	public final int HEIGHT_SIZE;
 	public final Vec2i REGION_SIZE_IN_BLOCKS; // the width and length of the set of superchunks that enclose this room
@@ -98,15 +96,14 @@ public class Room
 		// a surrounding hallway (or "outer floor") of variable thickness,
 		// an exterior wall of variable thickness possibly containing doorways,
 		// and an interior area within the walls
-		this.SUPERCHUNK_COORD = key.superChunkCoords;
-		this.AREA_Y_INDEX = key.y;
 		InterRegionData regionData = RoomCaches.EXITLOADER.getUnchecked(key);
+		Vec2i superChunkCoords = key.superChunkCoords;
 		this.WORLD_FLOOR_YLEVEL = regionData.roomFloorLevel;
 		this.HEIGHT_SIZE = regionData.roomHeightSize;
 		this.REGION_SIZE_IN_BLOCKS = new Vec2i(key.regionSize.X << 5, key.regionSize.Y << 5);
-		this.GLOBAL_WESTMOST_BLOCK = (this.SUPERCHUNK_COORD.X << 5);
+		this.GLOBAL_WESTMOST_BLOCK = superChunkCoords.X << 5;
 		this.GLOBAL_EASTMOST_BLOCK = this.GLOBAL_WESTMOST_BLOCK + this.REGION_SIZE_IN_BLOCKS.X - 1;
-		this.GLOBAL_NORTHMOST_BLOCK = this.SUPERCHUNK_COORD.Y << 5;
+		this.GLOBAL_NORTHMOST_BLOCK = superChunkCoords.Y << 5;
 		this.GLOBAL_SOUTHMOST_BLOCK = this.GLOBAL_NORTHMOST_BLOCK + this.REGION_SIZE_IN_BLOCKS.Y - 1;
 		Random rand = new Random(key.hashCode());
 		this.ROOM_HALLWAY_WIDTH = rand.nextInt(4) + 1; // 1,2,3,4
@@ -141,7 +138,7 @@ public class Room
 		int roomSizeX = this.ROOM_HALLWAY_WIDTH * 2 + this.WALL_THICKNESS * 2 + interiorXsize;
 		int roomSizeZ = this.ROOM_HALLWAY_WIDTH * 2 + this.WALL_THICKNESS * 2 + interiorZsize;
 		this.TOTAL_ROOM_SIZE = new Vec2i(roomSizeX, roomSizeZ);
-		this.GLOBAL_REGION_START = new Vec2i(this.SUPERCHUNK_COORD.X << 5, this.SUPERCHUNK_COORD.Y << 5);
+		this.GLOBAL_REGION_START = new Vec2i(superChunkCoords.X << 5, superChunkCoords.Y << 5);
 		this.GLOBAL_REGION_RECT_IN_BLOCKSPACE = new Rect(this.GLOBAL_REGION_START, this.REGION_SIZE_IN_BLOCKS);
 		//////// find all exit rects
 		// get all superchunks orthagonally adjacent to here northward and westward
@@ -152,9 +149,9 @@ public class Room
 		Set<RoomKey> adjacentKeys = new HashSet<RoomKey>(); // set of all rooms that touch this room's north and west
 															// borders
 		IntStream.range(0, key.regionSize.X).forEach(x -> adjacentKeys
-				.add(new RoomKey(x + this.SUPERCHUNK_COORD.X, this.SUPERCHUNK_COORD.Y - 1, key.y, key.worldSeed)));
+				.add(new RoomKey(x + superChunkCoords.X, superChunkCoords.Y - 1, key.y, key.worldSeed)));
 		IntStream.range(0, key.regionSize.Y).forEach(z -> adjacentKeys
-				.add(new RoomKey(this.SUPERCHUNK_COORD.X - 1, z + this.SUPERCHUNK_COORD.Y, key.y, key.worldSeed)));
+				.add(new RoomKey(superChunkCoords.X - 1, z + superChunkCoords.Y, key.y, key.worldSeed)));
 		// now we have all the rooms, so get the exits relevant to this room
 		adjacentKeys.stream().map(adjacentKey -> RoomCaches.EXITLOADER.getUnchecked(adjacentKey))
 				.map(adjacentRegion -> new ExitHallway(
@@ -187,12 +184,19 @@ public class Room
 				.forEach(hall -> this.EXIT_RECTS.add(hall)); // remember the relevant exits
 		
 		// also use this room's own hallway -- get the ylevel of the next room over
+		boolean exitIsOnEastSide = regionData.exitIsOnEastSide;
+		Vec2i someCoordInTheOtherRoom = regionData.exitAsRectInGlobalSpace.START.add(exitIsOnEastSide ? 1 : 0, exitIsOnEastSide ? 0 : 1);
+		int superChunkX = someCoordInTheOtherRoom.X >> 5;
+		int superChunkY = someCoordInTheOtherRoom.Y >> 5;
 		RoomKey otherAdjacentKey = new RoomKey(
-				this.SUPERCHUNK_COORD.X + (regionData.exitIsOnEastSide ? 1 : 0),
-				this.SUPERCHUNK_COORD.Y + (regionData.exitIsOnEastSide ? 0 : 1),
+				//superChunkCoords.X + (regionData.exitIsOnEastSide ? 1 : 0),
+				//superChunkCoords.Y + (regionData.exitIsOnEastSide ? 0 : 1),
+				superChunkX,
+				superChunkY,
 				key.y,
 				key.worldSeed);
 		InterRegionData otherRegionData = RoomCaches.EXITLOADER.getUnchecked(otherAdjacentKey); // need this for ylevel
+		
 		ExitHallway hallway = new ExitHallway(
 				regionData.exitIsOnEastSide ? Direction.WEST : Direction.NORTH,
 				regionData.exitAsRectInGlobalSpace,
@@ -218,11 +222,10 @@ public class Room
 			if (!firstExtension.rect.equals(Rect.EMPTY_RECT))
 			{
 				this.EXIT_HALLWAY_RECTS.add(firstExtension);
-				
-				if (!secondExtension.rect.equals(Rect.EMPTY_RECT))
-				{
-					this.EXIT_HALLWAY_RECTS.add(secondExtension);
-				}
+			}
+			if (!secondExtension.rect.equals(Rect.EMPTY_RECT))
+			{
+				this.EXIT_HALLWAY_RECTS.add(secondExtension);
 			}
 		}
 
@@ -239,18 +242,18 @@ public class Room
 		// of time and have the placer
 		this.DUNGATURE_MAP = this.generateDungatureMap(this.getDungatureTable(), rand);
 		this.DOORWAY_MAP = this.generateDoorwayMap(this.getDoorwayTable(), rand);
-		this.STANDARD_BLOCK = this.generateStandardBlock(rand);
+		this.STANDARD_BLOCK = this.generateStandardBlock(key, rand);
 		
 	}
 	
-	protected Block generateStandardBlock(Random rand)
+	protected Block generateStandardBlock(RoomKey key, Random rand)
 	{
 		int materialCount = DungeonMaterials.dungeonMaterials.size();
 		if (rand.nextInt(6) > 0)
 		{
-			int areaX = MathBuddy.rescaleCoordinate(this.SUPERCHUNK_COORD.X + rand.nextInt(3)-1, 3);
-			int areaY = MathBuddy.rescaleCoordinate(this.SUPERCHUNK_COORD.Y + rand.nextInt(3)-1, 3);
-			int hasher = MathBuddy.absoluteMod(((areaX + areaY*2999) ^ (this.AREA_Y_INDEX+2)), materialCount);
+			int areaX = MathBuddy.rescaleCoordinate(key.superChunkCoords.X + rand.nextInt(3)-1, 3);
+			int areaY = MathBuddy.rescaleCoordinate(key.superChunkCoords.Y + rand.nextInt(3)-1, 3);
+			int hasher = MathBuddy.absoluteMod(((areaX + areaY*2999) ^ (key.y+2)), materialCount);
 			return DungeonMaterials.dungeonMaterials.get(hasher);
 		}
 		else
@@ -543,11 +546,11 @@ public class Room
 	}
 
 	@Nonnull
-	public Rect getOuterFloorRectWithinChunk(ChunkPos pos)
+	public Rect getOuterFloorRectWithinChunk(RoomKey key, ChunkPos pos)
 	{
-		int relativeDominantChunkX = ((this.SUPERCHUNK_COORD.X << 1) - pos.x) << 4; // in block coordinates relative to
+		int relativeDominantChunkX = ((key.superChunkCoords.X << 1) - pos.x) << 4; // in block coordinates relative to
 																					// the given chunk
-		int relativeDominantChunkZ = ((this.SUPERCHUNK_COORD.Y << 1) - pos.z) << 4;
+		int relativeDominantChunkZ = ((key.superChunkCoords.Y << 1) - pos.z) << 4;
 		int relativeFloorStartX = relativeDominantChunkX + this.LOCAL_ROOM_AND_HALLWAY_START.X;
 		int relativeFloorStartZ = relativeDominantChunkZ + this.LOCAL_ROOM_AND_HALLWAY_START.Y;
 		Rect floorRect = new Rect(new Vec2i(relativeFloorStartX, relativeFloorStartZ), this.TOTAL_ROOM_SIZE);
