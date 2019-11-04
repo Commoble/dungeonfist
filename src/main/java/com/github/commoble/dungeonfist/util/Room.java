@@ -20,7 +20,7 @@ import com.github.commoble.dungeonfist.world.dungature.DungatureContext;
 import com.github.commoble.dungeonfist.world.dungature.DungatureTable;
 import com.github.commoble.dungeonfist.world.dungature.StandardDungatures;
 import com.github.commoble.dungeonfist.world.dungature.doorway.StandardDoorways;
-import com.github.commoble.dungeonfist.world.dungature.interfloor.DeepwellDungature;
+import com.github.commoble.dungeonfist.world.dungature.interfloor.StandardInterfloorDungatures;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.Direction;
@@ -230,10 +230,13 @@ public class Room
 		// deal with multiblock elements being generated across chunks
 		// alternatively, have the Room decide what Element to place in each rect ahead
 		// of time and have the placer
-		this.DUNGATURE_MAP = this.generateDungatureMap(this.getDungatureTable(), rand, key);
-		this.DOORWAY_MAP = this.generateDoorwayMap(this.getDoorwayTable(), rand);
-		this.STANDARD_BLOCK = this.generateStandardBlock(key, rand);
+		DungatureTable interfloorDungatures = this.getInterfloorDungatureTable();
+		DungatureTable normalDungatures = this.getDungatureTable();
+		DungatureTable doorwayDungatures = this.getDoorwayTable();
 		
+		this.DUNGATURE_MAP = this.generateDungatureMap(normalDungatures, interfloorDungatures, rand, key);
+		this.DOORWAY_MAP = this.generateDoorwayMap(doorwayDungatures, rand);
+		this.STANDARD_BLOCK = this.generateStandardBlock(key, rand);
 	}
 	
 	protected Block generateStandardBlock(RoomKey key, Random rand)
@@ -255,6 +258,11 @@ public class Room
 	public DungatureTable getDungatureTable()
 	{
 		return StandardDungatures.table;
+	}
+	
+	public DungatureTable getInterfloorDungatureTable()
+	{
+		return StandardInterfloorDungatures.table;
 	}
 	
 	public DungatureTable getDoorwayTable()
@@ -354,22 +362,28 @@ public class Room
 //		}
 //	}
 
-	public Map<Rect, Dungature> generateDungatureMap(DungatureTable weightedTable, Random rand, RoomKey key)
+	public Map<Rect, Dungature> generateDungatureMap(DungatureTable normalDungatures, DungatureTable interfloorDungatures, Random rand, RoomKey key)
 	{
 		Map<Rect, Dungature> map = new HashMap<>();
+		double interfloorDungatureChance = this.getInterfloorDungatureChance();
 		this.SUBDIVIDED_INTERIOR
 				.forEach(rect -> {
-					if (rand.nextDouble() < 0.1F && key.y > 0 && !RoomCaches.EXITLOADER.getUnchecked(new RoomKey(rect.START, key.y-1, key.worldSeed)).globalRoomAndHallwayRect.intersection(rect).equals(Rect.EMPTY_RECT))
+					if (rand.nextDouble() < interfloorDungatureChance && key.y > 0 && !RoomCaches.EXITLOADER.getUnchecked(new RoomKey(rect.START, key.y-1, key.worldSeed)).globalInteriorRect.intersection(rect).equals(Rect.EMPTY_RECT))
 					{
-						map.put(rect, new DeepwellDungature());	// TODO add support for arbitrary interroom dungatures
+						map.put(rect, interfloorDungatures.next(rect.minSize(), rand).apply(new DungatureContext(rect, this, rand)));	// TODO add support for arbitrary interroom dungatures
 					}
 					else
 					{
-						map.put(rect, weightedTable.next(rect.minSize(), rand).apply(new DungatureContext(rect, this, rand)));
+						map.put(rect, normalDungatures.next(rect.minSize(), rand).apply(new DungatureContext(rect, this, rand)));
 					}
 					
 				});
 		return map;
+	}
+	
+	public double getInterfloorDungatureChance()
+	{
+		return 0.001F;
 	}
 	
 	public int getCeilingLevel()

@@ -28,15 +28,15 @@ public class DeepwellDungature extends Dungature
 		int lowerRoomCeiling = lowerRegionData.roomFloorLevel + lowerRegionData.roomHeightSize;
 
 		BlockState airState = Blocks.AIR.getDefaultState();
-		BlockState wallState = room.STANDARD_BLOCK.getDefaultState();
+//		BlockState wallState = room.STANDARD_BLOCK.getDefaultState();
 
-		if (rect.SIZE.X > 2 && rect.SIZE.Y > 2)
-		{
-			rect.coords().stream().filter(coord -> chunkRect.contains(coord))
-					.forEach(coord -> IntStream.rangeClosed(lowerRoomCeiling, upperRoomFloor).forEach(y -> world
-							.setBlockState(coord.toBlockPos(y), rect.isPerimeter(coord) ? wallState : airState, 2)));
-		}
-		else
+//		if (rect.SIZE.X > 2 && rect.SIZE.Y > 2)
+//		{
+//			rect.coords().stream().filter(coord -> chunkRect.contains(coord))
+//					.forEach(coord -> IntStream.rangeClosed(lowerRoomCeiling, upperRoomFloor).forEach(y -> world
+//							.setBlockState(coord.toBlockPos(y), rect.isPerimeter(coord) ? wallState : airState, 2)));
+//		}
+//		else
 		{
 			rect.coords().stream().filter(coord -> chunkRect.contains(coord))
 					.forEach(coord -> IntStream.rangeClosed(lowerRoomCeiling, upperRoomFloor)

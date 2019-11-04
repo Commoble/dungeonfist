@@ -27,6 +27,7 @@ public class InterRegionData
 	public final Vec2i globalRoomAndHallwayStart;
 	public final Rect globalRoomAndHallwayRect;
 	public final Rect globalRegionRectInBlockspace;
+	public final Rect globalInteriorRect;
 	
 	public final Vec2i localWallStart;
 	public final Vec2i localInteriorStart;
@@ -134,6 +135,10 @@ public class InterRegionData
 		this.globalRoomAndHallwayRect = new Rect(this.globalRoomAndHallwayStart,
 				new Vec2i(this.localRoomAndHallwayEnd.X - this.localRoomAndHallwayStart.X,
 						this.localRoomAndHallwayEnd.Y - this.localRoomAndHallwayStart.Y));
+		
+		Vec2i globalInteriorStart = this.localInteriorStart.add(this.globalRegionStart);
+		
+		this.globalInteriorRect = new Rect(globalInteriorStart, this.interiorSize);
 	}
 	
 	public IntStream getExitOffsets()
