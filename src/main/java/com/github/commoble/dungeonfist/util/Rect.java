@@ -101,6 +101,15 @@ public class Rect
 		return this.SIZE.X <= rect.SIZE.X && this.SIZE.Y <= rect.SIZE.Y;
 	}
 	
+	public boolean isPerimeter(Vec2i vec)
+	{
+		int minX = this.START.X;
+		int minY = this.START.Y;
+		int maxX = this.START.X + this.SIZE.X - 1;
+		int maxY = this.START.Y + this.SIZE.Y - 1;
+		return vec.X == minX || vec.X == maxX || vec.Y == minY || vec.Y == maxY;
+	}
+	
 	@Nonnull
 	public Rect intersection(Rect other)
 	{

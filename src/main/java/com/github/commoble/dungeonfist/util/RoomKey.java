@@ -66,6 +66,11 @@ public class RoomKey
 		this(pos.getX() >> 5, pos.getZ() >> 5, yLayer, worldSeed);
 	}
 	
+	public RoomKey(Vec2i pos, int yLayer, long worldSeed)
+	{
+		this(pos.X >> 5, pos.Y >> 5, yLayer, worldSeed);
+	}
+	
 	/**
 	 * Returns the base ylevel of this room in world space
 	 */

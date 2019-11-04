@@ -20,6 +20,7 @@ import com.github.commoble.dungeonfist.world.dungature.DungatureContext;
 import com.github.commoble.dungeonfist.world.dungature.DungatureTable;
 import com.github.commoble.dungeonfist.world.dungature.StandardDungatures;
 import com.github.commoble.dungeonfist.world.dungature.doorway.StandardDoorways;
+import com.github.commoble.dungeonfist.world.dungature.interfloor.DeepwellDungature;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.Direction;
@@ -32,6 +33,8 @@ public class Room
 	public static final int FILLER_SIZE = 12;	// minimum guaranteed space under the room's floor and above the room's ceiling (excluding floor, including ceiling)
 	public static final int BEDROCK_CEILING_OFFSET = 45;	// height above the room's baseY to put a layer of bedrock
 	
+	public final int Y_LAYER;
+	public final Vec2i SUPER_CHUNK_COORDS;
 	public final int WORLD_FLOOR_YLEVEL; // in global blockspace
 	public final int HEIGHT_SIZE;
 	public final Vec2i REGION_SIZE_IN_BLOCKS; // the width and length of the set of superchunks that enclose this room
@@ -97,49 +100,39 @@ public class Room
 		// an exterior wall of variable thickness possibly containing doorways,
 		// and an interior area within the walls
 		InterRegionData regionData = RoomCaches.EXITLOADER.getUnchecked(key);
-		Vec2i superChunkCoords = key.superChunkCoords;
+		this.Y_LAYER = key.y;
+		this.SUPER_CHUNK_COORDS = key.superChunkCoords;
 		this.WORLD_FLOOR_YLEVEL = regionData.roomFloorLevel;
 		this.HEIGHT_SIZE = regionData.roomHeightSize;
-		this.REGION_SIZE_IN_BLOCKS = new Vec2i(key.regionSize.X << 5, key.regionSize.Y << 5);
-		this.GLOBAL_WESTMOST_BLOCK = superChunkCoords.X << 5;
+		this.GLOBAL_REGION_START = regionData.globalRegionStart;
+		
+		this.REGION_SIZE_IN_BLOCKS = regionData.regionSizeInBlocks;
+		this.ROOM_HALLWAY_WIDTH = regionData.roomHallwayWidth;
+		this.WALL_THICKNESS = regionData.wallThickness;
+		this.INTERIOR_SIZE = regionData.interiorSize;
+		
+		this.LOCAL_ROOM_AND_HALLWAY_START = regionData.localRoomAndHallwayStart;
+		this.LOCAL_WALL_START = regionData.localWallStart;
+		this.LOCAL_INTERIOR_START = regionData.localInteriorStart;
+		this.LOCAL_INTERIOR_END = regionData.localInteriorEnd;
+		this.LOCAL_WALL_END = regionData.localWallEnd;
+		this.LOCAL_ROOM_AND_HALLWAY_END = regionData.localRoomAndHallwayEnd;
+		
+		this.OFFSET_OF_ROOM_START = regionData.globalRoomAndHallwayStart;
+		
+		
+		this.GLOBAL_WESTMOST_BLOCK = this.SUPER_CHUNK_COORDS.X << 5;
 		this.GLOBAL_EASTMOST_BLOCK = this.GLOBAL_WESTMOST_BLOCK + this.REGION_SIZE_IN_BLOCKS.X - 1;
-		this.GLOBAL_NORTHMOST_BLOCK = superChunkCoords.Y << 5;
+		this.GLOBAL_NORTHMOST_BLOCK = this.SUPER_CHUNK_COORDS.Y << 5;
 		this.GLOBAL_SOUTHMOST_BLOCK = this.GLOBAL_NORTHMOST_BLOCK + this.REGION_SIZE_IN_BLOCKS.Y - 1;
 		Random rand = new Random(key.hashCode());
-		this.ROOM_HALLWAY_WIDTH = rand.nextInt(4) + 1; // 1,2,3,4
-		this.WALL_THICKNESS = rand.nextInt(4) + 1;
+		
 
-		// maximum possible width/length of the room, within the walls
-		int maxInteriorXSize = (this.REGION_SIZE_IN_BLOCKS.X) - (this.ROOM_HALLWAY_WIDTH << 1)
-				- (this.WALL_THICKNESS << 1);
-		int maxInteriorZSize = (this.REGION_SIZE_IN_BLOCKS.Y) - (this.ROOM_HALLWAY_WIDTH << 1)
-				- (this.WALL_THICKNESS << 1);
-		int minInteriorSize = 4; // smallest diameter allowed for interior space
-		int interiorXsize = rand.nextInt(maxInteriorXSize - minInteriorSize) + minInteriorSize;
-		int interiorZsize = rand.nextInt(maxInteriorZSize - minInteriorSize) + minInteriorSize;
-		int maxXoffset = this.REGION_SIZE_IN_BLOCKS.X
-				- (interiorXsize + this.WALL_THICKNESS * 2 + this.ROOM_HALLWAY_WIDTH * 2);
-		int maxZoffset = this.REGION_SIZE_IN_BLOCKS.Y
-				- (interiorZsize + this.WALL_THICKNESS * 2 + this.ROOM_HALLWAY_WIDTH * 2);
-		int roomXoffset = rand.nextInt(maxXoffset);
-		int roomZoffset = rand.nextInt(maxZoffset);
-		this.INTERIOR_SIZE = new Vec2i(interiorXsize, interiorZsize);
-		this.LOCAL_ROOM_AND_HALLWAY_START = new Vec2i(roomXoffset, roomZoffset);
-		this.LOCAL_WALL_START = new Vec2i(this.ROOM_HALLWAY_WIDTH + this.LOCAL_ROOM_AND_HALLWAY_START.X,
-				this.ROOM_HALLWAY_WIDTH + this.LOCAL_ROOM_AND_HALLWAY_START.Y);
-		this.LOCAL_INTERIOR_START = new Vec2i(this.LOCAL_WALL_START.X + this.WALL_THICKNESS,
-				this.LOCAL_WALL_START.Y + this.WALL_THICKNESS);
-		this.LOCAL_INTERIOR_END = new Vec2i(this.LOCAL_INTERIOR_START.X + this.INTERIOR_SIZE.X - 1,
-				this.LOCAL_INTERIOR_START.Y + this.INTERIOR_SIZE.Y - 1);
-		this.LOCAL_WALL_END = new Vec2i(this.LOCAL_INTERIOR_END.X + this.WALL_THICKNESS,
-				this.LOCAL_INTERIOR_END.Y + this.WALL_THICKNESS);
-		this.LOCAL_ROOM_AND_HALLWAY_END = new Vec2i(this.LOCAL_WALL_END.X + this.ROOM_HALLWAY_WIDTH,
-				this.LOCAL_WALL_END.Y + this.ROOM_HALLWAY_WIDTH);
-		int roomSizeX = this.ROOM_HALLWAY_WIDTH * 2 + this.WALL_THICKNESS * 2 + interiorXsize;
-		int roomSizeZ = this.ROOM_HALLWAY_WIDTH * 2 + this.WALL_THICKNESS * 2 + interiorZsize;
+		Vec2i interiorSize = regionData.interiorSize;
+		int roomSizeX = this.ROOM_HALLWAY_WIDTH * 2 + this.WALL_THICKNESS * 2 + interiorSize.X;
+		int roomSizeZ = this.ROOM_HALLWAY_WIDTH * 2 + this.WALL_THICKNESS * 2 + interiorSize.Y;
 		this.TOTAL_ROOM_SIZE = new Vec2i(roomSizeX, roomSizeZ);
-		this.GLOBAL_REGION_START = new Vec2i(superChunkCoords.X << 5, superChunkCoords.Y << 5);
-		this.GLOBAL_REGION_RECT_IN_BLOCKSPACE = new Rect(this.GLOBAL_REGION_START, this.REGION_SIZE_IN_BLOCKS);
+		this.GLOBAL_REGION_RECT_IN_BLOCKSPACE = regionData.globalRegionRectInBlockspace;
 		//////// find all exit rects
 		// get all superchunks orthagonally adjacent to here northward and westward
 		// convert to a Set of RoomKeys
@@ -149,9 +142,9 @@ public class Room
 		Set<RoomKey> adjacentKeys = new HashSet<RoomKey>(); // set of all rooms that touch this room's north and west
 															// borders
 		IntStream.range(0, key.regionSize.X).forEach(x -> adjacentKeys
-				.add(new RoomKey(x + superChunkCoords.X, superChunkCoords.Y - 1, key.y, key.worldSeed)));
+				.add(new RoomKey(x + this.SUPER_CHUNK_COORDS.X, this.SUPER_CHUNK_COORDS.Y - 1, key.y, key.worldSeed)));
 		IntStream.range(0, key.regionSize.Y).forEach(z -> adjacentKeys
-				.add(new RoomKey(superChunkCoords.X - 1, z + superChunkCoords.Y, key.y, key.worldSeed)));
+				.add(new RoomKey(this.SUPER_CHUNK_COORDS.X - 1, z + this.SUPER_CHUNK_COORDS.Y, key.y, key.worldSeed)));
 		// now we have all the rooms, so get the exits relevant to this room
 		adjacentKeys.stream().map(adjacentKey -> RoomCaches.EXITLOADER.getUnchecked(adjacentKey))
 				.map(adjacentRegion -> new ExitHallway(
@@ -205,10 +198,7 @@ public class Room
 				rand);
 		this.EXIT_RECTS.add(hallway); // also use this room's own
 																							// east/south exit
-		this.OFFSET_OF_ROOM_START = this.LOCAL_ROOM_AND_HALLWAY_START.add(this.GLOBAL_REGION_START);
-		this.ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE = new Rect(this.OFFSET_OF_ROOM_START,
-				new Vec2i(this.LOCAL_ROOM_AND_HALLWAY_END.X - this.LOCAL_ROOM_AND_HALLWAY_START.X,
-						this.LOCAL_ROOM_AND_HALLWAY_END.Y - this.LOCAL_ROOM_AND_HALLWAY_START.Y));
+		this.ROOM_HALLWAY_RECT_IN_GLOBAL_SPACE = regionData.globalRoomAndHallwayRect;
 
 		// create hallways between room and exits
 		for (ExitHallway exit : this.EXIT_RECTS)
@@ -240,7 +230,7 @@ public class Room
 		// deal with multiblock elements being generated across chunks
 		// alternatively, have the Room decide what Element to place in each rect ahead
 		// of time and have the placer
-		this.DUNGATURE_MAP = this.generateDungatureMap(this.getDungatureTable(), rand);
+		this.DUNGATURE_MAP = this.generateDungatureMap(this.getDungatureTable(), rand, key);
 		this.DOORWAY_MAP = this.generateDoorwayMap(this.getDoorwayTable(), rand);
 		this.STANDARD_BLOCK = this.generateStandardBlock(key, rand);
 		
@@ -364,11 +354,21 @@ public class Room
 //		}
 //	}
 
-	public Map<Rect, Dungature> generateDungatureMap(DungatureTable weightedTable, Random rand)
+	public Map<Rect, Dungature> generateDungatureMap(DungatureTable weightedTable, Random rand, RoomKey key)
 	{
 		Map<Rect, Dungature> map = new HashMap<>();
 		this.SUBDIVIDED_INTERIOR
-				.forEach(rect -> map.put(rect, weightedTable.next(rect.minSize(), rand).apply(new DungatureContext(rect, this, rand))));
+				.forEach(rect -> {
+					if (rand.nextDouble() < 0.1F && key.y > 0 && !RoomCaches.EXITLOADER.getUnchecked(new RoomKey(rect.START, key.y-1, key.worldSeed)).globalRoomAndHallwayRect.intersection(rect).equals(Rect.EMPTY_RECT))
+					{
+						map.put(rect, new DeepwellDungature());	// TODO add support for arbitrary interroom dungatures
+					}
+					else
+					{
+						map.put(rect, weightedTable.next(rect.minSize(), rand).apply(new DungatureContext(rect, this, rand)));
+					}
+					
+				});
 		return map;
 	}
 	
