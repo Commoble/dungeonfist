@@ -8,19 +8,26 @@ import com.github.commoble.dungeonfist.registry.ItemRegistrar;
 import com.github.commoble.dungeonfist.registry.ModDimensionRegistrar;
 import com.github.commoble.dungeonfist.registry.TileEntityTypeRegistrar;
 import com.github.commoble.dungeonfist.util.DungeonMaterialImporter;
+import com.github.commoble.dungeonfist.world.placement.CarcelithPlacement;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.ChunkGeneratorType;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.placement.IPlacementConfig;
+import net.minecraft.world.gen.placement.NoPlacementConfig;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 /**
@@ -76,6 +83,14 @@ public class CommonModEventHandler
 	public static void onCommonSetup(FMLCommonSetupEvent event)
 	{
 		DungeonMaterialImporter.importDungeonMaterialJson(DungeonFist.class);
+		
+		ConfiguredFeature<?> carcelithFeature = Biome.createDecoratedFeature(
+				FeatureRegistrar.CARCELITH,
+				IFeatureConfig.NO_FEATURE_CONFIG,
+				new CarcelithPlacement(NoPlacementConfig::deserialize),
+				IPlacementConfig.NO_PLACEMENT_CONFIG);
+		
+		ForgeRegistries.BIOMES.forEach(biome -> biome.addFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, carcelithFeature));
 	}
 
 	public static <T extends IForgeRegistryEntry<T>> Registrator<T> getRegistrator(RegistryEvent.Register<T> event)

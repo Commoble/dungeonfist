@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,6 +22,7 @@ import com.github.commoble.dungeonfist.world.dungature.DungatureTable;
 import com.github.commoble.dungeonfist.world.dungature.StandardDungatures;
 import com.github.commoble.dungeonfist.world.dungature.doorway.StandardDoorways;
 import com.github.commoble.dungeonfist.world.dungature.interfloor.StandardInterfloorDungatures;
+import com.github.commoble.dungeonfist.world.dungature.portal.StandardPortalDungatures;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.Direction;
@@ -81,6 +83,7 @@ public class Room
 	public final Map<Rect, Dungature> DUNGATURE_MAP;
 	public final Map<Rect, Dungature> DOORWAY_MAP;
 	public final Block STANDARD_BLOCK;
+	public final Optional<Vec2i> PORTAL_COORD;
 	/**
 	 */
 	public Room(RoomKey key)
@@ -119,6 +122,7 @@ public class Room
 		this.LOCAL_ROOM_AND_HALLWAY_END = regionData.localRoomAndHallwayEnd;
 		
 		this.OFFSET_OF_ROOM_START = regionData.globalRoomAndHallwayStart;
+		this.PORTAL_COORD = regionData.portalPos;
 		
 		
 		this.GLOBAL_WESTMOST_BLOCK = this.SUPER_CHUNK_COORDS.X << 5;
@@ -233,8 +237,9 @@ public class Room
 		DungatureTable interfloorDungatures = this.getInterfloorDungatureTable();
 		DungatureTable normalDungatures = this.getDungatureTable();
 		DungatureTable doorwayDungatures = this.getDoorwayTable();
+		DungatureTable portalDungatures = this.getPortalTable();
 		
-		this.DUNGATURE_MAP = this.generateDungatureMap(normalDungatures, interfloorDungatures, rand, key);
+		this.DUNGATURE_MAP = this.generateDungatureMap(normalDungatures, interfloorDungatures, portalDungatures, rand, key);
 		this.DOORWAY_MAP = this.generateDoorwayMap(doorwayDungatures, rand);
 		this.STANDARD_BLOCK = this.generateStandardBlock(key, rand);
 	}
@@ -268,6 +273,11 @@ public class Room
 	public DungatureTable getDoorwayTable()
 	{
 		return StandardDoorways.table;
+	}
+	
+	public DungatureTable getPortalTable()
+	{
+		return StandardPortalDungatures.table;
 	}
 
 	public Map<Rect, Dungature> generateDoorwayMap(DungatureTable table, Random rand)
@@ -362,13 +372,18 @@ public class Room
 //		}
 //	}
 
-	public Map<Rect, Dungature> generateDungatureMap(DungatureTable normalDungatures, DungatureTable interfloorDungatures, Random rand, RoomKey key)
+	public Map<Rect, Dungature> generateDungatureMap(DungatureTable normalDungatures, DungatureTable interfloorDungatures, DungatureTable portalDungatures, Random rand, RoomKey key)
 	{
 		Map<Rect, Dungature> map = new HashMap<>();
 		double interfloorDungatureChance = this.getInterfloorDungatureChance();
+		InterRegionData regionData = RoomCaches.EXITLOADER.getUnchecked(key);
 		this.SUBDIVIDED_INTERIOR
 				.forEach(rect -> {
-					if (rand.nextDouble() < interfloorDungatureChance && key.y > 0 && !RoomCaches.EXITLOADER.getUnchecked(new RoomKey(rect.START, key.y-1, key.worldSeed)).globalInteriorRect.intersection(rect).equals(Rect.EMPTY_RECT))
+					if (this.shouldRectHavePortal(rect, regionData))
+					{
+						map.put(rect, portalDungatures.next(rect.minSize(), rand).apply(new DungatureContext(rect, this, rand)));
+					}
+					else if (rand.nextDouble() < interfloorDungatureChance && key.y > 0 && !RoomCaches.EXITLOADER.getUnchecked(new RoomKey(rect.START, key.y-1, key.worldSeed)).globalInteriorRect.intersection(rect).equals(Rect.EMPTY_RECT))
 					{
 						map.put(rect, interfloorDungatures.next(rect.minSize(), rand).apply(new DungatureContext(rect, this, rand)));	// TODO add support for arbitrary interroom dungatures
 					}
@@ -379,6 +394,11 @@ public class Room
 					
 				});
 		return map;
+	}
+	
+	public boolean shouldRectHavePortal(Rect rect, InterRegionData data)
+	{	
+		return data.portalPos.map(rect::contains).orElse(false);
 	}
 	
 	public double getInterfloorDungatureChance()

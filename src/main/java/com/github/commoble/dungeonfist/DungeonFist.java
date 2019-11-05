@@ -35,4 +35,6 @@ public class DungeonFist
 	public static final String DUNGEON = "dungeon";
 	public static final String DUNGEON_PORTAL = "dungeon_portal";
 	public static final String DUNGEON_PORTAL_GLOWY_AIR = "dungeon_portal_glowy_air";
+	
+	public static final String CARCELITH = "carcelith";
 }

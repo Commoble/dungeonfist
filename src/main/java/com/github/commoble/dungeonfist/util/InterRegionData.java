@@ -1,7 +1,13 @@
 package com.github.commoble.dungeonfist.util;
 
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.IntStream;
+
+import com.github.commoble.dungeonfist.world.PortalPlacementRules;
+import com.github.commoble.dungeonfist.world.YLayerRules;
+
+import net.minecraft.util.math.ChunkPos;
 
 /**
  * Holds room data that may need to be accessed by other rooms
@@ -17,6 +23,8 @@ public class InterRegionData
 	public final int roomFloorLevel;	// y in worldspace - define this in here so rooms can check each other's floorlevels
 	public final int roomHeightSize;	// only reason this is here is because roomFloorLevel is dependant on it
 	public final boolean hasExitToLowerRegion;
+	public final Optional<Vec2i> portalPos;
+	public final Optional<ChunkPos> portalExitChunk;
 	
 	public final int roomHallwayWidth;
 	public final int wallThickness;
@@ -132,6 +140,7 @@ public class InterRegionData
 		this.localRoomAndHallwayEnd = new Vec2i(this.localWallEnd.X + this.roomHallwayWidth,
 				this.localWallEnd.Y + this.roomHallwayWidth);
 		
+		
 		this.globalRoomAndHallwayRect = new Rect(this.globalRoomAndHallwayStart,
 				new Vec2i(this.localRoomAndHallwayEnd.X - this.localRoomAndHallwayStart.X,
 						this.localRoomAndHallwayEnd.Y - this.localRoomAndHallwayStart.Y));
@@ -139,7 +148,27 @@ public class InterRegionData
 		Vec2i globalInteriorStart = this.localInteriorStart.add(this.globalRegionStart);
 		
 		this.globalInteriorRect = new Rect(globalInteriorStart, this.interiorSize);
+		
+		int portalX = globalInteriorStart.X + rand.nextInt(this.interiorSize.X);
+		int portalZ = globalInteriorStart.Y + rand.nextInt(this.interiorSize.Y);
+		if (key.y == YLayerRules.TOP_LAYER)
+		{
+			this.portalExitChunk = key.getOverworldChunks().stream()
+					.filter(chunkpos -> PortalPlacementRules.shouldPlaceInOverworld(key.worldSeed, chunkpos))
+					.findFirst();
+			
+			this.portalPos = this.portalExitChunk.map(foo -> new Vec2i(portalX, portalZ));
+		}
+		else
+		{
+			this.portalPos = Optional.empty();
+			this.portalExitChunk = Optional.empty();
+		}
+		
+			
 	}
+	
+	
 	
 	public IntStream getExitOffsets()
 	{

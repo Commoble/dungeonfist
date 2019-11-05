@@ -9,6 +9,6 @@ public class StandardInterfloorDungatures
 	
 	static
 	{
-		table.add(WeightingFunctions.constantWeight(100), context -> new DeepwellDungature());
+		table.add(WeightingFunctions.linearScaling(100), context -> new DeepwellDungature());
 	}
 }

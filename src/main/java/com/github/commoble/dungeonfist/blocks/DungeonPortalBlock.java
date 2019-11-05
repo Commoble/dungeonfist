@@ -3,8 +3,8 @@ package com.github.commoble.dungeonfist.blocks;
 import com.github.commoble.dungeonfist.registry.BlockRegistrar;
 import com.github.commoble.dungeonfist.registry.DimensionTypeRegistrar;
 import com.github.commoble.dungeonfist.registry.TileEntityTypeRegistrar;
-import com.github.commoble.dungeonfist.util.AreaGrid;
 import com.github.commoble.dungeonfist.world.DungeonTeleporter;
+import com.github.commoble.dungeonfist.world.PortalPlacementRules;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -125,12 +125,16 @@ public class DungeonPortalBlock extends Block
 			ServerPlayerEntity mpPlayer = (ServerPlayerEntity) player;
 			if (player.getRidingEntity() == null && !player.isBeingRidden())
 			{
-				if (world.dimension.getType().getId() == 0)
+				if (world.dimension.getType() == DimensionType.OVERWORLD)
 				{
-					DungeonTeleporter.teleportPlayer(mpPlayer, DimensionTypeRegistrar.getDungeonDimensionType(), pos);
-				} else
+					BlockPos dungeonPos = PortalPlacementRules.getDungeonPortalPosFromOverworldPos(world.getSeed(), pos);
+					
+					DungeonTeleporter.teleportPlayer(mpPlayer, DimensionTypeRegistrar.getDungeonDimensionType(), dungeonPos);
+				} else	// going form dungeon to overworld
 				{
-					DungeonTeleporter.teleportPlayer(mpPlayer, DimensionType.OVERWORLD, pos);
+					BlockPos overworldPos = PortalPlacementRules.getOverworldPortalPosFromDungeonPortalPos(world, pos);
+					
+					DungeonTeleporter.teleportPlayer(mpPlayer, DimensionType.OVERWORLD, overworldPos);
 				}
 				return true;
 			}
@@ -143,6 +147,7 @@ public class DungeonPortalBlock extends Block
 	 * MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids, INVISIBLE to
 	 * skip all rendering
 	 */
+	@Override
 	public BlockRenderType getRenderType(BlockState state)
 	{
 		return BlockRenderType.INVISIBLE;

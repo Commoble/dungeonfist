@@ -231,7 +231,7 @@ public class DungeonChunkGenerator extends NoiseChunkGenerator<DungeonGenSetting
 		int globalZStart = chunkpos.getZStart();
 		MutableBlockPos mutapos = new MutableBlockPos(0,0,0);
 		//BlockState state = Blocks.STONE_BRICKS.getDefaultState();
-		for (int yLayer=0; yLayer<5; yLayer++)
+		for (int yLayer=0; yLayer<YLayerRules.Y_LAYERS; yLayer++)
 		{
 //			ChunkPos dominantChunkPos = this.getRoom(chunkpos,y);
 //			Random superRand = new Random(dominantSuperChunkCoords.hashCode()*y);

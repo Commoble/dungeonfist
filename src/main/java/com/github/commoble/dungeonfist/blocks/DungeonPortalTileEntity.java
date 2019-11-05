@@ -37,14 +37,14 @@ public class DungeonPortalTileEntity extends TileEntity implements ITickableTile
 			// avoid zeros because they muck with multiplication
 			long value = this.world.getSeed();
 			if (value == 0L) value = 2L;
-			long xval = pos.getX();
-			value = value * xval + (7*pos.getY());
+			long xval = this.pos.getX();
+			value = value * xval + (7*this.pos.getY());
 			if (value == 0L) value = 2L;
 			long zval = ((long)this.pos.getZ() << 10L);
-			value = value * zval + (3*pos.getZ());
+			value = value * zval + (3*this.pos.getZ());
 			if (value == 0L) value = 2L;
 			long yval = ((long)this.pos.getY() << 20L);
-			value = value * yval + (5*pos.getY());
+			value = value * yval + (5*this.pos.getY());
 			this.id = new Long(value);
 		}
 		return this.id.longValue();
@@ -66,7 +66,7 @@ public class DungeonPortalTileEntity extends TileEntity implements ITickableTile
 	{
 		if (this.green == null)
 		{
-			this.green = new Float((float)(this.getID() * this.getID() * this.getID() % 107L) / 107F);
+			this.green = new Float(this.getID() * this.getID() * this.getID() % 107L / 107F);
 		}
 		return this.green.floatValue();
 	}
@@ -76,7 +76,7 @@ public class DungeonPortalTileEntity extends TileEntity implements ITickableTile
 	{
 		if (this.blue == null)
 		{
-			this.blue = new Float((float)(this.getID() * this.getID() * this.getID() * this.getID() % 107L) / 107F);
+			this.blue = new Float(this.getID() * this.getID() * this.getID() * this.getID() % 107L / 107F);
 		}
 		return this.blue.floatValue();
 	}
@@ -92,8 +92,8 @@ public class DungeonPortalTileEntity extends TileEntity implements ITickableTile
         	double playerZ = player.posZ;
         	
         	// get center of block; blockpos's world position is a corner of the block, add 0.5 to both coordinates
-        	double blockX = (double)pos.getX() + 0.5D;
-        	double blockZ = (double)pos.getZ() + 0.5D;
+        	double blockX = this.pos.getX() + 0.5D;
+        	double blockZ = this.pos.getZ() + 0.5D;
         	
         	double dZ = blockZ - playerZ;
         	double dX = blockX - playerX;
@@ -101,15 +101,15 @@ public class DungeonPortalTileEntity extends TileEntity implements ITickableTile
         	double angle = Math.atan2(dZ, dX) + (Math.PI * 0.5D);
         	
         	// generate a bunch of particles
-        	int pcount = world.rand.nextInt(40) + 30;
+        	int pcount = this.world.rand.nextInt(40) + 30;
         	for (int i=0; i<pcount; i++)
         	{
         		// generate particles in the 3-block column with this tile at the center
-        		double height = world.rand.nextDouble();
-        		double pY = -0.8D + height*2.6D + pos.getY();
+        		double height = this.world.rand.nextDouble();
+        		double pY = -0.8D + height*2.6D + this.pos.getY();
         		
         		// horizontal radius from center pole is based on height
-        		double radius = -3D*height*(height-1D) * (world.rand.nextDouble()-0.5D);
+        		double radius = -3D*height*(height-1D) * (this.world.rand.nextDouble()-0.5D);
         		// this causes max diameter to be 0 when height value is 0 or 1, and 0.75 when height is 0.5
         		// radius is now between -0.375 and 0.375
         		
@@ -121,11 +121,13 @@ public class DungeonPortalTileEntity extends TileEntity implements ITickableTile
         		
         		double vX = (blockX - pX) * 0.015D;
         		double vZ = (blockZ - pZ) * 0.015D;
-        		double vY = (pos.getY() + 1.5D - pY) * 0.015D;
+        		double vY = (this.pos.getY() + 1.5D - pY) * 0.015D;
         		
         		DungeonFist.clientProxy.ifPresent(proxy -> proxy.spawnDungeonPortalParticle(this.world, pX, pY, pZ, vX, vY, vZ,
         				this.getParticleRed(), this.getParticleGreen(), this.getParticleBlue()));
         	}
     	}
 	}
+	
+	
 }

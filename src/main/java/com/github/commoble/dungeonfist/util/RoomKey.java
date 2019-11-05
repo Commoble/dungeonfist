@@ -1,6 +1,8 @@
 package com.github.commoble.dungeonfist.util;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -78,6 +80,25 @@ public class RoomKey
 	public int getWorldspaceBaseY()
 	{
 		return this.y*50 + 10;
+	}
+	
+	public Set<ChunkPos> getOverworldChunks()
+	{
+		Set<ChunkPos> set = new HashSet<>();
+		for (int x = 0; x < this.regionSize.X; x++)
+		{
+			for (int z = 0; z < this.regionSize.Y; z++)
+			{
+				int regionX = this.superChunkCoords.X + x;
+				int regionZ = this.superChunkCoords.Y + z;
+				
+				int overworldChunkX = regionX >> 3;
+				int overworldChunkZ = regionZ >> 3;
+				
+				set.add(new ChunkPos(overworldChunkX, overworldChunkZ));
+			}
+		}
+		return set;
 	}
 	
 	/**

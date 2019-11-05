@@ -1,29 +1,29 @@
 package com.github.commoble.dungeonfist.registry;
 
+import com.github.commoble.dungeonfist.DungeonFist;
 import com.github.commoble.dungeonfist.Registrator;
-import com.github.commoble.dungeonfist.world.feature.DungeonPortalFeature;
-import com.github.commoble.dungeonfist.world.placement.DungeonPortalPlacement;
+import com.github.commoble.dungeonfist.world.feature.CarcelithFeature;
 
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.placement.IPlacementConfig;
-import net.minecraft.world.gen.placement.NoPlacementConfig;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.ObjectHolder;
 
+@ObjectHolder(DungeonFist.MODID)
 public class FeatureRegistrar
 {
+	@ObjectHolder(DungeonFist.CARCELITH)
+	public static final Feature<NoFeatureConfig> CARCELITH = null;
+	
 	public static void registerFeatures(Registrator<Feature<?>> reg)
 	{
-		ConfiguredFeature<?> portalFeature = Biome.createDecoratedFeature(
-				new DungeonPortalFeature(NoFeatureConfig::deserialize),
-				IFeatureConfig.NO_FEATURE_CONFIG,
-				new DungeonPortalPlacement(NoPlacementConfig::deserialize),
-				IPlacementConfig.NO_PLACEMENT_CONFIG);
+//		ConfiguredFeature<?> portalFeature = Biome.createDecoratedFeature(
+//				new DungeonPortalFeature(NoFeatureConfig::deserialize),
+//				IFeatureConfig.NO_FEATURE_CONFIG,
+//				new DungeonPortalPlacement(NoPlacementConfig::deserialize),
+//				IPlacementConfig.NO_PLACEMENT_CONFIG);
 		
-		ForgeRegistries.BIOMES.forEach(biome -> biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, portalFeature));
+		reg.register(DungeonFist.CARCELITH, new CarcelithFeature(NoFeatureConfig::deserialize));
+		
+//		ForgeRegistries.BIOMES.forEach(biome -> biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, portalFeature));
 	}
 }
