@@ -10,10 +10,9 @@ import net.minecraft.world.server.ServerWorld;
 
 public class DungeonTeleporter
 {
-	public static void teleportPlayer(ServerPlayerEntity player, DimensionType destinationType, BlockPos entryPortalPos)
+	public static void teleportPlayer(ServerPlayerEntity player, DimensionType destinationType, BlockPos destinationPos)
 	{
 		ServerWorld nextWorld = player.getServer().getWorld(destinationType);
-		BlockPos destinationPos = getDestination(entryPortalPos, destinationType);
 		nextWorld.getChunk(destinationPos);	// can't remember why this is here, I think it's to make sure the chunk is loaded
 		BlockPos existingPortalPos = getExistingPortal(destinationPos, nextWorld);
 		if (existingPortalPos == null)

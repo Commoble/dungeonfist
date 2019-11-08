@@ -1,0 +1,27 @@
+{
+	"type": "minecraft:generic",
+	"pools":
+	[
+		{
+			"rolls": 1,
+			"entries":
+			[
+				{
+					"type": "minecraft:item",
+					"weight": 25,
+					"name": "minecraft:potion"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 5,
+					"name": "minecraft:splash_potion"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1,
+					"name": "minecraft:lingering_potion"
+				}
+			]
+		}
+	]
+}

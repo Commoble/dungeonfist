@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @EventBusSubscriber(modid=DungeonFist.MODID, bus=Bus.FORGE)
 public class CommonForgeEventHandler
-{	
+{		
 	@SubscribeEvent
 	public static void onRegisterDimensionsEvent(RegisterDimensionsEvent event)
 	{

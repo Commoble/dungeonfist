@@ -1,0 +1,456 @@
+{
+	"type": "minecraft:generic",
+	"pools":
+	[
+		{
+			"rolls": 1,
+			"entries":
+			[
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 30,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:night_vision\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 9,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:long_night_vision\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 10,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:invisibility\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 3,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:long_invisibility\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 30,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:leaping\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 3,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:strong_leaping\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 9,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:long_leaping\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 30,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:fire_resistance\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 9,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:long_fire_resistance\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 30,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:swiftness\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 3,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:strong_swiftness\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 9,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:long_swiftness\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 30,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:slowness\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 3,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:strong_slowness\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 9,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:long_slowness\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 30,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:water_breathing\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 9,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:long_water_breathing\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 30,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:healing\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 3,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:strong_healing\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 20,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:harming\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 2,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:strong_harming\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 20,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:poison\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 2,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:strong_poison\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 6,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:long_poison\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 10,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:regeneration\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 1,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:strong_regeneration\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 3,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:long_regeneration\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 20,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:strength\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 2,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:strong_strength\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 6,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:long_strength\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 30,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:weakness\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 9,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:long_weakness\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 30,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:turtle_master\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 3,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:strong_turtle_master\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 9,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:long_turtle_master\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 30,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:slow_falling\"}"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 9,
+					"functions":
+					[
+						{
+							"function": "minecraft:set_nbt",
+							"tag": "{Potion:\"minecraft:long_slow_falling\"}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

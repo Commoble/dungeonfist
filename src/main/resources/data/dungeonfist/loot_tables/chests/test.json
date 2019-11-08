@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:chest",
+	"pools": 
+	[
+		{
+			"rolls": 
+			{
+				"min": 20,
+				"max": 26,
+				"type": "minecraft:uniform"
+			},
+			"entries": 
+			[
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potions",
+					"weight": 1
+				}
+			]
+		}
+	]
+}
