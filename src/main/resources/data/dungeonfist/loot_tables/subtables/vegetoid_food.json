@@ -1,0 +1,182 @@
+{
+	"type": "minecraft:generic",
+	"pools": 
+	[
+		{
+			"rolls": 1,
+			"entries": 
+			[
+				{
+					"type": "minecraft:item",
+					"weight": 24,
+					"functions": 
+					[
+						{
+							"function": "minecraft:set_count",
+							"count": 
+							{
+								"min": 1,
+								"max": 4,
+								"type": "minecraft:uniform"
+							}
+						}
+					],
+					"name": "minecraft:apple"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 24,
+					"functions": 
+					[
+						{
+							"function": "minecraft:set_count",
+							"count": 
+							{
+								"min": 1,
+								"max": 8,
+								"type": "minecraft:uniform"
+							}
+						}
+					],
+					"name": "minecraft:melon_slice"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 24,
+					"functions": 
+					[
+						{
+							"function": "minecraft:set_count",
+							"count": 
+							{
+								"min": 1,
+								"max": 4,
+								"type": "minecraft:uniform"
+							}
+						}
+					],
+					"name": "minecraft:potato"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1,
+					"functions": 
+					[
+						{
+							"function": "minecraft:set_count",
+							"count": 
+							{
+								"min": 1,
+								"max": 8,
+								"type": "minecraft:uniform"
+							}
+						}
+					],
+					"name": "minecraft:sweet_berries"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 24,
+					"functions": 
+					[
+						{
+							"function": "minecraft:set_count",
+							"count": 
+							{
+								"min": 1,
+								"max": 6,
+								"type": "minecraft:uniform"
+							}
+						}
+					],
+					"name": "minecraft:wheat"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 24,
+					"functions": 
+					[
+						{
+							"function": "minecraft:set_count",
+							"count": 
+							{
+								"min": 1,
+								"max": 6,
+								"type": "minecraft:uniform"
+							}
+						}
+					],
+					"name": "minecraft:carrot"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 6,
+					"functions": 
+					[
+						{
+							"function": "minecraft:set_count",
+							"count": 
+							{
+								"min": 1,
+								"max": 4,
+								"type": "minecraft:uniform"
+							}
+						}
+					],
+					"name": "minecraft:beetroot"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1,
+					"functions": 
+					[
+						{
+							"function": "minecraft:set_count",
+							"count": 
+							{
+								"min": 1,
+								"max": 12,
+								"type": "minecraft:uniform"
+							}
+						}
+					],
+					"name": "minecraft:dried_kelp"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1,
+					"functions": 
+					[
+						{
+							"function": "minecraft:set_count",
+							"count": 
+							{
+								"min": 1,
+								"max": 6,
+								"type": "minecraft:uniform"
+							}
+						}
+					],
+					"name": "minecraft:melon"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1,
+					"functions": 
+					[
+						{
+							"function": "minecraft:set_count",
+							"count": 
+							{
+								"min": 1,
+								"max": 6,
+								"type": "minecraft:uniform"
+							}
+						}
+					],
+					"name": "minecraft:pumpkin"
+				}
+			]
+		}
+	]
+}

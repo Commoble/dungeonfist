@@ -5,15 +5,15 @@
 		{
 			"rolls": 
 			{
-				"min": 20,
-				"max": 26,
+				"min": 3,
+				"max": 10,
 				"type": "minecraft:uniform"
 			},
 			"entries": 
 			[
 				{
 					"type": "minecraft:loot_table",
-					"name": "dungeonfist:subtables/potions",
+					"name": "dungeonfist:subtables/vegetoid_food",
 					"weight": 1
 				}
 			]
