@@ -1,0 +1,27 @@
+{
+	"type": "minecraft:generic",
+	"pools":
+	[
+		{
+			"rolls": 1,
+			"entries":
+			[
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/food",
+					"weight": 10
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/tools",
+					"weight": 10
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/potions",
+					"weight": 5
+				}
+			]
+		}
+	]
+}

@@ -13,7 +13,7 @@
 			[
 				{
 					"type": "minecraft:loot_table",
-					"name": "dungeonfist:subtables/vegetoid_food",
+					"name": "dungeonfist:subtables/mob_drops",
 					"weight": 1
 				}
 			]
