@@ -1,22 +1,32 @@
 {
-	"type": "minecraft:chest",
-	"pools": 
-	[
-		{
-			"rolls": 
-			{
-				"min": 3,
-				"max": 10,
-				"type": "minecraft:uniform"
-			},
-			"entries": 
-			[
-				{
-					"type": "minecraft:loot_table",
-					"name": "dungeonfist:subtables/mob_drops",
-					"weight": 1
-				}
-			]
-		}
-	]
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 3.0,
+        "max": 10.0,
+        "type": "minecraft:uniform"
+      },
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "functions": [
+            {
+              "function": "dungeonfist:apply_functions_if_item_has_tag",
+              "tag": "dungeonfist:wooden_tools",
+              "functions": [
+                {
+                  "function": "minecraft:set_name",
+                  "name": {
+                    "text": "Yep, it's wood"
+                  }
+                }
+              ]
+            }
+          ],
+          "name": "dungeonfist:subtables/enchanted_weapons"
+        }
+      ]
+    }
+  ]
 }
