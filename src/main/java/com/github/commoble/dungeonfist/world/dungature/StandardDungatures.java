@@ -1,6 +1,6 @@
 package com.github.commoble.dungeonfist.world.dungature;
 
-import com.github.commoble.dungeonfist.DungeonLootTables;
+import com.github.commoble.dungeonfist.data.loot.DungeonLootTables;
 import com.github.commoble.dungeonfist.util.BlockCollections;
 import com.github.commoble.dungeonfist.util.CollectionHelper;
 

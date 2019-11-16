@@ -2,6 +2,7 @@ package com.github.commoble.dungeonfist;
 
 import java.util.Optional;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -10,6 +11,12 @@ import net.minecraftforge.fml.common.Mod;
 public class DungeonFist
 {	
 	public static final String MODID = "dungeonfist";
+	
+	public static ResourceLocation getResourceLocation(String name)
+	{
+		return new ResourceLocation(MODID, name);
+	}
+	
 	public static Optional<ClientProxy> clientProxy = Optional.ofNullable(DistExecutor.callWhenOn(Dist.CLIENT, () -> ClientProxy::new));
 	
 	// object names
