@@ -2,6 +2,7 @@ package com.github.commoble.dungeonfist;
 
 import com.github.commoble.dungeonfist.data.generated.DungeonLootTableProvider;
 import com.github.commoble.dungeonfist.data.loot.ApplyFunctionsIfItemHasTag;
+import com.github.commoble.dungeonfist.data.loot.ImproveNameBasedOnEnchantments;
 import com.github.commoble.dungeonfist.registry.BiomeRegistrar;
 import com.github.commoble.dungeonfist.registry.BlockRegistrar;
 import com.github.commoble.dungeonfist.registry.ChunkGeneratorTypeRegistrar;
@@ -97,6 +98,7 @@ public class CommonModEventHandler
 		ForgeRegistries.BIOMES.forEach(biome -> biome.addFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, carcelithFeature));
 		
 		LootFunctionManager.registerFunction(new ApplyFunctionsIfItemHasTag.Serializer());
+		LootFunctionManager.registerFunction(ImproveNameBasedOnEnchantments.SERIALIZER);
 	}
 	
 	// this event only fires when you use runData
@@ -113,6 +115,7 @@ public class CommonModEventHandler
 		
 		// register custom loot table functions/conditions
 		LootFunctionManager.registerFunction(new ApplyFunctionsIfItemHasTag.Serializer());
+		LootFunctionManager.registerFunction(ImproveNameBasedOnEnchantments.SERIALIZER);
 		
 		// add loot table generators
 		event.getGenerator().addProvider(new DungeonLootTableProvider(event.getGenerator()));

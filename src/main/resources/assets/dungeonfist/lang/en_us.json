@@ -179,13 +179,13 @@
 	"enchantment.minecraft.smite.suffix.4": "of Banishing",
 	"enchantment.minecraft.smite.suffix.5": "of Annihilating",
 	
-	"enchantment.minecraft.sweeping_edge.prefix.1": "Broad",
-	"enchantment.minecraft.sweeping_edge.prefix.2": "Sweeping",
-	"enchantment.minecraft.sweeping_edge.prefix.3": "Cleaving",
+	"enchantment.minecraft.sweeping.prefix.1": "Broad",
+	"enchantment.minecraft.sweeping.prefix.2": "Sweeping",
+	"enchantment.minecraft.sweeping.prefix.3": "Cleaving",
 	
-	"enchantment.minecraft.sweeping_edge.suffix.1": "of Sweeping",
-	"enchantment.minecraft.sweeping_edge.suffix.2": "of Cleaving",
-	"enchantment.minecraft.sweeping_edge.suffix.3": "of Mass Destruction",
+	"enchantment.minecraft.sweeping.suffix.1": "of Sweeping",
+	"enchantment.minecraft.sweeping.suffix.2": "of Cleaving",
+	"enchantment.minecraft.sweeping.suffix.3": "of Mass Destruction",
 	
 	"enchantment.minecraft.aqua_affinity.prefix.1": "Unquenchable",
 	"enchantment.minecraft.aqua_affinity.suffix.1": "of the Merrow",
@@ -277,7 +277,7 @@
 	
 	"enchantment.minecraft.unbreaking.suffix.1": "of Sturdiness",
 	"enchantment.minecraft.unbreaking.suffix.2": "of Resilience",
-	"enchantment.minecraft.unbreaking.suffix.3": "of Fortitude",
+	"enchantment.minecraft.unbreaking.suffix.3": "of Fortitude"
 	
 	
 }

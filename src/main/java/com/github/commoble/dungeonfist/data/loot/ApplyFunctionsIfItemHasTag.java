@@ -30,9 +30,6 @@ import net.minecraft.world.storage.loot.functions.SetName;
 // unfortunately, loot conditions can't observe the itemstack itself, so we have to write the condition as a loot function instead
 public class ApplyFunctionsIfItemHasTag extends LootFunction
 {
-	// define some strings to reduce typos where we need to use them more than once
-	public static final ResourceLocation RESOURCE_LOCATION = new ResourceLocation(
-			"dungeonfist:apply_functions_if_item_has_tag");
 	public static final String TAG_KEY = "tag";
 	public static final String FUNCTIONS_KEY = "functions";
 
@@ -89,7 +86,7 @@ public class ApplyFunctionsIfItemHasTag extends LootFunction
 	{
 		public Serializer()
 		{
-			super(RESOURCE_LOCATION, ApplyFunctionsIfItemHasTag.class);
+			super(DungeonLootTables.APPLY_FUNCTIONS_IF_ITEM_HAS_TAG, ApplyFunctionsIfItemHasTag.class);
 		}
 
 		// writing to json is very similar to writing to NBT
