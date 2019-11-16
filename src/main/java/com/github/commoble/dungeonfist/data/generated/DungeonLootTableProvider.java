@@ -1,4 +1,4 @@
-package com.github.commoble.dungeonfist.data.loot;
+package com.github.commoble.dungeonfist.data.generated;
 
 import java.util.List;
 import java.util.Map;

@@ -1,9 +1,10 @@
-package com.github.commoble.dungeonfist.data.loot;
+package com.github.commoble.dungeonfist.data.generated;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import com.github.commoble.dungeonfist.DungeonFist;
+import com.github.commoble.dungeonfist.data.loot.ApplyFunctionsIfItemHasTag;
 
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;

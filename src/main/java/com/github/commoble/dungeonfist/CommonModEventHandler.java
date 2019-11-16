@@ -1,7 +1,7 @@
 package com.github.commoble.dungeonfist;
 
+import com.github.commoble.dungeonfist.data.generated.DungeonLootTableProvider;
 import com.github.commoble.dungeonfist.data.loot.ApplyFunctionsIfItemHasTag;
-import com.github.commoble.dungeonfist.data.loot.DungeonLootTableProvider;
 import com.github.commoble.dungeonfist.registry.BiomeRegistrar;
 import com.github.commoble.dungeonfist.registry.BlockRegistrar;
 import com.github.commoble.dungeonfist.registry.ChunkGeneratorTypeRegistrar;
