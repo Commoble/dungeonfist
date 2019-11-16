@@ -1,0 +1,275 @@
+{
+	"enchantment.minecraft.bane_of_arthropods.prefix.1": "Stinging",
+	"enchantment.minecraft.bane_of_arthropods.prefix.2": "Swatting",
+	"enchantment.minecraft.bane_of_arthropods.prefix.3": "Debugging",
+	"enchantment.minecraft.bane_of_arthropods.prefix.4": "Eradicating",
+	"enchantment.minecraft.bane_of_arthropods.prefix.5": "Exterminating",
+	
+	"enchantment.minecraft.bane_of_arthropods.suffix.1": "of Stinging",
+	"enchantment.minecraft.bane_of_arthropods.suffix.2": "of Swatting",
+	"enchantment.minecraft.bane_of_arthropods.suffix.3": "of Debugging",
+	"enchantment.minecraft.bane_of_arthropods.suffix.4": "of Eradication",
+	"enchantment.minecraft.bane_of_arthropods.suffix.5": "of Extermination",
+	
+	"enchantment.minecraft.channeling.prefix.1": "Channeling",
+	"enchantment.minecraft.channeling.suffix.1": "of Thunder",
+	
+	"enchantment.minecraft.vanishing_curse.prefix.1": "Vanishing",
+	"enchantment.minecraft.vanishing_curse.suffix.1": "of Disloyalty",
+	
+	"enchantment.minecraft.binding_curse.prefix.1": "Binding",
+	"enchantment.minecraft.binding_curse.suffix.1": "of Clinging",
+	
+	"enchantment.minecraft.efficiency.prefix.1": "Fine",
+	"enchantment.minecraft.efficiency.prefix.2": "Splendid",
+	"enchantment.minecraft.efficiency.prefix.3": "Excellent",
+	"enchantment.minecraft.efficiency.prefix.4": "Magnificent",
+	"enchantment.minecraft.efficiency.prefix.5": "Glorious",
+	
+	"enchantment.minecraft.efficiency.suffix.1": "of the Apprentice",
+	"enchantment.minecraft.efficiency.suffix.2": "of the Journeyman",
+	"enchantment.minecraft.efficiency.suffix.3": "of the Adept",
+	"enchantment.minecraft.efficiency.suffix.4": "of the Master",
+	"enchantment.minecraft.efficiency.suffix.5": "of the Grandmaster",
+	
+	"enchantment.minecraft.fire_aspect.prefix.1": "Fiery",
+	"enchantment.minecraft.fire_aspect.prefix.2": "Fire Demon's",
+	"enchantment.minecraft.fire_aspect.suffix.1": "of Fire",
+	"enchantment.minecraft.fire_aspect.suffix.2": "of the Inferno",
+	
+	"enchantment.minecraft.flame.prefix.1": "Flaming",
+	"enchantment.minecraft.flame.suffix.1": "of Flame",
+	
+	"enchantment.minecraft.fortune.prefix.1": "Fortuitous",
+	"enchantment.minecraft.fortune.prefix.2": "Bountiful",
+	"enchantment.minecraft.fortune.prefix.3": "Magnanimous",
+	
+	"enchantment.minecraft.fortune.suffix.1": "of Plenty",
+	"enchantment.minecraft.fortune.suffix.2": "of Bounty",
+	"enchantment.minecraft.fortune.suffix.3": "of the Harvest",
+	
+	"enchantment.minecraft.impaling.prefix.1": "Spiking",
+	"enchantment.minecraft.impaling.prefix.2": "Stabbing",
+	"enchantment.minecraft.impaling.prefix.3": "Spearing",
+	"enchantment.minecraft.impaling.prefix.4": "Skewering",
+	"enchantment.minecraft.impaling.prefix.5": "Shishkebabbing",
+	
+	"enchantment.minecraft.impaling.suffix.1": "of Poking",
+	"enchantment.minecraft.impaling.suffix.2": "of Puncturing",
+	"enchantment.minecraft.impaling.suffix.3": "of Perforating",
+	"enchantment.minecraft.impaling.suffix.4": "of Piercing",
+	"enchantment.minecraft.impaling.suffix.5": "of Impaling",
+	
+	"enchantment.minecraft.infinity.prefix.1": "Unrelenting",
+	"enchantment.minecraft.infinity.suffix.1": "of Infinity",
+	
+	"enchantment.minecraft.knockback.prefix.1": "Fending",
+	"enchantment.minecraft.knockback.prefix.2": "Repelling",
+	"enchantment.minecraft.knockback.prefix.3": "Defenestrating",
+	
+	"enchantment.minecraft.knockback.suffix.1": "of the Stag",
+	"enchantment.minecraft.knockback.suffix.2": "of the Rhino",
+	"enchantment.minecraft.knockback.suffix.3": "of the Elephant",
+	
+	"enchantment.minecraft.looting.prefix.1": "Mugging",
+	"enchantment.minecraft.looting.prefix.2": "Raiding",
+	"enchantment.minecraft.looting.prefix.3": "Pillaging",
+	
+	"enchantment.minecraft.looting.suffix.1": "of the Mugger",
+	"enchantment.minecraft.looting.suffix.2": "of the Raider",
+	"enchantment.minecraft.looting.suffix.3": "of the Pillager",
+	
+	"enchantment.minecraft.luck_of_the_sea.prefix.1": "Retrieving",
+	"enchantment.minecraft.luck_of_the_sea.prefix.2": "Redeeming",
+	"enchantment.minecraft.luck_of_the_sea.prefix.3": "Salvaging",
+	
+	"enchantment.minecraft.luck_of_the_sea.suffix.1": "of the Ocean Lord",
+	"enchantment.minecraft.luck_of_the_sea.suffix.2": "of the Ocean Prince",
+	"enchantment.minecraft.luck_of_the_sea.suffix.3": "of the Ocean God",
+	
+	"enchantment.minecraft.lure.prefix.1": "Tempting",
+	"enchantment.minecraft.lure.prefix.2": "Enticing",
+	"enchantment.minecraft.lure.prefix.3": "Fascinating",
+	
+	"enchantment.minecraft.lure.suffix.1": "of the Naiad",
+	"enchantment.minecraft.lure.suffix.2": "of the Mermaid",
+	"enchantment.minecraft.lure.suffix.3": "of the Siren",
+	
+	"enchantment.minecraft.mending.prefix.1": "Immortal",
+	"enchantment.minecraft.mending.suffix.1": "of Mending",
+	
+	"enchantment.minecraft.multishot.prefix.1": "Triplicating",
+	"enchantment.minecraft.multishot.suffix.1": "of the Hydra",
+	
+	"enchantment.minecraft.piercing.prefix.1": "Unblockable",
+	"enchantment.minecraft.piercing.prefix.2": "Undeterrable",
+	"enchantment.minecraft.piercing.prefix.3": "Unimpedable",
+	"enchantment.minecraft.piercing.prefix.4": "Unstoppable",
+	
+	"enchantment.minecraft.piercing.suffix.1": "of Ripping",
+	"enchantment.minecraft.piercing.suffix.2": "of Tearing",
+	"enchantment.minecraft.piercing.suffix.3": "of Gashing",
+	"enchantment.minecraft.piercing.suffix.4": "of Goring",
+	
+	"enchantment.minecraft.power.prefix.1": "Great",
+	"enchantment.minecraft.power.prefix.2": "Strong",
+	"enchantment.minecraft.power.prefix.3": "Powerful",
+	"enchantment.minecraft.power.prefix.4": "Mighty",
+	"enchantment.minecraft.power.prefix.5": "Herculean",
+	
+	"enchantment.minecraft.power.suffix.1": "of Oomph",
+	"enchantment.minecraft.power.suffix.2": "of Oooomph",
+	"enchantment.minecraft.power.suffix.3": "of Oooooomph",
+	"enchantment.minecraft.power.suffix.4": "of Oooooooomph",
+	"enchantment.minecraft.power.suffix.5": "of Oooooooooomph",
+	
+	"enchantment.minecraft.punch.prefix.1": "Punching",
+	"enchantment.minecraft.punch.prefix.2": "Facebreaking",
+	"enchantment.minecraft.punch.suffix.1": "of the Bee",
+	"enchantment.minecraft.punch.suffix.2": "of the Boxer",
+	
+	"enchantment.minecraft.quick_charge.prefix.1": "Quick-Loading",
+	"enchantment.minecraft.quick_charge.prefix.2": "Mechanical",
+	"enchantment.minecraft.quick_charge.prefix.3": "Full-Auto",
+	
+	"enchantment.minecraft.quick_charge.suffix.1": "of Haste",
+	"enchantment.minecraft.quick_charge.suffix.2": "of Impatience",
+	"enchantment.minecraft.quick_charge.suffix.3": "of Urgency",
+	
+	"enchantment.minecraft.riptide.prefix.1": "Swift",
+	"enchantment.minecraft.riptide.prefix.2": "Tidal",
+	"enchantment.minecraft.riptide.prefix.3": "Ripping",
+	
+	"enchantment.minecraft.riptide.suffix.1": "of the Barracuda",
+	"enchantment.minecraft.riptide.suffix.2": "of the Shark",
+	"enchantment.minecraft.riptide.suffix.3": "of the Orca",
+	
+	"enchantment.minecraft.sharpness.prefix.1": "Polished",
+	"enchantment.minecraft.sharpness.prefix.2": "Sharpened",
+	"enchantment.minecraft.sharpness.prefix.3": "Serrated",
+	"enchantment.minecraft.sharpness.prefix.4": "Vicious",
+	"enchantment.minecraft.sharpness.prefix.5": "Deadly",
+	
+	"enchantment.minecraft.sharpness.suffix.1": "of Cutting",
+	"enchantment.minecraft.sharpness.suffix.2": "of Wounding",
+	"enchantment.minecraft.sharpness.suffix.3": "of Maiming",
+	"enchantment.minecraft.sharpness.suffix.4": "of Slaying",
+	"enchantment.minecraft.sharpness.suffix.5": "of Executing",
+	
+	"enchantment.minecraft.silk_touch.prefix.1": "Undeniable",
+	"enchantment.minecraft.silk_touch.suffix.1": "of Silk",
+	
+	"enchantment.minecraft.smite.prefix.1": "Blessed",
+	"enchantment.minecraft.smite.prefix.2": "Consecrated",
+	"enchantment.minecraft.smite.prefix.3": "Holy",
+	"enchantment.minecraft.smite.prefix.4": "Sacred",
+	"enchantment.minecraft.smite.prefix.5": "Divine",
+	
+	"enchantment.minecraft.smite.suffix.1": "of Turning",
+	"enchantment.minecraft.smite.suffix.2": "of Repelling",
+	"enchantment.minecraft.smite.suffix.3": "of Expelling",
+	"enchantment.minecraft.smite.suffix.4": "of Banishing",
+	"enchantment.minecraft.smite.suffix.5": "of Annihilating",
+	
+	"enchantment.minecraft.sweeping_edge.prefix.1": "Broad",
+	"enchantment.minecraft.sweeping_edge.prefix.2": "Sweeping",
+	"enchantment.minecraft.sweeping_edge.prefix.3": "Cleaving",
+	
+	"enchantment.minecraft.sweeping_edge.suffix.1": "of Sweeping",
+	"enchantment.minecraft.sweeping_edge.suffix.2": "of Cleaving",
+	"enchantment.minecraft.sweeping_edge.suffix.3": "of Mass Destruction",
+	
+	"enchantment.minecraft.aqua_affinity.prefix.1": "Unquenchable",
+	"enchantment.minecraft.aqua_affinity.suffix.1": "of the Merrow",
+	
+	"enchantment.minecraft.blast_protection.prefix.1": "Bangproof",
+	"enchantment.minecraft.blast_protection.prefix.2": "Bombproof",
+	"enchantment.minecraft.blast_protection.prefix.3": "Boomproof",
+	"enchantment.minecraft.blast_protection.prefix.4": "Kaboomproof",
+	
+	"enchantment.minecraft.blast_protection.suffix.1": "of Minor Blast Resistance",
+	"enchantment.minecraft.blast_protection.suffix.2": "of Moderate Blast Resistance",
+	"enchantment.minecraft.blast_protection.suffix.3": "of Major Blast Resistance",
+	"enchantment.minecraft.blast_protection.suffix.4": "of Massive Blast Resistance",
+	
+	"enchantment.minecraft.depth_strider.prefix.1": "Seahorse's",
+	"enchantment.minecraft.depth_strider.prefix.2": "Hippopotamus's",
+	"enchantment.minecraft.depth_strider.prefix.3": "Kelpie's",
+	
+	"enchantment.minecraft.depth_strider.suffix.1": "of Deep Striding",
+	"enchantment.minecraft.depth_strider.suffix.2": "of Deeper Striding",
+	"enchantment.minecraft.depth_strider.suffix.3": "of Deepest Striding",
+	
+	"enchantment.minecraft.feather_falling.prefix.1": "Light",
+	"enchantment.minecraft.feather_falling.prefix.2": "Weightless",
+	"enchantment.minecraft.feather_falling.prefix.3": "Angelic",
+	"enchantment.minecraft.feather_falling.prefix.4": "Seraphic",
+	
+	"enchantment.minecraft.feather_falling.suffix.1": "of Minor Ground Resistance",
+	"enchantment.minecraft.feather_falling.suffix.2": "of Moderate Ground Resistance",
+	"enchantment.minecraft.feather_falling.suffix.3": "of Major Ground Resistance",
+	"enchantment.minecraft.feather_falling.suffix.4": "of Massive Ground Resistance",
+	
+	"enchantment.minecraft.fire_protection.prefix.1": "Heatproof",
+	"enchantment.minecraft.fire_protection.prefix.2": "Fireproof",
+	"enchantment.minecraft.fire_protection.prefix.3": "Lavaproof",
+	"enchantment.minecraft.fire_protection.prefix.4": "Magmaproof",
+	
+	"enchantment.minecraft.fire_protection.suffix.1": "of Minor Flame Resistance",
+	"enchantment.minecraft.fire_protection.suffix.2": "of Moderate Flame Resistance",
+	"enchantment.minecraft.fire_protection.suffix.3": "of Major Flame Resistance",
+	"enchantment.minecraft.fire_protection.suffix.4": "of Massive Flame Resistance",
+	
+	"enchantment.minecraft.frost_walker.prefix.1": "Frost Walker's",
+	"enchantment.minecraft.frost_walker.prefix.2": "Ice Strider's",
+	"enchantment.minecraft.frost_walker.suffix.1": "of Frost Walking",
+	"enchantment.minecraft.frost_walker.suffix.2": "of Ice Striding",
+	
+	"enchantment.minecraft.projectile_protection.prefix.1": "Slingproof",
+	"enchantment.minecraft.projectile_protection.prefix.2": "Arrowproof",
+	"enchantment.minecraft.projectile_protection.prefix.3": "Bulletproof",
+	"enchantment.minecraft.projectile_protection.prefix.4": "Cannonproof",
+	
+	"enchantment.minecraft.projectile_protection.suffix.1": "of Minor Projectile Resistance",
+	"enchantment.minecraft.projectile_protection.suffix.2": "of Moderate Projectile Resistance",
+	"enchantment.minecraft.projectile_protection.suffix.3": "of Major Projectile Resistance",
+	"enchantment.minecraft.projectile_protection.suffix.4": "of Massive Projectile Resistance",
+	
+	"enchantment.minecraft.protection.prefix.1": "Impressive",
+	"enchantment.minecraft.protection.prefix.2": "Impeccable",
+	"enchantment.minecraft.protection.prefix.3": "Impenetrable",
+	"enchantment.minecraft.protection.prefix.4": "Impervious",
+	"enchantment.minecraft.protection.prefix.5": "Invincible",
+	
+	"enchantment.minecraft.protection.suffix.1": "of the Mercenary",
+	"enchantment.minecraft.protection.suffix.2": "of the Soldier",
+	"enchantment.minecraft.protection.suffix.3": "of the Knight",
+	"enchantment.minecraft.protection.suffix.4": "of the Paladin",
+	"enchantment.minecraft.protection.suffix.5": "of the Kingsguard",
+	
+	"enchantment.minecraft.respiration.prefix.1": "Seal's",
+	"enchantment.minecraft.respiration.prefix.2": "Elephant Seal's",
+	"enchantment.minecraft.respiration.prefix.3": "Selkie's",
+	
+	"enchantment.minecraft.respiration.suffix.1": "of Minor Water Breathing",
+	"enchantment.minecraft.respiration.suffix.2": "of Moderate Water Breathing",
+	"enchantment.minecraft.respiration.suffix.3": "of Major Water Breathing",
+	
+	"enchantment.minecraft.thorns.prefix.1": "Defending",
+	"enchantment.minecraft.thorns.prefix.2": "Rebounding",
+	"enchantment.minecraft.thorns.prefix.3": "Reflecting",
+	
+	"enchantment.minecraft.thorns.suffix.1": "of Thorns",
+	"enchantment.minecraft.thorns.suffix.2": "of Briars",
+	"enchantment.minecraft.thorns.suffix.3": "of Nettles ",
+	
+	"enchantment.minecraft.unbreaking.prefix.1": "Sturdy",
+	"enchantment.minecraft.unbreaking.prefix.2": "Enduring",
+	"enchantment.minecraft.unbreaking.prefix.3": "Unbreaking",
+	
+	"enchantment.minecraft.unbreaking.suffix.1": "of Sturdiness",
+	"enchantment.minecraft.unbreaking.suffix.2": "of Endurance",
+	"enchantment.minecraft.unbreaking.suffix.3": "of Unbreaking",
+	
+	
+}
