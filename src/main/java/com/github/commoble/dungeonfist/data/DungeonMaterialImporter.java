@@ -1,4 +1,4 @@
-package com.github.commoble.dungeonfist.util;
+package com.github.commoble.dungeonfist.data;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.function.Function;
 
+import com.github.commoble.dungeonfist.util.DungeonMaterials;
 import com.google.gson.stream.JsonReader;
 
 import net.minecraft.block.Block;

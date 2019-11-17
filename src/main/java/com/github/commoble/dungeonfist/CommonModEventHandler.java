@@ -1,5 +1,7 @@
 package com.github.commoble.dungeonfist;
 
+import com.github.commoble.dungeonfist.data.DungeonMaterialImporter;
+import com.github.commoble.dungeonfist.data.NameWords;
 import com.github.commoble.dungeonfist.data.generated.DungeonLootTableProvider;
 import com.github.commoble.dungeonfist.data.loot.ApplyFunctionsIfItemHasTag;
 import com.github.commoble.dungeonfist.data.loot.ImproveNameBasedOnEnchantments;
@@ -10,7 +12,6 @@ import com.github.commoble.dungeonfist.registry.FeatureRegistrar;
 import com.github.commoble.dungeonfist.registry.ItemRegistrar;
 import com.github.commoble.dungeonfist.registry.ModDimensionRegistrar;
 import com.github.commoble.dungeonfist.registry.TileEntityTypeRegistrar;
-import com.github.commoble.dungeonfist.util.DungeonMaterialImporter;
 import com.github.commoble.dungeonfist.world.placement.CarcelithPlacement;
 
 import net.minecraft.block.Block;
@@ -88,6 +89,7 @@ public class CommonModEventHandler
 	public static void onCommonSetup(FMLCommonSetupEvent event)
 	{
 		DungeonMaterialImporter.importDungeonMaterialJson(DungeonFist.class);
+		NameWords.importNameWords(DungeonFist.class);
 		
 		ConfiguredFeature<?> carcelithFeature = Biome.createDecoratedFeature(
 				FeatureRegistrar.CARCELITH,
