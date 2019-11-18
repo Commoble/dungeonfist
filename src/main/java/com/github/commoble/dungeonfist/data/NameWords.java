@@ -12,7 +12,8 @@ import com.google.gson.stream.JsonReader;
 public class NameWords
 {
 	public static final List<String> generic_nouns = new ArrayList<String>();
-	public static final List<String> weapon_verbers = new ArrayList<String>();
+	public static final List<String> generic_prefixes = new ArrayList<String>();
+	public static final List<String> weapon_suffixes = new ArrayList<String>();
 	public static void importNameWords(Class<?> clazz)
 	{
 		
@@ -68,6 +69,17 @@ public class NameWords
 
 						reader.endArray();
 					}
+					else if (grammarKey.equals("prefixes"))
+					{
+						reader.beginArray();
+						
+						while(reader.hasNext())
+						{
+							generic_prefixes.add(reader.nextString());
+						}
+
+						reader.endArray();
+					}
 				}
 
 				reader.endObject();
@@ -79,13 +91,13 @@ public class NameWords
 				while(reader.hasNext())
 				{
 					String grammarKey = reader.nextName();
-					if (grammarKey.equals("verbers"))
+					if (grammarKey.equals("suffixes"))
 					{
 						reader.beginArray();
 						
 						while(reader.hasNext())
 						{
-							weapon_verbers.add(reader.nextString());
+							weapon_suffixes.add(reader.nextString());
 						}
 
 						reader.endArray();
