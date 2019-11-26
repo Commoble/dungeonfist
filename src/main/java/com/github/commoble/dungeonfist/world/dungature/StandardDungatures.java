@@ -2,7 +2,7 @@ package com.github.commoble.dungeonfist.world.dungature;
 
 import com.github.commoble.dungeonfist.data.loot.DungeonLootTables;
 import com.github.commoble.dungeonfist.util.BlockCollections;
-import com.github.commoble.dungeonfist.util.CollectionHelper;
+import com.github.commoble.dungeonfist.util.RandomHelper;
 
 import net.minecraft.block.Blocks;
 
@@ -18,9 +18,9 @@ public class StandardDungatures
 		table.add(WeightingFunctions.withMinSize(10, 2), context -> new TransformTestDungature().withRandomTransform(2, context));
 		table.add(WeightingFunctions.withMinSize(10, 2), context -> new TorchColumnDungature().withRandomTransform(2, context));
 		table.add(WeightingFunctions.withMinSize(1, 3), context -> new ChandelierDungature(() ->
-			CollectionHelper.getRandomItem(BlockCollections.WOOD_FENCES, context.rand))
+			RandomHelper.getRandomThingFrom(context.rand, BlockCollections.WOOD_FENCES))
 			.withRandomTranslation(3, context));
 		table.add(WeightingFunctions.constantWeight(5), context -> new HangingBasicColumnDungature(context, 1, 2, Blocks.IRON_BARS::getDefaultState).withRandomTranslation(1, context));
-		table.add(WeightingFunctions.constantWeight(5), context -> new HangingBasicColumnDungature(context, 1, 2, () -> CollectionHelper.getRandomItem(BlockCollections.WOOD_FENCES, context.rand).getDefaultState()).withRandomTranslation(1, context));
+		table.add(WeightingFunctions.constantWeight(5), context -> new HangingBasicColumnDungature(context, 1, 2, () -> RandomHelper.getRandomThingFrom(context.rand, BlockCollections.WOOD_FENCES).getDefaultState()).withRandomTranslation(1, context));
 	}
 }
