@@ -1,7 +1,7 @@
 package com.github.commoble.dungeonfist;
 
 import com.github.commoble.dungeonfist.data.DungeonMaterialImporter;
-import com.github.commoble.dungeonfist.data.NameWords;
+import com.github.commoble.dungeonfist.data.EpicNameWords;
 import com.github.commoble.dungeonfist.data.generated.DungeonLootTableProvider;
 import com.github.commoble.dungeonfist.data.loot.ApplyFunctionsIfItemHasTag;
 import com.github.commoble.dungeonfist.data.loot.ImproveNameBasedOnEnchantments;
@@ -89,7 +89,8 @@ public class CommonModEventHandler
 	public static void onCommonSetup(FMLCommonSetupEvent event)
 	{
 		DungeonMaterialImporter.importDungeonMaterialJson(DungeonFist.class);
-		NameWords.importNameWords(DungeonFist.class);
+		EpicNameWords.load();
+		//NameWords.importNameWords(DungeonFist.class);
 		
 		ConfiguredFeature<?> carcelithFeature = Biome.createDecoratedFeature(
 				FeatureRegistrar.CARCELITH,

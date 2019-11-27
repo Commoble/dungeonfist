@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#dungeonfist:helmets",
+    "#dungeonfist:chestplates",
+    "#dungeonfist:leggings",
+    "#dungeonfist:boots"
+  ]
+}

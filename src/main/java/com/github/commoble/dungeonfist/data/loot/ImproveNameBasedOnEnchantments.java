@@ -1,17 +1,14 @@
 package com.github.commoble.dungeonfist.data.loot;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
-import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
 import org.apache.commons.lang3.tuple.Pair;
 
-import com.github.commoble.dungeonfist.data.NameWords;
-import com.github.commoble.dungeonfist.util.RandomHelper;
+import com.github.commoble.dungeonfist.data.EpicNameWords;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 
@@ -19,7 +16,6 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.storage.loot.LootContext;
@@ -107,25 +103,27 @@ public class ImproveNameBasedOnEnchantments extends LootFunction
 	
 	public static ITextComponent getEpicName(ItemStack stack, LootContext context)
 	{
-		Function<List<String>, String> randomThingFromList = (list) -> RandomHelper.getRandomThingFrom(context.getRandom(), list);
-		String prefix = randomThingFromList.apply(NameWords.generic_prefixes);
-		String noun = randomThingFromList.apply(NameWords.generic_nouns);
-		String suffix = randomThingFromList.apply(NameWords.weapon_suffixes);
-		
-		Supplier<ITextComponent> textGetter = RandomHelper.chooseRandomThing(context.getRandom(),
-			() -> new TranslationTextComponent("dungeonfist.generic.noun."+noun)
-				.appendSibling(new StringTextComponent(" ")
-				.appendSibling(new TranslationTextComponent("dungeonfist.weapon.suffix."+suffix))),
-				
-			() -> new TranslationTextComponent("dungeonfist.generic.prefix."+prefix)
-				.appendSibling(new StringTextComponent(" ")
-				.appendSibling(new TranslationTextComponent("dungeonfist.generic.noun."+noun))),
-				
-			() -> new TranslationTextComponent("dungeonfist.generic.prefix."+prefix)
-				.appendSibling(new StringTextComponent(" ")
-				.appendSibling(new TranslationTextComponent("dungeonfist.weapon.suffix."+suffix)))
-				);
-		
-		return textGetter.get();
+		return EpicNameWords.getName(stack, context.getRandom());
+//		Function<List<String>, String> randomThingFromList = (list) -> RandomHelper.getRandomThingFrom(context.getRandom(), list);
+//		EpicNameWords words = EpicNameWords.getNameWords();
+////		String prefix = randomThingFromList.apply(NameWords.generic_prefixes);
+////		String noun = randomThingFromList.apply(NameWords.generic_nouns);
+////		String suffix = randomThingFromList.apply(NameWords.itemTypeSuffixes.get(stack.getEquipmentSlot()));
+//		
+//		Supplier<ITextComponent> textGetter = RandomHelper.chooseRandomThing(context.getRandom(),
+//			() -> new TranslationTextComponent("dungeonfist.generic.noun."+noun)
+//				.appendSibling(new StringTextComponent(" ")
+//				.appendSibling(new TranslationTextComponent("dungeonfist.weapon.suffix."+suffix))),
+//				
+//			() -> new TranslationTextComponent("dungeonfist.generic.prefix."+prefix)
+//				.appendSibling(new StringTextComponent(" ")
+//				.appendSibling(new TranslationTextComponent("dungeonfist.generic.noun."+noun))),
+//				
+//			() -> new TranslationTextComponent("dungeonfist.generic.prefix."+prefix)
+//				.appendSibling(new StringTextComponent(" ")
+//				.appendSibling(new TranslationTextComponent("dungeonfist.weapon.suffix."+suffix)))
+//				);
+//		
+//		return textGetter.get();
 	}
 }

@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "#dungeonfist:axes",
+    "#dungeonfist:hoes",
+    "#dungeonfist:pickaxes",
+    "#dungeonfist:shovels",
+    "minecraft:fishing_rod",
+    "minecraft:shears",
+    "minecraft:flint_and_steel"
+  ]
+}

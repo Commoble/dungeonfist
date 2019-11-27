@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#dungeonfist:swords",
+    "#dungeonfist:polearms",
+    "#dungeonfist:missile_weapons",
+    "minecraft:trident"
+  ]
+}

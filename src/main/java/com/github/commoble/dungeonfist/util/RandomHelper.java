@@ -4,17 +4,27 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 public class RandomHelper
 {
+	@Nullable
 	public static <T> T getRandomThingFrom(Random rand, List<T> things)
 	{
-		return things.get(rand.nextInt(things.size()));
+		int size = things.size();
+		return size > 0
+			? things.get(rand.nextInt(size))
+			: null;
 	}
 	
 	@SafeVarargs
+	@Nullable
 	public static <T> T chooseRandomThing(Random rand, T...things)
 	{
-		return things[rand.nextInt(things.length)];
+		int size = things.length;
+		return size > 0
+			? things[rand.nextInt(things.length)]
+			: null;
 	}
 	
 	/** Returns a random thing from a list of lists of things, weighted appropriate as if it were a single list of things,
