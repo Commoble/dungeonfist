@@ -10,7 +10,7 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "dungeonfist:subtables/enchanted_weapons"
+          "name": "dungeonfist:subtables/enchanted_armor"
         }
       ]
     }

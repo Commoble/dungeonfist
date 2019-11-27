@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -80,14 +79,6 @@ public class EpicNameWords
 			.collect(Collectors.toCollection(ArrayList<List<List<String>>>::new));
 		IntFunction<String> getter = i -> RandomHelper.getRandomThingFromMultipleLists(random, lists.get(i)).orElse("Failure");
 		return Pair.of(getter.apply(first), getter.apply(second));
-		
-//		return this.maps.stream()
-//			.map(map -> map.entrySet().stream()
-//				.filter(entry -> entry.getKey().getPath().equals(ALL_TAG) || tags.get(entry.getKey()).contains(item))
-//				.map(entry -> entry.getValue())
-//				.collect(Collectors.toCollection(ArrayList<List<String>>::new)))
-//			.map(lists -> RandomHelper.getRandomThingFromMultipleLists(random, lists).orElse("Failure"))
-//			.toArray(String[]::new);
 	}
 
 	private static JsonReader loadReader(InputStream input)
@@ -111,13 +102,8 @@ public class EpicNameWords
 
 	private static Map<ResourceLocation, List<String>> readJson(JsonReader reader)
 	{
-		Map<ResourceLocation, List<String>> map = new HashMap<>();
-		JsonMuncher.munch(reader).readObject(mapMuncher -> {
-			String key = mapMuncher.readKey();
-			List<String> list = new ArrayList<String>();
-			mapMuncher.readArray(arrayMuncher -> list.add(arrayMuncher.readString()));
-			map.put(new ResourceLocation(key), list);
-		});
-		return map;
+		return JsonMuncher.munch(reader).readSimpleObject(
+			ResourceLocation::new,
+			mapMuncher -> mapMuncher.readSimpleArray(JsonMuncher::readString));
 	}
 }

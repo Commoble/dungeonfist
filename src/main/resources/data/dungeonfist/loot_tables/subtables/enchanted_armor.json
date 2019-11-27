@@ -1,0 +1,54 @@
+{
+	"type": "minecraft:chest",
+	"pools": 
+	[
+		{
+			"rolls": 1,
+			"entries": 
+			[
+				{
+					"type": "minecraft:loot_table",
+					"weight": 1,
+					"functions": 
+					[
+						{
+							"function": "minecraft:enchant_with_levels",
+							"levels": 
+							{
+								"min": 1.0,
+								"max": 5.0,
+								"type": "minecraft:uniform"
+							},
+							"treasure": true
+						},
+						{
+							"function": "dungeonfist:improve_name_based_on_enchantments"
+						}
+					],
+					"name": "dungeonfist:subtables/armor"
+				},
+				{
+					"type": "minecraft:loot_table",
+					"weight": 100,
+					"functions": 
+					[
+						{
+							"function": "minecraft:enchant_with_levels",
+							"levels": 
+							{
+								"min": 10.0,
+								"max": 50.0,
+								"type": "minecraft:uniform"
+							},
+							"treasure": true
+						},
+						{
+							"function": "dungeonfist:improve_name_based_on_enchantments"
+						}
+					],
+					"name": "dungeonfist:subtables/armor"
+				}
+			]
+		}
+	]
+}
