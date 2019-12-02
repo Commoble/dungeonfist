@@ -1,8 +1,13 @@
 {
+	"dungeonfist:boots": 
+	[
+		"soles",
+		"treads"
+	],
 	"dungeonfist:chestplates": 
 	[
 		"cloister",
-		"contairer",
+		"container",
 		"defender",
 		"guardian",
 		"minder",
@@ -22,17 +27,19 @@
 	],
 	"dungeonfist:legs_and_feet": 
 	[
-		"dancer",
-		"explorer",
-		"follower",
-		"jogger",
-		"jumper",
-		"leader",
-		"leaper",
-		"runner",
-		"skipper",
+		"dancers",
+		"dashers",
+		"explorers",
+		"followers",
+		"joggers",
+		"jumpers",
+		"leaders",
+		"leapers",
+		"runners",
+		"skippers",
 		"slippers",
-		"walker"
+		"treads",
+		"walkers"
 	],
 	"dungeonfist:weapons": 
 	[
