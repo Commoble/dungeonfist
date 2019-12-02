@@ -1,0 +1,32 @@
+{
+	"type": "minecraft:generic",
+	"pools": 
+	[
+		{
+			"rolls": 1,
+			"entries": 
+			[
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/mob_drops",
+					"weight": 100
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/supplies",
+					"weight": 100
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/wealth",
+					"weight": 100
+				},
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/equipment",
+					"weight": 100
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,109 @@
+{
+	"type": "minecraft:chest",
+	"pools": 
+	[
+		{
+			"rolls": 
+			{
+				"min": 1.0,
+				"max": 5.0,
+				"type": "minecraft:uniform"
+			},
+			"entries": 
+			[
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/random_loot_with_enchantments"
+				}
+			]
+		},
+		{
+			"rolls": 
+			{
+				"n": 5,
+				"p": 0.20,
+				"type": "minecraft:binomial"
+			},
+			"entries": 
+			[
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/random_loot_with_enchantments"
+				}
+			],
+			"conditions":
+			[
+				{
+					"condition": "dungeonfist:is_dungeon_tier",
+					"max":3
+				}
+			]
+		},
+		{
+			"rolls": 
+			{
+				"n": 5,
+				"p": 0.20,
+				"type": "minecraft:binomial"
+			},
+			"entries": 
+			[
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/random_loot_with_enchantments"
+				}
+			],
+			"conditions":
+			[
+				{
+					"condition": "dungeonfist:is_dungeon_tier",
+					"max":2
+				}
+			]
+		},
+		{
+			"rolls": 
+			{
+				"n": 5,
+				"p": 0.20,
+				"type": "minecraft:binomial"
+			},
+			"entries": 
+			[
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/random_loot_with_enchantments"
+				}
+			],
+			"conditions":
+			[
+				{
+					"condition": "dungeonfist:is_dungeon_tier",
+					"max":1
+				}
+			]
+		},
+		{
+			"rolls": 
+			{
+				"n": 5,
+				"p": 0.20,
+				"type": "minecraft:binomial"
+			},
+			"entries": 
+			[
+				{
+					"type": "minecraft:loot_table",
+					"name": "dungeonfist:subtables/random_loot_with_enchantments"
+				}
+			],
+			"conditions":
+			[
+				{
+					"condition": "dungeonfist:is_dungeon_tier",
+					"max":0
+				}
+			]
+		}
+	]
+}

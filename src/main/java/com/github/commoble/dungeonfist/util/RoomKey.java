@@ -15,6 +15,9 @@ public class RoomKey
 	public int y;
 	public long worldSeed;
 	
+	public static int MIN_TIER = 0;
+	public static int MAX_TIER = 4;
+	
 	public RoomKey(IChunk chunk, int y, long worldSeed)
 	{
 		ChunkPos chunkpos = chunk.getPos();
@@ -79,7 +82,17 @@ public class RoomKey
 	
 	public int getWorldspaceBaseY()
 	{
-		return this.y*50 + 10;
+		return getWorldYFromDungeonTier(this.y);
+	}
+	
+	public static int getWorldYFromDungeonTier(int yTier)
+	{
+		return yTier*50 + 10;
+	}
+	
+	public static int getDungeonTierFromWorldSpace(int worldY)
+	{
+		return (worldY-10)/50;
 	}
 	
 	public Set<ChunkPos> getOverworldChunks()

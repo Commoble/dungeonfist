@@ -5,6 +5,7 @@ import com.github.commoble.dungeonfist.data.EpicNameWords;
 import com.github.commoble.dungeonfist.data.generated.DungeonLootTableProvider;
 import com.github.commoble.dungeonfist.data.loot.ApplyFunctionsIfItemHasTag;
 import com.github.commoble.dungeonfist.data.loot.ImproveNameBasedOnEnchantments;
+import com.github.commoble.dungeonfist.data.loot.IsDungeonTier;
 import com.github.commoble.dungeonfist.registry.BiomeRegistrar;
 import com.github.commoble.dungeonfist.registry.BlockRegistrar;
 import com.github.commoble.dungeonfist.registry.ChunkGeneratorTypeRegistrar;
@@ -25,6 +26,7 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.NoPlacementConfig;
+import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
@@ -102,6 +104,8 @@ public class CommonModEventHandler
 		
 		LootFunctionManager.registerFunction(new ApplyFunctionsIfItemHasTag.Serializer());
 		LootFunctionManager.registerFunction(ImproveNameBasedOnEnchantments.SERIALIZER);
+		
+		LootConditionManager.registerCondition(IsDungeonTier.SERIALIZER);
 	}
 	
 	// this event only fires when you use runData
