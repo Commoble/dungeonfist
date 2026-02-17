@@ -1,0 +1,21 @@
+{
+	"fallback": "dungeonfist:dungeon/medium_fallbacks",
+	"elements": [
+		{
+			"weight": 100,
+			"data": "#dungeonfist:dungeon/large_rooms"
+		},
+		{
+			"weight": 1000,
+			"data": "#dungeonfist:dungeon/medium_rooms"
+		},
+		{
+			"weight": 10,
+			"data": "#dungeonfist:dungeon/medium_junctions"
+		},
+		{
+			"weight": 1,
+			"data": "#dungeonfist:dungeon/medium_rare_rooms"
+		}
+	]
+}

@@ -1,0 +1,18 @@
+{
+	"type": "dungeonfist:pillar",
+	"fill_width": true,
+	"fill_height": true,
+	"blocks": "lava",
+	"processors": "dungeonfist:dungeon",
+	"jigsaws": [
+		{
+			"x": "center",
+			"z": "center",
+			"y": "max",
+			"orientation": "up_north",
+			"jigsaw": {
+				"name": "up"
+			}
+		}
+	]
+}

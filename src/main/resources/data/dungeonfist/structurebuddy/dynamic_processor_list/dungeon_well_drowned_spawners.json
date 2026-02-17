@@ -1,0 +1,27 @@
+[
+	{
+		"type": "dungeonfist:dungeon_material"
+	},
+	{
+		"type": "dungeonfist:age"
+	},
+	{
+		"type": "dungeonfist:moisten"
+	},
+	{
+		"type": "structurebuddy:processor_list",
+		"processors": [
+			{
+				"processor_type": "dungeonfist:set_data",
+				"blocks": "spawner",
+				"data": {
+					"SpawnData": {
+						"entity": {
+							"id": "drowned"
+						}
+					}
+				}
+			}
+		]
+	}
+]

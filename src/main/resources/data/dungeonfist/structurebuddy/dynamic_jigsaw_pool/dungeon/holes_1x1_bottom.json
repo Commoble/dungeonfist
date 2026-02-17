@@ -1,0 +1,19 @@
+{
+	"fallback": "dungeonfist:dungeon/holes_1x1_bottom_fallbacks",
+	"delegates": [
+		{
+			"weight": 1,
+			"data": "dungeonfist:dungeon/holes_1x1_bottom_fallbacks"
+		}
+	],
+	"elements": [
+		{
+			"weight": 2,
+			"data": "#dungeonfist:dungeon/1x1_pit_bottoms"
+		},
+		{
+			"weight": 1,
+			"data": "#dungeonfist:dungeon/1x1_pit_secret_bottoms"
+		}
+	]
+}

@@ -1,0 +1,7 @@
+{
+	"type": "dungeonfist:pillar",
+	"blocks": "iron_chain",
+	"snap": "ceiling",
+	"max_width": 1,
+	"max_height": 5
+}

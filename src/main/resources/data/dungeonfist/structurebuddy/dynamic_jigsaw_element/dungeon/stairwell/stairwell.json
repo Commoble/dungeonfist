@@ -1,0 +1,11 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:stairwell/stairwell",
+	"processors": "dungeonfist:dungeon",
+	"jigsaw_overrides": {
+		"stairwell": {
+			"target_pool": "dungeonfist:dungeon/stairwell",
+			"target_name": "stairwell"
+		}
+	}
+}

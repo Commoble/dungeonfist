@@ -1,0 +1,13 @@
+{
+	"fallback": "dungeonfist:dungeon/wells_3x3_bottom_fallbacks",
+	"elements": [
+		{
+			"weight": 2,
+			"data": "#dungeonfist:dungeon/3x3_well_bottoms"
+		},
+		{
+			"weight": 1,
+			"data": "#dungeonfist:dungeon/3x3_well_bottom_secrets"
+		}
+	]
+}

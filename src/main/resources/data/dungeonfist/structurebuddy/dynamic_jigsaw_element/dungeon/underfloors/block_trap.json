@@ -1,0 +1,23 @@
+{
+	"type": "structurebuddy:box",
+	"x_size": 1,
+	"z_size": 1,
+	"y_size": 1,
+	"element": {
+		"type": "dungeonfist:pillar",
+		"fill_width": true,
+		"fill_height": true,
+		"blocks": "#dungeonfist:dungeon_trap_blocks",
+		"jigsaws": [
+			{
+				"x": "center",
+				"z": "center",
+				"y": "max",
+				"orientation": "up_north",
+				"jigsaw": {
+					"name": "up"
+				}
+			}
+		]
+	}
+}

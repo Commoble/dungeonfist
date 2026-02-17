@@ -1,0 +1,12 @@
+{
+	"elements": [
+		{
+			"weight": 10,
+			"data": "#dungeonfist:dungeon/5x5_pits_clean"
+		},
+		{
+			"weight": 1,
+			"data": "#dungeonfist:dungeon/5x5_pits_rough"
+		}
+	]
+}

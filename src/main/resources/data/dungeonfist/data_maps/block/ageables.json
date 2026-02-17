@@ -1,0 +1,21 @@
+{
+	"values": {
+		"stone_bricks": {
+			"type": "weighted_state_provider",
+			"entries": [
+				{
+					"weight": 1,
+					"data": {"Name": "cracked_stone_bricks"}
+				},
+				{
+					"weight": 10,
+					"data": {"Name": "air"}
+				}
+			]
+		},
+		"cobblestone": {
+			"type": "simple_state_provider",
+			"state": {"Name": "air"}
+		}
+	}
+}

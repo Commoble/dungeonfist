@@ -1,0 +1,24 @@
+[
+	{
+		"type": "structurebuddy:processor_list",
+		"processors": [
+			{
+				"processor_type": "structurebuddy:blockstate",
+				"copy_from_blockstate": {
+					"Name": "dispenser",
+					"Properties": {
+						"facing": "up"					
+					}
+				},
+				"properties": ["facing"]
+			},
+			{
+				"processor_type": "dungeonfist:set_data",
+				"blocks": "dispenser",
+				"data": {
+					"LootTable": "dungeonfist:chests/projectile_trap"
+				}
+			}
+		]
+	}
+]

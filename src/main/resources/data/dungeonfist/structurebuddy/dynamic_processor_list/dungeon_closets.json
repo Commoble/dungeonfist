@@ -1,0 +1,33 @@
+[
+	{
+		"type": "dungeonfist:dungeon_material"
+	},
+	{
+		"type": "dungeonfist:age"
+	},
+	{
+		"type": "dungeonfist:moisten"
+	},
+	{
+		"type": "structurebuddy:processor_list",
+		"processors": [
+			{
+				"processor_type": "dungeonfist:set_data",
+				"blocks": "barrel",
+				"data": {
+					"LootTable": "dungeonfist:chests/closet"
+				}
+			}
+		]
+	},
+	{
+		"type": "dungeonfist:randomize_doors",
+		"input": "oak_door",
+		"outputs": [
+			{
+				"weight": 1,
+				"data": "spruce_door"
+			}
+		]
+	}
+]

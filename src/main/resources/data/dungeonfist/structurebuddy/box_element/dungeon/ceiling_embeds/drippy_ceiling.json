@@ -1,0 +1,19 @@
+{
+	"type": "dungeonfist:pillar",
+	"min_width": 1,
+	"max_width": 1,
+	"max_height": 1,
+	"snap": "ceiling",
+	"jigsaws": [
+		{
+			"x": "center",
+			"z": "center",
+			"y": "min",
+			"orientation": "up_north",
+			"jigsaw": {
+				"target_pool": "dungeonfist:dungeon/drippy_ceiling",
+				"target_name": "down"
+			}
+		}
+	]
+}

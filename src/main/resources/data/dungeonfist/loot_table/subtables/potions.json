@@ -1,0 +1,48 @@
+{
+	"type": "minecraft:generic",
+	"pools":
+	[
+		{
+			"rolls": 1,
+			"entries":
+			[
+				{
+					"type": "minecraft:loot_table",
+					"value": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 25,
+					"functions":
+					[
+						{
+							"function": "set_random_potion",
+							"options": "#dungeonfist:loot/common_potions"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"value": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 5,
+					"functions":
+					[
+						{
+							"function": "set_random_potion",
+							"options": "#dungeonfist:loot/uncommon_potions"
+						}
+					]
+				},
+				{
+					"type": "minecraft:loot_table",
+					"value": "dungeonfist:subtables/potion_bottletypes",
+					"weight": 1,
+					"functions":
+					[
+						{
+							"function": "set_random_potion",
+							"options": "#dungeonfist:loot/rare_potions"
+						}
+					]
+				}
+			]
+		}
+	]
+}

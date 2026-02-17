@@ -1,0 +1,5 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:doors/oak",
+	"processors": "dungeonfist:dungeon_doors"
+}

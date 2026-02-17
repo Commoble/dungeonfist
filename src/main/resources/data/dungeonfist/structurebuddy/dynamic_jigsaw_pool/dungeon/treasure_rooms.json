@@ -1,0 +1,9 @@
+{
+	"fallback": "dungeonfist:dungeon/treasure_rooms",
+	"elements": [
+		{
+			"weight": 1,
+			"data": "#dungeonfist:dungeon/treasure_rooms"
+		}
+	]
+}

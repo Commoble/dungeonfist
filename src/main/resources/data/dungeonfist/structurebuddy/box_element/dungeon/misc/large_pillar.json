@@ -1,0 +1,7 @@
+{
+	"type": "dungeonfist:pillar",
+	"blocks": "cobblestone",
+	"processors": "dungeonfist:dungeon_pillars",
+	"fill_width": true,
+	"fill_height": true
+}

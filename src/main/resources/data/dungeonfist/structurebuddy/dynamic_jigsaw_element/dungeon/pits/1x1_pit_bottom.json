@@ -1,0 +1,7 @@
+{
+	"type": "structurebuddy:box",
+	"x_size": 3,
+	"z_size": 3,
+	"y_size": 1,
+	"element": "dungeonfist:dungeon/pits/pit_bottom"
+}

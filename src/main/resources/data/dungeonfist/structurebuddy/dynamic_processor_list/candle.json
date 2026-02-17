@@ -1,0 +1,31 @@
+[
+	{
+		"type": "structurebuddy:processor_list",
+		"processors": [
+			{
+				"processor_type": "structurebuddy:blockstate",
+				"copy_from_blockstate": {
+					"Name": "candle",
+					"Properties": {
+						"lit": "true"					
+					}
+				},
+				"properties": ["lit"]
+			},
+			{
+				"processor_type": "structurebuddy:blockstate",
+				"input_predicate": {
+					"predicate_type": "dungeonfist:random",
+					"probability": 0.25
+				},
+				"copy_from_blockstate": {
+					"Name": "candle",
+					"Properties": {
+						"candles": "2"	
+					}
+				},
+				"properties": ["candles"]
+			}
+		]
+	}
+]

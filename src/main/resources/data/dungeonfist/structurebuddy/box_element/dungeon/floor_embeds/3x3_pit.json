@@ -1,0 +1,19 @@
+{
+	"type": "dungeonfist:pillar",
+	"blocks": "air",
+	"min_width": 3,
+	"max_width": 3,
+	"max_height": 1,
+	"jigsaws": [
+		{
+			"x": "center",
+			"z": "center",
+			"y": "min",
+			"orientation": "down_north",
+			"jigsaw": {
+				"target_pool": "dungeonfist:dungeon/holes_3x3",
+				"target_name": "up_3x3"
+			}
+		}
+	]
+}

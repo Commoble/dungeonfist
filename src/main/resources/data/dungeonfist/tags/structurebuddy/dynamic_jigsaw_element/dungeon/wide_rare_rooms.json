@@ -1,0 +1,7 @@
+{
+	"values": [
+		"#dungeonfist:dungeon/wide_fallbacks_clean",
+		"dungeonfist:dungeon/fallbacks/5x3_fake_skeleton_pit",
+		"dungeonfist:dungeon/fallbacks/5x3_fake_large_cell"
+	]
+}

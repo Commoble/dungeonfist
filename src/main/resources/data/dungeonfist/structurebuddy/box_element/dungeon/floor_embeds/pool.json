@@ -1,0 +1,6 @@
+{
+	"type": "dungeonfist:pillar",
+	"blocks": "water",
+	"max_height": 1,
+	"fill_width": true
+}

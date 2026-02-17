@@ -1,0 +1,12 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:box/pressure_plated_pipe",
+	"processors": "dungeonfist:dungeon_artifice",
+	"snap": {"front_jigsaw": "down"},
+	"jigsaw_overrides": {
+		"down": {
+			"target_pool": "dungeonfist:dungeon/plated_pipe_trap",
+			"target_name": "up"
+		}
+	}
+}

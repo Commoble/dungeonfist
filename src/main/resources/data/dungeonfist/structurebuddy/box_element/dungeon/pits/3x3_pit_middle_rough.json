@@ -1,0 +1,29 @@
+{
+	"type": "dungeonfist:pillar",
+	"fill_width": true,
+	"fill_height": true,
+	"blocks": "air",
+	"processors": "dungeonfist:dungeon_pillars",
+	"jigsaws": [
+		{
+			"x": "center",
+			"z": "center",
+			"y": "max",
+			"orientation": "up_north",
+			"jigsaw": {
+				"name": "up_3x3",
+				"placement_priority": 1
+			}
+		},
+		{
+			"x": "center",
+			"z": "center",
+			"y": "min",
+			"orientation": "down_north",
+			"jigsaw": {
+				"target_name": "up_3x3",
+				"target_pool": "dungeonfist:dungeon/holes_3x3_bottom"
+			}
+		}
+	]
+}

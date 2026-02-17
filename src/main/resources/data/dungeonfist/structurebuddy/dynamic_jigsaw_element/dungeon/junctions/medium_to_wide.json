@@ -1,0 +1,15 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:dungeon/junctions/medium_to_wide",
+	"processors": "dungeonfist:dungeon",
+	"jigsaw_overrides": {
+		"3x3": {
+			"target_pool": "dungeonfist:dungeon/medium_exits",
+			"target_name": "3x3"
+		},
+		"5x3": {
+			"target_pool": "dungeonfist:dungeon/wide_exits",
+			"target_name": "5x3"
+		}
+	}
+}

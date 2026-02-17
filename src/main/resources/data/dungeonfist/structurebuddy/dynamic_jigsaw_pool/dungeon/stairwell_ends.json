@@ -1,0 +1,13 @@
+{
+	"fallback": "dungeonfist:dungeon/stairwell_ends",
+	"elements": [
+		{
+			"data": "#dungeonfist:dungeon/stairwell_ends_clean",
+			"weight": 10
+		},
+		{
+			"data": "#dungeonfist:dungeon/stairwell_ends_rough",
+			"weight": 1
+		}
+	]
+}

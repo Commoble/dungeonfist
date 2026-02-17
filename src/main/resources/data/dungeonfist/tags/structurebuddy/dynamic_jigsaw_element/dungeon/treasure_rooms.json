@@ -1,0 +1,9 @@
+{
+	"values": [
+		"dungeonfist:dungeon/fallbacks/frame_closet",
+		"dungeonfist:dungeon/fallbacks/treasure_closet",
+		"dungeonfist:dungeon/fallbacks/treasure_nook",
+		"dungeonfist:dungeon/rooms/double_treasure",
+		"dungeonfist:dungeon/rooms/vault"
+	]
+}

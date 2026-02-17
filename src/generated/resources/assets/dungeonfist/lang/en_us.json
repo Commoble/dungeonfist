@@ -1,0 +1,13 @@
+{
+  "block.dungeonfist.alert_rune": "Alert Rune",
+  "block.dungeonfist.charged_tnt": "Charged TNT",
+  "block.dungeonfist.cobbled_deepslate_pipe": "Cobbled Deepslate Pipe",
+  "block.dungeonfist.cobbled_deepslate_pressure_plate": "Cobbled Deepslate Pressure Plate",
+  "block.dungeonfist.cobblestone_pipe": "Cobblestone Pipe",
+  "block.dungeonfist.cobblestone_pressure_plate": "Cobblestone Pressure Plate",
+  "block.dungeonfist.stone_brick_pipe": "Stone Brick Pipe",
+  "block.dungeonfist.stone_brick_pressure_plate": "Stone Brick Pressure Plate",
+  "block.dungeonfist.summon_rune": "Summon Rune",
+  "block.dungeonfist.teleport_rune": "Teleport Rune",
+  "itemGroup.dungeonfist": "Dungeonfist"
+}

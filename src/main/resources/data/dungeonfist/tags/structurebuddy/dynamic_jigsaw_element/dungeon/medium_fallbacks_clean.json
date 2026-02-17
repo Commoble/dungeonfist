@@ -1,0 +1,8 @@
+{
+	"values": [
+		"dungeonfist:dungeon/fallbacks/3x3_double_closet",
+		"dungeonfist:dungeon/fallbacks/3x3_prison_left_skull",
+		"dungeonfist:dungeon/fallbacks/3x3_prison_right_skull",
+		"dungeonfist:dungeon/fallbacks/3x3_prison_skull_shelf"
+	]
+}

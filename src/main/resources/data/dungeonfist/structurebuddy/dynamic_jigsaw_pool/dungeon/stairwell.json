@@ -1,0 +1,9 @@
+{
+	"fallback": "dungeonfist:dungeon/stairwell_ends",
+	"elements": [
+		{
+			"data": "#dungeonfist:dungeon/stairwell",
+			"weight": 1
+		}
+	]
+}

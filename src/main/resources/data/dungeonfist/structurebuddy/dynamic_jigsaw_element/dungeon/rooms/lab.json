@@ -1,0 +1,14 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:dungeon/rooms/lab",
+	"processors": "dungeonfist:dungeon_lab",
+	"jigsaw_overrides": {
+		"default": {
+			"placement_priority": 1
+		},
+		"exit": {
+			"target_pool": "dungeonfist:dungeon/treasure_rooms",
+			"target_name": "default"
+		}
+	}
+}

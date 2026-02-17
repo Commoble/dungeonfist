@@ -1,0 +1,15 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:dungeon/fallbacks_5x3/fake_large_cell",
+	"processors": "dungeonfist:dungeon_closets",
+	"jigsaw_overrides": {
+		"5x3": {
+			"placement_priority": 1
+		},
+		"exit": {
+			"target_pool": "dungeonfist:dungeon/secret_rooms",
+			"target_name": "default",
+			"placement_priority": 1
+		}
+	}
+}

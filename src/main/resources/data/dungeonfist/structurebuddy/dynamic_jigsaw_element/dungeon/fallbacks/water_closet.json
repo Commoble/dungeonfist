@@ -1,0 +1,15 @@
+{
+	"type": "dungeonfist:set_data",
+	"rules": [
+		{
+			"data": {
+				"dungeonfist:dungeon_moistness": 50
+			}	
+		}
+	],
+	"element": {
+		"type": "structurebuddy:structure_template",
+		"location": "dungeonfist:dungeon/closets/water_closet",
+		"processors": "dungeonfist:dungeon_with_doors"
+	}
+}

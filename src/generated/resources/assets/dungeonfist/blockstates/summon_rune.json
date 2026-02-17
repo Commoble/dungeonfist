@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "charged=false": {
+      "model": "dungeonfist:block/summon_rune"
+    },
+    "charged=true": {
+      "model": "dungeonfist:block/summon_rune_charged"
+    }
+  }
+}

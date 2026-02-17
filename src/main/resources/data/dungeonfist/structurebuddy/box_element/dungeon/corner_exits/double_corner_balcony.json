@@ -1,0 +1,12 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:box/double_corner_balcony",
+	"processors": "dungeonfist:dungeon_artifice",
+	"snap": {"front_jigsaw": "default"},
+	"jigsaw_overrides": {
+		"default": {
+			"target_pool": "dungeonfist:dungeon/small_exits",
+			"target_name": "default"
+		}
+	}
+}

@@ -1,0 +1,29 @@
+[
+	{
+		"type": "dungeonfist:dungeon_material"
+	},
+	{
+		"type": "dungeonfist:moisten"
+	},
+	{
+		"type": "structurebuddy:processor_list",
+		"processors": [
+			{
+				"processor_type": "dungeonfist:set_data",
+				"blocks": "chest",
+				"data": {
+					"LootTable": "dungeonfist:chests/treasure"
+				}
+			},
+			{
+				"processor_type": "structurebuddy:fix_block_attached_entities",
+				"entity_types": "#c:item_frames",
+				"facing_type": "item_frame"
+			},
+			{
+				"processor_type": "structurebuddy:item_frame_loot",
+				"loot_table": "dungeonfist:chests/framed_artifact"
+			}
+		]
+	}
+]

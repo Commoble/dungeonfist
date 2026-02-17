@@ -1,0 +1,22 @@
+{
+	"elements": [
+		{
+			"weight": 5,
+			"data": {
+				"type": "dungeonfist:pillar",
+				"blocks": "red_carpet",
+				"max_height": 1,
+				"fill_width": true
+			}
+		},
+		{
+			"weight": 1,
+			"data": {
+				"type": "dungeonfist:pillar",
+				"blocks": "#wool_carpets",
+				"max_height": 1,
+				"fill_width": true
+			}
+		}
+	]
+}

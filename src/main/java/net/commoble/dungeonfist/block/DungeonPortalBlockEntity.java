@@ -1,7 +1,6 @@
 package net.commoble.dungeonfist.block;
 
-import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
+import org.jspecify.annotations.Nullable;
 
 import net.commoble.dungeonfist.DungeonFist;
 import net.commoble.dungeonfist.client.particle.DungeonPortalParticleOptions;
@@ -27,15 +26,17 @@ public class DungeonPortalBlockEntity extends BlockEntity
 	
 	public DungeonPortalParticleOptions getColor()
 	{
-		if (this.color == null)
+		DungeonPortalParticleOptions color = this.color;
+		if (color == null)
 		{
 			RandomSource rand = RandomSource.create(this.getBlockPos().hashCode());
-			this.color = new DungeonPortalParticleOptions(
+			color = new DungeonPortalParticleOptions(
 				rand.nextFloat(),
 				rand.nextFloat(),
 				rand.nextFloat());
+			this.color = color;
 		}
-		return this.color;
+		return color;
 	}
 	
 //	@Override

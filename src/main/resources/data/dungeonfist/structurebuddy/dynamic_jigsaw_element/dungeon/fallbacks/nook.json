@@ -1,0 +1,5 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:dungeon/closets/infested_nook",
+	"processors": "dungeonfist:dungeon"
+}

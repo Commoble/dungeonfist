@@ -1,0 +1,31 @@
+{
+	"fallback": "dungeonfist:dungeon/small_fallbacks",
+	"delegates": [
+		{
+			"weight": 10,
+			"data": "dungeonfist:dungeon/stairwell"
+		}
+	],
+	"elements": [
+		{
+			"weight": 100,
+			"data": "#dungeonfist:dungeon/large_rooms"
+		},
+		{
+			"weight": 100,
+			"data": "#dungeonfist:dungeon/medium_rooms"
+		},
+		{
+			"weight": 1000,
+			"data": "#dungeonfist:dungeon/small_rooms"
+		},
+		{
+			"weight": 10,
+			"data": "#dungeonfist:dungeon/narrow_junctions"
+		},
+		{
+			"weight": 1,
+			"data": "#dungeonfist:dungeon/small_rare_rooms"
+		}
+	]
+}

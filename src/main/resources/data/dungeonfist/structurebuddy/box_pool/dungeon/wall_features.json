@@ -1,0 +1,16 @@
+{
+	"elements": [
+		{
+			"weight": 50,
+			"data": "#dungeonfist:dungeon/common_wall_features"
+		},
+		{
+			"weight": 10,
+			"data": "#dungeonfist:dungeon/uncommon_wall_features"
+		},
+		{
+			"weight": 1,
+			"data": "#dungeonfist:dungeon/rare_wall_features"
+		}
+	]
+}

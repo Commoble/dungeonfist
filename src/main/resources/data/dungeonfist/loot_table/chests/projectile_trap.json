@@ -1,0 +1,98 @@
+{
+	"type": "chest",
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "loot_table",
+					"weight": 2,
+					"value": "dungeonfist:subtables/common_trap_projectiles",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"type": "sum",
+								"summands": [
+									{
+										"type": "uniform",
+										"min": 2,
+										"max": 7
+									},
+									{
+										"type": "uniform",
+										"min": 2,
+										"max": 7
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"type": "loot_table",
+					"weight": 2,
+					"value": "dungeonfist:subtables/common_potioned_trap_projectiles",
+					"functions": [
+						{
+							"function": "set_random_potion",
+							"options": "#dungeonfist:loot/trap_potions"
+						},
+						{
+							"function": "set_count",
+							"count": {
+								"type": "sum",
+								"summands": [
+									{
+										"type": "uniform",
+										"min": 2,
+										"max": 7
+									},
+									{
+										"type": "uniform",
+										"min": 2,
+										"max": 7
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"type": "loot_table",
+					"weight": 1,
+					"value": "dungeonfist:subtables/rare_potioned_trap_projectiles",
+					"functions": [
+						{
+							"function": "set_random_potion",
+							"options": "#dungeonfist:loot/trap_potions"
+						},
+						{
+							"function": "set_count",
+							"count": {
+								"type": "uniform",
+								"min": 3,
+								"max": 5
+							}
+						}
+					]
+				},
+				{
+					"type": "loot_table",
+					"weight": 1,
+					"value": "dungeonfist:subtables/rare_trap_projectiles",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"type": "uniform",
+								"min": 3,
+								"max": 5
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

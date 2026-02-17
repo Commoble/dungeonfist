@@ -1,0 +1,8 @@
+{
+	"delegates": [
+		{
+			"weight": 1,
+			"data": "dungeonfist:dungeon/wall_exits"
+		}
+	]
+}

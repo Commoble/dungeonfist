@@ -1,0 +1,16 @@
+[
+	{
+		"type": "dungeonfist:randomize_doors",
+		"input": "oak_door",
+		"outputs": [
+			{
+				"weight": 3,
+				"data": "air"
+			},
+			{
+				"weight": 1,
+				"data": "spruce_door"
+			}
+		]
+	}
+]

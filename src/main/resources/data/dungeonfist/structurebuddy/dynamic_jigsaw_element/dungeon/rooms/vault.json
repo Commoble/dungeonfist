@@ -1,0 +1,5 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:dungeon/rooms/vault",
+	"processors": "dungeonfist:dungeon_vault"
+}

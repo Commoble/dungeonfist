@@ -1,5 +1,8 @@
 package net.commoble.dungeonfist.block;
 
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
+
 import net.commoble.dungeonfist.DungeonFist;
 import net.commoble.dungeonfist.client.ClientProxy;
 import net.minecraft.core.BlockPos;
@@ -23,14 +26,14 @@ public class DungeonPortalBlock extends Block implements EntityBlock
 	}
 
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
+	public @NonNull BlockEntity newBlockEntity(BlockPos pos, BlockState state)
 	{
 		return DungeonFist.DUNGEON_PORTAL_BLOCK_ENTITY_TYPE.get().create(pos, state);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type)
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type)
 	{
 		return type == DungeonFist.DUNGEON_PORTAL_BLOCK_ENTITY_TYPE.get()
 			? (BlockEntityTicker<T>)(level.isClientSide()

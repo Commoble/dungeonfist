@@ -1,0 +1,17 @@
+{
+	"type": "dungeonfist:pillar",
+	"fill_width": true,
+	"fill_height": true,
+	"blocks": "water",
+	"jigsaws": [
+		{
+			"x": "center",
+			"z": "center",
+			"y": "min",
+			"orientation": "down_north",
+			"jigsaw": {
+				"name": "down"
+			}
+		}
+	]
+}

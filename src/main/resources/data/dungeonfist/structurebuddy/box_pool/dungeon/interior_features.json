@@ -1,0 +1,20 @@
+{
+	"elements": [
+		{
+			"weight": 10,
+			"data": "structurebuddy:empty"
+		},
+		{
+			"data": "#dungeonfist:dungeon/common_interior_features",
+			"weight": 50
+		},
+		{
+			"data": "#dungeonfist:dungeon/uncommon_interior_features",
+			"weight": 10
+		},
+		{
+			"data": "#dungeonfist:dungeon/rare_interior_features",
+			"weight": 1
+		}
+	]
+}

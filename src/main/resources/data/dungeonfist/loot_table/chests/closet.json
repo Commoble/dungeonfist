@@ -1,0 +1,32 @@
+{
+	"type": "minecraft:chest",
+	"pools": 
+	[
+		{
+			"rolls": 1,
+			"entries": 
+			[
+				{
+					"type": "loot_table",
+					"weight": 1,
+					"value": "dungeonfist:subtables/crafts"
+				},
+				{
+					"type": "loot_table",
+					"weight": 1,
+					"value": "dungeonfist:subtables/food"
+				},
+				{
+					"type": "loot_table",
+					"weight": 1,
+					"value": "dungeonfist:subtables/rot"
+				},
+				{
+					"type": "loot_table",
+					"weight": 1,
+					"value": "dungeonfist:subtables/supplies"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:box/double_corner_balcony_5x3",
+	"processors": "dungeonfist:dungeon_artifice",
+	"snap": {"front_jigsaw": "5x3"},
+	"jigsaw_overrides": {
+		"5x3": {
+			"target_pool": "dungeonfist:dungeon/wide_exits",
+			"target_name": "5x3"
+		}
+	}
+}

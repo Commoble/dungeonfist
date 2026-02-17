@@ -1,0 +1,15 @@
+{
+	"type": "dungeonfist:set_data",
+	"rules": [
+		{
+			"data": {
+				"dungeonfist:dungeon_moistness": 90
+			}	
+		}
+	],
+	"element": {
+		"type": "structurebuddy:structure_template",
+		"location": "dungeonfist:dungeon/wells/bottom_wide",
+		"processors": "dungeonfist:dungeon_well_drowned_spawners"
+	}
+}

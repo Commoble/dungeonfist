@@ -1,0 +1,5 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:dungeon/fallbacks_5x3/skeleton_pit",
+	"processors": "dungeonfist:dungeon"
+}

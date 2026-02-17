@@ -1,0 +1,19 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:stairwell/upper_landing",
+	"processors": "dungeonfist:dungeon",
+	"jigsaw_overrides": {
+		"stairwell": {
+			"target_pool": "dungeonfist:dungeon/stairwell",
+			"target_name": "stairwell"
+		},
+		"default": {
+			"target_pool": "dungeonfist:dungeon/small_exits",
+			"target_name": "default"
+		},
+		"door_spawner": {
+			"target_pool": "dungeonfist:dungeon/doors",
+			"target_name": "default"
+		}
+	}
+}

@@ -1,0 +1,5 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:dungeon/pits/treasure_oubliette",
+	"processors": "dungeonfist:dungeon_treasure"
+}

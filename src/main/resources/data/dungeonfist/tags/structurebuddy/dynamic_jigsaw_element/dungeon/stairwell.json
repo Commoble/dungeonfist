@@ -1,0 +1,9 @@
+{
+	"values": [
+		"dungeonfist:dungeon/stairwell/lower_landing",
+		"dungeonfist:dungeon/stairwell/stairs_down",
+		"dungeonfist:dungeon/stairwell/stairs_up",
+		"dungeonfist:dungeon/stairwell/stairwell",
+		"dungeonfist:dungeon/stairwell/upper_landing"
+	]
+}

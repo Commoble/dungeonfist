@@ -1,0 +1,35 @@
+{
+	"type": "minecraft:generic",
+	"pools": 
+	[
+		{
+			"rolls": 
+			{
+				"min": 1,
+				"max": 1,
+				"type": "minecraft:uniform"
+			},
+			"entries": 
+			[
+				{
+					"type": "tag",
+					"weight": 3,
+					"name": "c:armors/copper",
+					"expand": true
+				},
+				{
+					"type": "tag",
+					"weight": 1,
+					"name": "c:tools/copper",
+					"expand": true
+				},
+				{
+					"type": "tag",
+					"weight": 1,
+					"name": "c:weapons/copper",
+					"expand": true
+				}
+			]
+		}
+	]
+}

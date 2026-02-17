@@ -1,0 +1,24 @@
+{
+	"elements": [
+		{
+			"weight": 10,
+			"data": {
+				"type": "dungeonfist:pillar",
+				"blocks": "candle",
+				"max_width": 1,
+				"max_height": 1,
+				"processors": "dungeonfist:candle"
+			}
+		},
+		{
+			"weight": 1,
+			"data": {
+				"type": "dungeonfist:pillar",
+				"blocks": "#candles",
+				"max_width": 1,
+				"max_height": 1,
+				"processors": "dungeonfist:candle"
+			}
+		}
+	]
+}

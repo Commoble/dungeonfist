@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": "minecraft:cobbled_deepslate"
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "id": "dungeonfist:cobbled_deepslate_pressure_plate"
+  }
+}

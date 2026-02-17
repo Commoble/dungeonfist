@@ -1,0 +1,13 @@
+{
+	"fallback": "dungeonfist:dungeon/plated_pipe_trap",
+	"elements": [
+		{
+			"weight": 3,
+			"data": "#dungeonfist:dungeon/common_underfloor_pipe_traps"
+		},
+		{
+			"weight": 1,
+			"data": "#dungeonfist:dungeon/rare_underfloor_pipe_traps"
+		}
+	]
+}

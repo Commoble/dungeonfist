@@ -1,0 +1,8 @@
+{
+	"values": [
+		"dungeonfist:dungeon/junctions/medium_to_narrow",
+		"dungeonfist:dungeon/junctions/medium_to_wide",
+		"dungeonfist:dungeon/junctions/narrow_to_medium",
+		"dungeonfist:dungeon/junctions/wide_to_medium"
+	]
+}

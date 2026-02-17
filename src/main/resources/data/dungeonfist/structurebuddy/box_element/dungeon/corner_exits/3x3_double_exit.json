@@ -1,0 +1,11 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:box/3x3_double_exit",
+	"snap": {"front_jigsaw": "anchor", "top_jigsaw": "anchor"},
+	"jigsaw_overrides": {
+		"3x3": {
+			"target_pool": "dungeonfist:dungeon/medium_exits",
+			"target_name": "3x3"
+		}
+	}
+}

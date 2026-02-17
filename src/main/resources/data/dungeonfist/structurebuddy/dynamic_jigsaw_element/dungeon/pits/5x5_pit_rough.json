@@ -1,0 +1,11 @@
+{
+	"type": "structurebuddy:box",
+	"x_size": 5,
+	"z_size": 5,
+	"y_size": {
+		"type": "uniform",
+		"min_inclusive": 3,
+		"max_inclusive": 10
+	},
+	"element": "dungeonfist:dungeon/pits/5x5_pit_rough"
+}

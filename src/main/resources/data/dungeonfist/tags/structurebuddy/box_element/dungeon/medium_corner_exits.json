@@ -1,0 +1,7 @@
+{
+	"values": [
+		"dungeonfist:dungeon/corner_exits/3x3_exit_buffered",
+		"dungeonfist:dungeon/corner_exits/3x3_double_exit",
+		"dungeonfist:dungeon/corner_exits/double_corner_balcony_3x3"
+	]
+}

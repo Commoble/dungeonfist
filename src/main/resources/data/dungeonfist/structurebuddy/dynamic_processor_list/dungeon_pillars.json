@@ -1,0 +1,12 @@
+[
+	{
+		"type": "dungeonfist:dungeon_material"
+	},
+	{
+		"type": "dungeonfist:age",
+		"air_block": "stone"
+	},
+	{
+		"type": "dungeonfist:moisten"
+	}
+]

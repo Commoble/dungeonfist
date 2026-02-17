@@ -1,0 +1,5 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:box/glow_lichen",
+	"snap": {"front_jigsaw": "front"}	
+}

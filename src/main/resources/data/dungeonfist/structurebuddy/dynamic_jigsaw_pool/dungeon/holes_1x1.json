@@ -1,0 +1,13 @@
+{
+	"fallback": "dungeonfist:dungeon/holes_1x1_bottom",
+	"elements": [
+		{
+			"weight": 10,
+			"data": "#dungeonfist:dungeon/1x1_pits_clean"
+		},
+		{
+			"weight": 1,
+			"data": "#dungeonfist:dungeon/1x1_pits_rough"
+		}
+	]
+}

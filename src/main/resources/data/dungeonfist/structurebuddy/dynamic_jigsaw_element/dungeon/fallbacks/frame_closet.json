@@ -1,0 +1,5 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:dungeon/closets/frame_closet",
+	"processors": "dungeonfist:dungeon_frame"
+}

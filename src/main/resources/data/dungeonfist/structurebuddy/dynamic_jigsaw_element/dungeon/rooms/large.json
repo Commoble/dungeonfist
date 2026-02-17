@@ -1,0 +1,88 @@
+{
+	"type": "dungeonfist:set_data",
+	"rules": [
+		{
+			"rule": {
+				"predicate_type": "dungeonfist:height_range",
+				"max_y": 0
+			},
+			"data": {
+				"dungeonfist:dungeon_material": "dungeonfist:cobbled_deepslate"
+			}
+		},
+		{
+			"rule": {
+				"predicate_type": "dungeonfist:height_range",
+				"min_y": 1,
+				"max_y": 64
+			},
+			"data": {
+				"dungeonfist:dungeon_material": "dungeonfist:cobblestone"
+			}
+		},
+		{
+			"rule": {
+				"predicate_type": "dungeonfist:height_range",
+				"min_y": 65
+			},
+			"data": {
+				"dungeonfist:dungeon_material": "dungeonfist:stone_bricks"
+			}
+		}
+	],
+	"element": {
+		"type": "dungeonfist:dungeon_room",
+		"template_block": "cobblestone",
+		"min_height": 8,
+		"max_height": 12,
+		"min_width": 8,
+		"max_width": 20,
+		"subdivisions": {
+			"type": "uniform",
+			"min_inclusive": 2,
+			"max_inclusive": 4
+		},
+		"processors": "dungeonfist:dungeon",
+		"age": {
+			"min": 0,
+			"max": 70,
+			"max_variance": 10
+		},
+		"moistness": {
+			"min": 0,
+			"max": 25,
+			"max_variance": 5
+		},
+		"exits": {
+			"count": {
+				"type": "weighted_list",
+				"distribution": [
+					{"data": 1, "weight": 1},
+					{"data": 2, "weight": 3},
+					{"data": 3, "weight": 3},
+					{"data": 1, "weight": 1}
+				]
+			},
+			"wall_pool": "dungeonfist:dungeon/wall_exits",
+			"corner_pool": "dungeonfist:dungeon/corner_exits"
+		},
+		"feature_pool": "dungeonfist:dungeon/interior_features",
+		"wall_feature_pool": "dungeonfist:dungeon/wall_features",
+		"floor_embed": {
+			"chance": 0.3,
+			"pool": "dungeonfist:dungeon/floor_embeds"
+		},
+		"ceiling_embed": {
+			"chance": 0.3,
+			"pool": "dungeonfist:dungeon/ceiling_embeds"
+		},
+		"wall_embed": {
+			"chance": 0.3,
+			"pool": "dungeonfist:dungeon/wall_embeds"
+		},
+		"corner_embed": {
+			"chance": 0.3,
+			"pool": "dungeonfist:dungeon/corner_embeds"
+		}
+	}
+}

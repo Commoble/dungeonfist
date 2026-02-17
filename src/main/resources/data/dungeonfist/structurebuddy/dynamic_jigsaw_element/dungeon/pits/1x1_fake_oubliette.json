@@ -1,0 +1,14 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:dungeon/pits/fake_oubliette",
+	"processors": "dungeonfist:dungeon",
+	"jigsaw_overrides": {
+		"up": {
+			"placement_priority": 1
+		},
+		"exit": {
+			"target_pool": "dungeonfist:dungeon/secret_rooms",
+			"target_name": "default"
+		}
+	}
+}

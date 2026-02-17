@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    "minecraft:tnt",
+    "minecraft:fire_charge"
+  ],
+  "result": {
+    "id": "dungeonfist:charged_tnt"
+  }
+}

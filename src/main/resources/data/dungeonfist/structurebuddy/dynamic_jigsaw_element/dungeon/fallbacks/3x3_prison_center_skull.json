@@ -1,0 +1,5 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:dungeon/fallbacks_3x3/prison_center_skull",
+	"processors": "dungeonfist:dungeon"
+}

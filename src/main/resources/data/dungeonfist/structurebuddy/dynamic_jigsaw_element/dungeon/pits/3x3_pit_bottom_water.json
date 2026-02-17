@@ -1,0 +1,21 @@
+{
+	"type": "dungeonfist:set_data",
+	"rules": [
+		{
+			"data": {
+				"dungeonfist:dungeon_moistness": 80
+			}	
+		}
+	],
+	"element": {
+		"type": "structurebuddy:box",
+		"x_size": 5,
+		"z_size": 5,
+		"y_size": {
+			"type": "uniform",
+			"min_inclusive": 3,
+			"max_inclusive": 5
+		},
+		"element": "dungeonfist:dungeon/pits/3x3_pit_bottom_water"
+	}
+}

@@ -1,0 +1,9 @@
+{
+  "dungeonfist:cobblestone_pipe": "dungeonfist:stone_brick_pipe",
+  "dungeonfist:cobblestone_pressure_plate": "dungeonfist:stone_brick_pressure_plate",
+  "minecraft:cobblestone": "minecraft:stone_bricks",
+  "minecraft:cobblestone_slab": "minecraft:stone_brick_slab",
+  "minecraft:cobblestone_stairs": "minecraft:stone_brick_stairs",
+  "minecraft:cobblestone_wall": "minecraft:stone_brick_wall",
+  "minecraft:infested_cobblestone": "minecraft:infested_stone_bricks"
+}

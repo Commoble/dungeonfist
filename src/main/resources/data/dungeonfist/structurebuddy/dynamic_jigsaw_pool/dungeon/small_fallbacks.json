@@ -1,0 +1,12 @@
+{
+	"elements": [
+		{
+			"data": "#dungeonfist:dungeon/small_fallbacks_clean",
+			"weight": 10
+		},
+		{
+			"data": "#dungeonfist:dungeon/small_fallbacks_rough",
+			"weight": 1
+		}
+	]
+}

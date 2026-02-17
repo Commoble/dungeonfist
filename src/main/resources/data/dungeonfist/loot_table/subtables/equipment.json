@@ -1,0 +1,27 @@
+{
+	"type": "minecraft:generic",
+	"pools": 
+	[
+		{
+			"rolls": 1,
+			"entries": 
+			[
+				{
+					"type": "minecraft:loot_table",
+					"value": "dungeonfist:subtables/weapons",
+					"weight": 2
+				},
+				{
+					"type": "minecraft:loot_table",
+					"value": "dungeonfist:subtables/armor",
+					"weight": 2
+				},
+				{
+					"type": "minecraft:loot_table",
+					"value": "dungeonfist:subtables/tools",
+					"weight": 1
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,9 @@
+{
+	"fallback": "dungeonfist:dungeon/wells_3x3_bottom_fallbacks",
+	"elements": [
+		{
+			"weight": 1,
+			"data": "#dungeonfist:dungeon/3x3_wells"
+		}
+	]
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "dungeonfist:block/rune_template_charged",
+  "textures": {
+    "base": "minecraft:block/obsidian",
+    "overlay": "dungeonfist:block/alert_rune"
+  }
+}

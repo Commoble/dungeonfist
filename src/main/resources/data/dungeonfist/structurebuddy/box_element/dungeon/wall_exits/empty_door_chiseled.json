@@ -1,0 +1,11 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:box/empty_door_chiseled",
+	"snap": {"front_jigsaw": "front", "top_jigsaw": "front"},
+	"jigsaw_overrides": {
+		"default": {
+			"target_pool": "dungeonfist:dungeon/small_exits",
+			"target_name": "default"
+		}
+	}
+}

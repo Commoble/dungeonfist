@@ -1,0 +1,58 @@
+{
+	"values": {
+		"stone_bricks": [
+			{
+				"weight": 1,
+				"data": "mossy_stone_bricks"
+			}
+		],
+		"stone_brick_wall": [
+			{
+				"weight": 1,
+				"data": "mossy_stone_brick_wall"
+			}
+		],
+		"stone_brick_slab": [
+			{
+				"weight": 1,
+				"data": "mossy_stone_brick_slab"
+			}
+		],
+		"stone_brick_stairs": [
+			{
+				"weight": 1,
+				"data": "mossy_stone_brick_stairs"
+			}
+		],
+		"infested_stone_bricks": [
+			{
+				"weight": 1,
+				"data": "infested_mossy_stone_bricks"
+			}
+		],
+		"cobblestone": [
+			{
+				"weight": 1,
+				"data": "mossy_cobblestone"
+			}
+		],
+		"cobblestone_wall": [
+			{
+				"weight": 1,
+				"data": "mossy_cobblestone_wall"
+			}
+		],
+		"cobblestone_slab": [
+			{
+				"weight": 1,
+				"data": "mossy_cobblestone_slab"
+			}
+		],
+		"cobblestone_stairs": [
+			{
+				"weight": 1,
+				"data": "mossy_cobblestone_stairs"
+			}
+		]
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:box/5x3_exit",
+	"snap": {"front_jigsaw": "anchor", "top_jigsaw": "anchor"},
+	"jigsaw_overrides": {
+		"5x3": {
+			"target_pool": "dungeonfist:dungeon/wide_exits",
+			"target_name": "5x3"
+		}
+	}
+}

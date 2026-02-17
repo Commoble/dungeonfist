@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:generic",
+	"pools": 
+	[
+		{
+			"rolls": 
+			{
+				"min": 1.0,
+				"max": 1.0,
+				"type": "minecraft:uniform"
+			},
+			"entries": 
+			[
+				{
+					"type": "tag",
+					"weight": 1,
+					"name": "dungeonfist:loot/common_potioned_trap_projectiles",
+					"expand": true
+				}
+			]
+		}
+	]
+}

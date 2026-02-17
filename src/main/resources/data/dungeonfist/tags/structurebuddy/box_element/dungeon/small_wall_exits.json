@@ -1,0 +1,7 @@
+{
+	"values": [
+		"dungeonfist:dungeon/wall_exits/balcony",
+		"dungeonfist:dungeon/wall_exits/door",
+		"dungeonfist:dungeon/wall_exits/empty_door_chiseled"
+	]
+}

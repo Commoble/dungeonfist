@@ -1,10 +1,14 @@
 package net.commoble.dungeonfist.client;
 
+import org.jspecify.annotations.Nullable;
+
 import net.commoble.dungeonfist.DungeonFist;
 import net.commoble.dungeonfist.block.DungeonPortalBlockEntity;
 import net.commoble.dungeonfist.client.particle.DungeonPortalParticle.DungeonPortalParticleProvider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
@@ -13,6 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 
 @EventBusSubscriber(modid=DungeonFist.MODID, value=Dist.CLIENT)
@@ -20,10 +25,19 @@ public final class ClientProxy
 {
 	private ClientProxy() {}
 	
-	private static LocalPlayer player()
+	private static @Nullable LocalPlayer player()
 	{
 		Minecraft mc = Minecraft.getInstance();
 		return mc.player;
+	}
+	
+	@SuppressWarnings("deprecation")
+	@SubscribeEvent
+	public static void onClientSetup(FMLClientSetupEvent event)
+	{
+		ItemBlockRenderTypes.setRenderLayer(DungeonFist.ALERT_RUNE.get(), ChunkSectionLayer.CUTOUT);
+		ItemBlockRenderTypes.setRenderLayer(DungeonFist.SUMMON_RUNE.get(), ChunkSectionLayer.CUTOUT);
+		ItemBlockRenderTypes.setRenderLayer(DungeonFist.TELEPORT_RUNE.get(), ChunkSectionLayer.CUTOUT);
 	}
 	
 	@SubscribeEvent
@@ -34,10 +48,12 @@ public final class ClientProxy
 	
 	private static void dungeonPortalBlockEntityClientTick(Level level, BlockPos pos, BlockState state, DungeonPortalBlockEntity be)
 	{
-		RandomSource rand = level.random;
+		RandomSource rand = level.getRandom();
 		
 		// generate portal particles in a billboard facing the player
     	LocalPlayer player = player();
+    	if (player == null)
+    		return;
     	double playerX = player.getX();
     	double playerZ = player.getZ();
     	
@@ -64,7 +80,7 @@ public final class ClientProxy
     		// radius is now between -0.375 and 0.375
     		
     		// depth potential gets wider further away from the center
-    		double depth = (height-0.5D) * radius * 0.2D;
+//    		double depth = (height-0.5D) * radius * 0.2D;
     		
     		double pX = radius*Math.cos(angle)+blockX;
     		double pZ = radius*Math.sin(angle)+blockZ;

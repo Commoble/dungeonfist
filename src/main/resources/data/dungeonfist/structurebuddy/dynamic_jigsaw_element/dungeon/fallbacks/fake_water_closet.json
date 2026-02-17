@@ -1,0 +1,15 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:dungeon/closets/fake_water_closet",
+	"processors": "dungeonfist:dungeon_with_doors",
+	"jigsaw_overrides": {
+		"default": {
+			"placement_priority": 1
+		},
+		"exit": {
+			"target_pool": "dungeonfist:dungeon/secret_rooms",
+			"target_name": "default",
+			"placement_priority": 1
+		}
+	}
+}

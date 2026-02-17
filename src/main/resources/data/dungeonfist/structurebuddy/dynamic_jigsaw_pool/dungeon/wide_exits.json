@@ -1,0 +1,17 @@
+{
+	"fallback": "dungeonfist:dungeon/wide_fallbacks",
+	"elements": [
+		{
+			"weight": 100,
+			"data": "#dungeonfist:dungeon/large_rooms"
+		},
+		{
+			"weight": 10,
+			"data": "#dungeonfist:dungeon/wide_junctions"
+		},
+		{
+			"weight": 1,
+			"data": "#dungeonfist:dungeon/wide_rare_rooms"
+		}
+	]
+}

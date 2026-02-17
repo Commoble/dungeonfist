@@ -1,0 +1,8 @@
+{
+	"delegates": [
+		{
+			"weight": 1,
+			"data": "dungeonfist:dungeon/corner_exits"
+		}
+	]
+}

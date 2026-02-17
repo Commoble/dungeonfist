@@ -1,0 +1,63 @@
+{
+	"type": "minecraft:chest",
+	"pools": 
+	[
+		{
+			"rolls": {
+				"type": "uniform",
+				"min": 2,
+				"max": 3
+			},
+			"entries": 
+			[
+				{
+					"type": "loot_table",
+					"weight": 1,
+					"value": "dungeonfist:subtables/armory_supplies",
+					"functions": [
+						{
+							"function": "minecraft:set_count",
+							"count": 
+							{
+								"min": 3,
+								"max": 9,
+								"type": "minecraft:uniform"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"rolls": {
+				"type": "minecraft:uniform",
+				"min": 1,
+				"max": 4
+			},
+			"entries": 
+			[
+				{
+					"type": "loot_table",
+					"weight": 10,
+					"value": "dungeonfist:subtables/equipment"
+				},
+				{
+					"type": "loot_table",
+					"weight": 1,
+					"value": "dungeonfist:subtables/random_loot_with_enchantments"
+				}
+			]
+		},
+		{
+			"rolls": 1,
+			"entries": 
+			[
+				{
+					"type": "loot_table",
+					"weight": 1,
+					"value": "dungeonfist:subtables/random_loot_with_enchantments"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,20 @@
+{
+	"elements": [
+		{
+			"weight": 10,
+			"data": "#dungeonfist:dungeon/small_floor_embeds"
+		},
+		{
+			"weight": 100,
+			"data": "#dungeonfist:dungeon/medium_floor_embeds"
+		},
+		{
+			"weight": 1000,
+			"data": "#dungeonfist:dungeon/large_floor_embeds"
+		},
+		{
+			"weight": 5,
+			"data": "#dungeonfist:dungeon/trap_floor_embeds"
+		}
+	]
+}

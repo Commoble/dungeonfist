@@ -1,0 +1,9 @@
+{
+  "dungeonfist:cobblestone_pipe": "dungeonfist:cobbled_deepslate_pipe",
+  "dungeonfist:cobblestone_pressure_plate": "dungeonfist:cobbled_deepslate_pressure_plate",
+  "minecraft:cobblestone": "minecraft:cobbled_deepslate",
+  "minecraft:cobblestone_slab": "minecraft:cobbled_deepslate_slab",
+  "minecraft:cobblestone_stairs": "minecraft:cobbled_deepslate_stairs",
+  "minecraft:cobblestone_wall": "minecraft:cobbled_deepslate_wall",
+  "minecraft:infested_cobblestone": "minecraft:infested_deepslate"
+}

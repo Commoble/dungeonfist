@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "dungeonfist:block/stone_brick_pipe",
+      "uvlock": true,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "dungeonfist:block/stone_brick_pipe",
+      "uvlock": true,
+      "x": 90
+    },
+    "axis=z": {
+      "model": "dungeonfist:block/stone_brick_pipe",
+      "uvlock": true
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+	"values": [
+		"dungeonfist:dungeon/fallbacks/5x3_coal_storage",
+		"dungeonfist:dungeon/fallbacks/5x3_double_cell",
+		"dungeonfist:dungeon/fallbacks/5x3_large_cell",
+		"dungeonfist:dungeon/fallbacks/5x3_log_storage",
+		"dungeonfist:dungeon/fallbacks/5x3_skeleton_pit",
+		"dungeonfist:dungeon/fallbacks/5x3_ossuary"
+	]
+}

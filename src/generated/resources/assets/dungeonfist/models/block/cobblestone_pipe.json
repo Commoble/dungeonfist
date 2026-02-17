@@ -1,0 +1,6 @@
+{
+  "parent": "dungeonfist:block/pipe_template",
+  "textures": {
+    "all": "minecraft:block/cobblestone"
+  }
+}

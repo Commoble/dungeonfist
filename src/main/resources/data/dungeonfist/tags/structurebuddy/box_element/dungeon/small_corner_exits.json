@@ -1,0 +1,8 @@
+{
+	"values": [
+		"dungeonfist:dungeon/corner_exits/door_buffered",
+		"dungeonfist:dungeon/corner_exits/balcony_corner_left",
+		"dungeonfist:dungeon/corner_exits/balcony_corner_right",
+		"dungeonfist:dungeon/corner_exits/double_corner_balcony"
+	]
+}

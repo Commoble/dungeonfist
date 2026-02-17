@@ -1,0 +1,8 @@
+{
+	"values": [
+		"dungeonfist:dungeon/pits/1x1_oubliette",
+		"dungeonfist:dungeon/pits/1x1_pit_bottom",
+		"dungeonfist:dungeon/pits/1x1_pit_bottom_water",
+		"dungeonfist:dungeon/pits/1x1_pit_bottom_lava"
+	]
+}

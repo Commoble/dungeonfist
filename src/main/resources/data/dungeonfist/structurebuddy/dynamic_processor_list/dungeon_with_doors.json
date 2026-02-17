@@ -1,0 +1,21 @@
+[
+	{
+		"type": "dungeonfist:dungeon_material"
+	},
+	{
+		"type": "dungeonfist:age"
+	},
+	{
+		"type": "dungeonfist:moisten"
+	},
+	{
+		"type": "dungeonfist:randomize_doors",
+		"input": "oak_door",
+		"outputs": [
+			{
+				"weight": 1,
+				"data": "spruce_door"
+			}
+		]
+	}
+]

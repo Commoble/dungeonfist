@@ -1,0 +1,16 @@
+{
+	"elements": [
+		{
+			"weight": 1,
+			"data": "#dungeonfist:dungeon/small_corner_exits"
+		},
+		{
+			"weight": 10,
+			"data": "#dungeonfist:dungeon/medium_corner_exits"
+		},
+		{
+			"weight": 100,
+			"data": "#dungeonfist:dungeon/wide_corner_exits"
+		}
+	]
+}
