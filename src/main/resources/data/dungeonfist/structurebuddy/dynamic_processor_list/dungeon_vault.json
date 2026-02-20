@@ -1,5 +1,49 @@
 [
 	{
+		"type": "structurebuddy:processor_list",
+		"processors": [
+			{
+				"processor_type": "rule",
+				"rules": [
+					{
+						"input_predicate": {
+							"predicate_type": "random_block_match",
+							"block": "spawner",
+							"probability": 0.8
+						},
+						"location_predicate": {"predicate_type": "always_true"},
+						"output_state": {
+							"Name": "cobblestone"
+						}
+					}
+				]
+			},
+			{
+				"processor_type": "dungeonfist:set_data",
+				"blocks": "spawner",
+				"data": {
+					"SpawnData": {
+						"entity": {
+							"id": "zombie"
+						}
+					}
+				}
+			},
+			{
+				"processor_type": "dungeonfist:set_data",
+				"blocks": "spawner",
+				"probability": 0.5,
+				"data": {
+					"SpawnData": {
+						"entity": {
+							"id": "skeleton"
+						}
+					}
+				}
+			}
+		]
+	},
+	{
 		"type": "dungeonfist:dungeon_material"
 	},
 	{

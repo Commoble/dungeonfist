@@ -1,0 +1,5 @@
+{
+	"type": "structurebuddy:structure_template",
+	"location": "dungeonfist:box/vine",
+	"snap": {"front_jigsaw": "front"}	
+}

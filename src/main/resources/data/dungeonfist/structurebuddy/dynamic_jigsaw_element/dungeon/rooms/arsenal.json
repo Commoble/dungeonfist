@@ -1,7 +1,7 @@
 {
 	"type": "structurebuddy:structure_template",
 	"location": "dungeonfist:dungeon/rooms/arsenal",
-	"processors": "dungeonfist:dungeon_armory",
+	"processors": "dungeonfist:dungeon_arsenal",
 	"jigsaw_overrides": {
 		"default": {
 			"placement_priority": 1
