@@ -5,12 +5,14 @@ import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction.Axis;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -54,4 +56,16 @@ public class PipeBlock extends RotatedPillarBlock
 			case Z -> SHAPE_Z;
 		};
 	}
+
+	@Override
+	protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
+	{
+		// let projectiles through but don't let entities fall through
+		if (context instanceof EntityCollisionContext entityContext
+			&& entityContext.getEntity() instanceof LivingEntity)
+		{
+			return Shapes.block();
+		}
+		return super.getCollisionShape(state, level, pos, context);
+	}	
 }
