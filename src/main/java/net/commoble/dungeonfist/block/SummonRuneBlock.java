@@ -29,7 +29,7 @@ public class SummonRuneBlock extends ChargeableRuneBlock
 	}
 	
 	@Override
-	public void trigger(BlockState state, ServerLevel level, BlockPos pos)
+	public boolean trigger(BlockState state, ServerLevel level, BlockPos pos)
 	{        
 		AABB targetBox = new AABB(pos).inflate(3);
 		boolean foundPlayer = false;
@@ -43,7 +43,7 @@ public class SummonRuneBlock extends ChargeableRuneBlock
 		// but in practice they just slowly fill up a room
 		// so, require a player to trigger it
 		if (!foundPlayer)
-			return;
+			return false;
 
 		Vec3 center = pos.getCenter(); 
 		double radius = 3D;
@@ -79,6 +79,7 @@ public class SummonRuneBlock extends ChargeableRuneBlock
 			}
 		});
 		
+		return true;
 	}
 	
 	

@@ -28,7 +28,7 @@ public class AlertRuneBlock extends ChargeableRuneBlock
 	}
 	
 	@Override
-	public void trigger(BlockState state, ServerLevel level, BlockPos pos)
+	public boolean trigger(BlockState state, ServerLevel level, BlockPos pos)
 	{
 		level.registryAccess().lookupOrThrow(Registries.INSTRUMENT).get(InstrumentTags.REGULAR_GOAT_HORNS).ifPresent(goatHorns -> {
 			@SuppressWarnings("deprecation")
@@ -72,6 +72,7 @@ public class AlertRuneBlock extends ChargeableRuneBlock
 				}
 			}
 		}
+		return true;
 	}
 	
 	

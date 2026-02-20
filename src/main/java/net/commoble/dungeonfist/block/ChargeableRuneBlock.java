@@ -29,7 +29,7 @@ public abstract class ChargeableRuneBlock extends Block
 			.setValue(CHARGED, true));
 	}
 	
-	public abstract void trigger(BlockState state, ServerLevel serverLevel, BlockPos pos);
+	public abstract boolean trigger(BlockState state, ServerLevel serverLevel, BlockPos pos);
 
 	@Override
 	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
@@ -58,13 +58,10 @@ public abstract class ChargeableRuneBlock extends Block
 			{
 				boolean armed = state.getValue(CHARGED);
 				BlockState newState = state.setValue(POWERED, hasPower);
-				if(armed)
-				{
-					newState = newState.setValue(CHARGED, false);
-				}
 				if (hasPower && armed)
 				{
-					this.trigger(state, serverLevel, pos);
+					boolean nowArmed = !this.trigger(state, serverLevel, pos); // if trigger successful, disarm
+					newState = newState.setValue(CHARGED, nowArmed);
 				}
 				level.setBlock(pos, newState, Block.UPDATE_ALL);
 			}
@@ -77,9 +74,9 @@ public abstract class ChargeableRuneBlock extends Block
 		super.attack(state, level, pos, player);
 		if (level instanceof ServerLevel serverLevel
 			&& state.getValue(CHARGED)
-			&& !EnchantmentHelper.hasTag(player.getActiveItem(), DungeonFist.PREVENTS_RUNE_TRIGGERING_WHEN_MINING))
+			&& !EnchantmentHelper.hasTag(player.getActiveItem(), DungeonFist.PREVENTS_RUNE_TRIGGERING_WHEN_MINING)
+			&& this.trigger(state, serverLevel, pos))
 		{
-			this.trigger(state, serverLevel, pos);
 			level.setBlock(pos, state.setValue(CHARGED, false), Block.UPDATE_ALL);
 		}
 	}
