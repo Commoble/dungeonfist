@@ -10,5 +10,7 @@
   "block.dungeonfist.stone_brick_pressure_plate": "Stone Brick Pressure Plate",
   "block.dungeonfist.summon_rune": "Summon Rune",
   "block.dungeonfist.teleport_rune": "Teleport Rune",
+  "item.dungeonfist.providence": "Providence",
+  "item.dungeonfist.providence.tooltip": "Escape to the surface",
   "itemGroup.dungeonfist": "Dungeonfist"
 }

@@ -6,8 +6,9 @@ import java.util.Set;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
+import net.commoble.dungeonfist.DimensionHelper;
 import net.commoble.dungeonfist.DungeonFist;
-import net.commoble.dungeonfist.attachments.PortalTimer;
+import net.commoble.dungeonfist.attachment.PortalTimer;
 import net.commoble.dungeonfist.block.entity.DungeonPortalBlockEntity;
 import net.commoble.dungeonfist.client.ClientProxy;
 import net.minecraft.core.BlockPos;
@@ -95,7 +96,19 @@ public class DungeonPortalBlock extends Block implements EntityBlock
 						ResourceKey<Level> targetKey = portal.targetLevel();
 						BlockPos targetPortalPos = portal.targetPortalPos();
 						BlockPos landingPos = targetPortalPos.below();
-						@Nullable ServerLevel targetLevel = server.getLevel(targetKey);
+						@Nullable ServerLevel targetLevel = null;
+						@Nullable Long targetSeed = portal.targetSeed();
+						if (targetSeed == null)
+						{
+							// target level is a root level
+							// so either it exists or we can't teleport there
+							targetLevel = server.getLevel(targetKey);
+						}
+						else
+						{
+							// target level is a dungeon, we can reconstitute it if necessary
+							targetLevel = DimensionHelper.getOrCreateDungeonLevel(server, targetKey, targetSeed);
+						} 
 						if (targetLevel != null)
 						{
 							Vec3 landingVec = Vec3.atBottomCenterOf(landingPos);
@@ -104,7 +117,7 @@ public class DungeonPortalBlock extends Block implements EntityBlock
 							double targetZ = landingVec.z;
 							// ensure chunk is loaded
 							targetLevel.getChunkAt(landingPos);
-							player.teleportTo(targetLevel, targetX, targetY, targetZ, Set.of(), player.getYRot(), player.getXRot(), false);	
+							player.teleportTo(targetLevel, targetX, targetY, targetZ, Set.of(), player.getYRot(), player.getXRot(), true);	
 						}
 					}
 					player.setData(DungeonFist.PORTAL_TIMER_ATTACHMENT, new PortalTimer(

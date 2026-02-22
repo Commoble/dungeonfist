@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.commoble.dungeonfist.DungeonFist;
+import net.minecraft.client.color.item.Constant;
 import net.minecraft.client.renderer.item.BlockModelWrapper;
 import net.minecraft.client.renderer.item.ClientItem;
 import net.minecraft.data.PackOutput.Target;
@@ -31,6 +32,13 @@ public final class DungeonFistItemsDataGen
 		registerDefaultBlockModel(clientItems, DungeonFist.PORTAL_GENERATOR_BLOCK);
 		registerDefaultBlockModel(clientItems, DungeonFist.SUMMON_RUNE);
 		registerDefaultBlockModel(clientItems, DungeonFist.TELEPORT_RUNE);
+		
+		clientItems.put(DungeonFist.PROVIDENCE_ITEM.getId(), new ClientItem(
+			new BlockModelWrapper.Unbaked(
+				Identifier.withDefaultNamespace("item/feather"),
+				List.of(new Constant(0xFFFFF594))),
+			ClientItem.Properties.DEFAULT));
+			
 		
 		JsonDataProvider.addProvider(event, Target.RESOURCE_PACK, "items", ClientItem.CODEC, clientItems);
 	}

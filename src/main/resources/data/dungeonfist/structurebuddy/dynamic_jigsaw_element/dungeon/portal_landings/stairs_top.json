@@ -42,7 +42,7 @@
 	],
 	"element": {
 		"type": "structurebuddy:structure_template",
-		"location": "dungeonfist:dungeon/portal_landings/stairs",
+		"location": "dungeonfist:dungeon/portal_landings/stairs_top",
 		"processors": "dungeonfist:dungeon",
 		"jigsaw_overrides": {
 			"stairwell": {

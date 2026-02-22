@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 
-import net.commoble.dungeonfist.attachments.PortalTimer;
+import net.commoble.dungeonfist.attachment.PortalTimer;
 import net.commoble.dungeonfist.block.AlertRuneBlock;
 import net.commoble.dungeonfist.block.ChargedTntBlock;
 import net.commoble.dungeonfist.block.DungeonPortalBlock;
@@ -31,6 +31,7 @@ import net.commoble.dungeonfist.dynamic_processor.AgeDynamicProcessor;
 import net.commoble.dungeonfist.dynamic_processor.DungeonMaterialDynamicProcessor;
 import net.commoble.dungeonfist.dynamic_processor.MoistenDynamicProcessor;
 import net.commoble.dungeonfist.dynamic_processor.RandomizeDoorsDynamicProcessor;
+import net.commoble.dungeonfist.item.ProvidenceItem;
 import net.commoble.dungeonfist.pos_rule_test.HeightRangePosRuleTest;
 import net.commoble.dungeonfist.rule_test.RandomRuleTest;
 import net.commoble.dungeonfist.structure_placement.OriginStructurePlacement;
@@ -43,6 +44,7 @@ import net.commoble.structurebuddy.api.PieceFiller;
 import net.commoble.structurebuddy.api.StructureBuddyRegistries;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -56,6 +58,8 @@ import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.component.ItemLore;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -64,6 +68,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacementType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.PosRuleTestType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTestType;
@@ -76,6 +81,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
@@ -86,6 +92,7 @@ public class DungeonFist
 	
 	public static final TagKey<EntityType<?>> ITEM_FRAMES = TagKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath("c", "item_frame"));
 	public static final TagKey<Enchantment> PREVENTS_RUNE_TRIGGERING_WHEN_MINING = TagKey.create(Registries.ENCHANTMENT, id("prevents_rune_triggering_when_mining"));
+	public static final TagKey<DimensionType> REMOVE_WHILE_UNUSED = TagKey.create(Registries.DIMENSION_TYPE, id("remove_while_unused"));
 	
 	public static final DeferredRegister.Blocks BLOCKS = defreg(DeferredRegister::createBlocks);
 	public static final DeferredRegister.Items ITEMS = defreg(DeferredRegister::createItems);
@@ -204,6 +211,16 @@ public class DungeonFist
 
 	public static final DeferredHolder<PoiType,PoiType> RETURN_PORTAL_POI = POIS.register("return_portal", () -> new PoiType(
 		RETURN_PORTAL_BLOCK.get().getStateDefinition().getPossibleStates().stream().collect(Collectors.toSet()), 0, 1));
+	
+	public static final DeferredItem<ProvidenceItem> PROVIDENCE_ITEM = ITEMS.registerItem(
+		"providence",
+		ProvidenceItem::new,
+		props -> props
+			.durability(64)
+			.component(DataComponents.RARITY, Rarity.UNCOMMON)
+			.component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)
+			.component(DataComponents.LORE, new ItemLore(List.of(Component.translatable("item.dungeonfist.providence.tooltip"))))
+	);
 	
 	public static final DeferredHolder<PosRuleTestType<?>, PosRuleTestType<HeightRangePosRuleTest>> HEIGHT_RANGE_POS_RULE_TEST = POS_RULE_TEST_TYPES.register("height_range", () -> () -> HeightRangePosRuleTest.CODEC);
 	

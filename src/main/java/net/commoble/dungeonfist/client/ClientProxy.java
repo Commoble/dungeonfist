@@ -3,7 +3,7 @@ package net.commoble.dungeonfist.client;
 import org.jspecify.annotations.Nullable;
 
 import net.commoble.dungeonfist.DungeonFist;
-import net.commoble.dungeonfist.attachments.PortalTimer;
+import net.commoble.dungeonfist.attachment.PortalTimer;
 import net.commoble.dungeonfist.block.entity.DungeonPortalBlockEntity;
 import net.commoble.dungeonfist.block.entity.PortalGeneratorBlockEntity;
 import net.commoble.dungeonfist.client.particle.DungeonPortalParticle.DungeonPortalParticleProvider;

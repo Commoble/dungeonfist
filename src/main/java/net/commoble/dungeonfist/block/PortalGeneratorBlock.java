@@ -1,20 +1,16 @@
 package net.commoble.dungeonfist.block;
 
-import java.util.OptionalLong;
-
 import org.jspecify.annotations.Nullable;
 
+import net.commoble.dungeonfist.DimensionHelper;
 import net.commoble.dungeonfist.DungeonFist;
-import net.commoble.dungeonfist.DungeonFistBiomes;
-import net.commoble.dungeonfist.DungeonFistDimensionTypes;
-import net.commoble.dungeonfist.DungeonFistNoiseSettings;
 import net.commoble.dungeonfist.block.entity.DungeonPortalBlockEntity;
 import net.commoble.dungeonfist.block.entity.PortalGeneratorBlockEntity;
 import net.commoble.dungeonfist.client.ClientProxy;
 import net.commoble.dungeonfist.savedata.ReturnPointSaveData;
 import net.commoble.infiniverse.api.InfiniverseAPI;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.GlobalPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerChunkCache;
@@ -34,7 +30,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.consume_effects.TeleportRandomlyConsumeEffect;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.FixedBiomeSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
@@ -46,8 +41,6 @@ import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.status.ChunkStatus;
-import net.minecraft.world.level.dimension.LevelStem;
-import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
 import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.Vec3;
 
@@ -128,15 +121,7 @@ public class PortalGeneratorBlock extends Block implements EntityBlock
 		@SuppressWarnings("deprecation")
 		long newSeed = serverLevel.getSeed() + Mth.getSeed(seedPos) + level.dimension().identifier().hashCode();
 		ResourceKey<Level> newLevelKey = entity.getOrCreateLevelKey(serverLevel, newSeed);
-		var registries = serverLevel.registryAccess();
-		ServerLevel newLevel = InfiniverseAPI.get().getOrCreateLevel(server, newLevelKey, () -> new LevelStem(
-			registries.lookupOrThrow(Registries.DIMENSION_TYPE).getOrThrow(DungeonFistDimensionTypes.DUNGEON),
-			new NoiseBasedChunkGenerator(
-				new FixedBiomeSource(registries.lookupOrThrow(Registries.BIOME).getOrThrow(DungeonFistBiomes.DUNGEON)),
-				registries.lookupOrThrow(Registries.NOISE_SETTINGS).getOrThrow(DungeonFistNoiseSettings.DUNGEON_CAVES)
-			),
-			OptionalLong.of(newSeed)
-		));
+		ServerLevel newLevel = DimensionHelper.getOrCreateDungeonLevel(server, newLevelKey, newSeed);
 		
 		newLevel.getChunkSource().addTicketWithRadius(DungeonFist.PORTAL_GENERATOR_TICKET.get(), ChunkPos.ZERO, 2);
 		@Nullable ChunkAccess chunk = getChunkIfLoaded(newLevel, 0, 0);
@@ -182,13 +167,32 @@ public class PortalGeneratorBlock extends Block implements EntityBlock
 				var currentLevelKey = serverLevel.dimension();
 				if (serverLevel.getBlockEntity(seedPos) instanceof DungeonPortalBlockEntity portal)
 				{
-					portal.setTarget(newLevelKey, targetPortalPos);
+					portal.setTarget(newLevelKey, targetPortalPos, newSeed);
 				}
+				@Nullable GlobalPos currentReturnPoint = ReturnPointSaveData.getOrCreate(serverLevel).returnPoint().orElse(null);
+				ReturnPointSaveData newLevelReturnPoint = ReturnPointSaveData.getOrCreate(newLevel);
 				if (newLevel.getBlockEntity(targetPortalPos) instanceof DungeonPortalBlockEntity portal)
 				{
-					portal.setTarget(currentLevelKey, seedPos);
+					// if current level is a dungeon dimension
+					// then we need to add its seed to the return portal
+					// so it can reconstitute this level if needed
+					// how do we know whether this is a dungeon dimension?
+					// check savedata, we only store a return point in dungeon dimensions
+					@Nullable Long returnSeed = currentReturnPoint == null
+						? null
+						: serverLevel.getSeed();
+					portal.setTarget(currentLevelKey, seedPos, returnSeed);
 				}
-				ReturnPointSaveData.getOrCreate(newLevel).setReturnPoint(currentLevelKey, seedPos);
+				if (currentReturnPoint == null)
+				{
+					// if parent is a root level, set child's return point to parent portal
+					newLevelReturnPoint.setReturnPoint(currentLevelKey, seedPos);	
+				}
+				else
+				{
+					// otherwise, set child's return point equal to parent's return point
+					newLevelReturnPoint.setReturnPoint(currentReturnPoint);
+				}
 			}
 			LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(serverLevel, EntitySpawnReason.EVENT);
 			if (bolt != null)

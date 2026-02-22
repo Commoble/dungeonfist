@@ -7,6 +7,7 @@ import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 public final class DungeonFistLangDataGen
 {
@@ -32,9 +33,17 @@ public final class DungeonFistLangDataGen
 				this.addBlock(DungeonFist.PORTAL_GENERATOR_BLOCK);
 				this.addBlock(DungeonFist.SUMMON_RUNE);
 				this.addBlock(DungeonFist.TELEPORT_RUNE);
+				
+				this.addItem(DungeonFist.PROVIDENCE_ITEM);
+				this.add("item.dungeonfist.providence.tooltip", "Escape to the surface");
 			}
 			
 			private void addBlock(DeferredBlock<?> holder)
+			{
+				this.add(holder.value(), getCleanName(holder.getId()));
+			}
+			
+			private void addItem(DeferredItem<?> holder)
 			{
 				this.add(holder.value(), getCleanName(holder.getId()));
 			}

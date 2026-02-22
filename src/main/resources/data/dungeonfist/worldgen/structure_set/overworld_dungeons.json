@@ -4,7 +4,6 @@
 		"salt": 1632817276,
 		"separation": 16,
 		"spacing": 40,
-		"frequency": 0.7,
 		"exclusion_zone": {
 			"other_set": "minecraft:ancient_cities",
 			"chunk_count": 10

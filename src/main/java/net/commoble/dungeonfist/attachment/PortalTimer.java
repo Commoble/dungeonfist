@@ -1,4 +1,4 @@
-package net.commoble.dungeonfist.attachments;
+package net.commoble.dungeonfist.attachment;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -16,4 +16,13 @@ public record PortalTimer(long cooldownTimestamp, int portalTime, boolean inPort
 			Codec.BOOL.fieldOf("in_portal").forGetter(PortalTimer::inPortal),
 			BlockPos.CODEC.fieldOf("portal_pos").forGetter(PortalTimer::portalPos)
 		).apply(builder, PortalTimer::new));
+	
+	public PortalTimer resetCooldown(long newCooldown)
+	{
+		return new PortalTimer(
+			newCooldown,
+			this.portalTime,
+			this.inPortal,
+			this.portalPos);
+	}
 }

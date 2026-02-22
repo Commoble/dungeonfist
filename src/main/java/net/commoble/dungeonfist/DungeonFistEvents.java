@@ -1,9 +1,14 @@
 package net.commoble.dungeonfist;
 
-import net.commoble.dungeonfist.attachments.PortalTimer;
+import java.util.Objects;
+
+import net.commoble.dungeonfist.attachment.PortalTimer;
+import net.commoble.infiniverse.api.InfiniverseAPI;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
@@ -55,6 +60,21 @@ public class DungeonFistEvents
 				Math.max(0, portalTime - 4),
 				false,
 				oldTimer.portalPos()));
+		}
+	}
+	
+	@SubscribeEvent
+	public static void afterLevelTick(LevelTickEvent.Post event)
+	{
+		if (event.getLevel() instanceof ServerLevel serverLevel)
+		{
+			if (serverLevel.dimensionTypeRegistration().is(DungeonFist.REMOVE_WHILE_UNUSED))
+			{
+				if (serverLevel.getChunkSource().getLoadedChunksCount() == 0)
+				{
+					InfiniverseAPI.get().markDimensionForUnregistration(Objects.requireNonNull(serverLevel.getServer()), serverLevel.dimension());
+				}
+			}
 		}
 	}
 }
