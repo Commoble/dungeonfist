@@ -2,6 +2,7 @@
 	"values": [
 		"#dungeonfist:dungeon/small_fallbacks_clean",
 		"dungeonfist:dungeon/fallbacks/fake_water_closet",
+		"dungeonfist:dungeon/portals/small",
 		"dungeonfist:dungeon/rooms/cistern"
 	]
 }

@@ -3,27 +3,39 @@ package net.commoble.dungeonfist.client;
 import org.jspecify.annotations.Nullable;
 
 import net.commoble.dungeonfist.DungeonFist;
-import net.commoble.dungeonfist.block.DungeonPortalBlockEntity;
+import net.commoble.dungeonfist.attachments.PortalTimer;
+import net.commoble.dungeonfist.block.entity.DungeonPortalBlockEntity;
+import net.commoble.dungeonfist.block.entity.PortalGeneratorBlockEntity;
 import net.commoble.dungeonfist.client.particle.DungeonPortalParticle.DungeonPortalParticleProvider;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.ARGB;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
+import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
 @EventBusSubscriber(modid=DungeonFist.MODID, value=Dist.CLIENT)
 public final class ClientProxy
 {
 	private ClientProxy() {}
+
+	public static final BlockEntityTicker<DungeonPortalBlockEntity> DUNGEON_PORTAL_TICKER = ClientProxy::dungeonPortalBlockEntityClientTick;
+	public static final BlockEntityTicker<PortalGeneratorBlockEntity> PORTAL_GENERATOR_TICKER = ClientProxy::portalGeneratorBlockEntityClientTick;
 	
 	private static @Nullable LocalPlayer player()
 	{
@@ -31,19 +43,82 @@ public final class ClientProxy
 		return mc.player;
 	}
 	
-	@SuppressWarnings("deprecation")
-	@SubscribeEvent
-	public static void onClientSetup(FMLClientSetupEvent event)
-	{
-		ItemBlockRenderTypes.setRenderLayer(DungeonFist.ALERT_RUNE.get(), ChunkSectionLayer.CUTOUT);
-		ItemBlockRenderTypes.setRenderLayer(DungeonFist.SUMMON_RUNE.get(), ChunkSectionLayer.CUTOUT);
-		ItemBlockRenderTypes.setRenderLayer(DungeonFist.TELEPORT_RUNE.get(), ChunkSectionLayer.CUTOUT);
-	}
-	
 	@SubscribeEvent
 	public static void onRegisterParticleProviders(RegisterParticleProvidersEvent event)
 	{
 		event.registerSpriteSet(DungeonFist.DUNGEON_PORTAL_PARTICLE_TYPE.get(), DungeonPortalParticleProvider::new);
+	}
+	
+	@SubscribeEvent
+	public static void onCloneClientPlayer(ClientPlayerNetworkEvent.Clone event)
+	{
+		LocalPlayer oldPlayer = event.getOldPlayer();
+		LocalPlayer newPlayer = event.getNewPlayer();
+		@Nullable PortalTimer oldTimer = oldPlayer.getExistingDataOrNull(DungeonFist.PORTAL_TIMER_ATTACHMENT);
+		if (oldTimer != null)
+		{
+			newPlayer.setData(DungeonFist.PORTAL_TIMER_ATTACHMENT.get(), oldTimer);
+		}
+	}
+	
+	@SubscribeEvent
+	public static void onRenderGuiLayerPre(RenderGuiLayerEvent.Pre event)
+	{
+		if (event.getName().equals(VanillaGuiLayers.CAMERA_OVERLAYS))
+		{
+			@Nullable LocalPlayer player = Minecraft.getInstance().player;
+			if (player == null)
+				return;
+
+			PortalTimer timer = player.getData(DungeonFist.PORTAL_TIMER_ATTACHMENT);
+			int portalTicks = timer.portalTime();
+			if (portalTicks <= 0)
+				return;
+			
+			
+			Level level = player.level();
+			if (level.getBlockEntity(timer.portalPos()) instanceof DungeonPortalBlockEntity portal)
+			{
+				float maxPortalTicks = 80F;
+				float partialPortalTicks = event.getPartialTick().getGameTimeDeltaTicks() + (float)portalTicks;
+				float multiplier = partialPortalTicks / maxPortalTicks;
+				
+				// do the overlay
+				GuiGraphics graphics = event.getGuiGraphics();
+				int width = graphics.guiWidth();
+				int height = graphics.guiHeight();
+//				float red = 0.1F * multiplier + 0.8F;
+//				float green = 0.8F * multiplier + 0.1F;
+//				float blue = 0.1F * multiplier + 0.8F;
+				var color = portal.getColor();
+				float red = multiplier * color.red();
+				float green = multiplier * color.green();
+				float blue = multiplier * color.blue();
+				float alpha = 0.8F * multiplier;
+				int colorInt = ARGB.colorFromFloat(alpha, red, green, blue);
+				graphics.fill(0, 0, width, height, colorInt);
+				
+				if (timer.inPortal())
+				{
+					// then spawn particles everywhere
+					RandomSource rand = level.getRandom();
+					int totalParticles = portalTicks/4;
+					double xBase = player.getX();
+					double yBase = player.getY();
+					double zBase = player.getZ();
+					for (int i=0; i < totalParticles; i++)
+					{
+						double xOff = rand.nextDouble()*10D - 5D;
+						double yOff = rand.nextDouble()*10D - 5D;
+						double zOff = rand.nextDouble()*10D - 5D;
+						double x = xBase + xOff;
+						double y = yBase + yOff + 1D;
+						double z = zBase + zOff;
+						level.addParticle(ParticleTypes.END_ROD, x, y, z, 0, 0, 0);
+					}
+				}
+			}
+		}
 	}
 	
 	private static void dungeonPortalBlockEntityClientTick(Level level, BlockPos pos, BlockState state, DungeonPortalBlockEntity be)
@@ -54,6 +129,7 @@ public final class ClientProxy
     	LocalPlayer player = player();
     	if (player == null)
     		return;
+    	
     	double playerX = player.getX();
     	double playerZ = player.getZ();
     	
@@ -94,5 +170,28 @@ public final class ClientProxy
     			
     	}
 	}
-	public static final BlockEntityTicker<DungeonPortalBlockEntity> DUNGEON_PORTAL_TICKER = ClientProxy::dungeonPortalBlockEntityClientTick;
+	
+	private static void portalGeneratorBlockEntityClientTick(Level level, BlockPos pos, BlockState state, PortalGeneratorBlockEntity be)
+	{
+		RandomSource rand = level.getRandom();
+
+		level.playSound(player(), pos, SoundEvents.PHANTOM_AMBIENT, SoundSource.BLOCKS, 0.2F,2F);
+		
+		Vec3 center = Vec3.atCenterOf(pos.above(2));
+		float yaw = rand.nextFloat() * Mth.TWO_PI;
+		float pitch = rand.nextFloat() * Mth.TWO_PI;
+		float yOff = Mth.sin(pitch);
+		float h = Mth.cos(pitch);
+		float xOff = Mth.sin(yaw) * h;
+		float zOff = Mth.cos(yaw) * h;
+		double distFactor = 1D;
+		double x = center.x + xOff*distFactor;
+		double y = center.y + yOff*distFactor;
+		double z = center.z + zOff*distFactor;
+		double speed = -1D;
+		double dx = speed*xOff;
+		double dy = speed*yOff;
+		double dz = speed*zOff;
+		level.addParticle(ParticleTypes.ELECTRIC_SPARK, x, y, z, dx, dy, dz);
+	}
 }

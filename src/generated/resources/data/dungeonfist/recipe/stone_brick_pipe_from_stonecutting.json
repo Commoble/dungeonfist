@@ -3,5 +3,6 @@
   "ingredient": "minecraft:stone_bricks",
   "result": {
     "id": "dungeonfist:stone_brick_pipe"
-  }
+  },
+  "show_notification": false
 }

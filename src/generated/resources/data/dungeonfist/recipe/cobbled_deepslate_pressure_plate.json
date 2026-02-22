@@ -9,5 +9,6 @@
   ],
   "result": {
     "id": "dungeonfist:cobbled_deepslate_pressure_plate"
-  }
+  },
+  "show_notification": false
 }

@@ -28,6 +28,7 @@ public final class DungeonFistItemsDataGen
 		});
 		registerDefaultBlockModel(clientItems, DungeonFist.ALERT_RUNE);
 		registerSimpleBlockModel(clientItems, DungeonFist.CHARGED_TNT, Identifier.withDefaultNamespace("block/tnt"));
+		registerDefaultBlockModel(clientItems, DungeonFist.PORTAL_GENERATOR_BLOCK);
 		registerDefaultBlockModel(clientItems, DungeonFist.SUMMON_RUNE);
 		registerDefaultBlockModel(clientItems, DungeonFist.TELEPORT_RUNE);
 		

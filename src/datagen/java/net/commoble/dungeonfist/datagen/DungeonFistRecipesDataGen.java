@@ -12,8 +12,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
+import net.minecraft.world.item.crafting.CraftingRecipe.CraftingBookInfo;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.Recipe.CommonInfo;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.item.crafting.ShapedRecipePattern;
 import net.minecraft.world.item.crafting.ShapelessRecipe;
@@ -32,7 +34,7 @@ public final class DungeonFistRecipesDataGen
 			Identifier blockId = blockHolder.getId();
 			Ingredient ingredient = Ingredient.of(BuiltInRegistries.BLOCK.get(originalKey.identifier()).get().value());
 			ItemStackTemplate result = new ItemStackTemplate(BuiltInRegistries.ITEM.get(blockId).get());
-			StonecutterRecipe recipe = new StonecutterRecipe("", ingredient, result);
+			StonecutterRecipe recipe = new StonecutterRecipe(new CommonInfo(false), ingredient, result);
 			recipes.put(blockId.withSuffix("_from_stonecutting"), recipe);
 		});
 		
@@ -43,15 +45,15 @@ public final class DungeonFistRecipesDataGen
 				Map.of('#', Ingredient.of(originalItem)),
 				"##");
 			ItemStackTemplate result = new ItemStackTemplate(BuiltInRegistries.ITEM.get(blockId).get().value());
-			ShapedRecipe recipe = new ShapedRecipe("", CraftingBookCategory.REDSTONE, pattern, result);  
+			ShapedRecipe recipe = new ShapedRecipe(new CommonInfo(false), new CraftingBookInfo(CraftingBookCategory.REDSTONE, ""), pattern, result);  
 			recipes.put(blockId, recipe);
 		});
 		
 		recipes.put(
 			DungeonFist.CHARGED_TNT.getId(),
 			new ShapelessRecipe(
-				"",
-				CraftingBookCategory.REDSTONE,
+				new CommonInfo(false),
+				new CraftingBookInfo(CraftingBookCategory.REDSTONE, ""),
 				new ItemStackTemplate(DungeonFist.CHARGED_TNT.asItem()),
 				List.of(
 					Ingredient.of(Items.TNT),

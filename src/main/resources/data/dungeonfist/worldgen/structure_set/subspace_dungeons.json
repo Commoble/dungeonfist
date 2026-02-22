@@ -1,0 +1,12 @@
+{
+	"placement": {
+		"type": "dungeonfist:origin",
+		"salt": 1274704372
+	},
+	"structures": [
+		{
+			"structure": "dungeonfist:dungeon",
+			"weight": 1
+		}
+	]
+}

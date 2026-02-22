@@ -9,5 +9,6 @@
   ],
   "result": {
     "id": "dungeonfist:stone_brick_pressure_plate"
-  }
+  },
+  "show_notification": false
 }

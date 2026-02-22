@@ -9,5 +9,6 @@
   ],
   "result": {
     "id": "dungeonfist:cobblestone_pressure_plate"
-  }
+  },
+  "show_notification": false
 }

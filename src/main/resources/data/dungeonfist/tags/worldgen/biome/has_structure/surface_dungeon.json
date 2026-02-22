@@ -1,0 +1,16 @@
+{
+	"values": [
+		"#is_beach",
+		"#is_river",
+		"#is_badlands",
+		"#is_hill",
+		"#is_taiga",
+		"#is_jungle",
+		"#is_forest",
+		"#is_savanna",
+		"#c:is_desert",
+		"#c:is_plains",
+		"#c:is_swamp",
+		"#c:is_snowy_plains"
+	]
+}

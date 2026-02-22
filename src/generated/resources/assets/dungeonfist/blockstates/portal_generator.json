@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "dungeonfist:block/portal_generator"
+    }
+  }
+}

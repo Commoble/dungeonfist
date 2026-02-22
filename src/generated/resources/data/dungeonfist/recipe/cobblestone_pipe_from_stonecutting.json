@@ -3,5 +3,6 @@
   "ingredient": "minecraft:cobblestone",
   "result": {
     "id": "dungeonfist:cobblestone_pipe"
-  }
+  },
+  "show_notification": false
 }

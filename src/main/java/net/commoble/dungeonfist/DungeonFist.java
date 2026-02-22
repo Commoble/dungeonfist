@@ -9,14 +9,17 @@ import java.util.stream.Collectors;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 
+import net.commoble.dungeonfist.attachments.PortalTimer;
 import net.commoble.dungeonfist.block.AlertRuneBlock;
 import net.commoble.dungeonfist.block.ChargedTntBlock;
 import net.commoble.dungeonfist.block.DungeonPortalBlock;
-import net.commoble.dungeonfist.block.DungeonPortalBlockEntity;
 import net.commoble.dungeonfist.block.PipeBlock;
+import net.commoble.dungeonfist.block.PortalGeneratorBlock;
 import net.commoble.dungeonfist.block.StatePredicates;
 import net.commoble.dungeonfist.block.SummonRuneBlock;
 import net.commoble.dungeonfist.block.TeleportRuneBlock;
+import net.commoble.dungeonfist.block.entity.DungeonPortalBlockEntity;
+import net.commoble.dungeonfist.block.entity.PortalGeneratorBlockEntity;
 import net.commoble.dungeonfist.box_element.PillarBoxElement;
 import net.commoble.dungeonfist.box_element.PillarBoxElement.PillarPieceFiller;
 import net.commoble.dungeonfist.client.particle.DungeonPortalParticleOptions;
@@ -30,6 +33,7 @@ import net.commoble.dungeonfist.dynamic_processor.MoistenDynamicProcessor;
 import net.commoble.dungeonfist.dynamic_processor.RandomizeDoorsDynamicProcessor;
 import net.commoble.dungeonfist.pos_rule_test.HeightRangePosRuleTest;
 import net.commoble.dungeonfist.rule_test.RandomRuleTest;
+import net.commoble.dungeonfist.structure_placement.OriginStructurePlacement;
 import net.commoble.dungeonfist.structure_processor.SetDataProcessor;
 import net.commoble.structurebuddy.api.BoxElement;
 import net.commoble.structurebuddy.api.DynamicJigsawElement;
@@ -45,8 +49,10 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.TicketType;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -58,16 +64,20 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.levelgen.structure.placement.StructurePlacementType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.PosRuleTestType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTestType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 @Mod(DungeonFist.MODID)
 public class DungeonFist
@@ -82,9 +92,13 @@ public class DungeonFist
 	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPE = defreg(Registries.BLOCK_ENTITY_TYPE);
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = defreg(Registries.CREATIVE_MODE_TAB);
 	public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = defreg(Registries.PARTICLE_TYPE);
+	public static final DeferredRegister<PoiType> POIS = defreg(Registries.POINT_OF_INTEREST_TYPE);
 	public static final DeferredRegister<PosRuleTestType<?>> POS_RULE_TEST_TYPES = defreg(Registries.POS_RULE_TEST);
-	public static final DeferredRegister<StructureProcessorType<?>> STRUCTURE_PROCESSORS = defreg(Registries.STRUCTURE_PROCESSOR);
 	public static final DeferredRegister<RuleTestType<?>> RULE_TESTS = defreg(Registries.RULE_TEST);
+	public static final DeferredRegister<StructurePlacementType<?>> STRUCTURE_PLACEMENT_TYPES = defreg(Registries.STRUCTURE_PLACEMENT);
+	public static final DeferredRegister<StructureProcessorType<?>> STRUCTURE_PROCESSORS = defreg(Registries.STRUCTURE_PROCESSOR);
+	public static final DeferredRegister<TicketType> TICKET_TYPES = defreg(Registries.TICKET_TYPE);
+	public static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = defreg(NeoForgeRegistries.Keys.ATTACHMENT_TYPES);
 	public static final DeferredRegister<MapCodec<? extends BoxElement>> BOX_ELEMENT_TYPES = defreg(StructureBuddyRegistries.BOX_ELEMENT_TYPE);
 	public static final DeferredRegister<MapCodec<? extends DynamicJigsawElement>> DYNAMIC_JIGSAW_ELEMENT_TYPES = defreg(StructureBuddyRegistries.DYNAMIC_JIGSAW_ELEMENT_TYPE);
 	public static final DeferredRegister<MapCodec<? extends DynamicProcessor>> DYNAMIC_PROCESSOR_TYPES = defreg(StructureBuddyRegistries.DYNAMIC_PROCESSOR_TYPE);
@@ -142,7 +156,27 @@ public class DungeonFist
 	
 	public static final DeferredBlock<DungeonPortalBlock> DUNGEON_PORTAL_BLOCK = BLOCKS.registerBlock(
 		"dungeon_portal",
-		DungeonPortalBlock::new,
+		props -> new DungeonPortalBlock(props, false),
+		() -> BlockBehaviour.Properties.of()
+			.noCollision()
+			.noOcclusion()
+            .strength(-1.0F, 3600000.0F)
+            .noLootTable()
+            .sound(SoundType.GLASS)
+            .lightLevel(state -> 15)
+            .pushReaction(PushReaction.BLOCK)
+		);
+	
+	public static final DeferredBlock<PortalGeneratorBlock> PORTAL_GENERATOR_BLOCK = registerSimpleBlockItem(
+		"portal_generator",
+		PortalGeneratorBlock::new,
+		() -> BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK)
+			.mapColor(MapColor.COLOR_GREEN) // match end portals
+	);
+	
+	public static final DeferredBlock<DungeonPortalBlock> RETURN_PORTAL_BLOCK = BLOCKS.registerBlock(
+		"return_portal",
+		props -> new DungeonPortalBlock(props, true),
 		() -> BlockBehaviour.Properties.of()
 			.noCollision()
 			.noOcclusion()
@@ -155,17 +189,38 @@ public class DungeonFist
 	
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DungeonPortalBlockEntity>> DUNGEON_PORTAL_BLOCK_ENTITY_TYPE = BLOCK_ENTITY_TYPE.register(
 		"dungeon_portal",
-		() -> new BlockEntityType<>(DungeonPortalBlockEntity::create, DUNGEON_PORTAL_BLOCK.get()));
+		() -> new BlockEntityType<>(DungeonPortalBlockEntity::create,
+			DUNGEON_PORTAL_BLOCK.get(),
+			RETURN_PORTAL_BLOCK.get()
+		));
+	
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PortalGeneratorBlockEntity>> PORTAL_GENERATOR_BLOCK_ENTITY_TYPE = BLOCK_ENTITY_TYPE.register(
+		"portal_generator",
+		() -> new BlockEntityType<>(PortalGeneratorBlockEntity::create, PORTAL_GENERATOR_BLOCK.get()));
 	
 	public static final DeferredHolder<ParticleType<?>, ParticleType<DungeonPortalParticleOptions>> DUNGEON_PORTAL_PARTICLE_TYPE = PARTICLE_TYPES.register(
 		"dungeon_portal",
 		() -> new SimplerParticleType<>(false, DungeonPortalParticleOptions.CODEC, DungeonPortalParticleOptions.STREAM_CODEC));
 
+	public static final DeferredHolder<PoiType,PoiType> RETURN_PORTAL_POI = POIS.register("return_portal", () -> new PoiType(
+		RETURN_PORTAL_BLOCK.get().getStateDefinition().getPossibleStates().stream().collect(Collectors.toSet()), 0, 1));
+	
 	public static final DeferredHolder<PosRuleTestType<?>, PosRuleTestType<HeightRangePosRuleTest>> HEIGHT_RANGE_POS_RULE_TEST = POS_RULE_TEST_TYPES.register("height_range", () -> () -> HeightRangePosRuleTest.CODEC);
+	
+	public static final DeferredHolder<RuleTestType<?>, RuleTestType<RandomRuleTest>> RANDOM_RULE_TEST = RULE_TESTS.register("random", () -> () -> RandomRuleTest.CODEC);
+	
+	public static final DeferredHolder<StructurePlacementType<?>, StructurePlacementType<OriginStructurePlacement>> ORIGIN_STRUCTURE_PLACEMENT_TYPE = STRUCTURE_PLACEMENT_TYPES.register("origin", () -> () -> OriginStructurePlacement.CODEC);
 	
 	public static final DeferredHolder<StructureProcessorType<?>, StructureProcessorType<SetDataProcessor>> SET_DATA_PROCESSOR = STRUCTURE_PROCESSORS.register("set_data", () -> () -> SetDataProcessor.CODEC);
 	
-	public static final DeferredHolder<RuleTestType<?>, RuleTestType<RandomRuleTest>> RANDOM_RULE_TEST = RULE_TESTS.register("random", () -> () -> RandomRuleTest.CODEC);
+	public static final DeferredHolder<TicketType, TicketType> PORTAL_GENERATOR_TICKET = TICKET_TYPES.register("portal_generator", () -> new TicketType(
+		300L,
+		TicketType.FLAG_LOADING
+	));
+	
+	public static final DeferredHolder<AttachmentType<?>, AttachmentType<PortalTimer>> PORTAL_TIMER_ATTACHMENT = ATTACHMENT_TYPES.register("portal_timer", () -> AttachmentType.builder(() -> PortalTimer.DEFAULT)
+		.serialize(PortalTimer.CODEC)
+		.build());
 	
 	public static final DeferredHolder<JigsawDataType<?>, JigsawDataType<Holder<DungeonMaterial>>> DUNGEON_MATERIAL_JIGSAW_DATA = JIGSAW_DATA_TYPES.register("dungeon_material", () -> new JigsawDataType<>(DungeonMaterial.CODEC));
 	public static final DeferredHolder<JigsawDataType<?>, JigsawDataType<Integer>> DUNGEON_AGE_JIGSAW_DATA = JIGSAW_DATA_TYPES.register("dungeon_age", () -> new JigsawDataType<>(Codec.INT));

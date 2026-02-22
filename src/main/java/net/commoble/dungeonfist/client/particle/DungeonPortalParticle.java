@@ -24,6 +24,7 @@ public class DungeonPortalParticle extends SingleQuadParticle
 		this.yd = yVel;
 		this.zd = zVel;
 		this.sprites = spriteSet;
+		this.setAlpha(0.6F);
 
 		this.lifetime = (int) (20.0D / (Math.random() * 0.8D + 0.6D));
 		this.setSpriteFromAge(spriteSet);

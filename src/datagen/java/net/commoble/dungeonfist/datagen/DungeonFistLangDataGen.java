@@ -6,6 +6,7 @@ import net.commoble.dungeonfist.DungeonFist;
 import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 public final class DungeonFistLangDataGen
 {
@@ -26,10 +27,16 @@ public final class DungeonFistLangDataGen
 				DungeonFist.PRESSURE_PLATE_BLOCKS.forEach((originalKey, blockHolder) -> {
 					this.add(blockHolder.value(), getCleanName(blockHolder.unwrapKey().get().identifier()));
 				});
-				this.add(DungeonFist.ALERT_RUNE.value(), "Alert Rune");
+				this.addBlock(DungeonFist.ALERT_RUNE);
 				this.add(DungeonFist.CHARGED_TNT.value(), "Charged TNT");
-				this.add(DungeonFist.SUMMON_RUNE.value(), "Summon Rune");
-				this.add(DungeonFist.TELEPORT_RUNE.value(), "Teleport Rune");
+				this.addBlock(DungeonFist.PORTAL_GENERATOR_BLOCK);
+				this.addBlock(DungeonFist.SUMMON_RUNE);
+				this.addBlock(DungeonFist.TELEPORT_RUNE);
+			}
+			
+			private void addBlock(DeferredBlock<?> holder)
+			{
+				this.add(holder.value(), getCleanName(holder.getId()));
 			}
 		};
 		event.addProvider(lang);

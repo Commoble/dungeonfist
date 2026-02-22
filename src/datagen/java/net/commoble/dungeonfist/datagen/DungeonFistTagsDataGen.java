@@ -4,6 +4,7 @@ import net.commoble.dungeonfist.DungeonFist;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 public final class DungeonFistTagsDataGen
@@ -26,6 +27,21 @@ public final class DungeonFistTagsDataGen
 			
 		blocks.tag(BlockTags.STONE_PRESSURE_PLATES)
 			.addAll(DungeonFist.PRESSURE_PLATE_BLOCKS.values().stream().map(holder -> holder.unwrapKey().get()));
+		
+		blocks.tag(BlockTags.DRAGON_IMMUNE)
+			.add(DungeonFist.DUNGEON_PORTAL_BLOCK.unwrapKey().get())
+			.add(DungeonFist.PORTAL_GENERATOR_BLOCK.unwrapKey().get());
+		
+		blocks.tag(BlockTags.WITHER_IMMUNE)
+			.add(DungeonFist.DUNGEON_PORTAL_BLOCK.unwrapKey().get())
+			.add(DungeonFist.PORTAL_GENERATOR_BLOCK.unwrapKey().get());
+		
+		blocks.tag(BlockTags.FEATURES_CANNOT_REPLACE)
+			.add(DungeonFist.PORTAL_GENERATOR_BLOCK.unwrapKey().get());
+
+		blocks.tag(Tags.Blocks.RELOCATION_NOT_SUPPORTED)
+			.add(DungeonFist.DUNGEON_PORTAL_BLOCK.unwrapKey().get())
+			.add(DungeonFist.PORTAL_GENERATOR_BLOCK.unwrapKey().get());
 		
 		event.addProvider(blocks);
 	}

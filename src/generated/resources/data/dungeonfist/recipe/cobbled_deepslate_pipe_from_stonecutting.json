@@ -3,5 +3,6 @@
   "ingredient": "minecraft:cobbled_deepslate",
   "result": {
     "id": "dungeonfist:cobbled_deepslate_pipe"
-  }
+  },
+  "show_notification": false
 }

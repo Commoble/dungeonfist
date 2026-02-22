@@ -27,52 +27,37 @@ package net.commoble.dungeonfist.datagen;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.resources.Identifier;
-import net.neoforged.neoforge.client.NamedRenderTypeManager;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 /**
  * Represents a parented model file. The codec can be used for datagen via {@link #addDataProvider(GatherDataEvent, String, DynamicOps, Map)}.
  * @param parent Identifier of the parent model
  * @param textures Map of String texture identifiers (specific to this model or its parent) to Identifier ids of textures
- * @param renderType Optional Identifier id of a render type group, see {@link NamedRenderTypeManager}.
  * If renderType is absent then the block renderer will check for a render type registered to the block,
  * or else use solid. Explicitly specifying a solid rendertype here is preferable as it averts a map lookup.
  */
-public record SimpleModel(Identifier parent, Map<String, Identifier> textures, Optional<Identifier> renderType)
+public record SimpleModel(Identifier parent, Map<String, Identifier> textures)
 {
 	/** codec **/
 	public static final Codec<SimpleModel> CODEC = RecordCodecBuilder.create(builder -> builder.group(
 			Identifier.CODEC.fieldOf("parent").forGetter(SimpleModel::parent),
-			Codec.unboundedMap(Codec.STRING, Identifier.CODEC).optionalFieldOf("textures", Map.of()).forGetter(SimpleModel::textures),
-			Identifier.CODEC.optionalFieldOf("render_type").forGetter(SimpleModel::renderType)
+			Codec.unboundedMap(Codec.STRING, Identifier.CODEC).optionalFieldOf("textures", Map.of()).forGetter(SimpleModel::textures)
 		).apply(builder, SimpleModel::new));
 	
 	/**
-	 * Creates a SimpleModel with specified parent and unspecified render type.
+	 * Creates a SimpleModel with specified parent
 	 * @param parent Model id of the parent modek, e.g. "minecraft:block/cube_all"
 	 * @return Builder-like model that allows chaining via {@link SimpleModel#addTexture(String, Identifier)}
 	 */
 	public static SimpleModel create(Identifier parent)
 	{
-		return new SimpleModel(parent, new HashMap<>(), Optional.empty());
-	}
-	
-	/**
-	 * Creates a SimpleModel with specified parent and render type.
-	 * @param parent Model id of the parent modek, e.g. "minecraft:block/cube_all"
-	 * @param renderType Identifier 
-	 * @return Builder-like model that allows chaining via {@link SimpleModel#addTexture(String, Identifier)}
-	 */
-	public static SimpleModel create(Identifier parent, Identifier renderType)
-	{
-		return new SimpleModel(parent, new HashMap<>(), Optional.of(renderType));
+		return new SimpleModel(parent, new HashMap<>());
 	}
 	
 	/**
@@ -85,22 +70,5 @@ public record SimpleModel(Identifier parent, Map<String, Identifier> textures, O
 	{
 		this.textures.put(textureName, textureId);
 		return this;
-	}
-	
-	/**
-	 * Vanilla render types used by the chunk mesh baker (as of forge 41.0.64 only these are supported in baked block models)
-	 */
-	public static class RenderTypes
-	{
-		/** Vanilla solid render type, no transparency **/
-		public static final Identifier SOLID = Identifier.withDefaultNamespace("solid");
-		/** Vanilla cutout render type, all-or-nothing transparency **/
-		public static final Identifier CUTOUT = Identifier.withDefaultNamespace("cutout");
-		/** Vanilla cutout_mipped render type, all-or-nothing transparency and mipmapping **/ 
-		public static final Identifier CUTOUT_MIPPED = Identifier.withDefaultNamespace("cutout_mipped");
-		/** Vanilla translucent render type, allows partial transparency **/
-		public static final Identifier TRANSLUCENT = Identifier.withDefaultNamespace("translucent");
-		/** Vanilla tripwire render type, similar to translucent but uses the tripwire shader **/
-		public static final Identifier TRIPWIRE = Identifier.withDefaultNamespace("tripwire");
 	}
 }

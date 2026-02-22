@@ -1,0 +1,54 @@
+{
+	"type": "dungeonfist:set_data",
+	"rules": [
+		{
+			"data": {
+				"dungeonfist:dungeon_age": 10
+			}	
+		},
+		{
+			"data": {
+				"dungeonfist:dungeon_moistness": 5
+			}	
+		},
+		{
+			"rule": {
+				"predicate_type": "dungeonfist:height_range",
+				"max_y": 0
+			},
+			"data": {
+				"dungeonfist:dungeon_material": "dungeonfist:cobbled_deepslate"
+			}
+		},
+		{
+			"rule": {
+				"predicate_type": "dungeonfist:height_range",
+				"min_y": 1,
+				"max_y": 64
+			},
+			"data": {
+				"dungeonfist:dungeon_material": "dungeonfist:cobblestone"
+			}
+		},
+		{
+			"rule": {
+				"predicate_type": "dungeonfist:height_range",
+				"min_y": 65
+			},
+			"data": {
+				"dungeonfist:dungeon_material": "dungeonfist:stone_bricks"
+			}
+		}
+	],
+	"element": {
+		"type": "structurebuddy:structure_template",
+		"location": "dungeonfist:dungeon/portal_landings/small",
+		"processors": "dungeonfist:dungeon",
+		"jigsaw_overrides": {
+			"default": {
+				"target_pool": "dungeonfist:dungeon/small_exits",
+				"target_name": "default"
+			}
+		}
+	}
+}
