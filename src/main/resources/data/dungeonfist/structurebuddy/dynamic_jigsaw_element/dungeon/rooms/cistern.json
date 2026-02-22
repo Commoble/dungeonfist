@@ -10,7 +10,7 @@
 	"element": {
 		"type": "structurebuddy:structure_template",
 		"location": "dungeonfist:dungeon/rooms/cistern",
-		"processors": "dungeonfist:dungeon",
+		"processors": "dungeonfist:dungeon_cistern",
 		"jigsaw_overrides": {
 			"default": {
 				"placement_priority": 1,

@@ -1,0 +1,26 @@
+{
+	"type": "chest",
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "tag",
+					"weight": 1,
+					"name": "dungeonfist:loot/cistern",
+					"expand": true
+				}
+			],
+			"functions": [
+				{
+					"function": "set_count",
+					"count": {
+						"type": "uniform",
+						"min": 3,
+						"max": 9
+					}
+				}
+			]
+		}
+	]
+}
