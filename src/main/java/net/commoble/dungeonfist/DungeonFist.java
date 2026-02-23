@@ -92,7 +92,7 @@ public class DungeonFist
 	
 	public static final TagKey<EntityType<?>> ITEM_FRAMES = TagKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath("c", "item_frame"));
 	public static final TagKey<Enchantment> PREVENTS_RUNE_TRIGGERING_WHEN_MINING = TagKey.create(Registries.ENCHANTMENT, id("prevents_rune_triggering_when_mining"));
-	public static final TagKey<DimensionType> REMOVE_WHILE_UNUSED = TagKey.create(Registries.DIMENSION_TYPE, id("remove_while_unused"));
+	public static final TagKey<DimensionType> UNLOAD_WHILE_UNUSED = TagKey.create(Registries.DIMENSION_TYPE, id("unload_while_unused"));
 	
 	public static final DeferredRegister.Blocks BLOCKS = defreg(DeferredRegister::createBlocks);
 	public static final DeferredRegister.Items ITEMS = defreg(DeferredRegister::createItems);

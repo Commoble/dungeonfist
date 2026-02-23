@@ -3,9 +3,13 @@ package net.commoble.dungeonfist;
 import java.util.Objects;
 
 import net.commoble.dungeonfist.attachment.PortalTimer;
+import net.commoble.dungeonfist.savedata.PlayersInDungeonsSaveData;
 import net.commoble.infiniverse.api.InfiniverseAPI;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
@@ -61,6 +65,20 @@ public class DungeonFistEvents
 				false,
 				oldTimer.portalPos()));
 		}
+		
+		if (player.level() instanceof ServerLevel serverLevel)
+		{
+			MinecraftServer server = Objects.requireNonNull(serverLevel.getServer());
+			var dungeons = PlayersInDungeonsSaveData.getOrCreate(server);
+			if (serverLevel.dimensionTypeRegistration().is(DungeonFist.UNLOAD_WHILE_UNUSED))
+			{
+				dungeons.setPlayerInDungeon(player.getUUID(), serverLevel.dimension());
+			}
+			else
+			{
+				dungeons.setPlayerNotInDungeon(player.getUUID());
+			}
+		}
 	}
 	
 	@SubscribeEvent
@@ -68,11 +86,17 @@ public class DungeonFistEvents
 	{
 		if (event.getLevel() instanceof ServerLevel serverLevel)
 		{
-			if (serverLevel.dimensionTypeRegistration().is(DungeonFist.REMOVE_WHILE_UNUSED))
+			if (serverLevel.dimensionTypeRegistration().is(DungeonFist.UNLOAD_WHILE_UNUSED))
 			{
 				if (serverLevel.getChunkSource().getLoadedChunksCount() == 0)
 				{
-					InfiniverseAPI.get().markDimensionForUnregistration(Objects.requireNonNull(serverLevel.getServer()), serverLevel.dimension());
+					MinecraftServer server = Objects.requireNonNull(serverLevel.getServer());
+					ResourceKey<Level> dungeonKey = serverLevel.dimension();
+					if (!PlayersInDungeonsSaveData.getOrCreate(server).keepDungeonLoaded(dungeonKey))
+					{
+
+						InfiniverseAPI.get().markDimensionForUnregistration(server, dungeonKey);
+					}
 				}
 			}
 		}
