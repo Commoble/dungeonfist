@@ -11,6 +11,7 @@
 		"#c:is_desert",
 		"#c:is_plains",
 		"#c:is_swamp",
-		"#c:is_snowy_plains"
+		"#c:is_snowy_plains",
+		"#c:is_underground"
 	]
 }
