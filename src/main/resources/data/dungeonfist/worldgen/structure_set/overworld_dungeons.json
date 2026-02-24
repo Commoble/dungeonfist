@@ -3,7 +3,7 @@
 		"type": "minecraft:random_spread",
 		"salt": 1632817276,
 		"separation": 16,
-		"spacing": 40,
+		"spacing": 32,
 		"exclusion_zone": {
 			"other_set": "minecraft:ancient_cities",
 			"chunk_count": 10
