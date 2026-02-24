@@ -94,7 +94,6 @@ public class DungeonFistEvents
 					ResourceKey<Level> dungeonKey = serverLevel.dimension();
 					if (!PlayersInDungeonsSaveData.getOrCreate(server).keepDungeonLoaded(dungeonKey))
 					{
-
 						InfiniverseAPI.get().markDimensionForUnregistration(server, dungeonKey);
 					}
 				}

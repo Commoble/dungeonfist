@@ -19,6 +19,7 @@ public final class NameMaker
 		}
 	}
 	
+	/// Don't modify this list, it'll break existing saves
 	private static final List<String> WORDS = List.of(
 		"about",
 		"above",
@@ -722,8 +723,7 @@ public final class NameMaker
 		"pick",
 		"pickle",
 		"pickup",
-		"piglin",
-		"pigstep",
+		"pig",
 		"pillar",
 		"pine",
 		"ping",
@@ -1149,7 +1149,6 @@ public final class NameMaker
 		"wither",
 		"without",
 		"wolf",
-		"wololo",
 		"wood",
 		"wool",
 		"work",
