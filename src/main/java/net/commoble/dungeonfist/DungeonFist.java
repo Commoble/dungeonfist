@@ -1,5 +1,6 @@
 package net.commoble.dungeonfist;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -53,6 +54,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.TicketType;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.Util;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.item.CreativeModeTab;
@@ -114,30 +116,38 @@ public class DungeonFist
 	
 	/// map of original block id (e.g. cobblestone) to pipe block variant (e.g. cobblestone pipe)
 	@SuppressWarnings("deprecation")
-	public static final Map<ResourceKey<? extends Block>, DeferredBlock<? extends PipeBlock>> PIPE_BLOCKS = List.of(
+	public static final Map<ResourceKey<? extends Block>, DeferredBlock<? extends PipeBlock>> PIPE_BLOCKS = Util.make(new LinkedHashMap<>(), map -> {
+		List<ResourceKey<? extends Block>> baseKeys = List.of(
 			Blocks.COBBLESTONE.builtInRegistryHolder().key(),
 			Blocks.STONE_BRICKS.builtInRegistryHolder().key(),
-			Blocks.COBBLED_DEEPSLATE.builtInRegistryHolder().key())
-		.stream()
-		.collect(Collectors.toMap(Function.identity(), originalKey -> registerSimpleBlockItem(
-			depluralizeName(originalKey.identifier().getPath()) + "_pipe",
-			PipeBlock::new,
-			() -> BlockBehaviour.Properties.ofFullCopy(BuiltInRegistries.BLOCK.getValueOrThrow(originalKey))
-				.isRedstoneConductor(StatePredicates::always)
-		)));
+			Blocks.COBBLED_DEEPSLATE.builtInRegistryHolder().key()
+		);
+		for (var key : baseKeys)
+		{
+			map.put(key, registerSimpleBlockItem(
+				depluralizeName(key.identifier().getPath()) + "_pipe",
+				PipeBlock::new,
+				() -> BlockBehaviour.Properties.ofFullCopy(BuiltInRegistries.BLOCK.getValueOrThrow(ResourceKey.create(Registries.BLOCK, key.identifier())))
+					.isRedstoneConductor(StatePredicates::always)));
+		}
+	});
 
 	/// map of original block id (e.g. cobblestone) to pressure plate block (e.g. cobblestone pressure plate)
 	@SuppressWarnings("deprecation")
-	public static final Map<ResourceKey<? extends Block>, DeferredBlock<? extends PressurePlateBlock>> PRESSURE_PLATE_BLOCKS = List.of(
+	public static final Map<ResourceKey<? extends Block>, DeferredBlock<? extends PressurePlateBlock>> PRESSURE_PLATE_BLOCKS = Util.make(new LinkedHashMap<>(), map -> {
+		List<ResourceKey<? extends Block>> baseKeys = List.of(
 			Blocks.COBBLESTONE.builtInRegistryHolder().key(),
 			Blocks.STONE_BRICKS.builtInRegistryHolder().key(),
-			Blocks.COBBLED_DEEPSLATE.builtInRegistryHolder().key())
-		.stream()
-		.collect(Collectors.toMap(Function.identity(), originalKey -> registerSimpleBlockItem(
-			depluralizeName(originalKey.identifier().getPath()) + "_pressure_plate",
-			props -> new PressurePlateBlock(BlockSetType.STONE, props),
-			() -> BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_PRESSURE_PLATE)
-		)));
+			Blocks.COBBLED_DEEPSLATE.builtInRegistryHolder().key()
+		);
+		for (var key : baseKeys)
+		{
+			map.put(key, registerSimpleBlockItem(
+				depluralizeName(key.identifier().getPath()) + "_pressure_plate",
+				props -> new PressurePlateBlock(BlockSetType.STONE, props),
+				() -> BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_PRESSURE_PLATE)));
+		}
+	});
 
 	public static final DeferredBlock<AlertRuneBlock> ALERT_RUNE = registerSimpleBlockItem(
 		"alert_rune",

@@ -35,7 +35,7 @@ public final class DungeonFistLangDataGen
 				this.addBlock(DungeonFist.TELEPORT_RUNE);
 				
 				this.addItem(DungeonFist.PROVIDENCE_ITEM);
-				this.add("item.dungeonfist.providence.tooltip", "Escape to the surface");
+				this.add("item.dungeonfist.providence.tooltip", "Those who dream of the sun will find it.");
 			}
 			
 			private void addBlock(DeferredBlock<?> holder)
