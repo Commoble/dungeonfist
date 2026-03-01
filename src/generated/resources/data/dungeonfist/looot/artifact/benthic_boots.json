@@ -33,14 +33,14 @@
           "attribute": "dungeonfist:sinking_resistance",
           "id": "dungeonfist:benthic_boots_sinking_resistance",
           "operation": "add_multiplied_base",
-          "slot": "any"
+          "slot": "armor"
         },
         {
           "amount": 0.3,
           "attribute": "minecraft:gravity",
           "id": "dungeonfist:benthic_boots_gravity",
           "operation": "add_multiplied_base",
-          "slot": "any"
+          "slot": "armor"
         }
       ],
       "replace": false

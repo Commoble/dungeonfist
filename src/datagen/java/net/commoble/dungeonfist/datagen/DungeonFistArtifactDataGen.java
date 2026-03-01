@@ -2,9 +2,11 @@ package net.commoble.dungeonfist.datagen;
 
 import java.util.function.UnaryOperator;
 
-import net.commoble.dungeonfist.Artifact;
 import net.commoble.dungeonfist.DungeonFist;
+import net.commoble.dungeonfist.DungeonFistEnchantments;
+import net.commoble.looot.data.Artifact;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.network.chat.Component;
@@ -15,12 +17,14 @@ import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.functions.SetAttributesFunction;
+import net.minecraft.world.level.storage.loot.functions.SetComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetEnchantmentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetLoreFunction;
 import net.minecraft.world.level.storage.loot.functions.SetNameFunction;
@@ -55,13 +59,18 @@ public final class DungeonFistArtifactDataGen
 					DungeonFist.SINKING_RESISTANCE,
 					Operation.ADD_MULTIPLIED_BASE,
 					ConstantValue.exactly(-1F))
-					.forSlot(EquipmentSlotGroup.ANY))
+					.forSlot(EquipmentSlotGroup.ARMOR))
 				.withModifier(SetAttributesFunction.modifier(
 					DungeonFist.id("benthic_boots_gravity"),
 					Attributes.GRAVITY,
 					Operation.ADD_MULTIPLIED_BASE,
 					ConstantValue.exactly(0.3F))
-					.forSlot(EquipmentSlotGroup.ANY)))
+					.forSlot(EquipmentSlotGroup.ARMOR)))
+		);
+		registerItem(bootstrap, Items.LEATHER_HELMET, "catseye", builder -> builder
+			.apply(new SetEnchantmentsFunction.Builder()
+				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.NIGHT_VISION), ConstantValue.exactly(1)))
+			.apply(SetComponentsFunction.setComponent(DataComponents.DYED_COLOR, new DyedItemColor(0x4042AA)))
 		);
 		registerItem(bootstrap, Items.STONE_SWORD, "insect_crush", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()

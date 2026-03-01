@@ -41,14 +41,15 @@ public final class DungeonFistLangDataGen
 				
 				this.addAttribute(DungeonFist.SINKING_RESISTANCE);
 
-				this.addArtifact(DungeonFist.id("archimedes_fulcrum"), "Archimedes's Fulcrum", "A man in the right place can move heaven and earth.");
-				this.addArtifact(DungeonFist.id("benthic_boots"), "Benthic Boots", "What came from the sea will return to the sea.");
-				this.addArtifact(DungeonFist.id("insect_crush"), "Insect Crush", "Seven in one blow.");
-				this.addArtifact(DungeonFist.id("moon_shoes"), "Moon Shoes", "Unshackled from the grasping Earth.");
-				this.addArtifact(DungeonFist.id("newtons_hammer"), "Newton's Hammer", "Actions beget consequence.");
-				this.addArtifact(DungeonFist.id("prominence"), "Prominence", "Those who fly too near the sun risk its ire.");
+				this.addArtifact("archimedes_fulcrum", "Archimedes's Fulcrum", "A man in the right place can move heaven and earth.");
+				this.addArtifact("benthic_boots", "Benthic Boots", "What came from the sea will return to the sea.");
+				this.addArtifact("catseye", "Catseye", "The better to see you with.");
+				this.addArtifact("insect_crush", "Insect Crush", "Seven in one blow.");
+				this.addArtifact("moon_shoes", "Moon Shoes", "Unshackled from the grasping Earth.");
+				this.addArtifact("newtons_hammer", "Newton's Hammer", "Actions beget consequence.");
+				this.addArtifact("prominence", "Prominence", "Those who fly too near the sun risk its ire.");
 				
-				this.add("commands.dungeonfist.artifact.invalid", "There is no artifact with type \"%s\"");
+				this.add("dungeonfist.enchantment.night_vision.name", "Night Vision");
 			}
 			
 			private void addBlock(DeferredBlock<?> holder)
@@ -66,9 +67,9 @@ public final class DungeonFistLangDataGen
 				this.add(holder.value().getDescriptionId(), getCleanName(holder.getId()));
 			}
 			
-			private void addArtifact(Identifier id, String name, String lore)
+			private void addArtifact(String path, String name, String lore)
 			{
-				String root = String.format("dungeonfist.artifact.%s.%s", id.getNamespace(), id.getPath());
+				String root = String.format("dungeonfist.artifact.%s.%s", DungeonFist.MODID, path);
 				this.add(String.format("%s.name", root), name);
 				this.add(String.format("%s.lore", root), lore);
 			}

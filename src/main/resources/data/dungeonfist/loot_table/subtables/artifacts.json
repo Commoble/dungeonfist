@@ -7,7 +7,7 @@
 			"entries": 
 			[
 				{
-					"type": "dungeonfist:artifacts",
+					"type": "looot:artifacts",
 					"weight": 1,
 					"artifacts": "#dungeonfist:common_artifacts"
 				}

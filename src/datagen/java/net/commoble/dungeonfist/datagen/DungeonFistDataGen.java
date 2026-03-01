@@ -1,8 +1,8 @@
 package net.commoble.dungeonfist.datagen;
 
-import net.commoble.dungeonfist.Artifact;
 import net.commoble.dungeonfist.DungeonFist;
 import net.commoble.dungeonfist.DungeonMaterial;
+import net.commoble.looot.data.Artifact;
 import net.minecraft.core.RegistrySetBuilder;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
