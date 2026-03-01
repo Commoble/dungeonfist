@@ -33,6 +33,7 @@ import net.commoble.dungeonfist.dynamic_processor.DungeonMaterialDynamicProcesso
 import net.commoble.dungeonfist.dynamic_processor.MoistenDynamicProcessor;
 import net.commoble.dungeonfist.dynamic_processor.RandomizeDoorsDynamicProcessor;
 import net.commoble.dungeonfist.item.ProvidenceItem;
+import net.commoble.dungeonfist.loot.ArtifactsLootEntry;
 import net.commoble.dungeonfist.pos_rule_test.HeightRangePosRuleTest;
 import net.commoble.dungeonfist.rule_test.RandomRuleTest;
 import net.commoble.dungeonfist.structure_placement.OriginStructurePlacement;
@@ -56,6 +57,9 @@ import net.minecraft.server.level.TicketType;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Util;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.RangedAttribute;
+import net.minecraft.world.entity.ai.attributes.Attribute.Sentiment;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -77,6 +81,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTestType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
@@ -100,6 +105,8 @@ public class DungeonFist
 	public static final DeferredRegister.Items ITEMS = defreg(DeferredRegister::createItems);
 	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPE = defreg(Registries.BLOCK_ENTITY_TYPE);
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = defreg(Registries.CREATIVE_MODE_TAB);
+	public static final DeferredRegister<Attribute> ATTRIBUTES = defreg(Registries.ATTRIBUTE);
+	public static final DeferredRegister<MapCodec<? extends LootPoolEntryContainer>> LOOT_ENTRY_TYPES = defreg(Registries.LOOT_POOL_ENTRY_TYPE);
 	public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = defreg(Registries.PARTICLE_TYPE);
 	public static final DeferredRegister<PoiType> POIS = defreg(Registries.POINT_OF_INTEREST_TYPE);
 	public static final DeferredRegister<PosRuleTestType<?>> POS_RULE_TEST_TYPES = defreg(Registries.POS_RULE_TEST);
@@ -232,6 +239,10 @@ public class DungeonFist
 			.component(DataComponents.LORE, new ItemLore(List.of(Component.translatable("item.dungeonfist.providence.tooltip"))))
 	);
 	
+	public static final DeferredHolder<Attribute,Attribute> SINKING_RESISTANCE = ATTRIBUTES.register("sinking_resistance", () -> new RangedAttribute("attribute.dungeonfist.name.sinking_resistance", 1D, 0D, 1D)
+		.setSentiment(Sentiment.NEUTRAL)
+		.setSyncable(true));
+	
 	public static final DeferredHolder<PosRuleTestType<?>, PosRuleTestType<HeightRangePosRuleTest>> HEIGHT_RANGE_POS_RULE_TEST = POS_RULE_TEST_TYPES.register("height_range", () -> () -> HeightRangePosRuleTest.CODEC);
 	
 	public static final DeferredHolder<RuleTestType<?>, RuleTestType<RandomRuleTest>> RANDOM_RULE_TEST = RULE_TESTS.register("random", () -> () -> RandomRuleTest.CODEC);
@@ -259,7 +270,9 @@ public class DungeonFist
 			.title(Component.translatable("itemGroup.dungeonfist"))
 			.icon(() -> new ItemStack(Items.IRON_BARS))
 			.displayItems(ITEMS.getEntries())
-			.build());	
+			.build());
+		
+		LOOT_ENTRY_TYPES.register("artifacts", () -> ArtifactsLootEntry.CODEC);
 		
 		DYNAMIC_JIGSAW_ELEMENT_TYPES.register("dungeon_room", () -> DungeonRoomDynamicJigsawElement.CODEC);
 		DYNAMIC_JIGSAW_ELEMENT_TYPES.register("set_data", () -> SetDataDynamicJigsawElement.CODEC);

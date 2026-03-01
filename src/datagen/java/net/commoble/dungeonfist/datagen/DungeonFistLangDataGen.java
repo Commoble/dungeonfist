@@ -4,9 +4,11 @@ import org.apache.commons.lang3.text.WordUtils;
 
 import net.commoble.dungeonfist.DungeonFist;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 public final class DungeonFistLangDataGen
@@ -36,6 +38,17 @@ public final class DungeonFistLangDataGen
 				
 				this.addItem(DungeonFist.PROVIDENCE_ITEM);
 				this.add("item.dungeonfist.providence.tooltip", "Those who dream of the sun will find it.");
+				
+				this.addAttribute(DungeonFist.SINKING_RESISTANCE);
+
+				this.addArtifact(DungeonFist.id("archimedes_fulcrum"), "Archimedes's Fulcrum", "A man in the right place can move heaven and earth.");
+				this.addArtifact(DungeonFist.id("benthic_boots"), "Benthic Boots", "What came from the sea will return to the sea.");
+				this.addArtifact(DungeonFist.id("insect_crush"), "Insect Crush", "Seven in one blow.");
+				this.addArtifact(DungeonFist.id("moon_shoes"), "Moon Shoes", "Unshackled from the grasping Earth.");
+				this.addArtifact(DungeonFist.id("newtons_hammer"), "Newton's Hammer", "Actions beget consequence.");
+				this.addArtifact(DungeonFist.id("prominence"), "Prominence", "Those who fly too near the sun risk its ire.");
+				
+				this.add("commands.dungeonfist.artifact.invalid", "There is no artifact with type \"%s\"");
 			}
 			
 			private void addBlock(DeferredBlock<?> holder)
@@ -46,6 +59,18 @@ public final class DungeonFistLangDataGen
 			private void addItem(DeferredItem<?> holder)
 			{
 				this.add(holder.value(), getCleanName(holder.getId()));
+			}
+			
+			private void addAttribute(DeferredHolder<Attribute, ? extends Attribute> holder)
+			{
+				this.add(holder.value().getDescriptionId(), getCleanName(holder.getId()));
+			}
+			
+			private void addArtifact(Identifier id, String name, String lore)
+			{
+				String root = String.format("dungeonfist.artifact.%s.%s", id.getNamespace(), id.getPath());
+				this.add(String.format("%s.name", root), name);
+				this.add(String.format("%s.lore", root), lore);
 			}
 		};
 		event.addProvider(lang);

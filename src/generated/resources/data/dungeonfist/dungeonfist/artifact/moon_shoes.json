@@ -1,0 +1,50 @@
+{
+  "type": "minecraft:item",
+  "functions": [
+    {
+      "function": "minecraft:set_name",
+      "name": {
+        "color": "gold",
+        "italic": false,
+        "translate": "dungeonfist.artifact.dungeonfist.moon_shoes.name"
+      }
+    },
+    {
+      "function": "minecraft:set_lore",
+      "lore": [
+        {
+          "translate": "dungeonfist.artifact.dungeonfist.moon_shoes.lore"
+        }
+      ],
+      "mode": "append"
+    },
+    {
+      "add": false,
+      "enchantments": {
+        "minecraft:feather_falling": 1.0
+      },
+      "function": "minecraft:set_enchantments"
+    },
+    {
+      "function": "minecraft:set_attributes",
+      "modifiers": [
+        {
+          "amount": -0.84,
+          "attribute": "minecraft:gravity",
+          "id": "dungeonfist:moon_shoes_gravity",
+          "operation": "add_multiplied_total",
+          "slot": "any"
+        },
+        {
+          "amount": 5.0,
+          "attribute": "minecraft:safe_fall_distance",
+          "id": "dungeonfist:moon_shoes_fall_distance",
+          "operation": "add_multiplied_total",
+          "slot": "any"
+        }
+      ],
+      "replace": false
+    }
+  ],
+  "name": "minecraft:golden_boots"
+}

@@ -1,5 +1,6 @@
 package net.commoble.dungeonfist.datagen;
 
+import net.commoble.dungeonfist.Artifact;
 import net.commoble.dungeonfist.DungeonFist;
 import net.commoble.dungeonfist.DungeonMaterial;
 import net.minecraft.core.RegistrySetBuilder;
@@ -23,6 +24,7 @@ public class DungeonFistDataGen
 		DungeonFistTagsDataGen.gatherData(event);
 
 		event.createDatapackRegistryObjects(new RegistrySetBuilder()
+			.add(Artifact.KEY, DungeonFistArtifactDataGen::gatherData)
 			.add(DungeonMaterial.REGISTRY_KEY, DungeonFistDungeonMaterialDataGen::gatherData)
 		);
 	}
