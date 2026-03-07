@@ -6,10 +6,14 @@ import java.util.Map;
 
 import net.commoble.dungeonfist.DungeonFist;
 import net.minecraft.client.color.item.Constant;
+import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.renderer.item.BlockModelWrapper;
 import net.minecraft.client.renderer.item.ClientItem;
+import net.minecraft.client.renderer.item.properties.numeric.CrossbowPull;
+import net.minecraft.client.renderer.item.properties.select.Charge;
 import net.minecraft.data.PackOutput.Target;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.CrossbowItem;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
@@ -38,7 +42,21 @@ public final class DungeonFistItemsDataGen
 				Identifier.withDefaultNamespace("item/feather"),
 				List.of(new Constant(0xFFFFF594))),
 			ClientItem.Properties.DEFAULT));
-			
+
+		clientItems.put(DungeonFist.id("artifacts/heckblaster"), new ClientItem(
+			ItemModelUtils.select(
+				new Charge(),
+				ItemModelUtils.conditional(
+					ItemModelUtils.isUsingItem(),
+					ItemModelUtils.rangeSelect(
+						new CrossbowPull(),
+						ItemModelUtils.plainModel(DungeonFist.id("item/artifacts/heckblaster_pulling_0")),
+						ItemModelUtils.override(ItemModelUtils.plainModel(DungeonFist.id("item/artifacts/heckblaster_pulling_1")), 0.58F),
+						ItemModelUtils.override(ItemModelUtils.plainModel(DungeonFist.id("item/artifacts/heckblaster_pulling_2")), 1.0F)),
+					ItemModelUtils.plainModel(DungeonFist.id("item/artifacts/heckblaster"))),
+					ItemModelUtils.when(CrossbowItem.ChargeType.ARROW, ItemModelUtils.plainModel(DungeonFist.id("item/artifacts/heckblaster_arrow"))),
+					ItemModelUtils.when(CrossbowItem.ChargeType.ROCKET, ItemModelUtils.plainModel(DungeonFist.id("item/artifacts/heckblaster_firework")))),
+				ClientItem.Properties.DEFAULT));
 		
 		JsonDataProvider.addProvider(event, Target.RESOURCE_PACK, "items", ClientItem.CODEC, clientItems);
 	}

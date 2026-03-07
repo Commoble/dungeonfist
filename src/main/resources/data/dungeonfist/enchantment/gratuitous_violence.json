@@ -1,0 +1,68 @@
+{
+	"description": {"translate": "dungeonfist.enchantment.gratuitous_violence"},
+	"supported_items": [],
+	"weight": 1,
+	"max_level": 3,
+	"min_cost": {"base": 1000, "per_level_above_first": 1000},
+	"max_cost": {"base": 1000, "per_level_above_first": 1000},
+	"anvil_cost": 1000,
+	"slots": ["mainhand"],
+	"effects": {
+		"post_attack": [
+			{
+				"enchanted": "attacker",
+				"affected": "victim",
+				"requirements": {
+					"condition": "entity_properties",
+					"entity": "this",
+					"predicate": {
+						"type_specific": {
+							"type": "looot:dead"
+						}
+					}
+				},
+				"effect": {
+					"type": "all_of",
+					"effects": [
+						{
+							"type": "explode",
+							"attribute_to_user": true,
+							"damage_type": "explosion",
+							"offset": [0.5, 0.5, 0.5],
+							"radius": {
+								"type": "linear",
+								"base": 1,
+								"per_level_above_first": 1
+							},
+							"create_fire": true,
+							"block_interaction": "tnt",
+							"small_particle": {
+								"type": "explosion"
+							},
+							"large_particle": {
+								"type": "explosion_emitter"
+							},
+							"block_particles": [
+								{
+									"weight": 1,
+									"particle": {
+										"type": "poof",
+										"scaling": 0.5
+									}
+								},
+								{
+									"weight": 1,
+									"particle": {
+										"type": "smoke",
+										"scaling": 1.0
+									}
+								}
+							],
+							"sound": "entity.generic.explode"
+						}
+					]
+				}
+			}
+		]
+	}
+}

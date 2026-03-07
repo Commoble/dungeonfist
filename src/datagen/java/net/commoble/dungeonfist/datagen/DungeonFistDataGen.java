@@ -14,6 +14,7 @@ public class DungeonFistDataGen
 	@SubscribeEvent
 	public static void onGatherData(GatherDataEvent.Client event)
 	{
+		DungeonFistAtlasDataGen.gatherData(event);
 		DungeonFistBlockStatesDataGen.gatherData(event);
 		DungeonFistItemsDataGen.gatherData(event);
 		DungeonFistModelsDataGen.gatherData(event);

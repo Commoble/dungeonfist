@@ -1,0 +1,20 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:paletted_permutations",
+      "palette_key": "dungeonfist:palette_keys/item/crossbow",
+      "permutations": {
+        "dungeonfist/heckblaster": "dungeonfist:permutations/item/heckblaster"
+      },
+      "separator": "/",
+      "textures": [
+        "minecraft:item/crossbow_arrow",
+        "minecraft:item/crossbow_firework",
+        "minecraft:item/crossbow_pulling_0",
+        "minecraft:item/crossbow_pulling_1",
+        "minecraft:item/crossbow_pulling_2",
+        "minecraft:item/crossbow_standby"
+      ]
+    }
+  ]
+}

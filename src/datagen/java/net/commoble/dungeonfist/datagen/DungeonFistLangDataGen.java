@@ -45,12 +45,14 @@ public final class DungeonFistLangDataGen
 				this.addArtifact("archimedes_fulcrum", "Archimedes's Fulcrum", "A man in the right place can move heaven and earth.");
 				this.addArtifact("benthic_boots", "Benthic Boots", "What came from the sea will return to the sea.");
 				this.addArtifact("catseye", "Catseye", "The better to see you with.");
+				this.addArtifact("heckblaster", "Heckblaster", "Wrath and fury, tightly bound.");
 				this.addArtifact("insect_crush", "Insect Crush", "Seven in one blow.");
 				this.addArtifact("lightbringer", "Lightbringer", "The unrighteous will be burned to ash.");
 				this.addArtifact("moon_shoes", "Moon Shoes", "Unshackled from the grasping Earth.");
 				this.addArtifact("newtons_hammer", "Newton's Hammer", "Actions beget consequence.");
 				this.addArtifact("prominence", "Prominence", "Those who fly too near the sun risk its ire.");
 
+				this.add("dungeonfist.enchantment.gratuitous_violence", "Gratuitous Violence");
 				this.add("dungeonfist.enchantment.lightbringer", "Lightbringer");
 				this.add("dungeonfist.enchantment.night_vision", "Night Vision");
 			}
