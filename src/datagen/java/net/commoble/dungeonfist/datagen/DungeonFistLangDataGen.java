@@ -32,6 +32,7 @@ public final class DungeonFistLangDataGen
 				});
 				this.addBlock(DungeonFist.ALERT_RUNE);
 				this.add(DungeonFist.CHARGED_TNT.value(), "Charged TNT");
+				this.addBlock(DungeonFist.FADING_LIGHT_BLOCK);
 				this.addBlock(DungeonFist.PORTAL_GENERATOR_BLOCK);
 				this.addBlock(DungeonFist.SUMMON_RUNE);
 				this.addBlock(DungeonFist.TELEPORT_RUNE);
@@ -45,11 +46,13 @@ public final class DungeonFistLangDataGen
 				this.addArtifact("benthic_boots", "Benthic Boots", "What came from the sea will return to the sea.");
 				this.addArtifact("catseye", "Catseye", "The better to see you with.");
 				this.addArtifact("insect_crush", "Insect Crush", "Seven in one blow.");
+				this.addArtifact("lightbringer", "Lightbringer", "The unrighteous will be burned to ash.");
 				this.addArtifact("moon_shoes", "Moon Shoes", "Unshackled from the grasping Earth.");
 				this.addArtifact("newtons_hammer", "Newton's Hammer", "Actions beget consequence.");
 				this.addArtifact("prominence", "Prominence", "Those who fly too near the sun risk its ire.");
-				
-				this.add("dungeonfist.enchantment.night_vision.name", "Night Vision");
+
+				this.add("dungeonfist.enchantment.lightbringer", "Lightbringer");
+				this.add("dungeonfist.enchantment.night_vision", "Night Vision");
 			}
 			
 			private void addBlock(DeferredBlock<?> holder)

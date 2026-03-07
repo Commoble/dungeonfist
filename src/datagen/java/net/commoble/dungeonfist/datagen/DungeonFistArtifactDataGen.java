@@ -78,6 +78,12 @@ public final class DungeonFistArtifactDataGen
 				.withEnchantment(enchantments.getOrThrow(Enchantments.SWEEPING_EDGE), uniform(1,3))
 				.withEnchantment(enchantments.getOrThrow(Enchantments.UNBREAKING), uniform(1,3)))
 		);
+		registerItem(bootstrap, Items.GOLDEN_SWORD, "lightbringer", builder -> builder
+			.apply(new SetEnchantmentsFunction.Builder()
+				.withEnchantment(enchantments.getOrThrow(Enchantments.SMITE), uniform(1,5))
+				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.LIGHTBRINGER), ConstantValue.exactly(1))
+				.withEnchantment(enchantments.getOrThrow(Enchantments.UNBREAKING), uniform(1,3)))
+		);
 		registerItem(bootstrap, Items.GOLDEN_BOOTS, "moon_shoes", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
 				.withEnchantment(enchantments.getOrThrow(Enchantments.FEATHER_FALLING), new ConstantValue(1)))

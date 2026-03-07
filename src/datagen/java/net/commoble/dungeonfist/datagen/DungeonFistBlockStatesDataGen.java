@@ -46,6 +46,7 @@ public final class DungeonFistBlockStatesDataGen
 		
 		registerChargeableRuneBlock(blockstates, DungeonFist.ALERT_RUNE);
 		simpleBlockWithParent(blockstates, DungeonFist.CHARGED_TNT, Identifier.withDefaultNamespace("block/tnt"));
+		simpleBlockWithParent(blockstates, DungeonFist.FADING_LIGHT_BLOCK, Identifier.withDefaultNamespace("block/air"));
 		simpleBlock(blockstates, DungeonFist.PORTAL_GENERATOR_BLOCK);
 		registerChargeableRuneBlock(blockstates, DungeonFist.SUMMON_RUNE);
 		simpleBlock(blockstates, DungeonFist.TELEPORT_RUNE);

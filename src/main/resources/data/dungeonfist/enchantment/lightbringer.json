@@ -1,0 +1,56 @@
+{
+	"description": {"translate": "dungeonfist.enchantment.lightbringer"},
+	"supported_items": [],
+	"weight": 1,
+	"max_level": 1,
+	"min_cost": {"base": 1000, "per_level_above_first": 0},
+	"max_cost": {"base": 1000, "per_level_above_first": 0},
+	"anvil_cost": 1000,
+	"slots": ["mainhand"],
+	"effects": {
+		"post_attack": [
+			{
+				"enchanted": "attacker",
+				"affected": "victim",
+				"requirements": {
+					"condition": "entity_properties",
+					"entity": "this",
+					"predicate": {
+						"type_specific": {
+							"type": "looot:dead"
+						}
+					}
+				},
+				"effect": {
+					"type": "all_of",
+					"effects": [
+						{
+							"type": "replace_block",
+							"predicate": {
+								"type": "replaceable"
+							},
+							"block_state": {
+								"type": "simple_state_provider",
+								"state": {
+									"Name": "dungeonfist:fading_light"
+								}
+							}
+						},
+						{
+							"type": "looot:affect_nearby_entities",
+							"radius": 7,
+							"spherical": true,
+							"predicate": {
+								"type": "#undead"
+							},
+							"effect": {
+								"type": "ignite",
+								"duration": 4
+							}
+						}
+					]
+				}
+			}
+		]
+	}
+}

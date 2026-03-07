@@ -1,5 +1,5 @@
 {
-	"description": {"translate": "dungeonfist.enchantment.night_vision.name"},
+	"description": {"translate": "dungeonfist.enchantment.night_vision"},
 	"supported_items": [],
 	"weight": 1,
 	"max_level": 1,

@@ -14,6 +14,7 @@ import net.commoble.dungeonfist.attachment.PortalTimer;
 import net.commoble.dungeonfist.block.AlertRuneBlock;
 import net.commoble.dungeonfist.block.ChargedTntBlock;
 import net.commoble.dungeonfist.block.DungeonPortalBlock;
+import net.commoble.dungeonfist.block.FadingLightBlock;
 import net.commoble.dungeonfist.block.PipeBlock;
 import net.commoble.dungeonfist.block.PortalGeneratorBlock;
 import net.commoble.dungeonfist.block.StatePredicates;
@@ -187,6 +188,17 @@ public class DungeonFist
             .lightLevel(state -> 15)
             .pushReaction(PushReaction.BLOCK)
 		);
+	
+	public static final DeferredBlock<Block> FADING_LIGHT_BLOCK = BLOCKS.registerBlock(
+		"fading_light",
+		FadingLightBlock::new,
+		props -> props
+			.replaceable()
+			.noCollision()
+			.noLootTable()
+			.air()
+			.lightLevel(_ -> 15)
+	);
 	
 	public static final DeferredBlock<PortalGeneratorBlock> PORTAL_GENERATOR_BLOCK = registerSimpleBlockItem(
 		"portal_generator",

@@ -13,5 +13,6 @@ public final class DungeonFistEnchantments
 		return ResourceKey.create(Registries.ENCHANTMENT, DungeonFist.id(path));
 	}
 	
+	public static final ResourceKey<Enchantment> LIGHTBRINGER = key("lightbringer");
 	public static final ResourceKey<Enchantment> NIGHT_VISION = key("night_vision");
 }
