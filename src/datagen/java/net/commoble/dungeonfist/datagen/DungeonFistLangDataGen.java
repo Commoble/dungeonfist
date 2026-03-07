@@ -51,6 +51,7 @@ public final class DungeonFistLangDataGen
 				this.addArtifact("moon_shoes", "Moon Shoes", "Unshackled from the grasping Earth.");
 				this.addArtifact("newtons_hammer", "Newton's Hammer", "Actions beget consequence.");
 				this.addArtifact("prominence", "Prominence", "Those who fly too near the sun risk its ire.");
+				this.addArtifact("the_undertaker", "The Undertaker", "The dead should remain buried.");
 
 				this.add("dungeonfist.enchantment.gratuitous_violence", "Gratuitous Violence");
 				this.add("dungeonfist.enchantment.lightbringer", "Lightbringer");

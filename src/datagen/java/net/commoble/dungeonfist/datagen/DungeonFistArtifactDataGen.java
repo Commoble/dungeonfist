@@ -122,6 +122,12 @@ public final class DungeonFistArtifactDataGen
 				.withEnchantment(enchantments.getOrThrow(Enchantments.FIRE_PROTECTION), uniform(1,4))
 				.withEnchantment(enchantments.getOrThrow(Enchantments.MENDING), ConstantValue.exactly(1)))
 		);
+		registerItem(bootstrap, Items.IRON_SHOVEL, "the_undertaker", builder -> builder
+			.apply(new SetEnchantmentsFunction.Builder()
+				.withEnchantment(enchantments.getOrThrow(Enchantments.SMITE), uniform(4,5))
+				.withEnchantment(enchantments.getOrThrow(Enchantments.EFFICIENCY), uniform(1,5))
+				.withEnchantment(enchantments.getOrThrow(Enchantments.UNBREAKING), uniform(1,3)))
+		);
 	}
 	
 	public static void registerItem(BootstrapContext<LootPoolEntryContainer> bootstrap, ItemLike item, String path, UnaryOperator<LootPoolSingletonContainer.Builder<?>> builderBuilder)
