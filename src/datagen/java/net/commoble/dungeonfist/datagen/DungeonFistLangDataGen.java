@@ -53,12 +53,16 @@ public final class DungeonFistLangDataGen
 				this.addArtifact("newtons_hammer", "Newton's Hammer", "Actions beget consequence.");
 				this.addArtifact("prominence", "Prominence", "He who sows embers shall reap wildfires.");
 				this.addArtifact("the_undertaker", "The Undertaker", "The dead should remain buried.");
+				this.addArtifact("thunderhead", "Thunderhead", "For great justice.");
 
-				this.add("dungeonfist.enchantment.death_feast", "Death Feast");
-				this.add("dungeonfist.enchantment.fire_blast", "Fire Blast");
-				this.add("dungeonfist.enchantment.fire_thorns", "Fire Thorns");
-				this.add("dungeonfist.enchantment.lightbringer", "Lightbringer");
-				this.add("dungeonfist.enchantment.night_vision", "Night Vision");
+				this.add("enchantment.dungeonfist.death_feast", "Death Feast");
+				this.add("enchantment.dungeonfist.fire_blast", "Fire Blast");
+				this.add("enchantment.dungeonfist.fire_thorns", "Fire Thorns");
+				this.add("enchantment.dungeonfist.lightbringer", "Lightbringer");
+				this.add("enchantment.dungeonfist.night_vision", "Night Vision");
+				this.add("enchantment.dungeonfist.storm_caller", "Storm Caller");
+				
+				this.add("effect.dungeonfist.storm_call", "Storm Call");
 			}
 			
 			private void addBlock(DeferredBlock<?> holder)

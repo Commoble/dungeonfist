@@ -1,5 +1,5 @@
 {
-	"description": {"translate": "dungeonfist.enchantment.lightbringer"},
+	"description": {"translate": "enchantment.dungeonfist.lightbringer"},
 	"supported_items": [],
 	"weight": 1,
 	"max_level": 1,

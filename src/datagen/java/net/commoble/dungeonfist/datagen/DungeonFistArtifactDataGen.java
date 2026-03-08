@@ -134,6 +134,11 @@ public final class DungeonFistArtifactDataGen
 				.withEnchantment(enchantments.getOrThrow(Enchantments.EFFICIENCY), uniform(1,5))
 				.withEnchantment(enchantments.getOrThrow(Enchantments.UNBREAKING), uniform(1,3)))
 		);
+		registerItem(bootstrap, Items.GOLDEN_AXE, "thunderhead", builder -> builder
+			.apply(new SetEnchantmentsFunction.Builder()
+				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.STORM_CALLER), uniform(1,3))
+				.withEnchantment(enchantments.getOrThrow(Enchantments.UNBREAKING), uniform(1,3)))
+		);
 	}
 	
 	public static void registerItem(BootstrapContext<LootPoolEntryContainer> bootstrap, ItemLike item, String path, UnaryOperator<LootPoolSingletonContainer.Builder<?>> builderBuilder)

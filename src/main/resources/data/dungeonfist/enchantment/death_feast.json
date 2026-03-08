@@ -1,5 +1,5 @@
 {
-	"description": {"translate": "dungeonfist.enchantment.death_feast"},
+	"description": {"translate": "enchantment.dungeonfist.death_feast"},
 	"supported_items": [],
 	"weight": 1,
 	"max_level": 4,

@@ -1,5 +1,5 @@
 {
-	"description": {"translate": "dungeonfist.enchantment.fire_thorns"},
+	"description": {"translate": "enchantment.dungeonfist.fire_thorns"},
 	"supported_items": [],
 	"weight": 1,
 	"max_level": 4,
