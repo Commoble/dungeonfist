@@ -12,15 +12,6 @@
 			{
 				"enchanted": "attacker",
 				"affected": "victim",
-				"requirements": {
-					"condition": "entity_properties",
-					"entity": "this",
-					"predicate": {
-						"type_specific": {
-							"type": "looot:dead"
-						}
-					}
-				},
 				"effect": {
 					"type": "all_of",
 					"effects": [

@@ -197,6 +197,7 @@ public class DungeonFist
 			.noCollision()
 			.noLootTable()
 			.air()
+			.randomTicks()
 			.lightLevel(_ -> 15)
 	);
 	
