@@ -51,11 +51,12 @@ public final class DungeonFistLangDataGen
 				this.addArtifact("moon_shoes", "Moon Shoes", "Unshackled from the grasping Earth.");
 				this.addArtifact("morsmorde", "Morsmorde", "Immortal strength from mortal flesh.");
 				this.addArtifact("newtons_hammer", "Newton's Hammer", "Actions beget consequence.");
-				this.addArtifact("prominence", "Prominence", "Those who fly too near the sun risk its ire.");
+				this.addArtifact("prominence", "Prominence", "He who sows embers shall reap wildfires.");
 				this.addArtifact("the_undertaker", "The Undertaker", "The dead should remain buried.");
 
 				this.add("dungeonfist.enchantment.death_feast", "Death Feast");
 				this.add("dungeonfist.enchantment.fire_blast", "Fire Blast");
+				this.add("dungeonfist.enchantment.fire_thorns", "Fire Thorns");
 				this.add("dungeonfist.enchantment.lightbringer", "Lightbringer");
 				this.add("dungeonfist.enchantment.night_vision", "Night Vision");
 			}

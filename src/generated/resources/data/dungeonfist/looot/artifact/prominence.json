@@ -21,17 +21,17 @@
     {
       "add": false,
       "enchantments": {
+        "dungeonfist:fire_thorns": {
+          "type": "minecraft:uniform",
+          "max": 4.0,
+          "min": 1.0
+        },
         "minecraft:fire_protection": {
           "type": "minecraft:uniform",
           "max": 4.0,
           "min": 1.0
         },
-        "minecraft:mending": 1.0,
-        "minecraft:thorns": {
-          "type": "minecraft:uniform",
-          "max": 4.0,
-          "min": 3.0
-        }
+        "minecraft:mending": 1.0
       },
       "function": "minecraft:set_enchantments"
     }

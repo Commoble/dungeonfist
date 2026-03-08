@@ -124,7 +124,7 @@ public final class DungeonFistArtifactDataGen
 		);
 		registerItem(bootstrap, Items.GOLDEN_CHESTPLATE, "prominence", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
-				.withEnchantment(enchantments.getOrThrow(Enchantments.THORNS), uniform(3,4))
+				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.FIRE_THORNS), uniform(1,4))
 				.withEnchantment(enchantments.getOrThrow(Enchantments.FIRE_PROTECTION), uniform(1,4))
 				.withEnchantment(enchantments.getOrThrow(Enchantments.MENDING), ConstantValue.exactly(1)))
 		);
