@@ -12,46 +12,42 @@
 			{
 				"enchanted": "attacker",
 				"affected": "victim",
-				"effect": {
-					"type": "all_of",
-					"effects": [
+				"effect": 
+				{
+					"type": "explode",
+					"attribute_to_user": true,
+					"damage_type": "explosion",
+					"offset": [0.5, 0.5, 0.5],
+					"radius": {
+						"type": "linear",
+						"base": 1,
+						"per_level_above_first": 1
+					},
+					"create_fire": true,
+					"block_interaction": "tnt",
+					"small_particle": {
+						"type": "explosion"
+					},
+					"large_particle": {
+						"type": "explosion_emitter"
+					},
+					"block_particles": [
 						{
-							"type": "explode",
-							"attribute_to_user": true,
-							"damage_type": "explosion",
-							"offset": [0.5, 0.5, 0.5],
-							"radius": {
-								"type": "linear",
-								"base": 1,
-								"per_level_above_first": 1
-							},
-							"create_fire": true,
-							"block_interaction": "tnt",
-							"small_particle": {
-								"type": "explosion"
-							},
-							"large_particle": {
-								"type": "explosion_emitter"
-							},
-							"block_particles": [
-								{
-									"weight": 1,
-									"particle": {
-										"type": "poof",
-										"scaling": 0.5
-									}
-								},
-								{
-									"weight": 1,
-									"particle": {
-										"type": "smoke",
-										"scaling": 1.0
-									}
-								}
-							],
-							"sound": "entity.generic.explode"
+							"weight": 1,
+							"particle": {
+								"type": "poof",
+								"scaling": 0.5
+							}
+						},
+						{
+							"weight": 1,
+							"particle": {
+								"type": "smoke",
+								"scaling": 1.0
+							}
 						}
-					]
+					],
+					"sound": "entity.generic.explode"
 				}
 			}
 		]

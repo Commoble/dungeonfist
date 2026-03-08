@@ -110,6 +110,11 @@ public final class DungeonFistArtifactDataGen
 						ConstantValue.exactly(5F))
 					.forSlot(EquipmentSlotGroup.ANY)))
 		);
+		registerItem(bootstrap, Items.DIAMOND_AXE, "morsmorde", builder -> builder
+			.apply(new SetEnchantmentsFunction.Builder()
+				.withEnchantment(enchantments.getOrThrow(Enchantments.SHARPNESS), uniform(1,5))
+				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.DEATH_FEAST), uniform(1,4)))
+		);
 		registerItem(bootstrap, Items.MACE, "newtons_hammer", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
 				.withEnchantment(enchantments.getOrThrow(Enchantments.BREACH), uniform(1,4))
