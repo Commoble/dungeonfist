@@ -14,7 +14,7 @@ public final class DungeonFistEnchantments
 	}
 	
 	public static final ResourceKey<Enchantment> DEATH_FEAST = key("death_feast");
-	public static final ResourceKey<Enchantment> GRATUITOUS_VIOLENCE = key("gratuitous_violence");
+	public static final ResourceKey<Enchantment> FIRE_BLAST = key("fire_blast");
 	public static final ResourceKey<Enchantment> LIGHTBRINGER = key("lightbringer");
 	public static final ResourceKey<Enchantment> NIGHT_VISION = key("night_vision");
 }

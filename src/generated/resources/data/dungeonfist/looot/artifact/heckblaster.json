@@ -21,7 +21,7 @@
     {
       "add": false,
       "enchantments": {
-        "dungeonfist:gratuitous_violence": {
+        "dungeonfist:fire_blast": {
           "type": "minecraft:uniform",
           "max": 3.0,
           "min": 1.0

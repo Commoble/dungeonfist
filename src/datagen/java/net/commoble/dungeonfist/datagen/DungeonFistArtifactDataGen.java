@@ -76,7 +76,7 @@ public final class DungeonFistArtifactDataGen
 			.apply(new SetEnchantmentsFunction.Builder()
 				.withEnchantment(enchantments.getOrThrow(Enchantments.PUNCH), uniform(1,2))
 				.withEnchantment(enchantments.getOrThrow(Enchantments.FLAME), ConstantValue.exactly(1))
-				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.GRATUITOUS_VIOLENCE), uniform(1,3)))
+				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.FIRE_BLAST), uniform(1,3)))
 			.apply(SetComponentsFunction.setComponent(DataComponents.ITEM_MODEL, DungeonFist.id("artifacts/heckblaster")))
 		);
 		registerItem(bootstrap, Items.STONE_SWORD, "insect_crush", builder -> builder
