@@ -33,7 +33,12 @@ public final class DungeonFistAtlasDataGen
 						DungeonFist.id("palette_keys/item/crossbow"),
 						Map.of("dungeonfist/heckblaster", DungeonFist.id("permutations/item/heckblaster")),
 						"/"
-					));
+					))
+					.addSource(new PalettedPermutations(
+						List.of(Identifier.withDefaultNamespace("item/diamond_axe")),
+						DungeonFist.id("palette_keys/item/diamond_axe"),
+						Map.of("dungeonfist/morsmorde", DungeonFist.id("permutations/item/morsmorde")),
+						"/"));
 			}
 		});
 	}

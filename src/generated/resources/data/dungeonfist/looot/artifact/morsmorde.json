@@ -33,6 +33,12 @@
         }
       },
       "function": "minecraft:set_enchantments"
+    },
+    {
+      "components": {
+        "minecraft:item_model": "dungeonfist:artifacts/morsmorde"
+      },
+      "function": "minecraft:set_components"
     }
   ],
   "name": "minecraft:diamond_axe"

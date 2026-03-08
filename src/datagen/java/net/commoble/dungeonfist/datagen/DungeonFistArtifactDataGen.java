@@ -114,6 +114,7 @@ public final class DungeonFistArtifactDataGen
 			.apply(new SetEnchantmentsFunction.Builder()
 				.withEnchantment(enchantments.getOrThrow(Enchantments.SHARPNESS), uniform(1,5))
 				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.DEATH_FEAST), uniform(1,4)))
+			.apply(SetComponentsFunction.setComponent(DataComponents.ITEM_MODEL, DungeonFist.id("artifacts/morsmorde")))
 		);
 		registerItem(bootstrap, Items.MACE, "newtons_hammer", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()

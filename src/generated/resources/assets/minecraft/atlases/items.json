@@ -15,6 +15,17 @@
         "minecraft:item/crossbow_pulling_2",
         "minecraft:item/crossbow_standby"
       ]
+    },
+    {
+      "type": "minecraft:paletted_permutations",
+      "palette_key": "dungeonfist:palette_keys/item/diamond_axe",
+      "permutations": {
+        "dungeonfist/morsmorde": "dungeonfist:permutations/item/morsmorde"
+      },
+      "separator": "/",
+      "textures": [
+        "minecraft:item/diamond_axe"
+      ]
     }
   ]
 }

@@ -53,6 +53,7 @@ public final class DungeonFistModelsDataGen
 		models.put(DungeonFist.id("item/artifacts/heckblaster_pulling_1"), SimpleModel.create(Identifier.withDefaultNamespace("item/crossbow_pulling_1")).addTexture("layer0", Identifier.withDefaultNamespace("item/crossbow_pulling_1/dungeonfist/heckblaster")));
 		models.put(DungeonFist.id("item/artifacts/heckblaster_pulling_2"), SimpleModel.create(Identifier.withDefaultNamespace("item/crossbow_pulling_2")).addTexture("layer0", Identifier.withDefaultNamespace("item/crossbow_pulling_2/dungeonfist/heckblaster")));
 		models.put(DungeonFist.id("item/artifacts/heckblaster"), SimpleModel.create(Identifier.withDefaultNamespace("item/crossbow")).addTexture("layer0", Identifier.withDefaultNamespace("item/crossbow_standby/dungeonfist/heckblaster")));
+		models.put(DungeonFist.id("item/artifacts/morsmorde"), SimpleModel.create(Identifier.withDefaultNamespace("item/diamond_axe")).addTexture("layer0", Identifier.withDefaultNamespace("item/diamond_axe/dungeonfist/morsmorde")));
 		
 		JsonDataProvider.addProvider(event, Target.RESOURCE_PACK, "models", SimpleModel.CODEC, models);
 	}

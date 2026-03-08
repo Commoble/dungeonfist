@@ -58,6 +58,10 @@ public final class DungeonFistItemsDataGen
 					ItemModelUtils.when(CrossbowItem.ChargeType.ROCKET, ItemModelUtils.plainModel(DungeonFist.id("item/artifacts/heckblaster_firework")))),
 				ClientItem.Properties.DEFAULT));
 		
+		clientItems.put(DungeonFist.id("artifacts/morsmorde"), new ClientItem(
+			ItemModelUtils.plainModel(DungeonFist.id("item/artifacts/morsmorde")),
+			ClientItem.Properties.DEFAULT));
+		
 		JsonDataProvider.addProvider(event, Target.RESOURCE_PACK, "items", ClientItem.CODEC, clientItems);
 	}
 	
