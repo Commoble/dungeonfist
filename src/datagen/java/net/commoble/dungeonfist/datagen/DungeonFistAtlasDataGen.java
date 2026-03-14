@@ -22,6 +22,11 @@ public final class DungeonFistAtlasDataGen
 			{
 				this.atlas(AtlasIds.ITEMS)
 					.addSource(new PalettedPermutations(
+						List.of(Identifier.withDefaultNamespace("item/iron_hoe")),
+						DungeonFist.id("palette_keys/item/iron_hoe"),
+						Map.of("dungeonfist/bloodreaper", DungeonFist.id("permutations/item/bloodreaper")),
+						"/"))
+					.addSource(new PalettedPermutations(
 						List.of(
 							Identifier.withDefaultNamespace("item/crossbow_arrow"),
 							Identifier.withDefaultNamespace("item/crossbow_firework"),

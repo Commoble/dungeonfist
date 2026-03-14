@@ -1,8 +1,11 @@
 package net.commoble.dungeonfist.datagen;
 
+import java.util.List;
+
 import org.apache.commons.lang3.text.WordUtils;
 
 import net.commoble.dungeonfist.DungeonFist;
+import net.commoble.dungeonfist.DungeonFistEnchantments;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -44,6 +47,7 @@ public final class DungeonFistLangDataGen
 
 				this.addArtifact("archimedes_fulcrum", "Archimedes's Fulcrum", "A man in the right place can move heaven and earth.");
 				this.addArtifact("benthic_boots", "Benthic Boots", "What came from the sea will return to the sea.");
+				this.addArtifact("bloodreaper", "Bloodreaper", "From life, death. From death, life.");
 				this.addArtifact("catseye", "Catseye", "The better to see you with.");
 				this.addArtifact("heckblaster", "Heckblaster", "Wrath and fury, tightly bound.");
 				this.addArtifact("insect_crush", "Insect Crush", "Seven in one blow.");
@@ -54,13 +58,18 @@ public final class DungeonFistLangDataGen
 				this.addArtifact("prominence", "Prominence", "He who sows embers shall reap wildfires.");
 				this.addArtifact("the_undertaker", "The Undertaker", "The dead should remain buried.");
 				this.addArtifact("thunderhead", "Thunderhead", "For great justice.");
-
-				this.add("enchantment.dungeonfist.death_feast", "Death Feast");
-				this.add("enchantment.dungeonfist.fire_blast", "Fire Blast");
-				this.add("enchantment.dungeonfist.fire_thorns", "Fire Thorns");
-				this.add("enchantment.dungeonfist.lightbringer", "Lightbringer");
-				this.add("enchantment.dungeonfist.night_vision", "Night Vision");
-				this.add("enchantment.dungeonfist.storm_caller", "Storm Caller");
+				
+				for (var key : List.of(
+					DungeonFistEnchantments.DEATH_FEAST,
+					DungeonFistEnchantments.FIRE_BLAST,
+					DungeonFistEnchantments.FIRE_THORNS,
+					DungeonFistEnchantments.LIFE_DRAIN,
+					DungeonFistEnchantments.LIGHTBRINGER,
+					DungeonFistEnchantments.NIGHT_VISION,
+					DungeonFistEnchantments.STORM_CALLER))
+				{
+					this.addEnchantment(key.identifier().getPath());
+				}
 				
 				this.add("effect.dungeonfist.storm_call", "Storm Call");
 			}
@@ -86,13 +95,24 @@ public final class DungeonFistLangDataGen
 				this.add(String.format("%s.name", root), name);
 				this.add(String.format("%s.lore", root), lore);
 			}
+			
+			private void addEnchantment(String path)
+			{
+				this.add(String.format("enchantment.dungeonfist.%s", path), getCleanName(path));
+			}
+			
 		};
 		event.addProvider(lang);
 	}
 	
-	@SuppressWarnings("deprecation")
 	private static String getCleanName(Identifier id)
 	{
-		return WordUtils.capitalize(id.getPath().replace("_", " "));
+		return getCleanName(id.getPath());
+	}
+	
+	@SuppressWarnings("deprecation")
+	private static String getCleanName(String path)
+	{
+		return WordUtils.capitalize(path.replace("_", " "));
 	}
 }

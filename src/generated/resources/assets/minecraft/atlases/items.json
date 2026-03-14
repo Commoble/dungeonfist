@@ -2,6 +2,17 @@
   "sources": [
     {
       "type": "minecraft:paletted_permutations",
+      "palette_key": "dungeonfist:palette_keys/item/iron_hoe",
+      "permutations": {
+        "dungeonfist/bloodreaper": "dungeonfist:permutations/item/bloodreaper"
+      },
+      "separator": "/",
+      "textures": [
+        "minecraft:item/iron_hoe"
+      ]
+    },
+    {
+      "type": "minecraft:paletted_permutations",
       "palette_key": "dungeonfist:palette_keys/item/crossbow",
       "permutations": {
         "dungeonfist/heckblaster": "dungeonfist:permutations/item/heckblaster"

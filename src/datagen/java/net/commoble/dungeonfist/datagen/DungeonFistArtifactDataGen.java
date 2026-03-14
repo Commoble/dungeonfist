@@ -67,6 +67,13 @@ public final class DungeonFistArtifactDataGen
 					ConstantValue.exactly(0.3F))
 					.forSlot(EquipmentSlotGroup.ARMOR)))
 		);
+		registerItem(bootstrap, Items.IRON_HOE, "bloodreaper", builder -> builder
+			.apply(new SetEnchantmentsFunction.Builder()
+				.withEnchantment(enchantments.getOrThrow(Enchantments.SHARPNESS), uniform(1,5))
+				.withEnchantment(enchantments.getOrThrow(Enchantments.UNBREAKING), uniform(1,3))
+				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.LIFE_DRAIN), ConstantValue.exactly(1)))
+			.apply(SetComponentsFunction.setComponent(DataComponents.ITEM_MODEL, DungeonFist.id("artifacts/bloodreaper")))
+		);
 		registerItem(bootstrap, Items.LEATHER_HELMET, "catseye", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
 				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.NIGHT_VISION), ConstantValue.exactly(1)))

@@ -42,6 +42,10 @@ public final class DungeonFistItemsDataGen
 				Identifier.withDefaultNamespace("item/feather"),
 				List.of(new Constant(0xFFFFF594))),
 			ClientItem.Properties.DEFAULT));
+		
+		clientItems.put(DungeonFist.id("artifacts/bloodreaper"), new ClientItem(
+			ItemModelUtils.plainModel(DungeonFist.id("item/artifacts/bloodreaper")),
+			ClientItem.Properties.DEFAULT));
 
 		clientItems.put(DungeonFist.id("artifacts/heckblaster"), new ClientItem(
 			ItemModelUtils.select(
