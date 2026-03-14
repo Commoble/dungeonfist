@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:item",
+  "functions": [
+    {
+      "function": "minecraft:set_name",
+      "name": {
+        "color": "gold",
+        "italic": false,
+        "translate": "dungeonfist.artifact.dungeonfist.thunderhead.name"
+      }
+    },
+    {
+      "function": "minecraft:set_lore",
+      "lore": [
+        {
+          "translate": "dungeonfist.artifact.dungeonfist.thunderhead.lore"
+        }
+      ],
+      "mode": "append"
+    },
+    {
+      "add": false,
+      "enchantments": {
+        "dungeonfist:storm_caller": {
+          "type": "minecraft:uniform",
+          "max": 3.0,
+          "min": 1.0
+        },
+        "minecraft:unbreaking": {
+          "type": "minecraft:uniform",
+          "max": 3.0,
+          "min": 1.0
+        }
+      },
+      "function": "minecraft:set_enchantments"
+    }
+  ],
+  "name": "minecraft:golden_axe"
+}

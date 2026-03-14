@@ -34,3 +34,5 @@ dungeons
     versionRange="[26.1-snapshot-7,26.2)"
     ordering="NONE"
     side="BOTH"
+[[mixins]]
+	config="META-INF/dungeonfist.mixins.json"

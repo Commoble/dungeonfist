@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:item",
+  "functions": [
+    {
+      "function": "minecraft:set_name",
+      "name": {
+        "color": "gold",
+        "italic": false,
+        "translate": "dungeonfist.artifact.dungeonfist.newtons_hammer.name"
+      }
+    },
+    {
+      "function": "minecraft:set_lore",
+      "lore": [
+        {
+          "translate": "dungeonfist.artifact.dungeonfist.newtons_hammer.lore"
+        }
+      ],
+      "mode": "append"
+    },
+    {
+      "add": false,
+      "enchantments": {
+        "minecraft:breach": {
+          "type": "minecraft:uniform",
+          "max": 4.0,
+          "min": 1.0
+        },
+        "minecraft:density": {
+          "type": "minecraft:uniform",
+          "max": 5.0,
+          "min": 1.0
+        },
+        "minecraft:wind_burst": 1.0
+      },
+      "function": "minecraft:set_enchantments"
+    }
+  ],
+  "name": "minecraft:mace"
+}

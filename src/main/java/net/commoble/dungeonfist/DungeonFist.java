@@ -14,6 +14,7 @@ import net.commoble.dungeonfist.attachment.PortalTimer;
 import net.commoble.dungeonfist.block.AlertRuneBlock;
 import net.commoble.dungeonfist.block.ChargedTntBlock;
 import net.commoble.dungeonfist.block.DungeonPortalBlock;
+import net.commoble.dungeonfist.block.FadingLightBlock;
 import net.commoble.dungeonfist.block.PipeBlock;
 import net.commoble.dungeonfist.block.PortalGeneratorBlock;
 import net.commoble.dungeonfist.block.StatePredicates;
@@ -33,6 +34,7 @@ import net.commoble.dungeonfist.dynamic_processor.DungeonMaterialDynamicProcesso
 import net.commoble.dungeonfist.dynamic_processor.MoistenDynamicProcessor;
 import net.commoble.dungeonfist.dynamic_processor.RandomizeDoorsDynamicProcessor;
 import net.commoble.dungeonfist.item.ProvidenceItem;
+import net.commoble.dungeonfist.mob_effect.StormCallMobEffect;
 import net.commoble.dungeonfist.pos_rule_test.HeightRangePosRuleTest;
 import net.commoble.dungeonfist.rule_test.RandomRuleTest;
 import net.commoble.dungeonfist.structure_placement.OriginStructurePlacement;
@@ -55,7 +57,12 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.TicketType;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Util;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.Attribute.Sentiment;
+import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -100,6 +107,8 @@ public class DungeonFist
 	public static final DeferredRegister.Items ITEMS = defreg(DeferredRegister::createItems);
 	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPE = defreg(Registries.BLOCK_ENTITY_TYPE);
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = defreg(Registries.CREATIVE_MODE_TAB);
+	public static final DeferredRegister<Attribute> ATTRIBUTES = defreg(Registries.ATTRIBUTE);
+	public static final DeferredRegister<MobEffect> MOB_EFFECTS = defreg(Registries.MOB_EFFECT);
 	public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = defreg(Registries.PARTICLE_TYPE);
 	public static final DeferredRegister<PoiType> POIS = defreg(Registries.POINT_OF_INTEREST_TYPE);
 	public static final DeferredRegister<PosRuleTestType<?>> POS_RULE_TEST_TYPES = defreg(Registries.POS_RULE_TEST);
@@ -184,6 +193,18 @@ public class DungeonFist
             .pushReaction(PushReaction.BLOCK)
 		);
 	
+	public static final DeferredBlock<Block> FADING_LIGHT_BLOCK = BLOCKS.registerBlock(
+		"fading_light",
+		FadingLightBlock::new,
+		props -> props
+			.replaceable()
+			.noCollision()
+			.noLootTable()
+			.air()
+			.randomTicks()
+			.lightLevel(_ -> 15)
+	);
+	
 	public static final DeferredBlock<PortalGeneratorBlock> PORTAL_GENERATOR_BLOCK = registerSimpleBlockItem(
 		"portal_generator",
 		PortalGeneratorBlock::new,
@@ -232,6 +253,12 @@ public class DungeonFist
 			.component(DataComponents.LORE, new ItemLore(List.of(Component.translatable("item.dungeonfist.providence.tooltip"))))
 	);
 	
+	public static final DeferredHolder<Attribute,Attribute> SINKING_RESISTANCE = ATTRIBUTES.register("sinking_resistance", () -> new RangedAttribute("attribute.dungeonfist.name.sinking_resistance", 1D, 0D, 1D)
+		.setSentiment(Sentiment.NEUTRAL)
+		.setSyncable(true));
+	
+	public static final DeferredHolder<MobEffect, StormCallMobEffect> STORM_CALL_MOB_EFFECT = MOB_EFFECTS.register("storm_call", () -> new StormCallMobEffect(MobEffectCategory.HARMFUL, 0xFFf8ecd3));
+	
 	public static final DeferredHolder<PosRuleTestType<?>, PosRuleTestType<HeightRangePosRuleTest>> HEIGHT_RANGE_POS_RULE_TEST = POS_RULE_TEST_TYPES.register("height_range", () -> () -> HeightRangePosRuleTest.CODEC);
 	
 	public static final DeferredHolder<RuleTestType<?>, RuleTestType<RandomRuleTest>> RANDOM_RULE_TEST = RULE_TESTS.register("random", () -> () -> RandomRuleTest.CODEC);
@@ -259,7 +286,7 @@ public class DungeonFist
 			.title(Component.translatable("itemGroup.dungeonfist"))
 			.icon(() -> new ItemStack(Items.IRON_BARS))
 			.displayItems(ITEMS.getEntries())
-			.build());	
+			.build());
 		
 		DYNAMIC_JIGSAW_ELEMENT_TYPES.register("dungeon_room", () -> DungeonRoomDynamicJigsawElement.CODEC);
 		DYNAMIC_JIGSAW_ELEMENT_TYPES.register("set_data", () -> SetDataDynamicJigsawElement.CODEC);

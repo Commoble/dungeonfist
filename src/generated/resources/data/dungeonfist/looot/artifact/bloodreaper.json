@@ -1,0 +1,46 @@
+{
+  "type": "minecraft:item",
+  "functions": [
+    {
+      "function": "minecraft:set_name",
+      "name": {
+        "color": "gold",
+        "italic": false,
+        "translate": "dungeonfist.artifact.dungeonfist.bloodreaper.name"
+      }
+    },
+    {
+      "function": "minecraft:set_lore",
+      "lore": [
+        {
+          "translate": "dungeonfist.artifact.dungeonfist.bloodreaper.lore"
+        }
+      ],
+      "mode": "append"
+    },
+    {
+      "add": false,
+      "enchantments": {
+        "dungeonfist:life_drain": 1.0,
+        "minecraft:sharpness": {
+          "type": "minecraft:uniform",
+          "max": 5.0,
+          "min": 1.0
+        },
+        "minecraft:unbreaking": {
+          "type": "minecraft:uniform",
+          "max": 3.0,
+          "min": 1.0
+        }
+      },
+      "function": "minecraft:set_enchantments"
+    },
+    {
+      "components": {
+        "minecraft:item_model": "dungeonfist:artifacts/bloodreaper"
+      },
+      "function": "minecraft:set_components"
+    }
+  ],
+  "name": "minecraft:iron_hoe"
+}

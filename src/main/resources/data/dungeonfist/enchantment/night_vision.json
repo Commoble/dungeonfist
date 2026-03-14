@@ -1,0 +1,31 @@
+{
+	"description": {"translate": "enchantment.dungeonfist.night_vision"},
+	"supported_items": [],
+	"weight": 1,
+	"max_level": 1,
+	"min_cost": {"base": 1000, "per_level_above_first": 0},
+	"max_cost": {"base": 1000, "per_level_above_first": 0},
+	"anvil_cost": 1000,
+	"slots": ["armor"],
+	"effects": {
+		"tick": [
+			{
+				"effect": {
+					"type": "looot:apply_mob_effect_better",
+					"to_apply": "night_vision",
+					"min_duration": 10.95,
+					"max_duration": 10.95,
+					"min_amplifier": 0,
+					"max_amplifier": 0,
+					"ambient": false,
+					"visible": false,
+					"show_icon": false
+				},
+				"requirements": {
+					"condition": "entity_properties",
+					"entity": "this"
+				}
+			}
+		]
+	}
+}

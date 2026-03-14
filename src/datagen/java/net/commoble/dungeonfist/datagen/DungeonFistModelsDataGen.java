@@ -46,6 +46,15 @@ public final class DungeonFistModelsDataGen
 		models.put(DungeonFist.TELEPORT_RUNE.getId().withPrefix("block/"), SimpleModel.create(RUNE_TEMPLATE_CHARGED)
 			.addTexture("base", Identifier.withDefaultNamespace("block/obsidian"))
 			.addTexture("overlay", DungeonFist.id("block/teleport_rune")));
+
+		models.put(DungeonFist.id("item/artifacts/bloodreaper"), SimpleModel.create(Identifier.withDefaultNamespace("item/iron_hoe")).addTexture("layer0", Identifier.withDefaultNamespace("item/iron_hoe/dungeonfist/bloodreaper")));
+		models.put(DungeonFist.id("item/artifacts/heckblaster_arrow"), SimpleModel.create(Identifier.withDefaultNamespace("item/crossbow_arrow")).addTexture("layer0", Identifier.withDefaultNamespace("item/crossbow_arrow/dungeonfist/heckblaster")));
+		models.put(DungeonFist.id("item/artifacts/heckblaster_firework"), SimpleModel.create(Identifier.withDefaultNamespace("item/crossbow_firework")).addTexture("layer0", Identifier.withDefaultNamespace("item/crossbow_firework/dungeonfist/heckblaster")));
+		models.put(DungeonFist.id("item/artifacts/heckblaster_pulling_0"), SimpleModel.create(Identifier.withDefaultNamespace("item/crossbow_pulling_0")).addTexture("layer0", Identifier.withDefaultNamespace("item/crossbow_pulling_0/dungeonfist/heckblaster")));
+		models.put(DungeonFist.id("item/artifacts/heckblaster_pulling_1"), SimpleModel.create(Identifier.withDefaultNamespace("item/crossbow_pulling_1")).addTexture("layer0", Identifier.withDefaultNamespace("item/crossbow_pulling_1/dungeonfist/heckblaster")));
+		models.put(DungeonFist.id("item/artifacts/heckblaster_pulling_2"), SimpleModel.create(Identifier.withDefaultNamespace("item/crossbow_pulling_2")).addTexture("layer0", Identifier.withDefaultNamespace("item/crossbow_pulling_2/dungeonfist/heckblaster")));
+		models.put(DungeonFist.id("item/artifacts/heckblaster"), SimpleModel.create(Identifier.withDefaultNamespace("item/crossbow")).addTexture("layer0", Identifier.withDefaultNamespace("item/crossbow_standby/dungeonfist/heckblaster")));
+		models.put(DungeonFist.id("item/artifacts/morsmorde"), SimpleModel.create(Identifier.withDefaultNamespace("item/diamond_axe")).addTexture("layer0", Identifier.withDefaultNamespace("item/diamond_axe/dungeonfist/morsmorde")));
 		
 		JsonDataProvider.addProvider(event, Target.RESOURCE_PACK, "models", SimpleModel.CODEC, models);
 	}

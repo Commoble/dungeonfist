@@ -7,8 +7,14 @@
 			"entries": 
 			[
 				{
+					"weight": 3,
 					"type": "minecraft:loot_table",
 					"value": "dungeonfist:subtables/random_loot_with_big_enchantments"
+				},
+				{
+					"weight": 1,
+					"type": "minecraft:loot_table",
+					"value": "dungeonfist:subtables/common_artifacts"
 				}
 			]
 		}

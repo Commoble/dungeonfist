@@ -52,7 +52,7 @@ neoForge {
 			programArguments.addAll '--mod', "dungeonfist", '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
 		}
 		configureEach {
-			
+			jvmArguments = ["-Xms2g", "-Xmx8g"]
 		}
 	}
 }

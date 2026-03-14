@@ -1,0 +1,6 @@
+{
+	"package": "net.commoble.dungeonfist.mixin",
+	"mixins": [
+		"LivingEntityMixin"
+	]
+}

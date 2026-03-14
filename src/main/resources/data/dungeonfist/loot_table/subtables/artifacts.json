@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:generic",
+	"pools": 
+	[
+		{
+			"rolls": 1,
+			"entries": 
+			[
+				{
+					"type": "looot:artifacts",
+					"weight": 1,
+					"artifacts": "#dungeonfist:common_artifacts"
+				}
+			]
+		}
+	]
+}

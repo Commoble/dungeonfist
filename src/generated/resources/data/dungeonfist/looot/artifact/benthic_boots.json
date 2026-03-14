@@ -1,0 +1,50 @@
+{
+  "type": "minecraft:item",
+  "functions": [
+    {
+      "function": "minecraft:set_name",
+      "name": {
+        "color": "gold",
+        "italic": false,
+        "translate": "dungeonfist.artifact.dungeonfist.benthic_boots.name"
+      }
+    },
+    {
+      "function": "minecraft:set_lore",
+      "lore": [
+        {
+          "translate": "dungeonfist.artifact.dungeonfist.benthic_boots.lore"
+        }
+      ],
+      "mode": "append"
+    },
+    {
+      "add": false,
+      "enchantments": {
+        "minecraft:depth_strider": 3.0
+      },
+      "function": "minecraft:set_enchantments"
+    },
+    {
+      "function": "minecraft:set_attributes",
+      "modifiers": [
+        {
+          "amount": -1.0,
+          "attribute": "dungeonfist:sinking_resistance",
+          "id": "dungeonfist:benthic_boots_sinking_resistance",
+          "operation": "add_multiplied_base",
+          "slot": "armor"
+        },
+        {
+          "amount": 0.3,
+          "attribute": "minecraft:gravity",
+          "id": "dungeonfist:benthic_boots_gravity",
+          "operation": "add_multiplied_base",
+          "slot": "armor"
+        }
+      ],
+      "replace": false
+    }
+  ],
+  "name": "minecraft:iron_boots"
+}

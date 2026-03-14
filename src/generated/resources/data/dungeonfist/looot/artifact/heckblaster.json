@@ -1,0 +1,46 @@
+{
+  "type": "minecraft:item",
+  "functions": [
+    {
+      "function": "minecraft:set_name",
+      "name": {
+        "color": "gold",
+        "italic": false,
+        "translate": "dungeonfist.artifact.dungeonfist.heckblaster.name"
+      }
+    },
+    {
+      "function": "minecraft:set_lore",
+      "lore": [
+        {
+          "translate": "dungeonfist.artifact.dungeonfist.heckblaster.lore"
+        }
+      ],
+      "mode": "append"
+    },
+    {
+      "add": false,
+      "enchantments": {
+        "dungeonfist:fire_blast": {
+          "type": "minecraft:uniform",
+          "max": 3.0,
+          "min": 1.0
+        },
+        "minecraft:flame": 1.0,
+        "minecraft:punch": {
+          "type": "minecraft:uniform",
+          "max": 2.0,
+          "min": 1.0
+        }
+      },
+      "function": "minecraft:set_enchantments"
+    },
+    {
+      "components": {
+        "minecraft:item_model": "dungeonfist:artifacts/heckblaster"
+      },
+      "function": "minecraft:set_components"
+    }
+  ],
+  "name": "minecraft:crossbow"
+}

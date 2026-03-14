@@ -1,0 +1,26 @@
+{
+	"description": {"translate": "enchantment.dungeonfist.life_drain"},
+	"supported_items": [],
+	"weight": 1,
+	"max_level": 1,
+	"min_cost": {"base": 1000, "per_level_above_first": 1000},
+	"max_cost": {"base": 1000, "per_level_above_first": 1000},
+	"anvil_cost": 1000,
+	"slots": ["mainhand"],
+	"effects": {
+		"post_attack": [
+			{
+				"enchanted": "attacker",
+				"affected": "attacker", 
+				"effect": {
+					"type": "apply_mob_effect",
+					"to_apply": "regeneration",
+					"min_duration": 1.25,
+					"max_duration": 1.25,
+					"min_amplifier": 1,
+					"max_amplifier": 1
+				}
+			}
+		]
+	}
+}

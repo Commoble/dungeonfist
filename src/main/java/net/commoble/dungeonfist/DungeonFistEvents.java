@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
@@ -31,6 +32,15 @@ public class DungeonFistEvents
 	public static void onRegisterDataPackRegistries(DataPackRegistryEvent.NewRegistry event)
 	{
 		event.dataPackRegistry(DungeonMaterial.REGISTRY_KEY, DungeonMaterial.DIRECT_CODEC);
+	}
+	
+	@SubscribeEvent
+	public static void onModifyEntityAttributes(EntityAttributeModificationEvent event)
+	{
+		for (var type : event.getTypes())
+		{
+			event.add(type, DungeonFist.SINKING_RESISTANCE);
+		}
 	}
 	
 	@SubscribeEvent

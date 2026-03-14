@@ -1,0 +1,40 @@
+{
+	"description": {"translate": "enchantment.dungeonfist.death_feast"},
+	"supported_items": [],
+	"weight": 1,
+	"max_level": 4,
+	"min_cost": {"base": 1000, "per_level_above_first": 1000},
+	"max_cost": {"base": 1000, "per_level_above_first": 1000},
+	"anvil_cost": 1000,
+	"slots": ["mainhand"],
+	"effects": {
+		"post_attack": [
+			{
+				"enchanted": "attacker",
+				"affected": "attacker",
+				"requirements": {
+					"condition": "entity_properties",
+					"entity": "this",
+					"predicate": {
+						"type_specific": {
+							"type": "looot:dead"
+						}
+					}
+				},
+				"effect":{
+					"type": "looot:add_food",
+					"nutrition": {
+						"type": "linear",
+						"base": 1,
+						"per_level_above_first": 1
+					},
+					"saturation": {
+						"type": "linear",
+						"base": 0.2,
+						"per_level_above_first": 0.2
+					}
+				}
+			}
+		]
+	}
+}

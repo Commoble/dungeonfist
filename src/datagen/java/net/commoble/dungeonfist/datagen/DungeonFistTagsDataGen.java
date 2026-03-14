@@ -1,7 +1,5 @@
 package net.commoble.dungeonfist.datagen;
 
-import java.util.Comparator;
-
 import net.commoble.dungeonfist.DungeonFist;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
