@@ -3,12 +3,13 @@ package net.commoble.dungeonfist.datagen;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import net.commoble.dungeonfist.DungeonFist;
 import net.minecraft.client.color.item.Constant;
 import net.minecraft.client.data.models.model.ItemModelUtils;
-import net.minecraft.client.renderer.item.BlockModelWrapper;
 import net.minecraft.client.renderer.item.ClientItem;
+import net.minecraft.client.renderer.item.CuboidItemModelWrapper;
 import net.minecraft.client.renderer.item.properties.numeric.CrossbowPull;
 import net.minecraft.client.renderer.item.properties.select.Charge;
 import net.minecraft.data.PackOutput.Target;
@@ -38,8 +39,9 @@ public final class DungeonFistItemsDataGen
 		registerDefaultBlockModel(clientItems, DungeonFist.TELEPORT_RUNE);
 		
 		clientItems.put(DungeonFist.PROVIDENCE_ITEM.getId(), new ClientItem(
-			new BlockModelWrapper.Unbaked(
+			new CuboidItemModelWrapper.Unbaked(
 				Identifier.withDefaultNamespace("item/feather"),
+				Optional.empty(),
 				List.of(new Constant(0xFFFFF594))),
 			ClientItem.Properties.DEFAULT));
 		
@@ -87,7 +89,7 @@ public final class DungeonFistItemsDataGen
 	private static ClientItem simpleBlockModel(Identifier modelId)
 	{
 		return new ClientItem(
-			new BlockModelWrapper.Unbaked(modelId, List.of()),
+			new CuboidItemModelWrapper.Unbaked(modelId, Optional.empty(), List.of()),
 			ClientItem.Properties.DEFAULT);
 	}
 }

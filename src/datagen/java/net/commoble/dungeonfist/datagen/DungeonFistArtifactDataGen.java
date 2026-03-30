@@ -69,7 +69,7 @@ public final class DungeonFistArtifactDataGen
 		);
 		registerItem(bootstrap, Items.IRON_HOE, "bloodreaper", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
-				.withEnchantment(enchantments.getOrThrow(Enchantments.SHARPNESS), uniform(1,5))
+				.withEnchantment(enchantments.getOrThrow(Enchantments.SHARPNESS), ConstantValue.exactly(5))
 				.withEnchantment(enchantments.getOrThrow(Enchantments.UNBREAKING), uniform(1,3))
 				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.LIFE_DRAIN), ConstantValue.exactly(1)))
 			.apply(SetComponentsFunction.setComponent(DataComponents.ITEM_MODEL, DungeonFist.id("artifacts/bloodreaper")))

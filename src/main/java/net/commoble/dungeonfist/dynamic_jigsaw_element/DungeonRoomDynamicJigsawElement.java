@@ -44,6 +44,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.util.valueproviders.IntProviders;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -74,13 +75,13 @@ public record DungeonRoomDynamicJigsawElement(
 	DungeonProperty moistness
 	) implements DynamicJigsawElement
 {
-	public static final MapCodec<DungeonRoomDynamicJigsawElement> CODEC = RecordCodecBuilder.mapCodec(builder -> builder.group(
+	public static final MapCodec<DungeonRoomDynamicJigsawElement> CODEC = RecordCodecBuilder.<DungeonRoomDynamicJigsawElement>mapCodec(builder -> builder.group(
 			BuiltInRegistries.BLOCK.byNameCodec().fieldOf("template_block").forGetter(DungeonRoomDynamicJigsawElement::templateBlock),
 			Codec.intRange(3,272).fieldOf("min_width").forGetter(DungeonRoomDynamicJigsawElement::minWidth),
 			Codec.intRange(3,272).fieldOf("max_width").forGetter(DungeonRoomDynamicJigsawElement::maxWidth),
 			Codec.intRange(4,1000).fieldOf("min_height").forGetter(DungeonRoomDynamicJigsawElement::minHeight),
 			Codec.intRange(4,1000).fieldOf("max_height").forGetter(DungeonRoomDynamicJigsawElement::maxHeight),
-			IntProvider.CODEC.fieldOf("subdivisions").forGetter(DungeonRoomDynamicJigsawElement::subdivisions),
+			IntProviders.CODEC.fieldOf("subdivisions").forGetter(DungeonRoomDynamicJigsawElement::subdivisions),
 			Exits.CODEC.fieldOf("exits").forGetter(DungeonRoomDynamicJigsawElement::exits),
 			BoxPool.CODEC.optionalFieldOf("feature_pool").forGetter(DungeonRoomDynamicJigsawElement::featurePool),
 			BoxPool.CODEC.optionalFieldOf("wall_feature_pool").forGetter(DungeonRoomDynamicJigsawElement::wallFeaturePool),
@@ -466,7 +467,7 @@ public record DungeonRoomDynamicJigsawElement(
 		Optional<Holder<BoxPool>> cornerPool)
 	{
 		public static final Codec<Exits> CODEC = RecordCodecBuilder.create(builder -> builder.group(
-				IntProvider.CODEC.fieldOf("count").forGetter(Exits::count),
+				IntProviders.CODEC.fieldOf("count").forGetter(Exits::count),
 				BoxPool.CODEC.optionalFieldOf("wall_pool").forGetter(Exits::wallPool),
 				BoxPool.CODEC.optionalFieldOf("floor_pool").forGetter(Exits::floorPool),
 				BoxPool.CODEC.optionalFieldOf("ceiling_pool").forGetter(Exits::ceilingPool),

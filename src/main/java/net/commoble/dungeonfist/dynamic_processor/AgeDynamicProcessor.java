@@ -15,6 +15,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
@@ -51,12 +52,12 @@ public record AgeDynamicProcessor(Optional<Block> airBlock) implements DynamicPr
 		BlockPos pos = processedBlockInfo.pos();
         RandomSource random = settings.getRandom(pos);
 		Integer age = jigsawData.getData(DungeonFist.DUNGEON_AGE_JIGSAW_DATA.get());
-		if (age != null && random.nextInt(100) < age)
-		{
+		if (age != null && random.nextInt(100) < age && level instanceof WorldGenLevel worldGenLevel)
+		{ 
 			@Nullable BlockStateProvider provider = newState.typeHolder().getData(DungeonFistDataMaps.AGEABLES);
 			if (provider != null)
 			{
-				newState = provider.getState(random, pos);
+				newState = provider.getState(worldGenLevel, random, pos);
 				if (newState.isAir())
 				{
 					if (this.airBlock.isEmpty())

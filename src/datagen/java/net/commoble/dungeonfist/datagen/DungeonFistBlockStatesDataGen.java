@@ -8,7 +8,7 @@ import com.mojang.math.Quadrant;
 import net.commoble.dungeonfist.DungeonFist;
 import net.commoble.dungeonfist.block.ChargeableRuneBlock;
 import net.commoble.dungeonfist.block.PipeBlock;
-import net.minecraft.client.renderer.block.model.BlockModelDefinition;
+import net.minecraft.client.renderer.block.dispatch.BlockStateModelDispatcher;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.data.PackOutput.Target;
 import net.minecraft.resources.Identifier;
@@ -22,12 +22,12 @@ public final class DungeonFistBlockStatesDataGen
 	
 	static void gatherData(GatherDataEvent event)
 	{
-		Map<Identifier, BlockModelDefinition> blockstates = new HashMap<>();
+		Map<Identifier, BlockStateModelDispatcher> blockstates = new HashMap<>();
 		
 		DungeonFist.PIPE_BLOCKS.forEach((originalKey, blockHolder) -> {
 			Identifier blockId = blockHolder.unwrapKey().get().identifier();
 			Identifier modelId = blockId.withPrefix("block/");
-			BlockModelDefinition blockstate = BlockStateBuilder.variants(variants -> variants
+			BlockStateModelDispatcher blockstate = BlockStateBuilder.variants(variants -> variants
 				.addVariant(PipeBlock.AXIS, Axis.Z, BlockStateBuilder.model(modelId, Quadrant.R0, Quadrant.R0, true))
 				.addVariant(PipeBlock.AXIS, Axis.X, BlockStateBuilder.model(modelId, Quadrant.R0, Quadrant.R90, true))
 				.addVariant(PipeBlock.AXIS, Axis.Y, BlockStateBuilder.model(modelId, Quadrant.R90, Quadrant.R0, true)));
@@ -38,7 +38,7 @@ public final class DungeonFistBlockStatesDataGen
 			Identifier blockId = blockHolder.unwrapKey().get().identifier();
 			Identifier modelUp = blockId.withPrefix("block/");
 			Identifier modelDown = modelUp.withSuffix("_down");
-			BlockModelDefinition blockstate = BlockStateBuilder.variants(variants -> variants
+			BlockStateModelDispatcher blockstate = BlockStateBuilder.variants(variants -> variants
 				.addVariant(PressurePlateBlock.POWERED, false, BlockStateBuilder.model(modelUp))
 				.addVariant(PressurePlateBlock.POWERED, true, BlockStateBuilder.model(modelDown)));
 			blockstates.put(blockId, blockstate);
@@ -54,10 +54,10 @@ public final class DungeonFistBlockStatesDataGen
 		simpleBlock(blockstates, DungeonFist.TELEPORT_RUNE);
 			
 		
-		JsonDataProvider.addProvider(event, Target.RESOURCE_PACK, "blockstates", BlockModelDefinition.CODEC, blockstates);
+		JsonDataProvider.addProvider(event, Target.RESOURCE_PACK, "blockstates", BlockStateModelDispatcher.CODEC, blockstates);
 	}
 	
-	private static void registerChargeableRuneBlock(Map<Identifier, BlockModelDefinition> blockstates, DeferredBlock<?> holder)
+	private static void registerChargeableRuneBlock(Map<Identifier, BlockStateModelDispatcher> blockstates, DeferredBlock<?> holder)
 	{
 		blockstates.put(holder.getId(), BlockStateBuilder.variants(variants -> variants
 			.addVariant(ChargeableRuneBlock.CHARGED, false, BlockStateBuilder.model(holder.getId().withPrefix("block/")))
@@ -65,12 +65,12 @@ public final class DungeonFistBlockStatesDataGen
 		));
 	}
 	
-	private static void simpleBlock(Map<Identifier, BlockModelDefinition> blockstates, DeferredBlock<?> holder)
+	private static void simpleBlock(Map<Identifier, BlockStateModelDispatcher> blockstates, DeferredBlock<?> holder)
 	{
 		simpleBlockWithParent(blockstates, holder, holder.getId().withPrefix("block/"));
 	}
 	
-	private static void simpleBlockWithParent(Map<Identifier, BlockModelDefinition> blockstates, DeferredBlock<?> holder, Identifier parentModel)
+	private static void simpleBlockWithParent(Map<Identifier, BlockStateModelDispatcher> blockstates, DeferredBlock<?> holder, Identifier parentModel)
 	{
 		blockstates.put(holder.getId(), BlockStateBuilder.singleVariant(BlockStateBuilder.model(parentModel)));
 	}

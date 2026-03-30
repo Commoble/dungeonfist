@@ -22,11 +22,7 @@
       "add": false,
       "enchantments": {
         "dungeonfist:life_drain": 1.0,
-        "minecraft:sharpness": {
-          "type": "minecraft:uniform",
-          "max": 5.0,
-          "min": 1.0
-        },
+        "minecraft:sharpness": 5.0,
         "minecraft:unbreaking": {
           "type": "minecraft:uniform",
           "max": 3.0,

@@ -8,7 +8,7 @@ import net.commoble.dungeonfist.block.entity.DungeonPortalBlockEntity;
 import net.commoble.dungeonfist.block.entity.PortalGeneratorBlockEntity;
 import net.commoble.dungeonfist.client.particle.DungeonPortalParticle.DungeonPortalParticleProvider;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -84,7 +84,7 @@ public final class ClientProxy
 				float multiplier = partialPortalTicks / maxPortalTicks;
 				
 				// do the overlay
-				GuiGraphics graphics = event.getGuiGraphics();
+				GuiGraphicsExtractor graphics = event.getGuiGraphics();
 				int width = graphics.guiWidth();
 				int height = graphics.guiHeight();
 //				float red = 0.1F * multiplier + 0.8F;
