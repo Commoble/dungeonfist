@@ -1,13 +1,13 @@
 modLoader="javafml" #mandatory
 loaderVersion="[1,)" #mandatory
 license="MIT License"
-#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
+issueTrackerURL="https://github.com/Commoble/dungeonfist/issues"
 [[mods]] #mandatory
 # The modid of the mod
 modId="dungeonfist" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="Dungeonfist" #mandatory
-##displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
+displayURL="https://www.curseforge.com/minecraft/mc-mods/dungeonfist"
 logoFile="dungeonfist.png" #optional
 credits="I hear the Minecraft Mod Development discord channel is the cat's bananas" #optional
 authors="Commoble"
