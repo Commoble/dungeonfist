@@ -14,6 +14,11 @@ public class DungeonFistDataGen
 	@SubscribeEvent
 	public static void onGatherData(GatherDataEvent.Client event)
 	{
+		event.createDatapackRegistryObjects(new RegistrySetBuilder()
+			.add(Artifact.KEY, DungeonFistArtifactDataGen::gatherData)
+			.add(DungeonMaterial.REGISTRY_KEY, DungeonFistDungeonMaterialDataGen::gatherData)
+		);
+		
 		DungeonFistAtlasDataGen.gatherData(event);
 		DungeonFistBlockStatesDataGen.gatherData(event);
 		DungeonFistItemsDataGen.gatherData(event);
@@ -23,10 +28,5 @@ public class DungeonFistDataGen
 		DungeonFistLootDataGen.gatherData(event);
 		DungeonFistRecipesDataGen.gatherData(event);
 		DungeonFistTagsDataGen.gatherData(event);
-
-		event.createDatapackRegistryObjects(new RegistrySetBuilder()
-			.add(Artifact.KEY, DungeonFistArtifactDataGen::gatherData)
-			.add(DungeonMaterial.REGISTRY_KEY, DungeonFistDungeonMaterialDataGen::gatherData)
-		);
 	}
 }

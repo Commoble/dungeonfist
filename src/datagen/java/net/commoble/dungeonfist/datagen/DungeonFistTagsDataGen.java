@@ -1,8 +1,11 @@
 package net.commoble.dungeonfist.datagen;
 
 import net.commoble.dungeonfist.DungeonFist;
+import net.commoble.dungeonfist.DungeonMaterial;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -13,7 +16,8 @@ public final class DungeonFistTagsDataGen
 	
 	static void gatherData(GatherDataEvent event)
 	{
-		TagProvider<Block> blocks = TagProvider.create(event, Registries.BLOCK);
+		TagProvider<Block> blocks = event.addProvider(TagProvider.create(event, Registries.BLOCK));
+		TagProvider<DungeonMaterial> dungeonMaterials = event.addProvider(TagProvider.create(event, DungeonMaterial.REGISTRY_KEY));
 		
 		blocks.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.addAll(DungeonFist.PIPE_BLOCKS.values().stream().map(holder -> holder.unwrapKey().get())
@@ -46,6 +50,8 @@ public final class DungeonFistTagsDataGen
 			.add(DungeonFist.DUNGEON_PORTAL_BLOCK.unwrapKey().get())
 			.add(DungeonFist.PORTAL_GENERATOR_BLOCK.unwrapKey().get());
 		
-		event.addProvider(blocks);
+		dungeonMaterials.tag(TagKey.create(DungeonMaterial.REGISTRY_KEY, DungeonFist.id("dungeon")))
+			.add(ResourceKey.create(DungeonMaterial.REGISTRY_KEY, DungeonFist.id("cobblestone")))
+			.add(ResourceKey.create(DungeonMaterial.REGISTRY_KEY, DungeonFist.id("stone_bricks")));
 	}
 }

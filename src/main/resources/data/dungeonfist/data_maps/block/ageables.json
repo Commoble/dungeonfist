@@ -16,6 +16,10 @@
 		"cobblestone": {
 			"type": "simple_state_provider",
 			"state": {"Name": "air"}
+		},
+		"cobbled_deepslate": {
+			"type": "simple_state_provider",
+			"state": {"Name": "air"}
 		}
 	}
 }
