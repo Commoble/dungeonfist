@@ -43,7 +43,7 @@ public class TeleportRuneBlock extends Block
 		AABB targetBox = new AABB(pos).inflate(3);
 		for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, targetBox))
 		{
-			new TeleportRandomlyConsumeEffect(64f).apply(level, new ItemStack(this), entity);
+			new TeleportRandomlyConsumeEffect(64f, true).apply(level, new ItemStack(this), entity);
 		}
         level.playSound(null, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.BLOCKS);
 	}

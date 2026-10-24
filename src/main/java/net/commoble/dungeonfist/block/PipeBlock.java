@@ -1,7 +1,6 @@
 package net.commoble.dungeonfist.block;
 
 import com.mojang.math.OctahedralGroup;
-import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction.Axis;
@@ -18,7 +17,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class PipeBlock extends RotatedPillarBlock
 {
-	public static final MapCodec<? extends RotatedPillarBlock> CODEC = simpleCodec(PipeBlock::new);
 	public static final EnumProperty<Axis> AXIS = RotatedPillarBlock.AXIS;
 	
 	public static final VoxelShape SHAPE_Z = Shapes.or(

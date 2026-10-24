@@ -17,11 +17,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessor;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.StructureBlockInfo;
 
-public class SetDataProcessor extends StructureProcessor
+public class SetDataProcessor implements StructureProcessor
 {
 	public static final MapCodec<SetDataProcessor> CODEC = RecordCodecBuilder.mapCodec(builder -> builder.group(
 			CodecPuncher.BLOCKS.fieldOf("blocks").forGetter(SetDataProcessor::blocks),
@@ -56,7 +55,7 @@ public class SetDataProcessor extends StructureProcessor
 	}
 	
 	@Override
-	protected StructureProcessorType<?> getType()
+	public MapCodec<? extends StructureProcessor> codec()
 	{
 		return DungeonFist.SET_DATA_PROCESSOR.get();
 	}

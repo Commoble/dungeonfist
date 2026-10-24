@@ -19,7 +19,8 @@ base { archivesName="${modid}" }
 version = "${mod_version}"
 
 repositories {
-    mavenLocal()
+	maven {url = "https://maven.commoble.net"}
+	maven {url = "https://maven.commoble.net/snapshots"}
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of("${java_version}")

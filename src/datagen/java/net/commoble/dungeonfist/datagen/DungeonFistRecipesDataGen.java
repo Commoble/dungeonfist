@@ -1,13 +1,14 @@
 package net.commoble.dungeonfist.datagen;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import net.commoble.dungeonfist.DungeonFist;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.data.PackOutput.Target;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
@@ -20,22 +21,24 @@ import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.item.crafting.ShapedRecipePattern;
 import net.minecraft.world.item.crafting.ShapelessRecipe;
 import net.minecraft.world.item.crafting.StonecutterRecipe;
-import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 public final class DungeonFistRecipesDataGen
 {
 	private DungeonFistRecipesDataGen() {}
 	
-	static void gatherData(GatherDataEvent event)
+	public static ResourceKey<Recipe<?>> key(Identifier id)
 	{
-		Map<Identifier, Recipe<?>> recipes = new HashMap<>();
-		
+		return ResourceKey.create(Registries.RECIPE, id);
+	}
+	
+	static void gatherData(BootstrapContext<Recipe<?>> bootstrap)
+	{		
 		DungeonFist.PIPE_BLOCKS.forEach((originalKey, blockHolder) -> {
 			Identifier blockId = blockHolder.getId();
 			Ingredient ingredient = Ingredient.of(BuiltInRegistries.BLOCK.get(originalKey.identifier()).get().value());
 			ItemStackTemplate result = new ItemStackTemplate(BuiltInRegistries.ITEM.get(blockId).get());
 			StonecutterRecipe recipe = new StonecutterRecipe(new CommonInfo(false), ingredient, result);
-			recipes.put(blockId.withSuffix("_from_stonecutting"), recipe);
+			bootstrap.register(key(blockId.withSuffix("_from_stonecutting")), recipe);
 		});
 		
 		DungeonFist.PRESSURE_PLATE_BLOCKS.forEach((originalKey, blockHolder) -> {
@@ -46,11 +49,11 @@ public final class DungeonFistRecipesDataGen
 				"##");
 			ItemStackTemplate result = new ItemStackTemplate(BuiltInRegistries.ITEM.get(blockId).get().value());
 			ShapedRecipe recipe = new ShapedRecipe(new CommonInfo(false), new CraftingBookInfo(CraftingBookCategory.REDSTONE, ""), pattern, result);  
-			recipes.put(blockId, recipe);
+			bootstrap.register(key(blockId), recipe);
 		});
 		
-		recipes.put(
-			DungeonFist.CHARGED_TNT.getId(),
+		bootstrap.register(
+			key(DungeonFist.CHARGED_TNT.getId()),
 			new ShapelessRecipe(
 				new CommonInfo(false),
 				new CraftingBookInfo(CraftingBookCategory.REDSTONE, ""),
@@ -58,7 +61,5 @@ public final class DungeonFistRecipesDataGen
 				List.of(
 					Ingredient.of(Items.TNT),
 					Ingredient.of(Items.FIRE_CHARGE))));
-		
-		JsonDataProvider.addProvider(event, Target.DATA_PACK, "recipe", Recipe.CODEC, recipes);
 	}
 }

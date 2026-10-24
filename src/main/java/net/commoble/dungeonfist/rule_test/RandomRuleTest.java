@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 
 import net.commoble.dungeonfist.DungeonFist;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
@@ -24,7 +25,7 @@ public class RandomRuleTest extends RuleTest
 	}
 	
 	@Override
-	public boolean test(BlockState state, RandomSource random)
+	public boolean test(BlockState state, BlockPos pos, RandomSource random)
 	{
 		return random.nextDouble() < this.probability;
 	}
@@ -34,5 +35,4 @@ public class RandomRuleTest extends RuleTest
 	{
 		return DungeonFist.RANDOM_RULE_TEST.get();
 	}
-
 }

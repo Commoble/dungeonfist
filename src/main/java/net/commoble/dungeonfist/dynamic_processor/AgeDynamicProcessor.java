@@ -11,6 +11,7 @@ import net.commoble.dungeonfist.DungeonFistDataMaps;
 import net.commoble.structurebuddy.api.DynamicProcessor;
 import net.commoble.structurebuddy.api.JigsawPieceDataReader;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelReader;
@@ -54,9 +55,10 @@ public record AgeDynamicProcessor(Optional<Block> airBlock) implements DynamicPr
 		Integer age = jigsawData.getData(DungeonFist.DUNGEON_AGE_JIGSAW_DATA.get());
 		if (age != null && random.nextInt(100) < age && level instanceof WorldGenLevel worldGenLevel)
 		{ 
-			@Nullable BlockStateProvider provider = newState.typeHolder().getData(DungeonFistDataMaps.AGEABLES);
-			if (provider != null)
+			@Nullable Holder<BlockStateProvider> providerHolder = newState.typeHolder().getData(DungeonFistDataMaps.AGEABLES);
+			if (providerHolder != null)
 			{
+				BlockStateProvider provider = providerHolder.value();
 				newState = provider.getState(worldGenLevel, random, pos);
 				if (newState.isAir())
 				{

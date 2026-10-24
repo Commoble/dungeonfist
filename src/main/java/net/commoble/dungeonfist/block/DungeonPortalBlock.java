@@ -107,7 +107,7 @@ public class DungeonPortalBlock extends Block implements EntityBlock
 						else
 						{
 							// target level is a dungeon, we can reconstitute it if necessary
-							targetLevel = DimensionHelper.getOrCreateDungeonLevel(server, targetKey, targetSeed);
+							DimensionHelper.getOrCreateDungeonLevel(server, targetKey, targetSeed);
 						} 
 						if (targetLevel != null)
 						{

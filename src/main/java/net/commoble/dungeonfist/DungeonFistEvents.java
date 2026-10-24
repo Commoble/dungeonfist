@@ -15,7 +15,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
-import net.neoforged.neoforge.registries.DataPackRegistryEvent;
+import net.neoforged.neoforge.registries.NewDatapackRegistryEvent;
 import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
 
 @EventBusSubscriber(modid=DungeonFist.MODID)
@@ -29,9 +29,9 @@ public class DungeonFistEvents
 	}
 	
 	@SubscribeEvent
-	public static void onRegisterDataPackRegistries(DataPackRegistryEvent.NewRegistry event)
+	public static void onRegisterDataPackRegistries(NewDatapackRegistryEvent event)
 	{
-		event.dataPackRegistry(DungeonMaterial.REGISTRY_KEY, DungeonMaterial.DIRECT_CODEC);
+		event.worldRegistry(DungeonMaterial.REGISTRY_KEY, DungeonMaterial.DIRECT_CODEC);
 	}
 	
 	@SubscribeEvent

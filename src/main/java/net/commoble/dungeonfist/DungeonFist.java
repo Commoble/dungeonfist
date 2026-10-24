@@ -3,6 +3,7 @@ package net.commoble.dungeonfist;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -78,10 +79,10 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraft.world.level.levelgen.structure.placement.StructurePlacementType;
+import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
 import net.minecraft.world.level.levelgen.structure.templatesystem.PosRuleTestType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTestType;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessor;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
@@ -113,8 +114,8 @@ public class DungeonFist
 	public static final DeferredRegister<PoiType> POIS = defreg(Registries.POINT_OF_INTEREST_TYPE);
 	public static final DeferredRegister<PosRuleTestType<?>> POS_RULE_TEST_TYPES = defreg(Registries.POS_RULE_TEST);
 	public static final DeferredRegister<RuleTestType<?>> RULE_TESTS = defreg(Registries.RULE_TEST);
-	public static final DeferredRegister<StructurePlacementType<?>> STRUCTURE_PLACEMENT_TYPES = defreg(Registries.STRUCTURE_PLACEMENT);
-	public static final DeferredRegister<StructureProcessorType<?>> STRUCTURE_PROCESSORS = defreg(Registries.STRUCTURE_PROCESSOR);
+	public static final DeferredRegister<MapCodec<? extends StructurePlacement>> STRUCTURE_PLACEMENT_TYPES = defreg(Registries.STRUCTURE_PLACEMENT);
+	public static final DeferredRegister<MapCodec<? extends StructureProcessor>> STRUCTURE_PROCESSORS = defreg(Registries.STRUCTURE_PROCESSOR);
 	public static final DeferredRegister<TicketType> TICKET_TYPES = defreg(Registries.TICKET_TYPE);
 	public static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = defreg(NeoForgeRegistries.Keys.ATTACHMENT_TYPES);
 	public static final DeferredRegister<MapCodec<? extends BoxElement>> BOX_ELEMENT_TYPES = defreg(StructureBuddyRegistries.BOX_ELEMENT_TYPE);
@@ -190,7 +191,7 @@ public class DungeonFist
             .noLootTable()
             .sound(SoundType.GLASS)
             .lightLevel(state -> 15)
-            .pushReaction(PushReaction.BLOCK)
+            .pushReaction(PushReaction.IMMOVEABLE)
 		);
 	
 	public static final DeferredBlock<Block> FADING_LIGHT_BLOCK = BLOCKS.registerBlock(
@@ -222,7 +223,7 @@ public class DungeonFist
             .noLootTable()
             .sound(SoundType.GLASS)
             .lightLevel(state -> 15)
-            .pushReaction(PushReaction.BLOCK)
+            .pushReaction(PushReaction.IMMOVEABLE)
 		);
 	
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DungeonPortalBlockEntity>> DUNGEON_PORTAL_BLOCK_ENTITY_TYPE = BLOCK_ENTITY_TYPE.register(
@@ -263,9 +264,9 @@ public class DungeonFist
 	
 	public static final DeferredHolder<RuleTestType<?>, RuleTestType<RandomRuleTest>> RANDOM_RULE_TEST = RULE_TESTS.register("random", () -> () -> RandomRuleTest.CODEC);
 	
-	public static final DeferredHolder<StructurePlacementType<?>, StructurePlacementType<OriginStructurePlacement>> ORIGIN_STRUCTURE_PLACEMENT_TYPE = STRUCTURE_PLACEMENT_TYPES.register("origin", () -> () -> OriginStructurePlacement.CODEC);
+	public static final DeferredHolder<MapCodec<? extends StructurePlacement>, MapCodec<OriginStructurePlacement>> ORIGIN_STRUCTURE_PLACEMENT_TYPE = STRUCTURE_PLACEMENT_TYPES.register("origin", () -> OriginStructurePlacement.CODEC);
 	
-	public static final DeferredHolder<StructureProcessorType<?>, StructureProcessorType<SetDataProcessor>> SET_DATA_PROCESSOR = STRUCTURE_PROCESSORS.register("set_data", () -> () -> SetDataProcessor.CODEC);
+	public static final DeferredHolder<MapCodec<? extends StructureProcessor>, MapCodec<SetDataProcessor>> SET_DATA_PROCESSOR = STRUCTURE_PROCESSORS.register("set_data", () -> SetDataProcessor.CODEC);
 	
 	public static final DeferredHolder<TicketType, TicketType> PORTAL_GENERATOR_TICKET = TICKET_TYPES.register("portal_generator", () -> new TicketType(
 		300L,
@@ -311,7 +312,7 @@ public class DungeonFist
 	private static <T, R extends DeferredRegister<T>> R defreg(Function<String, R> regFactory)
 	{
 		R register = regFactory.apply(MODID);
-		register.register(ModList.get().getModContainerById(MODID).get().getEventBus());
+		register.register(Objects.requireNonNull(ModList.get().getModContainerById(MODID).get().getEventBus()));
 		return register;
 	}
 	

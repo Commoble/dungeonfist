@@ -1,6 +1,10 @@
 package net.commoble.dungeonfist;
 
 import java.util.OptionalLong;
+import java.util.function.Consumer;
+
+import org.apache.commons.lang3.function.Consumers;
+import org.jspecify.annotations.Nullable;
 
 import net.commoble.infiniverse.api.InfiniverseAPI;
 import net.minecraft.core.RegistryAccess;
@@ -17,16 +21,21 @@ public final class DimensionHelper
 {
 	private DimensionHelper() {}
 	
-	public static ServerLevel getOrCreateDungeonLevel(MinecraftServer server, ResourceKey<Level> newLevelKey, long seed)
+	public static @Nullable ServerLevel getOrCreateDungeonLevel(MinecraftServer server, ResourceKey<Level> newLevelKey, long seed)
+	{
+		return getOrRequestDungeonLevel(server, newLevelKey, seed, Consumers.nop());
+	}
+	
+	public static @Nullable ServerLevel getOrRequestDungeonLevel(MinecraftServer server, ResourceKey<Level> newLevelKey, long seed, Consumer<ServerLevel> onCreated)
 	{
 		RegistryAccess registries = server.registryAccess();
-		return InfiniverseAPI.get().getOrCreateLevel(server, newLevelKey, () -> new LevelStem(
+		return InfiniverseAPI.get().getOrRequestLevel(server, newLevelKey, () -> new LevelStem(
 			registries.lookupOrThrow(Registries.DIMENSION_TYPE).getOrThrow(DungeonFistDimensionTypes.DUNGEON),
 			new NoiseBasedChunkGenerator(
 				new FixedBiomeSource(registries.lookupOrThrow(Registries.BIOME).getOrThrow(DungeonFistBiomes.DUNGEON)),
 				registries.lookupOrThrow(Registries.NOISE_SETTINGS).getOrThrow(DungeonFistNoiseSettings.DUNGEON_CAVES)
 			),
 			OptionalLong.of(seed)
-		));
+		), onCreated);
 	}
 }

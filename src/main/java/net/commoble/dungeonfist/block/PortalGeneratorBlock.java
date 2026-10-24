@@ -20,11 +20,11 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntitySpawnReason;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.ai.village.poi.PoiManager.Occupancy;
 import net.minecraft.world.entity.ai.village.poi.PoiRecord;
-import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.monster.Enderman;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.consume_effects.TeleportRandomlyConsumeEffect;
@@ -121,7 +121,14 @@ public class PortalGeneratorBlock extends Block implements EntityBlock
 		@SuppressWarnings("deprecation")
 		long newSeed = serverLevel.getSeed() + Mth.getSeed(seedPos) + level.dimension().identifier().hashCode();
 		ResourceKey<Level> newLevelKey = entity.getOrCreateLevelKey(serverLevel, newSeed);
-		ServerLevel newLevel = DimensionHelper.getOrCreateDungeonLevel(server, newLevelKey, newSeed);
+		@Nullable ServerLevel newLevel = DimensionHelper.getOrRequestDungeonLevel(server, newLevelKey, newSeed, createdLevel -> {
+			createdLevel.getChunkSource().addTicketWithRadius(DungeonFist.PORTAL_GENERATOR_TICKET.get(), ChunkPos.ZERO, 2);
+		});
+		// can't create dimensions during server tick anymore
+		// but infiniverse will schedule the creation for the end of the tick
+		// if it's not ready yet, it should be next tick
+		if (newLevel == null)
+			return; 
 		
 		newLevel.getChunkSource().addTicketWithRadius(DungeonFist.PORTAL_GENERATOR_TICKET.get(), ChunkPos.ZERO, 2);
 		@Nullable ChunkAccess chunk = getChunkIfLoaded(newLevel, 0, 0);
@@ -146,9 +153,9 @@ public class PortalGeneratorBlock extends Block implements EntityBlock
 				{
 					for (int i=0; i<tries; i++)
 					{
-						@Nullable EnderMan enderman = EntityType.ENDERMAN.spawn(serverLevel, pos, EntitySpawnReason.MOB_SUMMONED);
+						@Nullable Enderman enderman = EntityTypes.ENDERMAN.spawn(serverLevel, pos, EntitySpawnReason.MOB_SUMMONED);
 						if (enderman != null
-							&& new TeleportRandomlyConsumeEffect(5).apply(level, new ItemStack(this), enderman))
+							&& new TeleportRandomlyConsumeEffect(5, true).apply(level, new ItemStack(this), enderman))
 						{
 							enderman.setTarget(nearestPlayer);
 						}
@@ -194,7 +201,7 @@ public class PortalGeneratorBlock extends Block implements EntityBlock
 					newLevelReturnPoint.setReturnPoint(currentReturnPoint);
 				}
 			}
-			LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(serverLevel, EntitySpawnReason.EVENT);
+			LightningBolt bolt = EntityTypes.LIGHTNING_BOLT.create(serverLevel, EntitySpawnReason.EVENT);
 			if (bolt != null)
 			{
 				bolt.setVisualOnly(true);

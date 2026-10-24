@@ -16,7 +16,7 @@ public final class DungeonFistAtlasDataGen
 	
 	static void gatherData(GatherDataEvent event)
 	{
-		event.addProvider(new SpriteSourceProvider(event.getGenerator().getPackOutput(), event.getLookupProvider(), DungeonFist.MODID) {
+		event.addProvider(new SpriteSourceProvider(event.getGenerator().getPackOutput(), event.getWorldLookupProvider(), DungeonFist.MODID) {
 			@Override
 			protected void gather()
 			{
