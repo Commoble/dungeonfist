@@ -27,7 +27,8 @@ public class DungeonFistDataGen
 	@SubscribeEvent
 	public static void onGatherRegistries(GatherDataRegistryEntriesEvent event)
 	{
-		event.add(DungeonMaterial.REGISTRY_KEY, DungeonFistDungeonMaterialDataGen::gatherData);
+		event.add(DungeonMaterial.REGISTRY_KEY, DungeonFistDungeonMaterialDataGen::gatherData);		
+		
 		event.add(Registries.LOOT_TABLE, DungeonFistLootDataGen::gatherData);
 		event.add(Registries.RECIPE, DungeonFistRecipesDataGen::gatherData);
 	}

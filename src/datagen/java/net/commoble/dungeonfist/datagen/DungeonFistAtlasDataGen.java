@@ -23,8 +23,8 @@ public final class DungeonFistAtlasDataGen
 				this.atlas(AtlasIds.ITEMS)
 					.addSource(new PalettedPermutations(
 						List.of(Identifier.withDefaultNamespace("item/iron_hoe")),
-						DungeonFist.id("palette_keys/item/iron_hoe"),
-						Map.of("dungeonfist/bloodreaper", DungeonFist.id("permutations/item/bloodreaper")),
+						DungeonFist.id("item/iron_hoe"),
+						Map.of("dungeonfist/bloodreaper", DungeonFist.id("item/bloodreaper")),
 						"/"))
 					.addSource(new PalettedPermutations(
 						List.of(
@@ -35,14 +35,14 @@ public final class DungeonFistAtlasDataGen
 							Identifier.withDefaultNamespace("item/crossbow_pulling_2"),
 							Identifier.withDefaultNamespace("item/crossbow_standby")
 						),
-						DungeonFist.id("palette_keys/item/crossbow"),
-						Map.of("dungeonfist/heckblaster", DungeonFist.id("permutations/item/heckblaster")),
+						DungeonFist.id("item/crossbow"),
+						Map.of("dungeonfist/heckblaster", DungeonFist.id("item/heckblaster")),
 						"/"
 					))
 					.addSource(new PalettedPermutations(
 						List.of(Identifier.withDefaultNamespace("item/diamond_axe")),
-						DungeonFist.id("palette_keys/item/diamond_axe"),
-						Map.of("dungeonfist/morsmorde", DungeonFist.id("permutations/item/morsmorde")),
+						DungeonFist.id("item/diamond_axe"),
+						Map.of("dungeonfist/morsmorde", DungeonFist.id("item/morsmorde")),
 						"/"));
 			}
 		});

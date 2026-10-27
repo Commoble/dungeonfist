@@ -1,0 +1,16 @@
+modLoader="javafml" #mandatory
+loaderVersion="[1,)" #mandatory
+license="MIT License"
+issueTrackerURL="https://github.com/Commoble/dungeonfist/issues"
+[[mods]] #mandatory
+# The modid of the mod
+modId="dungeonfistdatagenmangler" #mandatory
+version="${file.jarVersion}" #mandatory
+displayName="Dungeonfist" #mandatory
+displayURL="https://www.curseforge.com/minecraft/mc-mods/dungeonfist"
+authors="Commoble"
+description='''
+dungeons
+'''
+[[mixins]]
+	config="META-INF/dungeonfistdatagenmangler.mixins.json"

@@ -16,8 +16,8 @@ public final class DungeonFistTagsDataGen
 	
 	static void gatherData(GatherDataEvent event)
 	{
-		TagProvider<Block> blocks = event.addProvider(TagProvider.create(event, Registries.BLOCK));
-		TagProvider<DungeonMaterial> dungeonMaterials = event.addProvider(TagProvider.create(event, DungeonMaterial.REGISTRY_KEY));
+		TagProvider<Block> blocks = TagProvider.createAndAdd(event, Registries.BLOCK);
+		TagProvider<DungeonMaterial> dungeonMaterials = TagProvider.createAndAdd(event, DungeonMaterial.REGISTRY_KEY);
 		
 		blocks.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.addAll(DungeonFist.PIPE_BLOCKS.values().stream().map(holder -> holder.unwrapKey().get())

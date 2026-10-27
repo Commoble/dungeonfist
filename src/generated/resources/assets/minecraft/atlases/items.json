@@ -2,9 +2,9 @@
   "sources": [
     {
       "type": "minecraft:paletted_permutations",
-      "palette_key": "dungeonfist:palette_keys/item/iron_hoe",
+      "palette_key": "dungeonfist:item/iron_hoe",
       "permutations": {
-        "dungeonfist/bloodreaper": "dungeonfist:permutations/item/bloodreaper"
+        "dungeonfist/bloodreaper": "dungeonfist:item/bloodreaper"
       },
       "separator": "/",
       "textures": [
@@ -13,9 +13,9 @@
     },
     {
       "type": "minecraft:paletted_permutations",
-      "palette_key": "dungeonfist:palette_keys/item/crossbow",
+      "palette_key": "dungeonfist:item/crossbow",
       "permutations": {
-        "dungeonfist/heckblaster": "dungeonfist:permutations/item/heckblaster"
+        "dungeonfist/heckblaster": "dungeonfist:item/heckblaster"
       },
       "separator": "/",
       "textures": [
@@ -29,9 +29,9 @@
     },
     {
       "type": "minecraft:paletted_permutations",
-      "palette_key": "dungeonfist:palette_keys/item/diamond_axe",
+      "palette_key": "dungeonfist:item/diamond_axe",
       "permutations": {
-        "dungeonfist/morsmorde": "dungeonfist:permutations/item/morsmorde"
+        "dungeonfist/morsmorde": "dungeonfist:item/morsmorde"
       },
       "separator": "/",
       "textures": [

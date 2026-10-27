@@ -1,0 +1,44 @@
+{
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "modifier": [
+            {
+              "type": "minecraft:set_name",
+              "name": {
+                "color": "gold",
+                "italic": false,
+                "translate": "dungeonfist.artifact.dungeonfist.artifacts/catseye.name"
+              }
+            },
+            {
+              "type": "minecraft:set_lore",
+              "lore": [
+                {
+                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/catseye.lore"
+                }
+              ],
+              "mode": "append"
+            },
+            {
+              "type": "minecraft:set_enchantments",
+              "enchantments": {
+                "dungeonfist:night_vision": 1
+              }
+            },
+            {
+              "type": "minecraft:set_components",
+              "components": {
+                "minecraft:dyed_color": 4211370
+              }
+            }
+          ],
+          "name": "minecraft:leather_helmet"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

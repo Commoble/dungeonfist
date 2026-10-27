@@ -1,0 +1,6 @@
+{
+	"package": "net.commoble.dungeonfist.datagen.mixin",
+	"mixins": [
+		"LootDataTypeMixin"
+	]
+}

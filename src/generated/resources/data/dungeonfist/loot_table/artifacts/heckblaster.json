@@ -1,0 +1,54 @@
+{
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "modifier": [
+            {
+              "type": "minecraft:set_name",
+              "name": {
+                "color": "gold",
+                "italic": false,
+                "translate": "dungeonfist.artifact.dungeonfist.artifacts/heckblaster.name"
+              }
+            },
+            {
+              "type": "minecraft:set_lore",
+              "lore": [
+                {
+                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/heckblaster.lore"
+                }
+              ],
+              "mode": "append"
+            },
+            {
+              "type": "minecraft:set_enchantments",
+              "enchantments": {
+                "dungeonfist:fire_blast": {
+                  "type": "minecraft:uniform",
+                  "max": 3,
+                  "min": 1
+                },
+                "minecraft:flame": 1,
+                "minecraft:punch": {
+                  "type": "minecraft:uniform",
+                  "max": 2,
+                  "min": 1
+                }
+              }
+            },
+            {
+              "type": "minecraft:set_components",
+              "components": {
+                "minecraft:item_model": "dungeonfist:artifacts/heckblaster"
+              }
+            }
+          ],
+          "name": "minecraft:crossbow"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

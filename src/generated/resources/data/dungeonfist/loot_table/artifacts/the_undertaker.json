@@ -1,0 +1,52 @@
+{
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "modifier": [
+            {
+              "type": "minecraft:set_name",
+              "name": {
+                "color": "gold",
+                "italic": false,
+                "translate": "dungeonfist.artifact.dungeonfist.artifacts/the_undertaker.name"
+              }
+            },
+            {
+              "type": "minecraft:set_lore",
+              "lore": [
+                {
+                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/the_undertaker.lore"
+                }
+              ],
+              "mode": "append"
+            },
+            {
+              "type": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": {
+                  "type": "minecraft:uniform",
+                  "max": 5,
+                  "min": 1
+                },
+                "minecraft:smite": {
+                  "type": "minecraft:uniform",
+                  "max": 5,
+                  "min": 4
+                },
+                "minecraft:unbreaking": {
+                  "type": "minecraft:uniform",
+                  "max": 3,
+                  "min": 1
+                }
+              }
+            }
+          ],
+          "name": "minecraft:iron_shovel"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

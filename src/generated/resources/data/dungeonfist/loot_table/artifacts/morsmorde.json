@@ -1,0 +1,53 @@
+{
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "modifier": [
+            {
+              "type": "minecraft:set_name",
+              "name": {
+                "color": "gold",
+                "italic": false,
+                "translate": "dungeonfist.artifact.dungeonfist.artifacts/morsmorde.name"
+              }
+            },
+            {
+              "type": "minecraft:set_lore",
+              "lore": [
+                {
+                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/morsmorde.lore"
+                }
+              ],
+              "mode": "append"
+            },
+            {
+              "type": "minecraft:set_enchantments",
+              "enchantments": {
+                "dungeonfist:death_feast": {
+                  "type": "minecraft:uniform",
+                  "max": 4,
+                  "min": 1
+                },
+                "minecraft:sharpness": {
+                  "type": "minecraft:uniform",
+                  "max": 5,
+                  "min": 1
+                }
+              }
+            },
+            {
+              "type": "minecraft:set_components",
+              "components": {
+                "minecraft:item_model": "dungeonfist:artifacts/morsmorde"
+              }
+            }
+          ],
+          "name": "minecraft:diamond_axe"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

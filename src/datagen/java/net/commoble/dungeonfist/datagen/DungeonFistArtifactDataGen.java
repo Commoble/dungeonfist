@@ -42,21 +42,20 @@ public final class DungeonFistArtifactDataGen
 	
 	private static ResourceKey<LootTable> key(String path)
 	{
-		return ResourceKey.create(Registries.LOOT_TABLE, DungeonFist.id(path));
+		return ResourceKey.create(Registries.LOOT_TABLE, DungeonFist.id(path).withPrefix("artifacts/"));
 	}
 	
 	static void gatherData(BootstrapContext<LootTable> bootstrap)
 	{
-		var enchantments = bootstrap.lookup(Registries.ENCHANTMENT);
 		registerItem(bootstrap, Items.IRON_SPEAR, "archimedes_fulcrum", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
-				.withEnchantment(enchantments.getOrThrow(Enchantments.LUNGE), constantInt(3))
-				.withEnchantment(enchantments.getOrThrow(Enchantments.SHARPNESS), uniform(1,5))
-				.withEnchantment(enchantments.getOrThrow(Enchantments.KNOCKBACK), uniform(2,3)))
+				.withEnchantment(DummyHolder.of(Enchantments.LUNGE), constantInt(3))
+				.withEnchantment(DummyHolder.of(Enchantments.SHARPNESS), uniform(1,5))
+				.withEnchantment(DummyHolder.of(Enchantments.KNOCKBACK), uniform(2,3)))
 		);
 		registerItem(bootstrap, Items.IRON_BOOTS, "benthic_boots", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
-				.withEnchantment(enchantments.getOrThrow(Enchantments.DEPTH_STRIDER), constantInt(3)))
+				.withEnchantment(DummyHolder.of(Enchantments.DEPTH_STRIDER), constantInt(3)))
 			.apply(SetAttributesFunction.setAttributes()
 				.withModifier(SetAttributesFunction.modifier(
 					DungeonFist.id("benthic_boots_sinking_resistance"),
@@ -73,38 +72,38 @@ public final class DungeonFistArtifactDataGen
 		);
 		registerItem(bootstrap, Items.IRON_HOE, "bloodreaper", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
-				.withEnchantment(enchantments.getOrThrow(Enchantments.SHARPNESS), constantInt(5))
-				.withEnchantment(enchantments.getOrThrow(Enchantments.UNBREAKING), uniform(1,3))
-				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.LIFE_DRAIN), constantInt(1)))
+				.withEnchantment(DummyHolder.of(Enchantments.SHARPNESS), constantInt(5))
+				.withEnchantment(DummyHolder.of(Enchantments.UNBREAKING), uniform(1,3))
+				.withEnchantment(DummyHolder.of(DungeonFistEnchantments.LIFE_DRAIN), constantInt(1)))
 			.apply(SetComponentsFunction.setComponent(DataComponents.ITEM_MODEL, DungeonFist.id("artifacts/bloodreaper")))
 		);
 		registerItem(bootstrap, Items.LEATHER_HELMET, "catseye", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
-				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.NIGHT_VISION), constantInt(1)))
+				.withEnchantment(DummyHolder.of(DungeonFistEnchantments.NIGHT_VISION), constantInt(1)))
 			.apply(SetComponentsFunction.setComponent(DataComponents.DYED_COLOR, new DyedItemColor(0x4042AA)))
 		);
 		registerItem(bootstrap, Items.CROSSBOW, "heckblaster", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
-				.withEnchantment(enchantments.getOrThrow(Enchantments.PUNCH), uniform(1,2))
-				.withEnchantment(enchantments.getOrThrow(Enchantments.FLAME), constantInt(1))
-				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.FIRE_BLAST), uniform(1,3)))
+				.withEnchantment(DummyHolder.of(Enchantments.PUNCH), uniform(1,2))
+				.withEnchantment(DummyHolder.of(Enchantments.FLAME), constantInt(1))
+				.withEnchantment(DummyHolder.of(DungeonFistEnchantments.FIRE_BLAST), uniform(1,3)))
 			.apply(SetComponentsFunction.setComponent(DataComponents.ITEM_MODEL, DungeonFist.id("artifacts/heckblaster")))
 		);
 		registerItem(bootstrap, Items.STONE_SWORD, "insect_crush", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
-				.withEnchantment(enchantments.getOrThrow(Enchantments.BANE_OF_ARTHROPODS), uniform(4,5))
-				.withEnchantment(enchantments.getOrThrow(Enchantments.SWEEPING_EDGE), uniform(1,3))
-				.withEnchantment(enchantments.getOrThrow(Enchantments.UNBREAKING), uniform(1,3)))
+				.withEnchantment(DummyHolder.of(Enchantments.BANE_OF_ARTHROPODS), uniform(4,5))
+				.withEnchantment(DummyHolder.of(Enchantments.SWEEPING_EDGE), uniform(1,3))
+				.withEnchantment(DummyHolder.of(Enchantments.UNBREAKING), uniform(1,3)))
 		);
 		registerItem(bootstrap, Items.GOLDEN_SWORD, "lightbringer", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
-				.withEnchantment(enchantments.getOrThrow(Enchantments.SMITE), uniform(1,5))
-				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.LIGHTBRINGER), constantInt(1))
-				.withEnchantment(enchantments.getOrThrow(Enchantments.UNBREAKING), uniform(1,3)))
+				.withEnchantment(DummyHolder.of(Enchantments.SMITE), uniform(1,5))
+				.withEnchantment(DummyHolder.of(DungeonFistEnchantments.LIGHTBRINGER), constantInt(1))
+				.withEnchantment(DummyHolder.of(Enchantments.UNBREAKING), uniform(1,3)))
 		);
 		registerItem(bootstrap, Items.GOLDEN_BOOTS, "moon_shoes", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
-				.withEnchantment(enchantments.getOrThrow(Enchantments.FEATHER_FALLING), constantInt(1)))
+				.withEnchantment(DummyHolder.of(Enchantments.FEATHER_FALLING), constantInt(1)))
 			.apply(SetAttributesFunction.setAttributes()
 				.withModifier(SetAttributesFunction
 					.modifier(
@@ -123,32 +122,32 @@ public final class DungeonFistArtifactDataGen
 		);
 		registerItem(bootstrap, Items.DIAMOND_AXE, "morsmorde", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
-				.withEnchantment(enchantments.getOrThrow(Enchantments.SHARPNESS), uniform(1,5))
-				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.DEATH_FEAST), uniform(1,4)))
+				.withEnchantment(DummyHolder.of(Enchantments.SHARPNESS), uniform(1,5))
+				.withEnchantment(DummyHolder.of(DungeonFistEnchantments.DEATH_FEAST), uniform(1,4)))
 			.apply(SetComponentsFunction.setComponent(DataComponents.ITEM_MODEL, DungeonFist.id("artifacts/morsmorde")))
 		);
 		registerItem(bootstrap, Items.MACE, "newtons_hammer", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
-				.withEnchantment(enchantments.getOrThrow(Enchantments.BREACH), uniform(1,4))
-				.withEnchantment(enchantments.getOrThrow(Enchantments.DENSITY), uniform(1,5))
-				.withEnchantment(enchantments.getOrThrow(Enchantments.WIND_BURST), constantInt(1)))
+				.withEnchantment(DummyHolder.of(Enchantments.BREACH), uniform(1,4))
+				.withEnchantment(DummyHolder.of(Enchantments.DENSITY), uniform(1,5))
+				.withEnchantment(DummyHolder.of(Enchantments.WIND_BURST), constantInt(1)))
 		);
 		registerItem(bootstrap, Items.GOLDEN_CHESTPLATE, "prominence", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
-				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.FIRE_THORNS), uniform(1,4))
-				.withEnchantment(enchantments.getOrThrow(Enchantments.FIRE_PROTECTION), uniform(1,4))
-				.withEnchantment(enchantments.getOrThrow(Enchantments.MENDING), constantInt(1)))
+				.withEnchantment(DummyHolder.of(DungeonFistEnchantments.FIRE_THORNS), uniform(1,4))
+				.withEnchantment(DummyHolder.of(Enchantments.FIRE_PROTECTION), uniform(1,4))
+				.withEnchantment(DummyHolder.of(Enchantments.MENDING), constantInt(1)))
 		);
 		registerItem(bootstrap, Items.IRON_SHOVEL, "the_undertaker", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
-				.withEnchantment(enchantments.getOrThrow(Enchantments.SMITE), uniform(4,5))
-				.withEnchantment(enchantments.getOrThrow(Enchantments.EFFICIENCY), uniform(1,5))
-				.withEnchantment(enchantments.getOrThrow(Enchantments.UNBREAKING), uniform(1,3)))
+				.withEnchantment(DummyHolder.of(Enchantments.SMITE), uniform(4,5))
+				.withEnchantment(DummyHolder.of(Enchantments.EFFICIENCY), uniform(1,5))
+				.withEnchantment(DummyHolder.of(Enchantments.UNBREAKING), uniform(1,3)))
 		);
 		registerItem(bootstrap, Items.GOLDEN_AXE, "thunderhead", builder -> builder
 			.apply(new SetEnchantmentsFunction.Builder()
-				.withEnchantment(enchantments.getOrThrow(DungeonFistEnchantments.STORM_CALLER), uniform(1,3))
-				.withEnchantment(enchantments.getOrThrow(Enchantments.UNBREAKING), uniform(1,3)))
+				.withEnchantment(DummyHolder.of(DungeonFistEnchantments.STORM_CALLER), uniform(1,3))
+				.withEnchantment(DummyHolder.of(Enchantments.UNBREAKING), uniform(1,3)))
 		);
 	}
 	

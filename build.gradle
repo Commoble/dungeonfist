@@ -28,6 +28,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of("${java_version}")
 sourceSets {
 	main
 	datagen
+	datagenmangler
 }
 
 neoForge {
@@ -36,6 +37,9 @@ neoForge {
 		"${modid}" {
 			sourceSet(sourceSets.main)
 			sourceSet(sourceSets.datagen)
+		}
+		"dungeonfistdatagenmangler" {
+			sourceSet(sourceSets.datagenmangler)
 		}
 	}
 	runs {

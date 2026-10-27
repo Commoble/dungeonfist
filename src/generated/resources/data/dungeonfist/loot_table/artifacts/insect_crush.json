@@ -1,0 +1,52 @@
+{
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "modifier": [
+            {
+              "type": "minecraft:set_name",
+              "name": {
+                "color": "gold",
+                "italic": false,
+                "translate": "dungeonfist.artifact.dungeonfist.artifacts/insect_crush.name"
+              }
+            },
+            {
+              "type": "minecraft:set_lore",
+              "lore": [
+                {
+                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/insect_crush.lore"
+                }
+              ],
+              "mode": "append"
+            },
+            {
+              "type": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:bane_of_arthropods": {
+                  "type": "minecraft:uniform",
+                  "max": 5,
+                  "min": 4
+                },
+                "minecraft:sweeping_edge": {
+                  "type": "minecraft:uniform",
+                  "max": 3,
+                  "min": 1
+                },
+                "minecraft:unbreaking": {
+                  "type": "minecraft:uniform",
+                  "max": 3,
+                  "min": 1
+                }
+              }
+            }
+          ],
+          "name": "minecraft:stone_sword"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

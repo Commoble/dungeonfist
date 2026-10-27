@@ -1,0 +1,48 @@
+{
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "modifier": [
+            {
+              "type": "minecraft:set_name",
+              "name": {
+                "color": "gold",
+                "italic": false,
+                "translate": "dungeonfist.artifact.dungeonfist.artifacts/newtons_hammer.name"
+              }
+            },
+            {
+              "type": "minecraft:set_lore",
+              "lore": [
+                {
+                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/newtons_hammer.lore"
+                }
+              ],
+              "mode": "append"
+            },
+            {
+              "type": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:breach": {
+                  "type": "minecraft:uniform",
+                  "max": 4,
+                  "min": 1
+                },
+                "minecraft:density": {
+                  "type": "minecraft:uniform",
+                  "max": 5,
+                  "min": 1
+                },
+                "minecraft:wind_burst": 1
+              }
+            }
+          ],
+          "name": "minecraft:mace"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

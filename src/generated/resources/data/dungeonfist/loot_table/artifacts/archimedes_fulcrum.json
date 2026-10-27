@@ -1,0 +1,48 @@
+{
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "modifier": [
+            {
+              "type": "minecraft:set_name",
+              "name": {
+                "color": "gold",
+                "italic": false,
+                "translate": "dungeonfist.artifact.dungeonfist.artifacts/archimedes_fulcrum.name"
+              }
+            },
+            {
+              "type": "minecraft:set_lore",
+              "lore": [
+                {
+                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/archimedes_fulcrum.lore"
+                }
+              ],
+              "mode": "append"
+            },
+            {
+              "type": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:knockback": {
+                  "type": "minecraft:uniform",
+                  "max": 3,
+                  "min": 2
+                },
+                "minecraft:lunge": 3,
+                "minecraft:sharpness": {
+                  "type": "minecraft:uniform",
+                  "max": 5,
+                  "min": 1
+                }
+              }
+            }
+          ],
+          "name": "minecraft:iron_spear"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

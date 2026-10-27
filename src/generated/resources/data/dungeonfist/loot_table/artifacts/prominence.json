@@ -1,0 +1,48 @@
+{
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "modifier": [
+            {
+              "type": "minecraft:set_name",
+              "name": {
+                "color": "gold",
+                "italic": false,
+                "translate": "dungeonfist.artifact.dungeonfist.artifacts/prominence.name"
+              }
+            },
+            {
+              "type": "minecraft:set_lore",
+              "lore": [
+                {
+                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/prominence.lore"
+                }
+              ],
+              "mode": "append"
+            },
+            {
+              "type": "minecraft:set_enchantments",
+              "enchantments": {
+                "dungeonfist:fire_thorns": {
+                  "type": "minecraft:uniform",
+                  "max": 4,
+                  "min": 1
+                },
+                "minecraft:fire_protection": {
+                  "type": "minecraft:uniform",
+                  "max": 4,
+                  "min": 1
+                },
+                "minecraft:mending": 1
+              }
+            }
+          ],
+          "name": "minecraft:golden_chestplate"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}
