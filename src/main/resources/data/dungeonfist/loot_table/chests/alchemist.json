@@ -54,7 +54,7 @@
 				{
 					"type": "tag",
 					"weight": 1,
-					"name": "dungeonfist:loot/rare_alchemy",
+					"items": "#dungeonfist:loot/rare_alchemy",
 					"expand": true
 				}
 			]

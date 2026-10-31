@@ -1,25 +1,25 @@
 {
 	"values": {
 		"stone_bricks": {
-			"type": "weighted_state_provider",
+			"type": "weighted",
 			"entries": [
 				{
 					"weight": 1,
-					"data": {"Name": "cracked_stone_bricks"}
+					"data": {"id": "cracked_stone_bricks"}
 				},
 				{
 					"weight": 10,
-					"data": {"Name": "air"}
+					"data": {"id": "air"}
 				}
 			]
 		},
 		"cobblestone": {
-			"type": "simple_state_provider",
-			"state": {"Name": "air"}
+			"type": "simple",
+			"state": {"id": "air"}
 		},
 		"cobbled_deepslate": {
-			"type": "simple_state_provider",
-			"state": {"Name": "air"}
+			"type": "simple",
+			"state": {"id": "air"}
 		}
 	}
 }

@@ -10,14 +10,14 @@
               "name": {
                 "color": "gold",
                 "italic": false,
-                "translate": "dungeonfist.artifact.dungeonfist.artifacts/moon_shoes.name"
+                "translate": "dungeonfist.artifact.dungeonfist.moon_shoes.name"
               }
             },
             {
               "type": "minecraft:set_lore",
               "lore": [
                 {
-                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/moon_shoes.lore"
+                  "translate": "dungeonfist.artifact.dungeonfist.moon_shoes.lore"
                 }
               ],
               "mode": "append"

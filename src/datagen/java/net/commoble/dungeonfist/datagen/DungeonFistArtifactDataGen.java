@@ -155,7 +155,7 @@ public final class DungeonFistArtifactDataGen
 	{
 		var key = key(path);
 		Identifier id = key.identifier();
-		String translation = String.format("dungeonfist.artifact.%s.%s", id.getNamespace(), id.getPath());
+		String translation = String.format("dungeonfist.artifact.%s.%s", id.getNamespace(), path);
 		var builder = LootItem.lootTableItem(item);
 		builder.apply(SetNameFunction.setName(Component.translatable(String.format("%s.name", translation)).setStyle(Style.EMPTY.withColor(ChatFormatting.GOLD).withItalic(false)), Target.CUSTOM_NAME));
 		builder.apply(SetLoreFunction.setLore().addLine(Component.translatable(String.format("%s.lore", translation))));

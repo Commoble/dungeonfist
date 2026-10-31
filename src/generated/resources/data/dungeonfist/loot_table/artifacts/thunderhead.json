@@ -10,14 +10,14 @@
               "name": {
                 "color": "gold",
                 "italic": false,
-                "translate": "dungeonfist.artifact.dungeonfist.artifacts/thunderhead.name"
+                "translate": "dungeonfist.artifact.dungeonfist.thunderhead.name"
               }
             },
             {
               "type": "minecraft:set_lore",
               "lore": [
                 {
-                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/thunderhead.lore"
+                  "translate": "dungeonfist.artifact.dungeonfist.thunderhead.lore"
                 }
               ],
               "mode": "append"

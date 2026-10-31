@@ -13,7 +13,7 @@
 						},
 						"location_predicate": {"predicate_type": "always_true"},
 						"output_state": {
-							"Name": "cobblestone"
+							"id": "cobblestone"
 						}
 					}
 				]

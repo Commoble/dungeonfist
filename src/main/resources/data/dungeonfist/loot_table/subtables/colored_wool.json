@@ -14,7 +14,7 @@
 				{
 					"type": "tag",
 					"weight": 1,
-					"name": "wool",
+					"items": "#wool",
 					"expand": true
 				}
 			]

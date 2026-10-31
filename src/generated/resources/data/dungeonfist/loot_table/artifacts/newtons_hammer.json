@@ -10,14 +10,14 @@
               "name": {
                 "color": "gold",
                 "italic": false,
-                "translate": "dungeonfist.artifact.dungeonfist.artifacts/newtons_hammer.name"
+                "translate": "dungeonfist.artifact.dungeonfist.newtons_hammer.name"
               }
             },
             {
               "type": "minecraft:set_lore",
               "lore": [
                 {
-                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/newtons_hammer.lore"
+                  "translate": "dungeonfist.artifact.dungeonfist.newtons_hammer.lore"
                 }
               ],
               "mode": "append"

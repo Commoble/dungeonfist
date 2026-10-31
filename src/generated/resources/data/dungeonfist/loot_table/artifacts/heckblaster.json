@@ -10,14 +10,14 @@
               "name": {
                 "color": "gold",
                 "italic": false,
-                "translate": "dungeonfist.artifact.dungeonfist.artifacts/heckblaster.name"
+                "translate": "dungeonfist.artifact.dungeonfist.heckblaster.name"
               }
             },
             {
               "type": "minecraft:set_lore",
               "lore": [
                 {
-                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/heckblaster.lore"
+                  "translate": "dungeonfist.artifact.dungeonfist.heckblaster.lore"
                 }
               ],
               "mode": "append"

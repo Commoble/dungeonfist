@@ -14,7 +14,7 @@
 				{
 					"type": "tag",
 					"weight": 1,
-					"name": "c:dyes",
+					"items": "#c:dyes",
 					"expand": true
 				}
 			]

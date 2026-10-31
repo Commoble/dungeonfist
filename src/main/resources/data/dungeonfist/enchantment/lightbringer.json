@@ -13,12 +13,10 @@
 				"enchanted": "attacker",
 				"affected": "victim",
 				"requirements": {
-					"condition": "entity_properties",
+					"type": "entity_properties",
 					"entity": "this",
 					"predicate": {
-						"type_specific": {
-							"type": "looot:dead"
-						}
+						"looot:dead": {}
 					}
 				},
 				"effect": {
@@ -30,9 +28,9 @@
 								"type": "replaceable"
 							},
 							"block_state": {
-								"type": "simple_state_provider",
+								"type": "simple",
 								"state": {
-									"Name": "dungeonfist:fading_light"
+									"id": "dungeonfist:fading_light"
 								}
 							}
 						},
@@ -41,7 +39,7 @@
 							"radius": 7,
 							"spherical": true,
 							"predicate": {
-								"type": "#undead"
+								"entity_type": "#undead"
 							},
 							"effect": {
 								"type": "ignite",

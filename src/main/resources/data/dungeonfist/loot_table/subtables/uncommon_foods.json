@@ -14,7 +14,7 @@
 				{
 					"type": "tag",
 					"weight": 1,
-					"name": "dungeonfist:loot/uncommon_foods",
+					"items": "#dungeonfist:loot/uncommon_foods",
 					"expand": true
 				}
 			]

@@ -14,7 +14,7 @@
 				{
 					"type": "tag",
 					"weight": 1,
-					"name": "dungeonfist:loot/common_foods",
+					"items": "#dungeonfist:loot/common_foods",
 					"expand": true
 				}
 			]

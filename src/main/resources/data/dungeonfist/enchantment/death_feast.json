@@ -13,12 +13,10 @@
 				"enchanted": "attacker",
 				"affected": "attacker",
 				"requirements": {
-					"condition": "entity_properties",
+					"type": "entity_properties",
 					"entity": "this",
 					"predicate": {
-						"type_specific": {
-							"type": "looot:dead"
-						}
+						"looot:dead": {}
 					}
 				},
 				"effect":{

@@ -20,10 +20,6 @@
 					"ambient": false,
 					"visible": false,
 					"show_icon": false
-				},
-				"requirements": {
-					"condition": "entity_properties",
-					"entity": "this"
 				}
 			}
 		]

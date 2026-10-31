@@ -14,7 +14,7 @@
 				{
 					"type": "tag",
 					"weight": 1,
-					"name": "dungeonfist:loot/common_treasure",
+					"items": "#dungeonfist:loot/common_treasure",
 					"expand": true
 				}
 			]

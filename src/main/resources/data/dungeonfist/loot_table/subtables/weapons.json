@@ -10,43 +10,43 @@
 					"type": "minecraft:tag",
 					"weight": 10,
 					"expand": true,
-					"name": "c:weapons/iron"
+					"items": "#c:weapons/iron"
 				},
 				{
 					"type": "minecraft:tag",
 					"weight": 5,
 					"expand": true,
-					"name": "c:tools/missile_weapon"
+					"items": "#c:tools/missile_weapon"
 				},
 				{
 					"type": "minecraft:tag",
 					"weight": 3,
 					"expand": true,
-					"name": "c:weapons/wood"
+					"items": "#c:weapons/wood"
 				},
 				{
 					"type": "minecraft:tag",
 					"weight": 3,
 					"expand": true,
-					"name": "c:weapons/gold"
+					"items": "#c:weapons/gold"
 				},
 				{
 					"type": "minecraft:tag",
 					"weight": 3,
 					"expand": true,
-					"name": "c:weapons/copper"
+					"items": "#c:weapons/copper"
 				},
 				{
 					"type": "minecraft:tag",
 					"weight": 1,
 					"expand": true,
-					"name": "c:weapons/diamond"
+					"items": "#c:weapons/diamond"
 				},
 				{
 					"type": "minecraft:tag",
 					"weight": 1,
 					"expand": true,
-					"name": "c:tools/trident"
+					"items": "#c:tools/trident"
 				}
 			]
 		}

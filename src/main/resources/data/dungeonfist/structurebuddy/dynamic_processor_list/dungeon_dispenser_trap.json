@@ -5,8 +5,8 @@
 			{
 				"processor_type": "structurebuddy:blockstate",
 				"copy_from_blockstate": {
-					"Name": "dispenser",
-					"Properties": {
+					"id": "dispenser",
+					"properties": {
 						"facing": "up"					
 					}
 				},

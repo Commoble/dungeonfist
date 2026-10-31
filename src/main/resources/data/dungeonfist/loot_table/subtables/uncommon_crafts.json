@@ -14,7 +14,7 @@
 				{
 					"type": "tag",
 					"weight": 1,
-					"name": "dungeonfist:loot/uncommon_crafts",
+					"items": "#dungeonfist:loot/uncommon_crafts",
 					"expand": true
 				}
 			]

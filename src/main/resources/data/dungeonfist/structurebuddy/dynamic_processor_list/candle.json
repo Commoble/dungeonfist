@@ -5,8 +5,8 @@
 			{
 				"processor_type": "structurebuddy:blockstate",
 				"copy_from_blockstate": {
-					"Name": "candle",
-					"Properties": {
+					"id": "candle",
+					"properties": {
 						"lit": "true"					
 					}
 				},
@@ -19,8 +19,8 @@
 					"probability": 0.25
 				},
 				"copy_from_blockstate": {
-					"Name": "candle",
-					"Properties": {
+					"id": "candle",
+					"properties": {
 						"candles": "2"	
 					}
 				},

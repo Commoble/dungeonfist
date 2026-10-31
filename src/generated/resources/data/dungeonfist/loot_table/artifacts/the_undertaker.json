@@ -10,14 +10,14 @@
               "name": {
                 "color": "gold",
                 "italic": false,
-                "translate": "dungeonfist.artifact.dungeonfist.artifacts/the_undertaker.name"
+                "translate": "dungeonfist.artifact.dungeonfist.the_undertaker.name"
               }
             },
             {
               "type": "minecraft:set_lore",
               "lore": [
                 {
-                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/the_undertaker.lore"
+                  "translate": "dungeonfist.artifact.dungeonfist.the_undertaker.lore"
                 }
               ],
               "mode": "append"

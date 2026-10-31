@@ -10,14 +10,14 @@
               "name": {
                 "color": "gold",
                 "italic": false,
-                "translate": "dungeonfist.artifact.dungeonfist.artifacts/morsmorde.name"
+                "translate": "dungeonfist.artifact.dungeonfist.morsmorde.name"
               }
             },
             {
               "type": "minecraft:set_lore",
               "lore": [
                 {
-                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/morsmorde.lore"
+                  "translate": "dungeonfist.artifact.dungeonfist.morsmorde.lore"
                 }
               ],
               "mode": "append"

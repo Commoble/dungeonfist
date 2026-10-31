@@ -10,14 +10,14 @@
               "name": {
                 "color": "gold",
                 "italic": false,
-                "translate": "dungeonfist.artifact.dungeonfist.artifacts/benthic_boots.name"
+                "translate": "dungeonfist.artifact.dungeonfist.benthic_boots.name"
               }
             },
             {
               "type": "minecraft:set_lore",
               "lore": [
                 {
-                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/benthic_boots.lore"
+                  "translate": "dungeonfist.artifact.dungeonfist.benthic_boots.lore"
                 }
               ],
               "mode": "append"

@@ -14,7 +14,7 @@
 				{
 					"type": "tag",
 					"weight": 1,
-					"name": "dungeonfist:loot/common_crafts",
+					"items": "#dungeonfist:loot/common_crafts",
 					"expand": true
 				}
 			]

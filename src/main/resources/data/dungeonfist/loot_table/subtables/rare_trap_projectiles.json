@@ -14,7 +14,7 @@
 				{
 					"type": "tag",
 					"weight": 1,
-					"name": "dungeonfist:loot/rare_trap_projectiles",
+					"items": "#dungeonfist:loot/rare_trap_projectiles",
 					"expand": true
 				}
 			]

@@ -9,7 +9,7 @@
 				{
 					"type": "tag",
 					"weight": 1,
-					"name": "dungeonfist:loot/alchemy_ingredients",
+					"items": "#dungeonfist:loot/alchemy_ingredients",
 					"expand": true
 				}
 			]

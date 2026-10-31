@@ -10,14 +10,14 @@
               "name": {
                 "color": "gold",
                 "italic": false,
-                "translate": "dungeonfist.artifact.dungeonfist.artifacts/catseye.name"
+                "translate": "dungeonfist.artifact.dungeonfist.catseye.name"
               }
             },
             {
               "type": "minecraft:set_lore",
               "lore": [
                 {
-                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/catseye.lore"
+                  "translate": "dungeonfist.artifact.dungeonfist.catseye.lore"
                 }
               ],
               "mode": "append"

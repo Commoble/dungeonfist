@@ -10,14 +10,14 @@
               "name": {
                 "color": "gold",
                 "italic": false,
-                "translate": "dungeonfist.artifact.dungeonfist.artifacts/prominence.name"
+                "translate": "dungeonfist.artifact.dungeonfist.prominence.name"
               }
             },
             {
               "type": "minecraft:set_lore",
               "lore": [
                 {
-                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/prominence.lore"
+                  "translate": "dungeonfist.artifact.dungeonfist.prominence.lore"
                 }
               ],
               "mode": "append"

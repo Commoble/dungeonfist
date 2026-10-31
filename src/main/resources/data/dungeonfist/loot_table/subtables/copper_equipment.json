@@ -14,19 +14,19 @@
 				{
 					"type": "tag",
 					"weight": 3,
-					"name": "c:armors/copper",
+					"items": "#c:armors/copper",
 					"expand": true
 				},
 				{
 					"type": "tag",
 					"weight": 1,
-					"name": "c:tools/copper",
+					"items": "#c:tools/copper",
 					"expand": true
 				},
 				{
 					"type": "tag",
 					"weight": 1,
-					"name": "c:weapons/copper",
+					"items": "#c:weapons/copper",
 					"expand": true
 				}
 			]

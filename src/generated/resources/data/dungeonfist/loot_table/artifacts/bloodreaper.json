@@ -10,14 +10,14 @@
               "name": {
                 "color": "gold",
                 "italic": false,
-                "translate": "dungeonfist.artifact.dungeonfist.artifacts/bloodreaper.name"
+                "translate": "dungeonfist.artifact.dungeonfist.bloodreaper.name"
               }
             },
             {
               "type": "minecraft:set_lore",
               "lore": [
                 {
-                  "translate": "dungeonfist.artifact.dungeonfist.artifacts/bloodreaper.lore"
+                  "translate": "dungeonfist.artifact.dungeonfist.bloodreaper.lore"
                 }
               ],
               "mode": "append"

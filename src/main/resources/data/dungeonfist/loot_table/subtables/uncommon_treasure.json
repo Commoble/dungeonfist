@@ -14,7 +14,7 @@
 				{
 					"type": "tag",
 					"weight": 1,
-					"name": "dungeonfist:loot/uncommon_treasure",
+					"items": "#dungeonfist:loot/uncommon_treasure",
 					"expand": true
 				}
 			]

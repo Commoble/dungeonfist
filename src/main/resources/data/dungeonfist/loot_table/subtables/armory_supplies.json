@@ -14,7 +14,7 @@
 				{
 					"type": "tag",
 					"weight": 1,
-					"name": "dungeonfist:loot/armory_supplies",
+					"items": "#dungeonfist:loot/armory_supplies",
 					"expand": true
 				}
 			]
