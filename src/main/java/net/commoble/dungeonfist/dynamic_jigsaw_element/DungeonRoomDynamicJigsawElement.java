@@ -382,28 +382,26 @@ public record DungeonRoomDynamicJigsawElement(
 			
 
 			List<DynamicProcessor> processors = this.processors.map(Holder::value).orElse(List.of());
-			if (processors.isEmpty())
+			// processors can move blocks...
+			// the way vanilla handles this is,
+			// first they filter out blockinfos out of the chunk bounds
+			// then they run structure processors
+			// after all structure processors run, check chunk bounds again
+			
+			// though, mojang doesn't check the chunk bounds between processor iterations, just at the start and end
+			// so a processor could horizontally move a blockpos and pass an OOB pos to the next processor
+			// as of 26.3 mojang doesn't have any horizontally moving processors so that's a moot point for them
+			// and we can just assume that mods' horizontal movers, if any, could check the chunk bounds themselves
+			// (else they'd cause problems in vanilla jigsaws too)
+			BlockPos pieceStart = BoxBuddy.minCorner(pieceBox);
+			BlockPos startPieceFloorCenter = context.startPieceFloorCenter();
+			StructurePlaceSettings settings = new StructurePlaceSettings();
+			settings.setRandom(context.random());
+			var jigsawData = context.jigsawData();
+			for (BoundingBox box : boxCutter.exterior())
 			{
-				for (BoundingBox box : boxCutter.exterior())
-				{
-					BoxBuddy.intersection(chunkBox, box).ifPresent(intersection ->
-						BoxBuddy.forEachPos(intersection, pos -> {
-							level.setBlock(pos, this.state, 2);
-						}));
-				}
-			}
-			else {
-				// processors can move blocks...
-				// so, have to calculate the blocks first,
-				// THEN check if any are in the structure piece bounds
-				BlockPos pieceStart = BoxBuddy.minCorner(pieceBox);
-				BlockPos startPieceFloorCenter = context.startPieceFloorCenter();
-				StructurePlaceSettings settings = new StructurePlaceSettings();
-				settings.setRandom(context.random());
-				var jigsawData = context.jigsawData();
-				for (BoundingBox box : boxCutter.exterior())
-				{
-					BoxBuddy.forEachPos(box, pos -> {
+				BoxBuddy.intersection(chunkBox, box).ifPresent(intersection -> {
+					BoxBuddy.forEachPos(intersection, pos -> {
 						final StructureBlockInfo originalInfo = new StructureBlockInfo(pos, this.state, null);
 						@Nullable StructureBlockInfo modifiedInfo = originalInfo; 
 						for (DynamicProcessor processor : processors)
@@ -421,7 +419,7 @@ public record DungeonRoomDynamicJigsawElement(
 							}	
 						}
 					});
-				}
+				});
 			}
 			
 			for (DungeonStub stub : this.stubs)
