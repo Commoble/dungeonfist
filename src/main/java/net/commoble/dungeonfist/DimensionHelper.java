@@ -3,7 +3,6 @@ package net.commoble.dungeonfist;
 import java.util.OptionalLong;
 import java.util.function.Consumer;
 
-import org.apache.commons.lang3.function.Consumers;
 import org.jspecify.annotations.Nullable;
 
 import net.commoble.infiniverse.api.InfiniverseAPI;
@@ -12,6 +11,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.FixedBiomeSource;
 import net.minecraft.world.level.dimension.LevelStem;
@@ -23,7 +23,7 @@ public final class DimensionHelper
 	
 	public static @Nullable ServerLevel getOrCreateDungeonLevel(MinecraftServer server, ResourceKey<Level> newLevelKey, long seed)
 	{
-		return getOrRequestDungeonLevel(server, newLevelKey, seed, Consumers.nop());
+		return getOrRequestDungeonLevel(server, newLevelKey, seed, createdLevel -> createdLevel.getChunkSource().addTicketWithRadius(DungeonFist.PORTAL_GENERATOR_TICKET.get(), ChunkPos.ZERO, 2));
 	}
 	
 	public static @Nullable ServerLevel getOrRequestDungeonLevel(MinecraftServer server, ResourceKey<Level> newLevelKey, long seed, Consumer<ServerLevel> onCreated)

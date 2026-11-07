@@ -270,7 +270,7 @@ public class DungeonFist
 	
 	public static final DeferredHolder<TicketType, TicketType> PORTAL_GENERATOR_TICKET = TICKET_TYPES.register("portal_generator", () -> new TicketType(
 		300L,
-		TicketType.FLAG_LOADING
+		TicketType.FLAG_LOADING | TicketType.FLAG_KEEP_DIMENSION_ACTIVE
 	));
 	
 	public static final DeferredHolder<AttachmentType<?>, AttachmentType<PortalTimer>> PORTAL_TIMER_ATTACHMENT = ATTACHMENT_TYPES.register("portal_timer", () -> AttachmentType.builder(() -> PortalTimer.DEFAULT)

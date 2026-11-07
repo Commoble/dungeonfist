@@ -21,6 +21,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -107,10 +108,20 @@ public class DungeonPortalBlock extends Block implements EntityBlock
 						else
 						{
 							// target level is a dungeon, we can reconstitute it if necessary
-							DimensionHelper.getOrCreateDungeonLevel(server, targetKey, targetSeed);
+							targetLevel = DimensionHelper.getOrCreateDungeonLevel(server, targetKey, targetSeed);
+							// target might not be available right away
+							if (targetLevel != null)
+							{
+								targetLevel.getChunkSource().addTicketWithRadius(DungeonFist.PORTAL_GENERATOR_TICKET.get(), ChunkPos.ZERO, 2);
+							}
 						} 
 						if (targetLevel != null)
 						{
+							player.setData(DungeonFist.PORTAL_TIMER_ATTACHMENT, new PortalTimer(
+								currentTime,
+								newTicks,
+								true,
+								pos.immutable()));
 							Vec3 landingVec = Vec3.atBottomCenterOf(landingPos);
 							double targetX = landingVec.x;
 							double targetY = landingVec.y;
@@ -120,11 +131,14 @@ public class DungeonPortalBlock extends Block implements EntityBlock
 							player.teleportTo(targetLevel, targetX, targetY, targetZ, Set.of(), player.getYRot(), player.getXRot(), true);	
 						}
 					}
-					player.setData(DungeonFist.PORTAL_TIMER_ATTACHMENT, new PortalTimer(
-						currentTime,
-						newTicks,
-						true,
-						pos.immutable()));
+					else
+					{
+						player.setData(DungeonFist.PORTAL_TIMER_ATTACHMENT, new PortalTimer(
+							currentTime,
+							newTicks,
+							true,
+							pos.immutable()));
+					}
 				}
 				else
 				{

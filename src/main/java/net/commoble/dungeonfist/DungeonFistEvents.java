@@ -98,7 +98,7 @@ public class DungeonFistEvents
 		{
 			if (serverLevel.dimensionTypeRegistration().is(DungeonFist.UNLOAD_WHILE_UNUSED))
 			{
-				if (serverLevel.getChunkSource().getLoadedChunksCount() == 0)
+				if (serverLevel.getChunkSource().getLoadedChunksCount() == 0 && !serverLevel.getChunkSource().hasActiveTickets())
 				{
 					MinecraftServer server = Objects.requireNonNull(serverLevel.getServer());
 					ResourceKey<Level> dungeonKey = serverLevel.dimension();
