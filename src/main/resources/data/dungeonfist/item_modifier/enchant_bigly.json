@@ -1,0 +1,19 @@
+{
+	"type": "sequence",
+	"functions": 
+	[
+		{
+			"type": "minecraft:enchant_with_levels",
+			"levels": 
+			{
+				"min": 30.0,
+				"max": 60.0,
+				"type": "minecraft:uniform"
+			},
+			"treasure": true
+		},
+		{
+			"type": "looot:name_enchanted_item"
+		}
+	]
+}

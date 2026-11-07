@@ -14,33 +14,13 @@
 					"type": "loot_table",
 					"weight": 25,
 					"value": "dungeonfist:subtables/common_foods",
-					"functions": [
-						{
-							"function": "minecraft:set_count",
-							"count": 
-							{
-								"min": 3,
-								"max": 9,
-								"type": "minecraft:uniform"
-							}
-						}
-					]
+					"modifier": "dungeonfist:set_count_3_to_9"
 				},
 				{
 					"type": "loot_table",
 					"weight": 5,
 					"value": "dungeonfist:subtables/uncommon_foods",
-					"functions": [
-						{
-							"function": "minecraft:set_count",
-							"count": 
-							{
-								"min": 1,
-								"max": 5,
-								"type": "minecraft:uniform"
-							}
-						}
-					]
+					"modifier": "dungeonfist:set_count_1_to_5"
 				},
 				{
 					"type": "loot_table",

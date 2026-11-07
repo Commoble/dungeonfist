@@ -8,89 +8,25 @@
 					"type": "loot_table",
 					"weight": 2,
 					"value": "dungeonfist:subtables/common_trap_projectiles",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"type": "sum",
-								"summands": [
-									{
-										"type": "uniform",
-										"min": 2,
-										"max": 7
-									},
-									{
-										"type": "uniform",
-										"min": 2,
-										"max": 7
-									}
-								]
-							}
-						}
-					]
+					"modifier": "dungeonfist:set_trap_projectile_count"
 				},
 				{
 					"type": "loot_table",
 					"weight": 2,
 					"value": "dungeonfist:subtables/common_potioned_trap_projectiles",
-					"functions": [
-						{
-							"function": "set_random_potion",
-							"options": "#dungeonfist:loot/trap_potions"
-						},
-						{
-							"function": "set_count",
-							"count": {
-								"type": "sum",
-								"summands": [
-									{
-										"type": "uniform",
-										"min": 2,
-										"max": 7
-									},
-									{
-										"type": "uniform",
-										"min": 2,
-										"max": 7
-									}
-								]
-							}
-						}
-					]
+					"modifier": "dungeonfist:common_potioned_trap_projectiles"
 				},
 				{
 					"type": "loot_table",
 					"weight": 1,
 					"value": "dungeonfist:subtables/rare_potioned_trap_projectiles",
-					"functions": [
-						{
-							"function": "set_random_potion",
-							"options": "#dungeonfist:loot/trap_potions"
-						},
-						{
-							"function": "set_count",
-							"count": {
-								"type": "uniform",
-								"min": 3,
-								"max": 5
-							}
-						}
-					]
+					"modifier": "dungeonfist:rare_potioned_trap_projectiles"
 				},
 				{
 					"type": "loot_table",
 					"weight": 1,
 					"value": "dungeonfist:subtables/rare_trap_projectiles",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"type": "uniform",
-								"min": 3,
-								"max": 5
-							}
-						}
-					]
+					"modifier": "dungeonfist:set_count_3_to_5"
 				}
 			]
 		}

@@ -1,0 +1,18 @@
+{
+	"type": "set_count",
+	"count": {
+		"type": "add",
+		"inputs": [
+			{
+				"type": "uniform",
+				"min": 2,
+				"max": 7
+			},
+			{
+				"type": "uniform",
+				"min": 2,
+				"max": 7
+			}
+		]
+	}
+}

@@ -18,18 +18,7 @@
 					"expand": true
 				}
 			],
-			"functions": 
-			[
-				{
-					"function": "minecraft:set_count",
-					"count": 
-					{
-						"min": 3,
-						"max": 9,
-						"type": "minecraft:uniform"
-					}
-				}
-			]
+			"modifier": "dungeonfist:set_count_3_to_9"
 		}
 	]
 }

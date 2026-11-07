@@ -14,17 +14,7 @@
 					"type": "loot_table",
 					"weight": 1,
 					"value": "dungeonfist:subtables/common_treasure",
-					"functions": [
-						{
-							"function": "minecraft:set_count",
-							"count": 
-							{
-								"min": 3,
-								"max": 9,
-								"type": "minecraft:uniform"
-							}
-						}
-					]
+					"modifier": "dungeonfist:set_count_3_to_9"
 				}
 			]
 		},
@@ -40,17 +30,7 @@
 					"type": "loot_table",
 					"weight": 1,
 					"value": "dungeonfist:subtables/uncommon_treasure",
-					"functions": [
-						{
-							"function": "minecraft:set_count",
-							"count": 
-							{
-								"min": 3,
-								"max": 5,
-								"type": "minecraft:uniform"
-							}
-						}
-					]
+					"modifier": "dungeonfist:set_count_3_to_5"
 				}
 			]
 		},

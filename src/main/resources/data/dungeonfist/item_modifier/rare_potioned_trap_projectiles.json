@@ -1,0 +1,7 @@
+{
+	"type": "sequence",
+	"functions": [
+		"dungeonfist:trap_potion",
+		"dungeonfist:set_count_3_to_5"
+	]
+}

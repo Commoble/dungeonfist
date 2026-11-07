@@ -1,0 +1,4 @@
+{
+	"type": "set_random_potion",
+	"options": "#dungeonfist:loot/trap_potions"
+}
