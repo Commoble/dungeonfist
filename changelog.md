@@ -1,3 +1,7 @@
+# 26.3.0.0
+* Update to MC 26.3
+* Monsters should generally be more common, especially in subspace dungeons
+
 # 26.1.0.4
 * Possibly fixed crash that could occur when unloading dungeon dimensions
 

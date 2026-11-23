@@ -9,7 +9,7 @@
 		"type": "structurebuddy:processor_list",
 		"processors": [
 			{
-				"processor_type": "dungeonfist:set_data",
+				"processor_type": "structurebuddy:set_data",
 				"blocks": "chest",
 				"data": {
 					"LootTable": "dungeonfist:chests/armory"
@@ -32,14 +32,16 @@
 				]
 			},
 			{
-				"processor_type": "dungeonfist:set_data",
+				"processor_type": "structurebuddy:set_data",
 				"blocks": "spawner",
 				"data": {
 					"SpawnData": {
 						"entity": {
 							"id": "creeper"
 						}
-					}
+					},
+					"MaxNearbyEntities": 2,
+					"RequiredPlayerRange": 8
 				}
 			}
 		]

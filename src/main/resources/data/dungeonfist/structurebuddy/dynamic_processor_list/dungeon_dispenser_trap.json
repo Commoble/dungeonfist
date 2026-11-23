@@ -13,7 +13,7 @@
 				"properties": ["facing"]
 			},
 			{
-				"processor_type": "dungeonfist:set_data",
+				"processor_type": "structurebuddy:set_data",
 				"blocks": "dispenser",
 				"data": {
 					"LootTable": "dungeonfist:chests/projectile_trap"

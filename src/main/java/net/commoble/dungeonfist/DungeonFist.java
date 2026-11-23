@@ -39,7 +39,6 @@ import net.commoble.dungeonfist.mob_effect.StormCallMobEffect;
 import net.commoble.dungeonfist.pos_rule_test.HeightRangePosRuleTest;
 import net.commoble.dungeonfist.rule_test.RandomRuleTest;
 import net.commoble.dungeonfist.structure_placement.OriginStructurePlacement;
-import net.commoble.dungeonfist.structure_processor.SetDataProcessor;
 import net.commoble.structurebuddy.api.BoxElement;
 import net.commoble.structurebuddy.api.DynamicJigsawElement;
 import net.commoble.structurebuddy.api.DynamicProcessor;
@@ -103,6 +102,7 @@ public class DungeonFist
 	public static final TagKey<EntityType<?>> ITEM_FRAMES = TagKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath("c", "item_frame"));
 	public static final TagKey<Enchantment> PREVENTS_RUNE_TRIGGERING_WHEN_MINING = TagKey.create(Registries.ENCHANTMENT, id("prevents_rune_triggering_when_mining"));
 	public static final TagKey<DimensionType> UNLOAD_WHILE_UNUSED = TagKey.create(Registries.DIMENSION_TYPE, id("unload_while_unused"));
+	public static final TagKey<DimensionType> DUNGEON = TagKey.create(Registries.DIMENSION_TYPE, id("dungeon"));
 	
 	public static final DeferredRegister.Blocks BLOCKS = defreg(DeferredRegister::createBlocks);
 	public static final DeferredRegister.Items ITEMS = defreg(DeferredRegister::createItems);
@@ -265,8 +265,6 @@ public class DungeonFist
 	public static final DeferredHolder<RuleTestType<?>, RuleTestType<RandomRuleTest>> RANDOM_RULE_TEST = RULE_TESTS.register("random", () -> () -> RandomRuleTest.CODEC);
 	
 	public static final DeferredHolder<MapCodec<? extends StructurePlacement>, MapCodec<OriginStructurePlacement>> ORIGIN_STRUCTURE_PLACEMENT_TYPE = STRUCTURE_PLACEMENT_TYPES.register("origin", () -> OriginStructurePlacement.CODEC);
-	
-	public static final DeferredHolder<MapCodec<? extends StructureProcessor>, MapCodec<SetDataProcessor>> SET_DATA_PROCESSOR = STRUCTURE_PROCESSORS.register("set_data", () -> SetDataProcessor.CODEC);
 	
 	public static final DeferredHolder<TicketType, TicketType> PORTAL_GENERATOR_TICKET = TICKET_TYPES.register("portal_generator", () -> new TicketType(
 		300L,

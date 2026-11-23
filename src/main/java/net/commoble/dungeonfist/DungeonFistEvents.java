@@ -5,11 +5,19 @@ import java.util.Objects;
 import net.commoble.dungeonfist.attachment.PortalTimer;
 import net.commoble.dungeonfist.savedata.PlayersInDungeonsSaveData;
 import net.commoble.infiniverse.api.InfiniverseAPI;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.dimension.DimensionType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
@@ -96,15 +104,56 @@ public class DungeonFistEvents
 	{
 		if (event.getLevel() instanceof ServerLevel serverLevel)
 		{
-			if (serverLevel.dimensionTypeRegistration().is(DungeonFist.UNLOAD_WHILE_UNUSED))
+			Holder<DimensionType> dimensionType = serverLevel.dimensionTypeRegistration();
+			boolean hasLoadedChunks = serverLevel.getChunkSource().getLoadedChunksCount() > 0;
+			if (dimensionType.is(DungeonFist.UNLOAD_WHILE_UNUSED))
 			{
-				if (serverLevel.getChunkSource().getLoadedChunksCount() == 0 && !serverLevel.getChunkSource().hasActiveTickets())
+				if (!hasLoadedChunks && !serverLevel.getChunkSource().hasActiveTickets())
 				{
 					MinecraftServer server = Objects.requireNonNull(serverLevel.getServer());
 					ResourceKey<Level> dungeonKey = serverLevel.dimension();
 					if (!PlayersInDungeonsSaveData.getOrCreate(server).keepDungeonLoaded(dungeonKey))
 					{
 						InfiniverseAPI.get().markDimensionForUnregistration(server, dungeonKey);
+					}
+				}
+			}
+			if (dimensionType.is(DungeonFist.DUNGEON))
+			{
+				if (hasLoadedChunks)
+				{
+					// prune idle entities faster
+					for (Entity entity : serverLevel.getAllEntities())
+					{
+						if (entity instanceof Mob mob
+							&& mob.getType().getCategory() == MobCategory.MONSTER
+							&& !mob.isRemoved()
+							&& !mob.isPersistenceRequired()
+							&& !mob.requiresCustomPersistence())
+						{
+							int noActionTime = mob.getNoActionTime();
+							if (mob.getNoActionTime() > 600)
+							{
+								if (mob.getRandom().nextInt(20) == 0)
+								{
+									Player nearestPlayer = serverLevel.getNearestPlayer(mob, -1D);
+									if (nearestPlayer != null)
+									{
+										double distSqr = nearestPlayer.distanceToSqr(mob);
+										int instantDespawnDistance = mob.getType().getCategory().getNoDespawnDistance();
+										int instantDespawnDistSqr = instantDespawnDistance * instantDespawnDistance;
+										if (distSqr > instantDespawnDistSqr && mob.removeWhenFarAway(distSqr))
+										{
+											mob.discard();
+										}
+									}
+								}
+							}
+							else if (noActionTime > 2)
+							{
+								mob.setNoActionTime(noActionTime + 2);
+							}
+						}
 					}
 				}
 			}

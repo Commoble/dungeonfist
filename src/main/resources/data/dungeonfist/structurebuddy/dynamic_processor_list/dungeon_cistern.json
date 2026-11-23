@@ -12,7 +12,7 @@
 		"type": "structurebuddy:processor_list",
 		"processors": [
 			{
-				"processor_type": "dungeonfist:set_data",
+				"processor_type": "structurebuddy:set_data",
 				"blocks": "barrel",
 				"data": {
 					"LootTable": "dungeonfist:chests/cistern"

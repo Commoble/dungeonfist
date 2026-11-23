@@ -1,0 +1,18 @@
+{
+	"type": "dungeonfist:pillar",
+	"min_width": 1,
+	"max_width": 1,
+	"max_height": 1,
+	"jigsaws": [
+		{
+			"x": "center",
+			"z": "center",
+			"y": "min",
+			"orientation": "down_north",
+			"jigsaw": {
+				"target_pool": "dungeonfist:dungeon/1x1_below_false_floor",
+				"target_name": "up"
+			}
+		}
+	]
+}

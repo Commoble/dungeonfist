@@ -1,0 +1,83 @@
+[
+	{
+		"type": "structurebuddy:processor_list",
+		"processors": [
+			{
+				"processor_type": "structurebuddy:set_data",
+				"blocks": "spawner",
+				"data": {
+					"SpawnPotentials": [
+						{
+							"weight": 100,
+							"data": {
+								"entity": {
+									"id": "spider"
+								}
+							}
+						},
+						{
+							"weight": 95,
+							"data": {
+								"entity": {
+									"id": "zombie"
+								}
+							}
+						},
+						{
+							"weight": 5,
+							"data": {
+								"entity": {
+									"id": "zombie_villager"
+								}
+							}
+						},
+						{
+							"weight": 100,
+							"data": {
+								"entity": {
+									"id": "skeleton"
+								}
+							}
+						},
+						{
+							"weight": 100,
+							"data": {
+								"entity": {
+									"id": "creeper"
+								}
+							}
+						},
+						{
+							"weight": 10,
+							"data": {
+								"entity": {
+									"id": "slime"
+								}
+							}
+						},
+						{
+							"weight": 10,
+							"data": {
+								"entity": {
+									"id": "enderman"
+								}
+							}
+						},
+						{
+							"weight": 5,
+							"data": {
+								"entity": {
+									"id": "witch"
+								}
+							}
+						}
+					],
+					"SpawnRange": 6,
+					"SpawnCount": 2,
+					"MaxNearbyEntities": 2,
+					"RequiredPlayerRange": 16
+				}
+			}
+		]
+	}
+]

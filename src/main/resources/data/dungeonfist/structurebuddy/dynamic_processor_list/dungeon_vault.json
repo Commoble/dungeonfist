@@ -19,18 +19,20 @@
 				]
 			},
 			{
-				"processor_type": "dungeonfist:set_data",
+				"processor_type": "structurebuddy:set_data",
 				"blocks": "spawner",
 				"data": {
 					"SpawnData": {
 						"entity": {
 							"id": "zombie"
 						}
-					}
+					},
+					"MaxNearbyEntities": 4,
+					"RequiredPlayerRange": 8
 				}
 			},
 			{
-				"processor_type": "dungeonfist:set_data",
+				"processor_type": "structurebuddy:set_data",
 				"blocks": "spawner",
 				"probability": 0.5,
 				"data": {
@@ -38,7 +40,9 @@
 						"entity": {
 							"id": "skeleton"
 						}
-					}
+					},
+					"MaxNearbyEntities": 4,
+					"RequiredPlayerRange": 8
 				}
 			}
 		]
@@ -53,7 +57,7 @@
 		"type": "structurebuddy:processor_list",
 		"processors": [
 			{
-				"processor_type": "dungeonfist:set_data",
+				"processor_type": "structurebuddy:set_data",
 				"blocks": "chest",
 				"data": {
 					"LootTable": "dungeonfist:chests/treasure"

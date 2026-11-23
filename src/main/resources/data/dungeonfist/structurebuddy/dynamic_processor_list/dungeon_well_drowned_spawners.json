@@ -12,14 +12,16 @@
 		"type": "structurebuddy:processor_list",
 		"processors": [
 			{
-				"processor_type": "dungeonfist:set_data",
+				"processor_type": "structurebuddy:set_data",
 				"blocks": "spawner",
 				"data": {
 					"SpawnData": {
 						"entity": {
 							"id": "drowned"
 						}
-					}
+					},
+					"MaxNearbyEntities": 2,
+					"RequiredPlayerRange": 8
 				}
 			}
 		]

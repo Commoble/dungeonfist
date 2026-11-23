@@ -1,6 +1,7 @@
 {
 	"values": [
 		"dungeonfist:dungeon/floor_embeds/pool",
-		"dungeonfist:dungeon/floor_embeds/1x1_pit"
+		"dungeonfist:dungeon/floor_embeds/1x1_pit",
+		"dungeonfist:dungeon/floor_embeds/1x1_false_floor"
 	]
 }
